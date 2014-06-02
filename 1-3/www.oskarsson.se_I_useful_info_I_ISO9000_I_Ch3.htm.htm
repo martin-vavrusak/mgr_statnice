@@ -1,0 +1,1619 @@
+<HTML>
+<!--This file created 19:12  00-01-12 by Claris Home Page version 3.0-->
+<HEAD>
+   <TITLE>INTERPRETING THE REQUIREMENTS IN ISO 9001 FOR SOFTWARE DEVELOPMENT AND MAINTENANCE</TITLE>
+   <META NAME=GENERATOR CONTENT="Claris Home Page 3.0">
+   <X-CLARIS-WINDOW TOP=25 BOTTOM=596 LEFT=4 RIGHT=864>
+   <X-CLARIS-TAGVIEW MODE=minimal>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<P ALIGN=right><A HREF="Ch0.htm#Contents">Table of
+contents</A>&nbsp;</P>
+
+<BLOCKQUOTE start=3><H2 start=3><FONT SIZE="+2"><B>3. INTERPRETING
+   THE REQUIREMENTS IN ISO 9001 FOR SOFTWARE DEVELOPMENT AND
+   MAINTENANCE</B></FONT></H2>
+   
+   <H3 start=3><FONT SIZE="+1"><B>General</B></FONT></H3>
+   
+   <P start=3>Now, let us take a detailed look at the requirements in
+   ISO 9001, seen from the viewpoint of a company developing
+   software.</P>
+   
+   <P start=3>Remember that the standard was originally intended for
+   the manufacturing industry, and its application to software
+   development is a special case. In this section, the requirements
+   are interpreted for software development approximately in
+   accordance with ISO 9000-3 and the TickIT guide.</P>
+   
+   <P start=3>The requirements in the standard are structured into 20
+   main <I>quality elements</I>. These elements are seen as the major
+   parts of a quality system, and each element is a well-known
+   concept in the quality management community. In this chapter, we
+   will go through the quality elements in turn and describe what
+   they imply for the development and maintenance of software. In the
+   heading for each quality element we include the corresponding
+   paragraph number in ISO 9001 in brackets.</P>
+   
+   <P start=3>Especially with software, when an auditor encounters a
+   deficiency, there may be more than one paragraph in the standard
+   to raise the non-conformance against. For example, improper
+   documentation of testing may be raised against either 4.5
+   "Document control", 4.4.8 "Design validation", or 4.10 "Inspection
+   and testing".</P>
+   
+   <H3 start=3><FONT SIZE="+1"><B>Quality elements of ISO
+   9001</B></FONT></H3>
+   
+   <H4 start=3><B>Management responsibility (4.1)</B></H4>
+   
+   <P start=3>This element covers the general responsibilities of a
+   company's management. The requirements consist of three parts:
+   Quality policy, Organization and Management review.</P>
+   
+   <H5 start=3><B><I>Quality policy</I></B></H5>
+   
+   <P>The concept of <I>quality policy</I> is central for ISO 9001.
+   The quality policy is viewed as the root, from which the rest of
+   the quality system grows.</P>
+   
+   <P>The standard does not explicitly require a supplier to produce
+   quality products. Instead, the standard requires the supplier
+   management to issue a <I>quality policy</I>, where it says that
+   the company shall produce quality products.</P>
+   
+   <P>Notice that not all suppliers have product quality as important
+   aims. Quality is important mainly when one wants the customers to
+   return. For example, there are organizations whose only goal is to
+   sell products or services regardless of the needs of the customer
+   or even the quality of the product. Such organizations can not
+   meet ISO 9001.</P>
+   
+   <P>The quality policy shall:</P>
+   
+   <UL>
+      <LI>define the management's commitment to quality</LI>
+      
+      <LI>define the company's objectives regarding quality, i.e.
+      what does the management <I>mean</I> with "quality"</LI>
+      
+      <LI>be relevant to the customer's needs</LI>
+      
+      <LI>be understood in the organization</LI>
+      
+      <LI>be implemented.</LI>
+   </UL>
+   
+   <P>Usual reasons to raise non-conformances regarding quality
+   policy are either that the statement is to vague or that the
+   policy is not understood by some staff. Employees in the company
+   do not have to know the quality policy by heart, but they are
+   expected to know the gist of it.</P>
+   
+   <P>More serious non-conformances have to do with the
+   implementation of the policy. This requirement in the standard
+   forms a kind of "general clause" which can be used to raise
+   non-conformances on slackness in different parts of the company's
+   operation. For example, I once audited a company where I could see
+   that the number of unresolved customer complaints had been
+   increasing for some time, because the management had not assigned
+   enough resources to the resolution of customer complaints.</P>
+   
+   <P>However, the company's quality policy said clearly that meeting
+   the customers' needs was central for the company. Thus, the
+   company did not conform to its own quality policy, and a
+   non-conformance was duly raised. Such a non-conformance should
+   <I>not</I> be taken lightly!</P>
+   
+   <P>Quality policies may be formulated in many different ways. The
+   following is one example:</P>
+   
+   <P>"XYZ Software Inc. bases its commercial success on the
+   production of quality products and services for its customers. By
+   quality we mean timely delivery of reliable software, prompt
+   response and action on customer complaints, and fulfillment of
+   other customer needs.</P>
+   
+   <P>We achieve quality through motivated and skilled staff, defined
+   work procedures, and intensive review and testing activities.</P>
+   
+   <P>Each employee is responsible for the quality of his or her work
+   result."</P>
+   
+   <H5><B><I>Organization</I></B></H5>
+   
+   <P>I once audited part of a very large European company, and it
+   was interesting to see, that although this company is formalistic
+   in many ways in most of its operations, software development was
+   not. The software engineers were apparently experienced and
+   competent, and they worked together in an informal way. No real
+   project managers were appointed, but the more senior software
+   engineers fixed it among themselves. Who should do the testing was
+   agreed on the spur when the need occurred. The project was largely
+   left on its own by the line management. I saw no indications that
+   the software produced was of inferior quality, but the handling of
+   software development was still not up to ISO 9001.</P>
+   
+   <P>The most important and difficult part of the paragraph on
+   organization has to do with <I>responsibility and authority</I>.
+   Traditionally, in the software community we have tended to use
+   informal organizations with vague assignments of responsibility
+   and, especially, authority. This is not acceptable if we claim
+   fulfillment of ISO 9001.</P>
+   
+   <P>The standard requires documentation of responsibility,
+   authority and interrelation of all personnel affecting quality.
+   Since virtually all staff in a software organization can influence
+   product quality, this means that <I>if</I> a person has a
+   responsibility or an authority, it must be formally assigned.</P>
+   
+   <P>If a person has a responsibility, it shall be formally assigned
+   by the appropriate manager. The person shall also have enough
+   authority to fulfil his/her responsibility. The authority shall be
+   formally issued.</P>
+   
+   <P>Sometimes the concept of "responsibility" creates some
+   confusion. In the context of ISO 9001, responsibility means <I>a
+   duty to act on ones own accord when something has to be done,
+   without being told</I>. To do what somebody else tells you to do
+   is not a responsibility. Usually, the view is that managers and
+   other key positions have responsibilities, while individual
+   software engineers do as they are told and as company and project
+   rules prescribe.</P>
+   
+   <P>What I would have liked to see in the German company was formal
+   assignment of responsibility and authority to line managers,
+   project managers, testers, review leaders, software librarians and
+   others.</P>
+   
+   <P>The existence of a responsibility which can not be fulfilled is
+   a non-conformance to ISO 9001. For example, I have found project
+   managers with the clearly stated responsibility to meet a time
+   schedule. However, when asked, they have admitted that they don't
+   have the authority to direct the work of project members.</P>
+   
+   <P>As mentioned, also interrelations shall be defined and
+   documented. This is a popular area for auditors to dig into.
+   Especially, the interrelations between project managers and line
+   managers are interesting. Who decides what, how is reporting done,
+   how is approval and control defined? Areas where an auditor would
+   expect to find interfaces defined include:</P>
+   
+   <UL>
+      <LI>project - line</LI>
+      
+      <LI>project - customer</LI>
+      
+      <LI>project - maintenance organization</LI>
+      
+      <LI>software development - hardware development</LI>
+      
+      <LI>maintenance organization - helpdesk</LI>
+      
+      <LI>sales - development</LI>
+   </UL>
+   
+   <P>The standard covers two more areas under the heading
+   "Organization", namely Resources and Management
+   Representative.</P>
+   
+   <P>The first area requires the supplier to identify the
+   requirements for resources, to provide adequate resources, and to
+   assign trained personnel.</P>
+   
+   <P>The second area requires the appointment of a management
+   representative with authority and responsibility to</P>
+   
+   <UL>
+      <LI>ensure that the company fulfills the requirements in ISO
+      9001</LI>
+      
+      <LI>report the performance of the quality system to company
+      management.</LI>
+   </UL>
+   
+   <P>Usually, the quality manager is this management
+   representative.</P>
+   
+   <H5><B><I>Management review</I></B></H5>
+   
+   <P>This paragraph says that the supplier's management shall
+   periodically review the suitability and effectiveness of the
+   quality system. This is often done by once a year having the
+   quality manager presenting the results of quality audits,
+   statistics of customer complaints, records of corrective actions,
+   and other relevant material at a minuted management meeting. The
+   documentation of this meeting should note who attended, what was
+   presented, what decisions were taken etc.</P>
+   
+   <H4><B>Quality system (4.2)</B></H4>
+   
+   <P>According to ISO, a <I>quality system</I> comprises "the
+   organizational structure, responsibilities, procedures, processes
+   and resources for implementing quality management".</P>
+   
+   <P>Paragraph 4.2 requires that the supplier's quality system be
+   <I>documented and implemented</I>. Procedures, rules, decisions
+   etc needed to fulfill ISO 9001 shall be in writing. Existing
+   procedures, rules etc shall be adhered to.</P>
+   
+   <P>Notice that this last requirement may be a trap for
+   over-zealous organizations. If you have a rule, procedure etc,
+   which is not required by ISO 9001, the standard still requires
+   that it be adhered to.</P>
+   
+   <P>The paragraph further requires that the outline structure of
+   the documentation covering the quality system be defined in a
+   quality manual, which shall contain or reference the documentation
+   of the quality system.</P>
+   
+   <P>This paragraph in the standard also includes requirements for
+   quality plans. We cover quality plans in para 3.2.4.2.</P>
+   
+   <P>A typical use of this paragraph of the standard can be seen in
+   the following example. I was a member of a group auditing a large
+   organization. We found a number of minor non-conformances, which
+   the auditee organization corrected at once. For example, we found
+   people using non-approved design documents, lack of written
+   procedures for minor activities etc. At the conclusion of the
+   audit, there were no non-conformances open; they had all been
+   closed during the audit. However, we still raised a
+   non-conformance against paragraph 4.2 in the standard. An audit is
+   a sampling, and we had just made spot-checks. Since we had found
+   so many minor non-conformances through spot-checking, we were
+   convinced that there were further short-comings to be found. So we
+   raised a non-conformance on general weakness of the quality
+   system, and required the auditee to make a thorough review of
+   it.</P>
+   
+   <P>Other typical non-conformances against 4.2 in ISO 9001 are the
+   existence of written procedures, which are not adhered to, as well
+   as suitable development processes, which are not documented.</P>
+   
+   <H4><B>Contract review (4.3)</B></H4>
+   
+   <P>Many years ago, I was appointed project manager of a quite
+   large project. I was given limits in calendar time and staffing,
+   and I planned and calculated how the project should achieve the
+   software which our sales department had promised the customer. All
+   limits were absolute, since the price and delivery date had
+   already been agreed with the customer. When my planning was
+   finished, I put on a tie and went to present my plan to the
+   company management in our Board Room. I showed a few viewgraphs
+   with time-schedules, activities and manning. The presentation went
+   quite smooth, and I even received one or two approving grunts from
+   the managing director. Then I put on my last slide, and I still
+   vividly remember the sudden drop in temperature in the room. The
+   slide said: "This is why it is not possible" and listed a few
+   reasons. There were no reserves. There were large holes in the
+   staffing. The calendar time was too short for the manning up of
+   the project. The requirements were incomplete and unstable. We
+   would be using new concepts, of which we had no experience. I had
+   planned too little time for reviews.</P>
+   
+   <P>The atmosphere in the room became cold and uncomfortable. The
+   expected barrage started: "Are you really sure that it's
+   impossible?" "I think you have been overly conservative in your
+   estimates." "This is a critical project for our company. We may
+   loose the customer if we don't deliver on time." Inexperienced
+   though I was, I did not buckle, but held on to my conclusion that
+   the task <I>was</I> impossible. The project was started anyhow,
+   with another project manager, and after two years and about 20
+   million dollars, it was cancelled. Of course, it may feel good to
+   say "I told you so!", but I still feel that the debacle was
+   unnecessary.</P>
+   
+   <P>In my experience, many of the problems with software projects
+   stem from overselling. The sales department has agreed with the
+   customer about a time-schedule and/or a price which the
+   development department can not achieve. The developers' failure to
+   meet the contract is then assumed to reflect on their ability to
+   handle software projects, while in fact the task was impossible
+   from the beginning.</P>
+   
+   <P>More recently I observed another example of the same
+   phenomenon. I was auditing a large organization developing
+   software. I happened on the minutes from a decision meeting for a
+   development project. In the minutes, the project manager was
+   reported saying "We can only meet the delivery date if everything
+   goes right with the project." The minutes then showed that the
+   meeting (of managers) had decided to go forward without changing
+   the delivery date. I checked up on the project, and it was already
+   late. It was clear that it could not meet the delivery date. I
+   said to one of the participants of the decision meeting: "All of
+   you in that meeting were experienced people. You must all of you
+   have realized that the project manager said 'It is impossible'. No
+   software project goes without problems." She could give me no
+   explanation at all to the decision. A piquant detail is, that just
+   this manager had complained to me previously about the impossible
+   time-schedules imposed by the sales department. In this case, I
+   raised a non-conformance against 4.2 "Contract review", because
+   the review had not ensured that the delivery-date requirement
+   could be met.</P>
+   
+   <P>The paragraph in ISO 9001 about "Contract review" is intended
+   to ensure that the supplier checks before contract that the
+   organization will be able to perform what is required by the
+   contract. This shall be done by having those responsible for the
+   actual work (e.g. the development managers) review the contract or
+   the tender and document their acceptance or objections. Typical
+   examples of what an auditor would ask:</P>
+   
+   <UL>
+      <LI>Are the requirements documented and understood?</LI>
+      
+      <LI>Are acceptance criteria included?</LI>
+      
+      <LI>Have requirements differing from the tender been
+      resolved?</LI>
+      
+      <LI>Can the supplier muster enough resources for the
+      contract?</LI>
+      
+      <LI>Can the supplier muster the competence needed for the
+      contract?</LI>
+      
+      <LI>Can the task be completed in time?</LI>
+   </UL>
+   
+   <P>The standard does not require the supplier to have the required
+   resources and competence available at contract review. For
+   example, it would then be difficult to issue several tenders, not
+   expecting to win all of them. However, an auditor would expect
+   that contract review covers such contingencies. For example, if
+   the supplier were to win all contracts, can parts be
+   subcontracted?</P>
+   
+   <P>The standard requires that there be a documented procedure for
+   contract review, and that such reviews be recorded. Further, the
+   standard requires the supplier to identify how contract amendments
+   are made. An auditor would also expect that in projects the
+   handling of the requirements specification between supplier and
+   customer be defined.</P>
+   
+   <H4><B>Design control (4.4)</B></H4>
+   
+   <P>The quality element "Design control" is important for software
+   development, since so much of software development is design.
+   Basically, the requirements are that the development be planned,
+   controlled and verified. It is a remarkably common failure in many
+   software organizations, that software development is conducted in
+   an informal way. Some basic sentiments in 4.4 may be summarized in
+   these two statements:</P>
+   
+   <UL>
+      <LI>If something is not planned, there is no reason to expect
+      it to happen.</LI>
+      
+      <LI>If you do not specify what is to be achieved, there is no
+      reason to expect it to be achieved.</LI>
+   </UL>
+   
+   <P>The following are subclauses of paragraph 4.4 in the
+   standard.</P>
+   
+   <H5><B><I>General</I></B></H5>
+   
+   <P>This is a cover clause, which says that the supplier should
+   have and use documented procedures to control and verify the
+   design, so that the requirements are met. ISO 9001 requires you to
+   plan before doing, and specify before designing.</P>
+   
+   <P>General slackness in the design work could be noted by an
+   auditor through reference to this paragraph.</P>
+   
+   <P>An auditor would expect to find procedures and standards for
+   design, coding and testing. The level of detail in standards may
+   differ considerably between organizations, however. Also, there is
+   a trade-off between standards and reviewing. For example, I
+   sometimes find detailed rules about how to structure source code.
+   Sometimes one might get a better result by having more general
+   rules, and then check on understandability and modifiability
+   during reviews o the code.</P>
+   
+   <H5><B><I>Design and development planning</I></B></H5>
+   
+   <P>The supplier is required to plan design and development
+   activities. In this context, a time schedule does not constitute
+   anything close to a plan. ISO 9000-3 refers to two plans: A
+   <I>development plan</I> and a <I>quality plan</I></P>
+   
+   <P>A development plan should contain the following:</P>
+   
+   <UL>
+      <LI>A definition of the process or methodology to be used in
+      progressing from the purchaser's requirements to a software
+      product.</LI>
+      
+      <LI>Description of the organization and management of the
+      project. Time schedule, responsibilities, work assignments and
+      progress control should be covered.</LI>
+      
+      <LI>Description of the phases, work packages or any other units
+      the supplier will divide the project into. This should include
+      input, output and verification of output. An auditor would
+      probably not accept a development process, where significant
+      intermediate work products were not subject to testing and/or
+      review.</LI>
+      
+      <LI>Description of methods and tools to be used in
+      development.</LI>
+      
+      <LI>The quality plan covers acceptance criteria, reviews,
+      tests, configuration management, change control and error
+      handling. The quality plan should contain:</LI>
+      
+      <LI>Quality targets</LI>
+      
+      <LI>Criteria for the acceptability of input to and output from
+      phases, work packages etc.</LI>
+      
+      <LI>Identification and planning of the tests and reviews and
+      other verification and validation activities in the
+      project.</LI>
+      
+      <LI>Specific responsibilities for quality activities.</LI>
+   </UL>
+   
+   <P>Neither the development plan nor the quality plan have to
+   <I>contain</I> all information. In practice, such plans usually
+   refer to existing procedures and internal standards.</P>
+   
+   <P>The concept of a quality plan comes from the manufacturing
+   industry, where the production is an ongoing activity, for example
+   with steel entered in one end of a production line, and bolts and
+   nuts coming out in the other end, day after day. The production
+   line activities do not need a specific plan, but quality assurance
+   needs one. Thus, there will be a quality plan prescribing quality
+   activities such as sampling, audits etc.</P>
+   
+   <P>Software development, however, is run in projects which need
+   planning anyhow. Therefore, at least for small software projects,
+   often there is no specific quality plan. A "program development
+   plan" or "project plan" covers all activities in the project,
+   including the specific quality assurance activities.</P>
+   
+   <P>The development plan and the quality plan are important from
+   the point of view of the quality system. If an organization makes
+   detailed prescriptions for software development in a common set of
+   procedures, there will probably be projects for which the
+   procedures should be modified. Other organizations have common
+   procedures on a high level only, and require each project to
+   decide on the detailed procedures. In both cases, the project plan
+   is where to describe (or reference) the project-specific
+   procedures. When the plans are approved by whoever is the internal
+   "owner" of the project, the specific quality system modifications
+   and additions for the project are also approved.</P>
+   
+   <P>Now, an interesting question usually pops up: Can we have a
+   very brief company quality system, which only says that the
+   projects will choose their own way of working and managing
+   quality? Yes, we can, if we only want a specific project to
+   fulfill ISO 9001. No, we can't, if we want the company quality
+   system to fulfill ISO 9001. When a company is certified to ISO
+   9001, the certificate is not about a specific project, it is about
+   the company as a whole.</P>
+   
+   <H5><B><I>Organizational and technical interfaces</I></B></H5>
+   
+   <P>If the design work is done by more than one group, the standard
+   requires that the organizational and technical interfaces between
+   them be identified and documented and transmitted to those needing
+   the information. To ensure that the interface documentation is
+   kept up to date as the design progresses, the interface
+   documentation shall be reviewed regularly.</P>
+   
+   <P>The development plan is a good place to describe interfaces
+   between groups. Most larger software projects have milestone
+   meetings when finishing project phases. Usually, the development
+   plan is reviewed at such meetings, and then this specific
+   requirement in the standard is met.</P>
+   
+   <H5><B><I>Design input</I></B></H5>
+   
+   <P>In software development, one type of design input is some kind
+   of requirements specification. This may either be furnished by the
+   purchaser or prepared by the supplier based on the contract
+   requirements and, when applicable, laws and other "statutory and
+   regulatory requirements". Another kind of design input are design
+   documents used as input to coding.</P>
+   
+   <P>The requirement in the standard is basically that the
+   requirements and design be documented and under formal change
+   control before they are used as input to any activity. This will
+   be a significant change in how many software organizations
+   operate; this kind of strict formalization often seems
+   unnecessary. The background is of course that the standard wants
+   to ensure that the work product of each step meets what is
+   required of it. To ensure this, one must be sure that all changes
+   in the basis for the work will be included in the result. "But it
+   works very well for us without having specifications under early
+   change control", you perhaps say. Fine, by all means continue that
+   way if you want to. But don't seek ISO 9001 certification. For
+   that, your organization needs to be able to convince an external
+   auditor that your way of work will continue to work OK. See
+   section 4.4 for a discussion on prototyping, though.</P>
+   
+   <P>However, some software organizations try to squeeze calendar
+   time by doing as much work as possible in parallel. This tends to
+   lead to project members using preliminary versions of
+   specifications as basis for their work. Formally, this is a
+   non-conformance with the standard, but a competent auditor will
+   accept such a procedure, if he/she can see that the work result
+   eventually will be in accordance with the final version of
+   specification. For example, there might be a specific review of
+   the final work result to ensure that it meets the final version of
+   the spec.</P>
+   
+   <P>Para 4.3.3 in the standard requires that there be a procedure
+   for contract amendments. In software development, requirement
+   changes are common, so there must be a procedure for handling new
+   and changed requirements from the purchaser.</P>
+   
+   <H5><B><I>Design output</I></B></H5>
+   
+   <P>In software development, design output is both the design
+   documentation and the source code. The standard requires the
+   design documents and the source code to be reviewed before release
+   for subsequent use.</P>
+   
+   <P>There shall be a process for acceptance of the design output,
+   and the criteria for acceptance shall be defined. This is not as
+   complicated as it looks. For example, the review might be the
+   process for acceptance, and the criterion would be acceptance by
+   the review team.</P>
+   
+   <H5><B><I>Design review</I></B></H5>
+   
+   <P>Formal, documented technical reviews of design results shall be
+   planned and conducted. The review team shall include sufficient
+   competence. The project functions (e.g. coding, testing), for
+   which the result under review is important, shall be represented
+   at the review.</P>
+   
+   <P>This is an area where I have noted many non-conformances.
+   Software engineers say: "But we <I>do</I> review everything. It's
+   only that our reviews are informal. Do we really have to plan them
+   and write minutes of meeting? That would not make our reviews more
+   efficient." But it would. In the long run, informal reviews will
+   deteriorate. With hard pressure for time, personal disagreements
+   and all other disturbances, informal reviewing will soon become
+   sporadic and inefficient. This is not to say that there should not
+   be informal reviews. Colleagues helping each other by reading each
+   other's work results is a very good way to work. But in order to
+   rely on reviews, both the supplier management, the customers and
+   possibly a certification body must <I>see</I> that the reviews
+   take place and what they achieve.</P>
+   
+   <P>Once, I was auditing a company, and I began to suspect that
+   their reviewing activities were just formalities, which found only
+   simple formal errors. I then had a look at the documentation of
+   errors found in system testing. I picked one error and asked: "Why
+   was not this error found in a review?" The supplier's
+   representatives hummed a bit, but at last they agreed that they
+   would have to do something about their reviewing. In this way, it
+   is possible to find out if the reviewing works; but still, the
+   auditor would need documentation of the reviews.</P>
+   
+   <P>A common method to ensure that reviews actually look into what
+   they should, is to issue checklists to be used by reviewers. The
+   checklists remind the reviewers what they should give special
+   attention, but the checklists have another important function. If
+   the used checklists are included in the review report, it is
+   possible to see afterwards, what the review checked. Usually, when
+   something should be improved in software development, one part of
+   the improvement is the addition of further points to some
+   checklist.</P>
+   
+   <P>Examples of non-conformances to this part of the standard
+   include:</P>
+   
+   <UL>
+      <LI>No procedure for formal reviews</LI>
+      
+      <LI>No follow-up of correction of errors found in reviews.</LI>
+   </UL>
+   
+   <H5><B><I>Design verification</I></B></H5>
+   
+   <P>The design documentation and the code shall at appropriate
+   stages be subject to reviews and/or tests to verify that they meet
+   the requirements. The paragraph 4.10 "Inspection and testing" in
+   ISO 9001 is also about testing, but it is usually used regarding
+   final testing only.</P>
+   
+   <P>Design verification usually consists of reviews (see above),
+   module testing and integration testing. Sometimes, developers want
+   to keep verification informal. "Errors are caught in system
+   testing anyhow", they say. Forget it. If your quality policy says
+   that you have the ambition to produce quality products, you have
+   to use all available means to catch design errors.</P>
+   
+   <H5><B><I>Design validation</I></B></H5>
+   
+   <P>The supplier shall conduct a specific activity to ensure that
+   the final software product conforms to requirements. Normally,
+   this activity is a final system test of the complete software
+   product. However, reviewing may also be included, for example of
+   user documentation. This is an overlap with paragraph 4.10
+   "Inspection and testing" in the standard.</P>
+   
+   <P>Validation shall be a planned and documented process.
+   Sometimes, it is up to the individual tester, how to test and what
+   to do about errors. I recently visited a supplier of control
+   systems for cars. Very often their testing consisted of an
+   employee borrowing a car during the weekend. When driving, he/she
+   was then required to note all disturbances. It is possible that in
+   specific cases, this would be the appropriate way to test, but
+   then an auditor would expect to find this decision explicitly made
+   and documented.</P>
+   
+   <P>"Our testing is sufficient. If something is wrong, the
+   customers will notice in their own testing." This is the wrong
+   thing to say to an ISO 9001 auditor. The supplier is assumed to be
+   responsible for product quality. However, the customers sometimes
+   explicitely take on the task of helping the supplier with beta
+   testing. This can not be faulted by an ISO 9001 auditor, as long
+   as the beta testing is covered by a clear agreement between the
+   supplier and the beta-testing customer.</P>
+   
+   <H5><B><I>Design changes</I></B></H5>
+   
+   <P>There are usually a lot of changes to specifications and code,
+   both during initial development and during the maintenance phase.
+   Since software is so complex, changes may be dangerous for the
+   following reasons:</P>
+   
+   <UL>
+      <LI>The introduced modification does perhaps not lead to the
+      required change in the product.</LI>
+      
+      <LI>Changes often introduce errors in the software.</LI>
+      
+      <LI>A modification of the software may disrupt the
+      "architecture" of the software, thus making later modifications
+      more difficult and error-prone.</LI>
+      
+      <LI>There is a risk for specifications and code to diverge
+      because of changes in one but not the other. After a while,
+      specifications may be of no use for further modifications. Of
+      course, the source code is sometimes expected to diverge from
+      some early documents. Such documents can be viewed as tools for
+      thought during the project, and finished, they have value as
+      reference material only. What documentation actually is
+      maintained may differ between different development models; an
+      auditor will make a judgement whether sufficient documentation
+      is under change control.</LI>
+   </UL>
+   
+   <P>This means that anyone trying to judge the software development
+   process of a supplier will definitely want to see that
+   modification activities are properly controlled.</P>
+   
+   <P>ISO 9001 requires that after the release of a design document
+   or a source program, all changes of it shall be through a formal
+   process whereby the changes are documented, reviewed and approved
+   before implementation.</P>
+   
+   <P>The standard does not explicitly say when a document or program
+   shall be released. Some suppliers try to avoid a cumbersome change
+   process by saying that requirements and design documents will not
+   be released until a late point in the project, e.g. after final
+   test. Thus, they think, if for example a programmer finds an error
+   in the design document he or she is using as input, anyone can
+   correct the error immediately without much ado.</P>
+   
+   <P>However, uncontrolled changes to complex technical documents or
+   programs are extremely dangerous, and as we saw in 3.2.4.4, the
+   standard does not allow it. Modifications and error corrections
+   are tricky and dangerous operations, so ISO 9001 requires a
+   formal, cumbersome modification procedure, just in order to slow
+   the process down and ensure that it is handled correctly.</P>
+   
+   <H4><B>Document and data control (4.5)</B></H4>
+   
+   <P>For us, "documents and data" means information which in some
+   way controls the development or maintenance of software. Examples
+   of such documents are:</P>
+   
+   <UL>
+      <LI>Requirements specifications</LI>
+      
+      <LI>Design documents</LI>
+      
+      <LI>Plans</LI>
+      
+      <LI>Source code files</LI>
+      
+      <LI>Work procedures</LI>
+      
+      <LI>Internal and external standards</LI>
+   </UL>
+   
+   <P>Briefly, the standard requires that those who need some
+   document or some data shall have access to it, and they shall be
+   using the appropriate version. Changes to documents and data shall
+   be controlled.</P>
+   
+   <H5><B><I>General</I></B></H5>
+   
+   <P>The supplier shall use documented procedures to control
+   documents and data. Also external documents, e.g. customer
+   documents, contract, programming language manuals, shall be under
+   control. Both documents and data can be on any form of media, e.g.
+   hard copy or electronic media.</P>
+   
+   <P>When auditing against ISO 9001, I frequently raise
+   non-conformance to 4.5 "Document and data control". Typical
+   non-conformances are:</P>
+   
+   <UL>
+      <LI>Someone is using a document which should be approved, but
+      is not.</LI>
+      
+      <LI>Somebody uses the wrong version of a specification or a
+      plan.</LI>
+      
+      <LI>I find two documents with the same identity and the same
+      version number, but different contents.</LI>
+      
+      <LI>Someone using a document can not explain how he/she knows
+      that the document is the appropriate version.</LI>
+      
+      <LI>Someone needing e.g. a plan for his/her work, does not have
+      easy access to it.</LI>
+   </UL>
+   
+   <H5><B><I>Document and data approval and issue</I></B></H5>
+   
+   <P>The documents and data shall be reviewed and approved before
+   issue. For paper originals, this is usually indicated through
+   signatures on the documents. When the original is stored
+   electronically, one might use separate document lists, where the
+   appropriate version of a document is signed off to indicate review
+   and approval. There are also cases where "electronic signatures"
+   are used. Document control procedures and/or tools then ensure
+   that signatures are not entered by mistake.</P>
+   
+   <P>The standard anyhow requires the supplier to maintain a
+   document list (or a procedure), whereby one easily can find out
+   which is the current version of any document.</P>
+   
+   <P>The document control procedures shall ensure that pertinent
+   issues of documents are available everywhere where they are
+   needed. This is not so difficult, but the next requirement is: The
+   document control procedures shall ensure that all invalid and/or
+   obsolete documents are removed from use or clearly marked.</P>
+   
+   <P>In a manufacturing industry, there are relatively few
+   documents. If a new version of a procedure or a drawing is issued,
+   someone can walk around with the new version and physically
+   withdraw the old version at all places where it is used.</P>
+   
+   <P>In software development we have many documents, and they
+   frequently change. Still, we need to know that people use the
+   right versions of all documents. A popular way to achieve this in
+   the software industry is to put all procedures, specifications,
+   programs etc on the computer network and have people read them
+   from the screen rather than each having their own paper copy. This
+   works if it is easy enough to find documents and read them
+   on-line. Otherwise, people will print out their own paper copies
+   and we don't know if they are using the proper version.</P>
+   
+   <P>Other methods are:</P>
+   
+   <UL>
+      <LI>Distribution lists for all documents, so that all users get
+      the new versions. Users are instructed to destroy or mark the
+      old version.</LI>
+      
+      <LI>Prominent publication of the fact that a document has been
+      changed, combined with a requirement on people to furnish
+      themselves with the new version and destroy or mark the old
+      one.</LI>
+   </UL>
+   
+   <P>Whichever method the supplier is using, the important thing is
+   whether it works. When auditing, I usually ask the persons I
+   interview to show me the documents they are using.</P>
+   
+   <H5><B><I>Document and data changes</I></B></H5>
+   
+   <P>When a document or some data is changed, it shall be clear who
+   shall review and approve the change. If it is practicable, a
+   description of the change shall be included in the document or
+   prepared as an attachment.</P>
+   
+   <H4><B>Purchasing (4.6)</B></H4>
+   
+   <P>A few years ago, an English company had won a large order for
+   some complex, computer-controlled equipment. The contract
+   contained a comprehensive set of requirements on the supplier's
+   software development, including the fulfillment of ISO 9001. In
+   the beginning of the contract, I was employed by the customer to
+   conduct an audit of the supplier to ensure that their plans and
+   processes for software development were OK. I planned to spend two
+   days at the supplier's premises, and I sent them a rough audit
+   program for those days, which they accepted.</P>
+   
+   <P>Then I arrived together with the customer's representative, and
+   we met with some of the managers in a conference room. They were
+   very glad to meet us, but they did not have any software
+   development at all. They had subcontracted it to a company in
+   Australia, and their happy faces indicated that they did not have
+   a care in the world.</P>
+   
+   <P>"So", I said, "but you are still responsible for the quality of
+   the product and the timeliness of your delivery?" "Ye-es", came
+   the answer from a not so confident manager. "Well then, will the
+   quality of the software be sufficient and will it be finished on
+   time?" I asked. This time, the affirmative answer was even more
+   hesitating. Then I went in for the kill: "Convince me!" i
+   said.</P>
+   
+   <P>It took all of the two days. Finally, the supplier's managers
+   realized that when you subcontract software development from a
+   distant subcontractor, you have an even more difficult situation
+   than if you were to develop the software inside your own
+   organization. They had to plan for a number of activities:</P>
+   
+   <UL>
+      <LI>Journeys to Australia to audit the subcontractor's software
+      development,</LI>
+      
+      <LI>Their own review of the subcontractor's plans,
+      specifications and code,</LI>
+      
+      <LI>A system for distributing modified requirements to the
+      subcontractor,</LI>
+      
+      <LI>Procedures and criteria for acceptance of the
+      software,</LI>
+      
+      <LI>Configuration management and maintenance of the software
+      delivered from the subcontractor.</LI>
+   </UL>
+   
+   <P>Paragraph 4.6 in ISO 9001 specifies requirements on purchasing.
+   A peculiarity with ISO 9001 is that even if a supplier is bound by
+   the contract to fulfill ISO 9001, the ISO 9001 requirements don't
+   have to be imposed on the subcontractors. Instead, paragraph 4.6
+   in the standard contains requirements on how to control
+   subcontractors. The following describes some of the subparagraphs
+   of 4.6. "Supplier" denotes the organization on which the standard
+   puts requirements. "Subcontractor" is the organization from which
+   the supplier purchases software, hardware or services.</P>
+   
+   <H5><B><I>General</I></B></H5>
+   
+   <P>As usual, the supplier shall follow documented procedures. It
+   shall be ensured that purchased products conform to requirements.
+   Notice that the requirements in 4.6 are not about the purchase of
+   pencils and erasers, they are about parts of the product and tools
+   which may affect product quality. A special case is the purchase
+   of services. Sometimes, suppliers are not clear if they are hiring
+   consultants to help them with development, or if they are
+   purchasing the development of a certain item. If you purchase
+   manpower only, the standard only requires you to follow a
+   procedure for ensuring that you get the right people. The work
+   done by these people will be controlled directly by the supplier,
+   not the subcontractor.</P>
+   
+   <P>How do we ensure that purchased software conforms to
+   requirements? It depends on the type of software and its
+   importance, but usually some or all of the following is used:</P>
+   
+   <UL>
+      <LI>Contract requirements on the subcontractor's
+      procedures</LI>
+      
+      <LI>Audits of the subcontractor's quality system</LI>
+      
+      <LI>Checking the subcontractor's past performance</LI>
+      
+      <LI>Surveillance of the subcontractor during the contract</LI>
+      
+      <LI>Witnessing reviews and testing</LI>
+      
+      <LI>Test and review of deliverables from the subcontractor</LI>
+   </UL>
+   
+   <H5><B><I>Evaluation of subcontractors</I></B></H5>
+   
+   <P>The supplier shall evaluate all subcontractors. This means that
+   someone with the necessary authority and competence shall judge
+   each subcontractor and decide whether to use that one. This
+   decision and its rationale shall be documented.</P>
+   
+   <P>When using a subcontractor, the supplier shall decide what
+   control is to be exercised over the subcontractor. Notice that the
+   standard does not say how much control to impose. The requirement
+   is that the supplier make a decision based on relevant facts. For
+   a subcontractor developing software, the amount of control may
+   vary, depending for example on the subcontractor's past
+   performance and the importance of the subcontracted item. Examples
+   of control options are</P>
+   
+   <UL>
+      <LI>regular audits of the subcontractors quality system and its
+      application</LI>
+      
+      <LI>review of the subcontractor's plans</LI>
+      
+      <LI>witnessing of the subcontractor's reviews and tests</LI>
+      
+      <LI>Supplier approval of individual work results (for example
+      plans, specifications, code or test results) as they are
+      produced by the subcontractor.</LI>
+   </UL>
+   
+   <P>A special case is when the software is purchased through
+   retail. In this case, the "subcontractor" is the organization with
+   which the purchase is conducted, not the original developer of the
+   software. In such a case, it is formally the retailer's
+   responsibility to control <I>its</I> subcontractor. However,
+   sometimes the buyer still requires access to the developing
+   organization in order to be able to evaluate its quality system.
+   Of course, in the case of off-the-shelf software products which
+   are in extensive use in the market, the need and opportunity for
+   explicit control may be small. If you are purchasing software
+   through retail, ISO 9001 requires that you define to what extent
+   you put requirements on the retailer to control its supplier.</P>
+   
+   <P>The supplier shall maintain a list of acceptable
+   subcontractors.</P>
+   
+   <H5><B><I>Purchasing data</I></B></H5>
+   
+   <P>The items subcontracted or purchased shall be well specified.
+   Requirements on the subcontractor's development process shall be
+   documented in the contract, as shall requirements for the supplier
+   to approve work results and procedures.</P>
+   
+   <P>Before purchase, the purchasing data shall be reviewed by the
+   supplier.</P>
+   
+   <H5><B><I>Verification of purchased product</I></B></H5>
+   
+   <P>The auditor will expect to find documentation of a decision
+   about the verification of each purchased development tool or
+   included product. There are several different cases to
+   consider.</P>
+   
+   <UL>
+      <LI>A tool supporting the development or validation of software
+      is purchased. The quality of the tool does not influence the
+      quality of the supplier's product or the quality of the service
+      to the customer. In this case, the decision <I>may</I> be to do
+      no verification.</LI>
+      
+      <LI>A tool or included product is purchased, which is an off
+      the shelf item and has been used extensively by other suppliers
+      for some time. Examples are compilers and operating systems. In
+      this case, the decision <I>may</I> be to view the item as a
+      "proven design" and do no or little verification. Notice,
+      however, that extensive use of older versions of the tool or
+      included product may be insufficient evidence of "proven
+      design".</LI>
+      
+      <LI>The purchase concerns development and production of some
+      new hardware or software. In this case, a reasonable decision
+      may be to put requirements on the subcontractor's development
+      and production (including testing), and to check that these
+      requirements are fulfilled. Witnessing of the subcontractor's
+      testing and/or the supplier performing specific acceptance
+      testing <I>may</I> be appropriate.</LI>
+      
+      <LI>A tool or included product is purchased, which is already
+      developed and produced, but which has not been extensively
+      used. An example may be an operating system version for a new
+      type of processor board. In this case, the supplier has to
+      become convinced that this purchased product meets the
+      requirements. In this case the verification may include
+      collection of the experiences of other users, as well as
+      extensive testing.</LI>
+   </UL>
+   
+   <P>Examples of common non-conformances with 4.6 include:</P>
+   
+   <UL>
+      <LI>No list of approved suppliers</LI>
+      
+      <LI>inappropriate control of subcontractor</LI>
+      
+      <LI>no documented verification of purchased items</LI>
+      
+      <LI>inappropriate contract with subcontractor.</LI>
+   </UL>
+   
+   <H4><B>Control of customer-supplied product (4.7)</B></H4>
+   
+   <P>Once, I encountered a situation, which puzzled me at first. The
+   customer used two suppliers to deliver each their own part of the
+   product. Supplier A developed some basic software which was also
+   included in the software developed by supplier B. The software was
+   delivered directly from A to B. The question was: Who was
+   responsible for the functioning of A:s software inside B:s
+   products? Surprisingly, the answer was: The customer! It was the
+   customer who required B to use software from A, so the formal way
+   to look at the relations was that the customer first purchased the
+   basic software from A and then delivered it to B. Paragraph 4.7 in
+   ISO 9001 covers such situations, where the customer supplies
+   software to be included in the product.</P>
+   
+   <P>The standard says that the supplier shall have procedures for
+   verification, storage and maintenance of customer-supplied
+   software. However, the quality of this software is the
+   responsibility of the customer.</P>
+   
+   <P>An auditor would expect the supplier to have procedures for
+   identification, version handling and error reporting for
+   customer-supplied software.</P>
+   
+   <P>Notice that even if the customer requires two suppliers to
+   cooperate regarding software developed by one and included by the
+   other, the ultimate responsibility lies with the customer. Unclear
+   division of responsibility between customer and supplier is a
+   common non-conformance to this paragraph in the standard.</P>
+   
+   <H4><B>Product identification and traceability (4.8)</B></H4>
+   
+   <P>This paragraph is used to make the software supplier to keep
+   control of such issues as:</P>
+   
+   <UL>
+      <LI>For each software specification, what preceding document
+      and issue is it based on?</LI>
+      
+      <LI>For each source code module and design document, which
+      specification(s) is it based on?</LI>
+      
+      <LI>What error corrections and amendments have been included in
+      what source programs?</LI>
+      
+      <LI>What happened to each problem report? What decisions were
+      made, what changes, what testing etc?</LI>
+      
+      <LI>From what source program versions was a specific load
+      module generated?</LI>
+   </UL>
+   
+   <P>The auditor may very well bring out the identity of a certain
+   item and ask a manager: "How do you know that this item is the
+   correct version?" The auditor would not expect the manager to have
+   checked this specific item. Rather, an appropriate answer might be
+   something like: "Our procedure XYZ-123 ensures that all items of
+   this kind have the right version. In our internal audits, we have
+   checked that the procedure is adhered to. If you like, we could go
+   to the development library and trace this item to its
+   requirements."</P>
+   
+   <P>It is surprising how often I have found deficiencies in this
+   area when auditing. Examples are:</P>
+   
+   <UL>
+      <LI>Wrong version of a source file in a library.</LI>
+      
+      <LI>A change was reported as introduced, but was not.</LI>
+      
+      <LI>A manager or project leader was unable to show what source
+      code versions were used in system test.</LI>
+      
+      <LI>Insufficient traceability for change requests.</LI>
+   </UL>
+   
+   <H4><B>Process control (4.9)</B></H4>
+   
+   <P>This paragraph covers general requirements on the control of
+   production, installation and servicing. For software, the
+   paragraph is used for requirements on the control of replication
+   and installation. Replication is the process of writing to a
+   diskette, tape, PROM or other medium, the load module(s) and data
+   to be delivered.</P>
+   
+   <P>The auditor would expect to find in operation a documented
+   procedure for the replication process. Also, he/she would look for
+   a procedure for the handling of master PROMs or master libraries,
+   to ensure that the correct versions are always used.</P>
+   
+   <P>Non-conformances raised against this paragraph of the standard
+   frequently include</P>
+   
+   <UL>
+      <LI>No documented procedure for replication,</LI>
+      
+      <LI>improper handling of master PROMs or diskettes.</LI>
+   </UL>
+   
+   <H4><B>Inspection and testing (4.10)</B></H4>
+   
+   <P>Since ISO 9001 was written for manufacturing industry,
+   paragraph 4.10 is aimed at inspection and testing of <I>produced
+   goods</I>.</P>
+   
+   <P>Thus, we use this paragraph for requirements on the inspection
+   and testing done in connection with replication. The auditor
+   expects to find written procedures for what inspection and testing
+   to be done at replication. What makes the supplier confident that
+   the software is replicated correctly and from the correct version
+   of the master software?</P>
+   
+   <P>Especially if the replication process includes compilation,
+   linking and/or parameterization, it is important that there be
+   appropriate procedures in operation.</P>
+   
+   <P>Typical non-conformances in this area are:</P>
+   
+   <UL>
+      <LI>The equipment for programming PROMs also check on the
+      result. The function of this automatic check has not been
+      checked regularly.</LI>
+      
+      <LI>No documented procedure for testing of PROMs.</LI>
+   </UL>
+   
+   <P>Inspection and testing during development is covered in ISO
+   9001 paragraph 4.4.7 under "design verification". Final testing is
+   covered in paragraph 4.4.8 under "design validation". Some
+   auditors may, however, also use paragraph 4.10 in the standard for
+   requirements on final testing of software.</P>
+   
+   <H4><B>Control of inspection, measuring and test equipment
+   (4.11)</B></H4>
+   
+   <P>This paragraph mainly covers requirements on the calibration of
+   measuring equipment. In software development we do not usually
+   have much measuring equipment which needs calibration. Possible
+   examples may be:</P>
+   
+   <UL>
+      <LI>Clocks for testing timing requirements</LI>
+      
+      <LI>Voltmeters for testing programs which operate
+      D/A-converters.</LI>
+      
+      <LI>Line analyzers</LI>
+   </UL>
+   
+   <P>Estimation methods may need calibration. Often, estimations are
+   based on typical values experienced in earlier projects. These
+   values must be checked as time goes by, to ensure that they are
+   still appropriate.</P>
+   
+   <P>The standard requires that the supplier select the appropriate
+   measuring equipment and follow a documented procedure for the
+   control of this equipment. There shall be a list of all
+   instruments needing calibration. The instruments shall be
+   calibrated at prescribed intervals, and they shall be marked with
+   calibration status.</P>
+   
+   <P>Apart from measuring equipment, paragraph 4.11 in the standard
+   also covers test tools. For example, if you use a test data
+   generator, then you have to check regularly that it generates the
+   right test cases. This regular check is required even if your tool
+   is software and does not wear down. Your types of applications and
+   your way of testing may vary and make the testing tool less
+   appropriate. Also, this paragraph in the standard may be used as a
+   requirement that each new version of a software tool for testing
+   be checked for sufficiency.</P>
+   
+   <H4><B>Inspection and test status (4.12)</B></H4>
+   
+   <P>ISO 9001 requires that specifications and programs be verified,
+   usually through reviews and/or testing. The supplier shall have
+   procedures that preclude the use of unverified specifications or
+   programs.</P>
+   
+   <P>An auditor will expect to see that</P>
+   
+   <UL>
+      <LI>It is easy to ascertain whether a certain item has been
+      reviewed, tested, and approved. Usually, this is achieved by
+      the maintenance of a list of specifications and source programs
+      with their current status.</LI>
+      
+      <LI>Unverified specifications and programs are kept apart from
+      verified items, e.g. in a different directory.</LI>
+   </UL>
+   
+   <P>A typical non-conformance is when somebody is using a
+   specification and does not know that it has been approved.</P>
+   
+   <H4><B>Control of nonconforming product (4.13)</B></H4>
+   
+   <P>A non-conforming product is a specification or a program, which
+   either does not fulfil the requirements or has not been developed
+   in accordance with prescribed procedures.</P>
+   
+   <P>Paragraph 4.13 requires that the supplier have procedures to
+   ensure that non-conforming products not unintentionally be used.
+   For software, this means that the auditor will look for</P>
+   
+   <P>Clear identification of controlled items which contain
+   uncorrected errors. Of course, during the preparation of a
+   document or program, it will be incorrect most of the time.
+   However, it can not become a nonconforming product until it is in
+   some way "frozen".</P>
+   
+   <P>A method to elicit customer acceptance of delivery of
+   nonconforming software, for example in the case of a
+   pre-release.</P>
+   
+   <P>In some cases, there is a need for emergency modification of
+   software. Either, the organization operating the software must for
+   their business be able to get quick changes every now and then; or
+   perhaps a critical error might pop up in an important computer
+   application. In these cases, there is sometimes not time to apply
+   the ordinary rigorous development procedures. "Control of
+   non-conforming product" in this case means that</P>
+   
+   <UL>
+      <LI>an auditor would expect to find a procedure for handling
+      quick modifications,</LI>
+      
+      <LI>the fact must be documented that the modified
+      specifications and source programs have not been handled in the
+      normal way,</LI>
+      
+      <LI>it must be possible to see that afterwards, the modified
+      items will always be elevated to the same status as the rest of
+      the software, for example through specific reviewing.</LI>
+   </UL>
+   
+   <P>A non-conformance would be raised against paragraph 4.13 in the
+   standard, if it were unclear which documents and programs contain
+   detected errors.</P>
+   
+   <H4><B>Corrective and preventive action (4.14)</B></H4>
+   
+   <P>ISO 9001 is not strong regarding requirements for continuing
+   improvement of the supplier's work processes and product quality.
+   This is perhaps natural, since the standard was originally
+   intended for use in single contracts. If we as customers meet this
+   supplier in only one acquisition, we are not very interested in
+   the long-term improvements. Those will only benefit other
+   customers.</P>
+   
+   <P>However, paragraph 4.14 contains some requirements for
+   "self-sharpening" of the software development process. The
+   paragraph contains requirements on the improvement of products as
+   well.</P>
+   
+   <P>Basically, the paragraph contains three requirements:</P>
+   
+   <UL>
+      <LI>The effective handling of customer complaints and other
+      reports indicating that the software product does not conform
+      to requirements</LI>
+      
+      <LI>The effective handling of audit reports and other
+      information indicating shortcomings in the development
+      process</LI>
+      
+      <LI>The active collection and analysis of available information
+      about product and process non-conformance, and the proper
+      actions to prevent problems in other software.</LI>
+   </UL>
+   
+   <P>The first requirement concerns normal correction of errors
+   reported from customers, and this is not difficult to make
+   software developers and managers understand. However, I frequently
+   find it difficult to make software managers understand the
+   implications of the last two. Let me try to explain.</P>
+   
+   <P>The idea of ISO 9001 paragraph 4.14 is that information about
+   encountered problems should be a driver for improvements of the
+   development process. If a weakness is found in the process, an
+   improvement action shall be taken as soon as possible. When errors
+   are found in the software, aside from the immediate correction of
+   the errors, there shall be conducted an analysis of the root
+   causes. If possible, actions shall then be taken to improve the
+   process to prevent recurrence of these specific types of
+   errors.</P>
+   
+   <P>A common way to handle the root cause analysis is to have a
+   group of persons to meet, for example every third month, to review
+   all reports from design and code reviews, testing, customer
+   complaints and quality audits together with complaints and
+   improvement suggestions from the staff. If the group finds that
+   something shall be done, a <I>corrective action</I> is initiated
+   in the same way as corrective actions prompted by quality audits.
+   Then, there is a regular follow-up of the progress of all
+   corrective actions.</P>
+   
+   <P>Auditors frequently find serious non-conformances to this
+   paragraph in ISO 9001. A few examples:</P>
+   
+   <UL>
+      <LI>A customer complaint has not been properly handled</LI>
+      
+      <LI>A deficiency has been found in an internal quality audit,
+      but not been corrected</LI>
+      
+      <LI>There is no procedure to ensure that all problems be
+      analyzed and acted upon</LI>
+      
+      <LI>There is no procedure for reporting difficulties with
+      applying rules and procedures.</LI>
+   </UL>
+   
+   <H4><B>Handling, storage, packaging, preservation and delivery
+   (4.15)</B></H4>
+   
+   <P>This paragraph is about handling etc of produced goods. Thus,
+   we apply it to software which is replicated and sitting in a PROM,
+   diskette or other medium. We also use the paragraph for
+   requirements on the handling of finished software which is kept in
+   repository (e.g. product libraries), either for use as masters
+   when replicating, to be used when modifying the software product,
+   or to be reused in new products.</P>
+   
+   <P>The supplier shall use procedures for the handling and storage
+   of software media, so that damage and deterioration is prevented.
+   For example, magnetic media shall be refreshed at regular
+   intervals. Media shall be labelled and packed appropriately.</P>
+   
+   <P>Repositories for software (including data and tools) shall be
+   backed up. The repositories shall be protected for unintentional
+   damage, e.g. through access limitations. This last point may for
+   example have to do with our deplorable tendency to do hurried
+   unauthorized changes.</P>
+   
+   <P>Even if there is a strict formal process for how to modify
+   software, there is the risk for <I>spontaneous changes</I>.
+   Imagine that you are a programmer in a project. Your program has
+   been reviewed and approved and put under formal change control.
+   The day after the review, you suddenly become aware of an
+   embarrassing minor error in your program. The natural action is to
+   quickly make a simple modification of the program original,
+   without anyone noticing. The risk is, however, that in your haste,
+   you botch the modification, or by introducing this change you
+   affect some completely different function in the program without
+   noticing.</P>
+   
+   <P>To ensure against this type of spontaneous changes, an
+   organization should see to it that programs and specifications
+   which are put under formal change control, are stored with some
+   access restrictions.</P>
+   
+   <H4><B>Control of quality records (4.16)</B></H4>
+   
+   <P>When purchasing complex software products to be developed by a
+   supplier, the customer needs confidence in the delivered product.
+   Basically, there are three means for the customer to achieve this
+   confidence:</P>
+   
+   <UL>
+      <LI>Past performance. The customer will check on the supplier's
+      success with previous undertakings.</LI>
+      
+      <LI>The customer's own testing of the software.</LI>
+      
+      <LI>The customer's insight into the supplier's development
+      process.</LI>
+   </UL>
+   
+   <P>As software products grow more complex, customers have to rely
+   more on the last alternative. During development and maintenance,
+   the customer will require opportunities to see what is happening.
+   The most important source for information about the effectiveness
+   of the software development process are <I>quality records</I>.
+   Quality records are documents which show that actions have been
+   taken, which ensure or check quality. Examples of quality records
+   are:</P>
+   
+   <UL>
+      <LI>Minutes from management review</LI>
+      
+      <LI>Minutes from contract review</LI>
+      
+      <LI>Records of reviews of specifications and programs</LI>
+      
+      <LI>Records of the follow-up of review remarks</LI>
+      
+      <LI>Records of subcontractor evaluations</LI>
+      
+      <LI>Records of all reported errors from report to
+      clearance.</LI>
+      
+      <LI>Quality audit reports</LI>
+      
+      <LI>Test plans and reports</LI>
+      
+      <LI>Documentation of corrective actions</LI>
+      
+      <LI>Purchasing documentation</LI>
+   </UL>
+   
+   <P>The standard requires that there be a procedure for the
+   handling of quality records. The records shall be safely stored
+   and easily accessible. After a specified period after the end of
+   the project, quality records shall be disposed of.</P>
+   
+   <P>Typical non-conformances are:</P>
+   
+   <UL>
+      <LI>Lack of rules for the retention of quality records</LI>
+      
+      <LI>Review records are not kept</LI>
+      
+      <LI>Test records are not kept</LI>
+      
+      <LI>The period for keeping quality records is not defined.</LI>
+   </UL>
+   
+   <H4><B>Internal quality audits (4.17)</B></H4>
+   
+   <P>A certified supplier is audited regularly by the certification
+   body. This is not enough. The supplier shall also have an
+   independent part of the organization audit regularly all
+   operations which may affect product or service quality.</P>
+   
+   <P>Such internal quality audits shall investigate</P>
+   
+   <UL>
+      <LI>whether the work performed in software development adheres
+      to plans and procedures</LI>
+      
+      <LI>whether the quality system is <I>effective</I>, i.e. that
+      existing procedures etc are the right ones.</LI>
+   </UL>
+   
+   <P>Internal quality audits are conducted on behalf of company
+   management. The auditor or auditors must be independent of the
+   operation audited. So, for example, the person auditing a certain
+   department must not be a member of that department. He or she
+   could not audit the department management.</P>
+   
+   <P>Often, the audits are planned and managed by the company
+   quality manager, who uses persons from different parts of the
+   company to audit each other's departments.</P>
+   
+   <P>Since software development is usually conducted in projects,
+   quality audits must go into different projects to check on the
+   usefulness of the quality system and on the adherence to it. Such
+   audits are called "project audits". Other aspects of the company
+   are best audited by focussing on what lies outside projects, e.g.
+   line management, corrective action, training. Such audits are
+   called "quality system audits".</P>
+   
+   <P>All parts of the quality system shall be audited regularly at
+   specified intervals. Some parts may need to be audited more
+   frequently than others, due to their importance. There shall be an
+   <I>audit plan</I>, which shows what internal audits will be
+   conducted in the near future, usually the next 12-month period.
+   Quality audits shall be planned and reported, and deficiencies
+   found shall be corrected (see 2.14).</P>
+   
+   <P>Typical non-conformances are:</P>
+   
+   <UL>
+      <LI>No audit plan</LI>
+      
+      <LI>Audit plan not up to date</LI>
+   </UL>
+   
+   <H4><B>Training (4.18)</B></H4>
+   
+   <P>The standard does not require the supplier to employ good
+   people or excellent technicians. That would not be reasonable or
+   checkable. Instead, the standard requires the supplier to see to
+   it, that the staff are trained for their tasks.</P>
+   
+   <P>Paragraph 4.18 requires the supplier to have a procedure
+   for</P>
+   
+   <UL>
+      <LI>Identifying training needs for each staff</LI>
+      
+      <LI>Providing such training</LI>
+      
+      <LI>Keeping records of the training of all staff.</LI>
+   </UL>
+   
+   <P>In Sweden, much of this is covered by procedures for "career
+   reviews", when managers sit down with each subordinate and go
+   through their work situation, career prospects and different kinds
+   of needs.</P>
+   
+   <P>Examples of the kind of training an auditor would expect to see
+   planned:</P>
+   
+   <UL>
+      <LI>New programming languages and tools</LI>
+      
+      <LI>Audit training for internal quality auditors</LI>
+      
+      <LI>Project management training</LI>
+   </UL>
+   
+   <P>What kind of training should there be? Is it sufficient to let
+   a programmer sit a couple of days with the manual for the new
+   programming language? Well, it is not really up to the auditors to
+   judge your means for training and education. As long as the
+   training is documented and <I>sufficient</I>, the auditor should
+   be satisfied. The criterion for sufficient training is that the
+   person is capable of performing his/her work to a high enough
+   standard. The auditor may se this for example in review records
+   and project success. However, quality auditors and other staff
+   with a need for specific qualifications should be able to produce
+   records of formal training.</P>
+   
+   <P>Typical non-conformances are:</P>
+   
+   <UL>
+      <LI>No procedure for planning of training</LI>
+      
+      <LI>No training records</LI>
+      
+      <LI>Some employee has not received proper training for his/her
+      task.</LI>
+   </UL>
+   
+   <H4><B>Servicing (4.19)</B></H4>
+   
+   <P>The standard says that the supplier shall have documented
+   procedures for servicing <I>if this is required in the
+   contract</I>. The standard talks about the repair of delivered
+   items, e.g. sending somebody out to repair a faulty
+   refrigerator.</P>
+   
+   <P>In the software business, this paragraph is about maintenance,
+   i.e. error corrections and enhancements to delivered software.
+   Paragraph 4.14 "Corrective and preventive action" requires the
+   supplier to have a way to receive customer complaints. Using
+   paragraph 4.19, the auditor requires the supplier to have
+   procedures for the rest of the handling of complaints and requests
+   for modifications. The supplier can avoid these requirements only
+   if there is no maintenance contract, and if there are no warranty
+   commitments.</P>
+   
+   <P>Since software maintenance is very similar to the initial
+   development on the technical level, most of the requirements in
+   paragraph 4.4 - 4.13 apply as well.</P>
+   
+   <P>A common concern among software suppliers searching to fulfill
+   ISO 9001 is regarding the maintenance of old software. Typically,
+   the current software development follows a well-defined process
+   with some specific types of documents being produced. These
+   documents do not exist for old software, so the old software can
+   not be maintained in accordance with the brand new procedures. The
+   solution is to have specific procedures for maintenance of old
+   software. These procedures might best be documented in maintenance
+   plans for the different software products. The auditor will only
+   expect to see that the maintenance is under control.</P>
+   
+   <P>Typical non-conformances are:</P>
+   
+   <P>Maintenance work for a customer without a contract</P>
+   
+   <UL>
+      <LI>Specific methods for maintenance of an old product are not
+      documented</LI>
+      
+      <LI>No procedure for testing after maintenance activities.</LI>
+   </UL>
+   
+   <H4><B>Statistical techniques (4.20)</B></H4>
+   
+   <P>Statistical techniques are important when the quality of e.g.
+   bolts and nuts is checked through sampling. Paragraph 4.20 is
+   about such checks.</P>
+   
+   <P>However, for software the paragraph is interpreted as a
+   requirement that the supplier measure the quality of both the
+   products and the development process.</P>
+   
+   <P>The auditor will look for collection and analysis of data about
+   number of found errors in different phases, as well as ability to
+   meet deadlines and milestones.</P>
+   
+   <P>As an auditor, I would ask: "How many errors do you find during
+   system test, and how many errors do your customers find for you?"
+   Difficulties to answer that question would lead to a
+   non-conformance.</P>
+   
+   <P ALIGN=right><A HREF="Ch4.htm">Next</A></P></BLOCKQUOTE>
+</BODY>
+</HTML>

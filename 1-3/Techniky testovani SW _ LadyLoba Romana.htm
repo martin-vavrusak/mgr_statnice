@@ -1,0 +1,910 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" dir="ltr" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="cs" />
+<meta name="copyright" content="Copyright (C) 2005-2014 Jyxo s.r.o." />
+<meta name="description" content="(výtah z knížky Ron Patton - Testování SW)Vyšší úroveň revize specifikacíCharakteristika: Statické testování černé skřínkyFáze testování... Blog.cz - Stačí otevřít a budeš v obraze." />
+<meta name="author" content="ladyloba" />
+<meta name="google-site-verification" content="1y3oA1Va-s7e_E4gE9jaMH-72u3WtITjMXsolP0cNVU" />
+<meta name="msvalidate.01" content="F10BA08EAF0F0CFC0A4509044149A6E0" />
+<meta property="fb:page_id" content="97878905856" />
+<meta property="fb:app_id" content="152936751395548" />
+<meta property="og:site_name" content="Blog.cz" />
+<meta property="og:image" content="http://bs.jxs.cz/homepage/skins/common/logo100x100.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Techniky testování SW" />
+<meta property="og:url" content="http://ladyloba.blog.cz/0801/techniky-testovani-sw" />
+<link rel="shortcut icon" type="image/x-icon" href="http://bs.jxs.cz/common/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://bs.jxs.cz/ublog/skins/common/common.packed.css?61" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="http://bd.jxs.cz/la/ladyloba/style.css?1393018305" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="http://bs.jxs.cz/ublog/skins/common/print.packed.css?4" media="print" />
+<link rel="stylesheet" type="text/css" href="http://bs.jxs.cz/ublog/skins/common/breakingnews.packed.css?1" media="screen, projection" />
+<link rel="alternate" type="application/rss+xml" href="/rss-kanal/prehled-clanku" title="LadyLoba Romana - Články" />
+<link rel="alternate" type="application/rss+xml" href="/rss-kanal/cele-clanky" title="LadyLoba Romana - Celé články" />
+<link rel="alternate" type="application/rss+xml" href="/rss-kanal/komentare" title="LadyLoba Romana - Komentáře" />
+<link rel="search" type="application/opensearchdescription+xml" href="/osd.xml" title="LadyLoba Romana" />
+<link rel="stylesheet" type="text/css" href="http://bs.jxs.cz/global/jquery/star/ui.stars.packed.css?2" />
+<script src="http://bd.jxs.cz/translation/cs.js?1384442040" type="text/javascript" charset="utf-8"></script>
+<script src="http://c.icq.com/siteim/icqbar/js/partners/initbar_cz.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/jquery/jquery-1.5.1-plus-ui-1.8.10.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/jquery/colorbox/jquery.colorbox.1.3.16.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/jquery/cookie/jquery.cookie.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/form.packed.js?18" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/common.packed.js?8" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/ublog.packed.js?39" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/swfobject.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/miniBreakingNewsPlugin.packed.js?3" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/adtrack.nova.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/analytics.packed.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/js/cross2.packed.js?1" type="text/javascript" charset="utf-8"></script>
+<script src="http://bs.jxs.cz/global/jquery/star/ui.stars.packed.js?2" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8"><!--
+
+                window.ICQ = {
+                    skin: {
+                        imgIconMinimized: "http://bs.jxs.cz/ublog/icq/icq-signin.png", //"relative url to the icon", 
+                        imgContactListLogo: "http://bs.jxs.cz/ublog/icq/icq-contact-list-logo.png", 
+                        //imgContactListGroupTitleBullet: "http://bs.jxs.cz/ublog/icq/icq-contact-list-group-arrows.png",
+                        hexContactListGroupTitleColor: "#0058a1",
+                        imgPanelStripeEmpasized: "http://bs.jxs.cz/ublog/icq/icq-login.png",
+                        imgContactListHeaderBg: "http://bs.jxs.cz/ublog/icq/icq-contact-list-top.png",
+                        imgOverlayHeaderBg: "http://bs.jxs.cz/ublog/icq/icq-bg_sw_top.png",
+                        imgMessageWindowHeader: "http://bs.jxs.cz/ublog/icq/icq-message-bg-top.png",
+                        imgContactHoverBg: "http://bs.jxs.cz/ublog/icq/icq-contact-hover.png", //contact list contact hover color (1x31px)
+                        imgLoginBtnBg: "http://bs.jxs.cz/ublog/icq/icq-login.png", //login button (1x25px)
+                        txtPanelMinimized: "Chatujte s přáteli",
+                        intPositionShift: 0
+                    },
+
+                    triggers: {
+                        toggleOnSite: "_openBar"
+                    },
+
+                    eventsListener : function(data) {
+                        function trackEvent(ev){
+                            //console.log("ICQ Event " + ev + " triggered");
+
+                            var be_re = new RegExp("article_renderer");
+                            var be_gemius_url = window.location;
+                            var rc_gemius = pp_gemius_identifier;
+
+                            pp_gemius_identifier = pp_gemius_identifier.replace(/USED_/g, "");
+                            pp_gemius_hit(pp_gemius_identifier);
+                        }
+
+                        switch (data.type){
+                            case "login":
+                                trackEvent(data.type);
+                                break;
+                                
+                            case "logout":
+                                trackEvent(data.type);
+                                break;
+                                
+                            case "sendIM":
+                                trackEvent(data.type);
+                                break;
+                                
+                            default:
+                                console.log("unknown data.type " + data.type);
+                        }
+                    }
+                };
+            
+_ga.create("UA-19883747-1", ".blog.cz");_gaq.push(["_trackPageview"]);
+
+					JyxoCrossDomain.init(
+						"http://xd.person.jyxo.com/blog/",
+						".blog.cz"
+					);
+				
+
+			$(window).load(function() {
+				var selector = "#mainInner";
+				if ($.browser.msie && "7.0" === $.browser.version && $("#mainInner").width() > $("#main").width()) {
+					selector = "#main";
+				}
+				$(selector).blogResizeImages(".preview img, .articleText img");
+			});
+		
+window.ContentComposition = false;
+
+				$(function() {
+					
+					$("a.logoutLink").click(function() {
+						JyxoCrossDomain.logout(this.href);
+						return false;
+					});
+				
+$("a.newWindow").blogNewWindow();
+$.initImageErrorHandler("/chybejici-obrazky")
+
+					var form = $('#ublog_ArticleRatingForm');
+					$('.rateWrap', form).stars({
+						disabled: false,
+						oneVoteOnly: true,
+						split: 2,
+						callback: function(ui, type, value, event){
+							form.submit();
+						}
+					});
+					$('label', form).hide();
+					$('button', form).hide();
+				
+
+			$("#poll div.poll a").blogLinkClick({
+				dialog: false,
+				output: "html",
+				onSuccess: Ublog.pollVote
+			});
+		
+
+			Ublog.commentResizer($(".comment"), {
+				childClass: "commentText",
+				toggleText: "Rozbalit",
+				reduce: 0
+			});
+			Ublog.commentReact();
+		
+
+				$("#openLoginForm").blogFormBox({
+					"boxClass": "cBoxLogin",
+					"opacity": 0.7,
+					"width": "50%",
+					"maxWidth": 500
+				});
+			
+
+			$(".year ul").hide();
+			$(".year.active ul").show();
+			$(".year > a").click(function(){
+				var $parent = $(this).parent();
+				if (!$parent.find("ul:visible").size()) {
+					$(".year ul").slideUp("fast");
+					$parent.children("ul").slideDown("fast");
+				}
+
+				return false;
+			});
+		
+
+				});
+			// --></script>
+
+			<!--[if IE]>
+				<link rel="stylesheet" type="text/css" href="http://bs.jxs.cz/ublog/skins/common/commonIe.css?4" media="screen, projection" />
+			<![endif]-->
+		
+<title>Techniky testování SW | LadyLoba Romana</title>
+</head>
+<body class="article_techniky-testovani-sw category_testovani-sw">
+<div id="gemius"><div id="gemiusInner">
+
+		<!-- (C)2000-2009 Gemius SA - gemiusAudience / blog.cz / Ublog - Kategorie (N_Rodina) -->
+		<script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+		var pp_gemius_identifier = new String("By.q_GNlf7YoTT8d86LTSfTX33MdEXrMEw73WoXgy43.N7");
+        
+        // řádky níže by neměly být editovány
+        function gemius_pending(i) { window[i] = window[i] || function() {var x = window[i+"_pdata"] = window[i+"_pdata"] || []; x[x.length]=arguments;};};
+        gemius_pending("gemius_hit"); gemius_pending("gemius_event"); gemius_pending("pp_gemius_hit"); gemius_pending("pp_gemius_event");
+        (function(d,t) {try {var gt=d.createElement(t),s=d.getElementsByTagName(t)[0]; gt.setAttribute("async","async"); gt.setAttribute("defer","defer"); gt.src="http://gacz.hit.gemius.pl/xgemius.js"; s.parentNode.insertBefore(gt,s);} catch (e) {}})(document,"script");
+        //--><!]]>
+		</script>
+	
+</div></div>
+
+<div id="ribbonWrapper"><div id="ribbonWrapperInner">
+
+</div></div>
+
+<div id="canvas"><div id="canvasInner">
+<div id="crossPromo"><div id="crossPromoInner">
+
+</div></div>
+
+<div id="header"><div id="headerInner">
+<div class="headerBox"></div>
+<div id="headerContent">
+<h1 id="head">
+	<span id="logo">
+	<a id="headerLogo" href="/">
+					<strong><span>LadyLoba Romana</span></strong>
+			</a>
+	</span>
+    <span id="headerBlogczLogo">
+        <a href="http://blog.cz">
+            <span> na Blog.cz</span>
+        </a>
+    </span>
+</h1>
+</div>
+	<div id="motto">
+		<div id="mottoTable">
+			<div id="mottoInner">
+				<div id="mottoInner2">
+					<div>"V každé ženě žije mocná síla, naplněná zdravými instinkty, vášnivou tvořivostí a nesmrtelným poznáním. Je to archetyp Divošky, který představuje instinktivní povahu žen." Clarissa PINKOLA ESTÉS: Ženy, které běhali s vlky</div>				</div>
+			</div>
+		</div>
+	</div>
+
+</div></div>
+
+<div id="page"><div id="pageInner">
+<div id="pageTop"><div id="pageTopInner">
+<div id="breadcrumbs">
+<div id="path">
+				<a href="http://blog.cz/" title="Blog.cz">
+				Blog.cz			</a>
+			<span class="separator"> &gt; </span>
+						<a href="/" title="LadyLoba Romana">
+				LadyLoba Romana			</a>
+			<span class="separator"> &gt; </span>
+						<a href="/archiv" title="Archiv">
+				Archiv			</a>
+			<span class="separator"> &gt; </span>
+						<a href="/0801" title="Leden 2008">
+				Leden 2008			</a>
+			<span class="separator"> &gt; </span>
+						<span>Techniky testování SW</span>
+			</div>
+</div>
+</div></div>
+
+<div id="topContent"><div id="topContentInner">
+<a id="pageContent"></a>
+
+</div></div>
+
+<div id="main"><div id="mainInner">
+<!-- Sklik-kontext-start -->
+<div class="article">
+	<h2>Techniky testování SW</h2>
+	27. ledna 2008 v 6:28			|&nbsp;LadyLoba	
+						|&nbsp;
+			<a href="/rubrika/testovani-sw"
+				title="Rubrika: Testování SW">
+				Testování SW			</a>
+			
+		<div class="articleText">
+		<div>(výtah z knížky Ron Patton - Testování SW)</div><h2>Vyšší úroveň revize specifikací</h2><div>Charakteristika: Statické testování černé skřínky<br />Fáze testování / etapa testování: Sběr požadavků a plánování testů, Návrh testů<br />Typ testu: Test dokumentace (specifikace je dokument)<br />Popis:<br />Specifikaci lze testovat vždy, bez ohledu na její formát. Může být v podobě psaného dokumentu, grafických schémat, nebo kombinace obojího. Lze testovat i nepsanou specifikaci - tester se bude dotazovat lidí, kteří navrhují a píší software.<br />První krok - tester se nebude se vrhat na drobné chyby, ale bude hledat problémy zásadní povahy.<br /><br />Varianta 1: <strong>Představí si, že je zákazník</strong>.<br />Jestliže projde a zkontroluje určitou část specifikace a nerozumí jí, nepředpokládá implicitně, že je v pořádku, a nepokračujte dále. Nakonec bude muset podle této specifikace postavit budoucí testy. Je dobré tomu porozumět co nejdříve.<br /><br />Varianta 2: <strong>Prozkoumá stávající standardy a zásady</strong><br />Rozdíl mezi standardem a zásadou je ve stupni dodržování. Standard je přísnější podoba normy než zásada. Standardy je nutno dodržovat, zásady je vhodné dodržovat.<br />Příklady standardů a zásad: Firemní terminologie a konvence, oborové požadavky, vládní standardy, GUI standardy, hardwarové a síťové standardy.<br /><br />Varianta 3: <strong>Reviduje a otestuje podobný SW</strong><br />Jedna z nejlepších metod, jak porozumět cílové podobě produktu, je prozkoumat podobný problém.<br />Při zkoumání konkurenčního výrobku je vhodné sledovat:Velikost, Složitost, Testovatelnost, Kvalitu a spolehlivost.<br /><br />Vstupy:<br />Varianta 1: Psaná specifikace, nebo někdo kdo navrhuje SW, ochotný odpovídat na dotazy testerů.<br />Varianta 2: Navíc potřebuje seznam standardů a zásad<br />Varianta 3: Podobný software, čas si tento podobný SW vyzkoušet</div><h2>Nižší úroveň revize specifikací</h2><div>Charakteristika: Statické testování černé skřínky<br />Fáze testování / etapa testování: Sběr požadavků a plánování testů, Návrh testů<br />Typ testu: Test dokumentace (specifikace je dokument)<br /><br />Popis:</div><div>Druhý krok hledání chyb ve specifikaci.<br /></div><div>Přehled atributů, zda je specifikace:</div><div>Úplná; Správná; Přesná, jednoznačná a jasná; Konzistentní; Relevantní; Proveditelná; Bez kódu; Testovatelná<br /></div><div>Přehled terminologie specifikace - tester zkontroluje jak se v daném kontextu používají problémová slova:</div><div>Vždy, nikdy, každý, všechny, žádný<br />Určitě, tudíž, zřejmě, jasně, evidentně<br />Něco, někdy, často, obvykle, obyčejně, zpravidla, většina, většinou<br />A tak dále, a tak podobně, jako například, třeba<br />Dobrý, rychlý, laciný, efektivní, stabilní, malý<br />Zpracováno, ošetřeno, zamítnuto, přeskočeno, vyloučeno<br />Jestliže … pak .. (ale chybí Jinak)<br /></div><div><br />Vstupy:<br />Psaná specifikace, nebo někdo kdo navrhuje SW, schopný a kompetentní odpovídat na dotazy testerů a záznam z těchto dotazů</div><h2>Badatelské testování</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Provádění testů<br />Typ testu: Test funkcionality, Systémový test<br /><br />Popis:<br />Chybí specifikace. Tester je posazen k hotovému SW. Za specifikaci musí považovat SW. Metodicky jej prozkoumá, poznamená co SW dělá, postupně zmapuje všechny funkce a získá "specifikaci".<br />Pak postupujte dalšími metodami dynamického testování černé skřínky.<br /><br />Vstup:<br />Hotový SW produkt</div><h2>Testy splněním a testy selháním</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test funkcionality, Systémový test, regresní test<br /><br />Popis:<br />Klasický přístup k testování.<br />Při návrhu a provádění testových případů se prioritně provádí testy splněním. Nejdříve je nutno ověřit, zda SW je schopen vůbec fungovat, a pak do něj začít "mlátit kladivem".<br /><br />Vstup:<br />Pro návrh testů: Specifikace.<br />Pro provádění testů: Návrh testů, Testové případy</div><h2>Rozdělení tříd ekvivalentních případů</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test funkcionality, Systémový test, Regresní test<br /><br />Popis:<br />Třída ekvivalence, neboli množina ekvivalentních případů, je taková množina testových případů, která testuje stejnou věc nebo odhaluje stejnou chybu.<br />Tester / Návrhář testů hledá, jak vhodně seskupit podobné vstupní hodnoty, podobné výstupní hodnoty a podobné činnosti softwaru. Tyto skupiny pak tvoří potřebné třídy ekvivalence.<br />Musí si však dávat pozor, aby počet testových případů nezredukoval pod únosnou mez.<br /><br />Vstup:<br />Seznam testových případů<br />Zkušený tester</div><h2>Testovaní dat - Testování hraničních případů</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test funkcionality, Systémový test, Regresní test, Test uživatelského prostředí<br /><br />Popis:<br />Hraniční podmínky představují jakékoli situace na hraně plánovaných operačních limitů daného SW.<br />Test zkoumá, co to se SW udělá, když mu zadáme hodnoty těsně pod limitem, přesný limit a nad limitem. Je důležité neustále vyhledávat hraniční situace v každém SW. Čím se víc hledá, tím víc hranic je odhaleno. A obvykle je tam mnoho chyb.<br />Dalším zdrojem chyb můžou být v místech tzv. subhraniční podmínky:<br />Např. mocnina dvou nebo tabulka ASCII<br />Tester nezapomíná přidávat nově nalezené limity do seznamu limitů SW.<br /><br />Vstupy:<br />Pro návrh: Seznam limitů SW.<br />Pro testování: Seznam testových případů.</div><h2>Testovaní dat - Výchozí, prázdná, nevyplněná, nedefinovaná, nulová a žádná hodnota</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test uživatelského prostředí<br /><br />Popis:<br />Testy zaměřené na to jak zareaguje SW na výchozí, prázdnou, nevyplněnou, nedefinovanou, nulovou nebo žádná hodnotu.<br /><br />Vstupy:<br />Pro návrh testů: Specifikace a návrh GUI.<br />Pro testování: Hotové GUI, seznam testových případů.</div><h2>Testovaní dat - Neplatné, chybné, nesprávné a nesmyslné údaje</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test uživatelského prostředí, Systémový test<br /><br />Popis:<br />Tester zadává neplatné, chybné, nesprávné a nesmyslné údaje za účelem shodit systém.<br />Toto testování nemá žádná pevná pravidla.<br /><br />Vstupy:<br />Testovaný produkt.<br />Znalost, co je nesmysl.</div><h2>Testovaní stavů</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Test uživatelského prostředí, Systémový test<br /><br />Popis:<br />Tester si vytvoří mapu stavů a přechodů z hlediska uživatele systému.<br />Potom se pokusí projít v testech všemi stavy alespoň jednou, projít stavy, které vypadají na první pohled jako nejpravděpodobnější, projít nejméně obvyklou cestu mezi stavy, a všechny chybové stavy a návraty z nich, projede náhodně nějakými stavy.<br /><br />Vstupy:<br />Testovaný SW.<br />Extra čas na záznam stavů.</div><h2>Testovaní stavů selháním - Závodění - race condition</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Výkonnostní,objemové a zátěžové testy<br /><br />Popis:<br />Závodění - race condition - Situace, kdy hrozí vznik chyby:<br />Ukládání a načítaní stejného dokumentu.<br />Sdílení stejné tiskárny, komunikačního portu, nebo jeho periferie.<br />Stisky kláves nebo odesílaní klepnutí myši v průběhu zavádění SW nebo změny jeho stavu.<br />Uzavíraní nebo spouštění více instancí daného SW ve stejném okamžiku.<br />Současný přístup ke společné databázi různých programů.<br /><br />Vstupy:<br />Pro návrh - seznam rizikových situací.<br />Pro testy - seznam testových případů,dle konkrétního testu - synchronizovanou práci více testerů, nebo testovací nástroj simulující multitaskingové operace, nastavení příslušných testů na testovacím nástroji.</div><h2>Testovaní stavů selháním - Opakování, stres, zátěž</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Výkonnostní,objemové,zátěžové a konfigurační testy<br /><br />Popis:<br />Test opakování - jedna stejná operace se neustále opakuje - cíl hledat tzv. díry v paměti<br />Stresové testování - zhoršení ideálních podmínek: zmenšit množství paměti, zmenšit diskový prostor, nasadit pomalý procesor, pomalý modem apod.<br />Zátěžové testování - opak stresu - dáme mu všeho moc a naplníme ho obrovským objemem dat, nebo připojíme co nejvíce tiskáren apod. Zátěžový test by měl běžet hodně dlouho - důležité zejména pro programy, které by měly běžet nepřetržitě bez restartu.<br />Doporučuje se kombinovat testy opakováním, stresové testy a zátěžové testy.<br /><br />Vstupy:<br />Seznam nejčastěji prováděních operací.<br />Vhodný testovací nástroj pro opakování operací.<br />Více HW konfigurací pro stresové testování.<br />Vhodný nástroj, který "nakrmí" systém obrovským množstvím dat.<br />Extra HW na kterém budou testy běžet a nebudou mít vliv na ostatní testy.<br />Nastavení/naprogramování příslušných testů do softwarových nástrojů</div><h2>Testovaní stavů selháním - další možné přístupy</h2><div>Charakteristika: Dynamické testování černé skřínky<br />Fáze testování / etapa testování: Návrh testů, Provádění testů<br />Typ testu: Testy funkcionality, Systémové testy, Regresní testy, Testy uživatelského rozhraní<br /><br />Popis:<br />V1: Tester se chová jako hloupý uživatel<br />V2: Tester hledá chyby tam, kde jsme již nějaké nalezli<br />V3: Tester hledá chyby na základě zkušeností, intuice a předtuchy<br /><br />Vstupy:<br />V1: nezkušený uživatel nebo začínající uživatel<br />V2: nalezení chyby<br />V3: zkušený tester nebo vědma nebo křišťálovou koulí </div><h2>Formální revize</h2><div>Charakteristika: Statické testování bílé skřínky<br />Fáze testování / etapa testování: Unit test<br />Typ testu: Revize kódu<br /><br />Popis:<br />Odpovědnost konkrétních osob za statické testování bílé skřínky se v jednotlivých vývojových týmech liší. Někde si revizi řídí sami programátoři, SW testeři jsou přizvání jako nezávislí pozorovatelé.<br />V jiných týmech se tomuto úkolu věnují testeři, a programátora, který testovaný kód napsal, si s několika jeho kolegy naopak pozvou na pomoc při revizích. Každý vývojový tým si musí zvolit svoji cestu.<br />Formální revize má čtyři základní prvky :</div><ol><li><strong>Identifikace problémů</strong> - zacílit se na problémy a chybějící prvky, ne na osobu.</li><li><strong>Dodržování pravidel</strong> - role, množství revidovaného kódu, co se od revize očekává.</li><li><strong>Příprava</strong> - jednotlivý účastníci různé role, většina chyb se objeví již při přípravě.</li><li><strong>Písemná zpráva</strong> - zápis revize, shrnutí výsledků.</li></ol><div>Vedlejší důsledky formální revize:</div><ul><li><strong>Zlepšení komunikace</strong> mezi testery a vývojáři.</li><li><strong>Kvalita</strong> - vývojáře to vede k pečlivosti.</li><li><strong>Pospolitost týmu</strong> - lepší vzájemné porozumění.</li><li><strong>Řešení</strong> - při revizi se může najít řešení obtížných problémů.</li></ul><div>Varianty:<br />V1: <strong>Revize partnerem</strong> - kamarádská revize - neformální<br />Výhoda - nejrychlejší metoda revize<br />V2: <strong>Průchody</strong> - programátor prezentuje svůj kód, oponenti (v předstihu dostali kód) se ptají<br />Mezi oponenty musí být alespoň jeden hodně zkušený programátor<br />V3: <strong>Inspekce</strong> - nejformálnější typ revize - jiný programátor prezentuje kód, a inspektoři revidují<br />Výhoda - kód se zreviduje a zároveň se ověří, že mu porozumí i jiní programátoři než autor<br />Nevýhoda - nejvíce "administrativní" práce<br /><br />Vstupy:<br />Existuje kód k revidovaní.<br />Jsou určené role.<br />Existují podklady k přípravě.<br />Ochota vývojářů nechat si "hromadně" zrevidovat kód.</div><h2>Testování jednotek a integrace - zdola nahoru</h2><div>Charakteristika: Dynamické testování bílé skřínky<br />Fáze testování / etapa testování: Unit testy a testování integrace<br />Typ testu: Revize kódu<br /><br />Popis:<br />Třeba rozlišit cíle ladění a dynamického testování bílé skřínky.<br />Programátor píše kód programu, tester vyhledává chyby, přičemž někdy musí napsat také kousek kódu pro řízení testů, programátor dále opravuje nalezené chyby. Musí se zamezit duplicitní práci.<br />Dva přístupy: zdola nahoru a shora dolů<br />Pro testování <strong>zdola nahoru</strong> tester napíše vlastní moduly tzv. ovladače testů, které se "napíchnou" na moduly SW stejným způsobem, jako budou pracovat i skutečné moduly. Tým způsobem snadno "nakrmíte" moduly veškerými typy a množstvím dat. Na vyšší úrovni by se to generovalo obtížně.<br />Při testování <strong>shora dolů</strong>, se modul testera - maketa - bude pokoušet zvenčí ovlivňovat skutečný SW. Lze tak taky simulovat velké množství dat a ověřit veškeré funkce zobrazovacího modulu.<br /><br />Vstupy:<br />Hotové kódy modulů.<br />Podrobná specifikace rozhraní.<br />Zkušený tester/programátor modulů.<br />Vhodný nástroj na tvorbu ovladačů testů a maket.<br /><br />UPOZORNĚNÍ !!!<br /><strong>Je velice důležité vytvořit testové případy pro testy černé skřínky na základě specifikace, tedy před úpravou případů pro bílou skřínku. Nelze se spoléhat, že programátor správně pochopil specifikaci.</strong><br />!!! UPOZORNĚNÍ</div><h2>Úplná analýza dat</h2><div>Charakteristika: Dynamické testování bílé skřínky<br />Fáze testování / etapa testování: Unit testy, Integrační testy, testy funkcionality, systémové testy<br />Typ testu: Revize kódu, Ladění, Oprava chyb, u kterých není zřejmé jak nastaly<br /><br />Popis:<br />Tester/Debugger sleduje toky dat.<br />Hledá subhraniční případy (např. vzorec, kde může nastat dělení nulou)<br />Záměrně vyvolává chyby - využitím vlastností ladicího programu<br /><br />Vstupy:<br />Hotový kód.<br />Vhodný ladicí program nebo jiný vhodný nástroj.<br />Zkušený tester, specialista na dynamické testování bíle skřínky.</div><h2>Úplná analýza programového kódu</h2><div>Charakteristika: Dynamické testování bílé skřínky<br />Fáze testování / etapa testování: Unit testy, Integrační testy, testy funkcionality, systémové testy<br />Typ testu: Revize kódu, Ladění, Oprava chyb, u kterých není zřejmé jak nastali<br /><br />Popis:<br />Nejjednodušší forma - krokování kódu po řádcích, sledovat, které řádky jsme již navštívili.<br />Složitější formy - úplná analýza příkazů a řádků, úplná analýza větvení, úplná analýza podmínek<br />Může se stát, že objevíme kus kódu, na který se vůbec nebudeme moci dostat.<br />Výsledkem krokování může byt poznatek pro návrháře testů. Jaké nové testové případy třeba vytvořit pro lepší pokrytí programu testy.<br /><br />Vstupy:<br />Hotový kód.<br />Vhodný ladicí program nebo jiný vhodný nástroj.<br />Zkušený tester, specialista na dynamické testování bíle skřínky.</div>	</div>
+</div>
+<!-- Sklik-kontext-stop -->
+
+	<div class="clear">&nbsp;</div>    <hr />
+	<div id="banner">
+        <div id="bannerCenter">
+                        <div id="bannerInner">
+                <div id="bannerLabel" style="width: 50px;">&nbsp;</div>
+                <div class="clear"></div>
+                    <!--JavaScript Tag // Tag for network 1045: CME // Website: Blog.cz U_Blogs // Page: U_Blogs // Placement: rectangle_3_blog.cz_u_blogs (4761349) // created at: Sep 11, 2013 8:45:18 AM-->
+                    <script type="text/javascript">
+                    <!--
+                    if (window.adgroupid == undefined) {
+                        window.adgroupid = Math.round(Math.random() * 1000);
+                    }
+                    document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtech.de/addyn|3.0|1045.1|4761349|0|170|ADTECH;cookie=info;alias=rectangle_3_blog.cz_u_blogs;loc=100;target=_blank;sub1=[subst];key=key1+key2+key3+key4;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+                    //-->
+                    </script>
+                    <noscript>
+                        <p>
+                            <a href="http://adserver.adtech.de/adlink|3.0|1045.1|4761349|0|170|ADTECH;loc=300;alias=rectangle_3_blog.cz_u_blogs;key=key1+key2+key3+key4;sub1=[subst]" target="_blank">
+                                <img src="http://adserver.adtech.de/adserv|3.0|1045.1|4761349|0|170|ADTECH;cookie=info;loc=300;alias=rectangle_3_blog.cz_u_blogs;key=key1+key2+key3+key4" width="300" height="250" alt="" />
+                            </a>
+                        </p>
+                    </noscript>
+                    <!-- End of JavaScript Tag -->                    
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+		<!--
+			if (0 == $('#banner > object').length && 1 == $('#banner > a > img[src*=1x1]').length) {
+				// Hide banner.
+				$('#banner').hide();
+			}
+		// -->
+	</script>
+
+	<hr />
+	
+<form action="/0801/techniky-testovani-sw/hodnotit" method="post" id="ublog_ArticleRatingForm"><div class="rateWrap"><input type="radio" name="rating" value="1" id="rating1" class="rating" />
+<label for="rating1">1</label>
+<input type="radio" name="rating" value="2" id="rating2" class="rating" />
+<label for="rating2">2</label>
+<input type="radio" name="rating" value="3" id="rating3" class="rating" />
+<label for="rating3">3</label>
+<input type="radio" name="rating" value="4" id="rating4" class="rating" />
+<label for="rating4">4</label>
+<input type="radio" name="rating" value="5" id="rating5" class="rating" />
+<label for="rating5">5</label>
+<input type="radio" name="rating" value="6" id="rating6" class="rating" />
+<label for="rating6">6</label>
+<input type="radio" name="rating" value="7" id="rating7" class="rating" />
+<label for="rating7">7</label>
+<input type="radio" name="rating" value="8" id="rating8" class="rating" />
+<label for="rating8">8</label>
+<input type="radio" name="rating" value="9" id="rating9" class="rating" />
+<label for="rating9">9</label>
+<input type="radio" name="rating" value="10" id="rating10" class="rating" />
+<label for="rating10">10</label>
+</div>
+<span class="votesCount">Buď první, kdo ohodnotí tento článek.</span>
+<noscript><label for="ratingEater698a0cf">Kolik je 5 + 2: </label>
+<input type="text" name="ratingEater698a0cf" id="ratingEater698a0cf" />
+</noscript>
+<div id="SEWrapratingEater698a0cf"></div>
+<input type="hidden" name="ratingConductor" value="365fd36c4b485ba6e" id="ratingConductor" />
+<div class="buttonWrap"><button type="submit" value="Hlasovat" name="rate" id="rate" class="submit">Hlasovat</button>
+</div>
+</form>
+<script type="text/javascript">$(function(){$("<input/>")
+			.attr({
+				type: "hidden",
+				name: "ratingEater698a0cf",
+				id: "ratingEater698a0cf",
+				value: 5 + 2
+			})
+			.appendTo("#SEWrapratingEater698a0cf");
+$("#ublog_ArticleRatingForm").jyxoFormUI([]).bind("submit", function (event) {
+					event.stopPropagation();
+					event.preventDefault();
+					$(this).jyxoSendForm({},
+			function(data) {
+				var form = $("#ublog_ArticleRatingForm");
+				$(".rateWrap", form).stars("select", data.average);
+				$("span", form).text(data.countCaption);
+			});
+				});});</script>
+
+
+
+			<div id="fbLike">
+		<fb:like href="http://ladyloba.blog.cz/0801/techniky-testovani-sw" layout="standard" action="like" show_faces="true" width="450" colorscheme="" font=""></fb:like>
+	</div>
+	<div id="fb-root">
+		<script type="text/javascript">
+			window.fbAsyncInit = function() {
+				FB.init({appId: '152936751395548', status: true, cookie: true, xfbml: true});
+			};
+			$('#fb-root').append('<script src="http://connect.facebook.net/cs_CZ/all.js" async="true"></' + 'script>');
+		</script>
+	</div>
+
+
+<hr />
+
+<div id="komentare">
+
+<h3>Komentáře</h3>
+<div id="komentar49520977" class="comment commentNew"><div class="commentHeader">
+<a class="commentNr" id="ref1" name="49520977" href="/0801/techniky-testovani-sw/komentar/49520977" onclick="window.location.hash=this.name; return false;">1</a> <img src="http://bs.jxs.cz/common/avatars/avatarU1.png" alt="Miroslav Čermák" /> <strong>Miroslav Čermák</strong> | <a href="mailto:mc (V) cleverandsmart.cz">E-mail</a> | <a href="http://www.cleverandsmart.cz" rel="nofollow" title="Web">Web</a> | 10. února 2009 v 18:13 | <a href="/0801/techniky-testovani-sw#discussForm" onclick="return Ublog.addRef(this)">Reagovat</a></div>
+<div class="commentText"><p>Pěkný článek a zajímavá kniha.</p></div></div>
+</div>
+
+
+<div id="pridat-komentar">
+
+<h3><a name="discussForm"></a>Nový komentář</h3>
+
+<form id="ublog_CommentForm"
+	action="/0801/techniky-testovani-sw/komentar/pridat"
+	method="post"
+	onsubmit="">
+<input type="hidden" name="discussConductor" value="e98c0b961e43ced77b" id="discussConductor" />
+
+<fieldset>
+<table>
+	<tbody>
+		<tr>
+			<th>
+<label for="discussUsername"><span class="required"> *</span>
+<span>Jméno: </span>
+</label>
+
+</th>
+			<td> 
+<input type="text" name="discussUsername" id="discussUsername" class="textField left" />
+
+			</td>
+		</tr>
+				<tr>
+			<td></td>
+			<td><a id="openLoginForm" href="/prihlaseni?back=1" title="Přihlásit se">
+					Přihlásit se				</a>
+			</td>
+		</tr>
+				<tr>
+			<th>
+<label for="email">E-mail: </label>
+
+</th>
+			<td>
+                                
+<input type="text" name="email" id="email" class="textField" />
+
+                                <span id="responseCheckbox">
+                                        
+<input type="checkbox" name="sendResponseEmail" id="sendResponseEmail" />
+
+                                        
+<label for="sendResponseEmail">Odesílat reakce na email.</label>
+
+                                </span>
+                        </td>
+		</tr>
+		<tr>
+			<th>
+<label for="web">Web: </label>
+
+</th>
+			<td>
+<input type="text" name="web" id="web" class="textField" />
+
+</td>
+		</tr>
+				<tr>
+			<th>&nbsp;</th>
+			<td class="smaller">Ještě nemáte vlastní web? Můžete si jej zdarma založit na <a tabindex="7" href="http://blog.cz/registrace?from=ublog-comment">Blog.cz</a>.</td>
+		</tr>
+				<tr>
+			<th class="top">
+<label for="text"><span class="required"> *</span>
+<span>Text: </span>
+</label>
+
+</th>
+			<td>
+<textarea name="text" rows="8" cols="40" id="text">Sem napište komentář</textarea>
+
+ </td>
+		</tr>
+		<tr>
+			<td colspan="2">
+<noscript><label for="discussEater21e3b18">Kolik je 5 + 2: </label>
+<input type="text" name="discussEater21e3b18" id="discussEater21e3b18" />
+</noscript>
+<div id="SEWrapdiscussEater21e3b18"></div>
+
+</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+<div class="buttonWrap"><button type="submit" value="Komentovat" name="sendMessage" id="sendMessage" class="submit">Komentovat</button>
+</div>
+
+</td>
+		</tr>
+	</tbody>
+</table>
+</fieldset>
+</form>
+</div>
+
+
+<script type="text/javascript">$(function(){$("<input/>")
+			.attr({
+				type: "hidden",
+				name: "discussEater21e3b18",
+				id: "discussEater21e3b18",
+				value: 5 + 2
+			})
+			.appendTo("#SEWrapdiscussEater21e3b18");
+$("#ublog_CommentForm").jyxoFormUI({"discussUsername":{"blur":[["filter","trim","",null],["validate","notEmpty","Polo\u017eka \"Jm\u00e9no\" nesm\u00ed b\u00fdt pr\u00e1zdn\u00e1.",null],["validate","stringLengthLessThan","Jm\u00e9no m\u016f\u017ee b\u00fdt maxim\u00e1ln\u011b 255 znak\u016f dlouh\u00e9.",256]]},"email":{"blur":[["filter","trim","",null],["condition","notEmpty","",null],["validate","isEmail","E-mail nen\u00ed platn\u00fd.",null],["validate","stringLengthLessThan","E-mailov\u00e1 adresa m\u016f\u017ee b\u00fdt maxim\u00e1ln\u011b 255 znak\u016f dlouh\u00e1.",256]]},"web":{"blur":[["filter","trim","",null],["condition","notEmpty","",null],["validate","isUrl","Polo\u017eka \"Web\" neobsahuje platn\u00e9 url.",null],["validate","stringLengthLessThan","Webov\u00e1 adresa m\u016f\u017ee b\u00fdt maxim\u00e1ln\u011b 255 znak\u016f dlouh\u00e1.",256]]},"text":{"blur":[["filter","trim","",null],["validate","notEmpty","Pole \"Text\" nesm\u00ed b\u00fdt pr\u00e1zdn\u00e9.",null],["validate","stringLengthLessThan","Text m\u016f\u017ee b\u00fdt maxim\u00e1ln\u011b 10000 znak\u016f dlouh\u00fd.",10001]],"focus":[["hint","","Sem napi\u0161te koment\u00e1\u0159",null]]}});});</script>
+
+
+
+	<div id="actualArticle" class="box">
+		<hr class="noColumn" />
+		<h3>Aktuální články</h3>
+		<ul>
+							<li><a href="/1404/cviky-na-obnoveni-prirozeneho-rytmu-dychani " title="Cviky na obnovení přirozeného rytmu dýchání">Cviky na obnovení přirozeného rytmu dýchání</a></li>
+							<li><a href="/1402/technika-oznacovani-myslenek " title="Technika označování myšlenek">Technika označování myšlenek</a></li>
+							<li><a href="/1402/o-strachu " title="O strachu">O strachu</a></li>
+							<li><a href="/1402/a-dalsi-davka-citatu-co-se-mi-libi " title="A další dávka citátů, co se mi líbí">A další dávka citátů, co se mi líbí</a></li>
+							<li><a href="/1402/nektere-me-oblibene-citaty-z-knizky-nekonecny-kruh-vyklad-etiky-americkych-indianov " title="Některé mé oblíbené citáty z knížky Nekonečný kruh - Výklad etiky amerických Indiánov">Některé mé oblíbené citáty z knížky Nekonečný kruh - Výklad etiky amerických Indiánov</a></li>
+					</ul>
+	</div>
+
+</div></div>
+
+<div id="pageBottom"><div id="pageBottomInner">
+	<!-- Počítadlo Navrcholu -->
+	<div class="counterHidden">
+	<script src="http://c1.navrcholu.cz/code?site=110761;t=lb14" type="text/javascript"></script>
+	<noscript>
+		<p>
+			<a href="http://navrcholu.cz/">
+				<img src="http://c1.navrcholu.cz/hit?site=110761;t=lb14;ref=;jss=0" alt="NAVRCHOLU.cz" style="border:none" />
+			</a>
+		</p>
+	</noscript>
+</div>
+
+	<!-- Počítadlo Toplist -->
+	<div class="counterHidden">
+		<script type="text/javascript">
+			<!--
+				document.write('<a href="http://www.toplist.cz/"><img src="http://toplist.cz/count.asp?id=523877&logo=mc&http='+escape(document.referrer)+'&wi='+escape(window.screen.width)+'&he='+escape(window.screen.height)+'&cd='+escape(window.screen.colorDepth)+'&t='+escape(document.title)+'" width="88" height="60" border=0 alt="TOPlist" /></a>');
+			// -->
+		</script>
+		<noscript>
+            <p>
+			    <a href="http://www.toplist.cz/">
+                    <img src="http://toplist.cz/count.asp?id=523877&amp;logo=mc" alt="TOPlist" width="88" height="60" />
+                </a>
+            </p>
+		</noscript>
+	</div>
+
+	<!-- Počítadlo Blueboard -->
+	<div class="counterHidden">
+		<script src="http://blueboard.cz/counter_0.php?id=226710" type="text/javascript"></script>
+	</div>
+
+
+
+<div id="footerContent">
+<div id="foot">
+	<p>
+        <span class="blog_category">Typ blogu: Rodina</span> |		<a href="/rss-kanal/prehled-clanku" title="RSS zdroj">RSS zdroj</a>
+		| <a href="http://blog.cz/" title="Přihlásit se">Přihlásit se</a>
+		| <a href="http://blog.cz/registrace?from=ublog-footer" title="Registrace">Chci také blog</a>
+		| <span>" Srdečný požitkář je lepší než nerudný světec "</span>		<span class="blind">
+			<a href="/" accesskey="2">Úvodní stránka</a>
+			<a href="#pageContent" accesskey="0">Jít obsah stránky</a> |
+			<a href="http://blog.cz/napoveda/klavesove-zkratky#annotation" accesskey="1">Klávesové zkratky</a>
+		</span>
+	</p>
+</div>
+</div>
+
+</div></div>
+
+</div></div>
+
+<div id="column"><div id="columnInner">
+<div id="menu"><div id="menuInner">
+<div id="category" class="box">
+	<h3>Rubriky</h3>
+	<ul>
+					<li id="category_obcasnik">
+				<a 					href="/rubrika/obcasnik"
+					title="Občasník">
+					<span>
+                        Občasník                    </span>
+				</a>
+							</li>
+					<li id="category_co-ma-zaujalo">
+				<a 					href="/rubrika/co-ma-zaujalo"
+					title="Čo ma zaujalo">
+					<span>
+                        Čo ma zaujalo                    </span>
+				</a>
+							</li>
+					<li id="category_spomienky">
+				<a 					href="/rubrika/spomienky"
+					title="Spomienky">
+					<span>
+                        Spomienky                    </span>
+				</a>
+							</li>
+					<li id="category_vtipy">
+				<a 					href="/rubrika/vtipy"
+					title="Vtipy">
+					<span>
+                        Vtipy                    </span>
+				</a>
+							</li>
+					<li id="category_pesnicky-co-ma-zaujali">
+				<a 					href="/rubrika/pesnicky-co-ma-zaujali"
+					title="Pesničky, čo ma zaujali">
+					<span>
+                        Pesničky, čo ma zaujali                    </span>
+				</a>
+							</li>
+					<li id="category_just-a-moment">
+				<a 					href="/rubrika/just-a-moment"
+					title="Just a Moment">
+					<span>
+                        Just a Moment                    </span>
+				</a>
+							</li>
+					<li id="category_testovani-sw">
+				<a 					href="/rubrika/testovani-sw"
+					title="Testování SW">
+					<span>
+                        Testování SW                    </span>
+				</a>
+							</li>
+					<li id="category_hansova-otazka-bolo-to-vzdy-tak">
+				<a 					href="/rubrika/hansova-otazka-bolo-to-vzdy-tak"
+					title="Hansova otázka: &quot; Bolo to vždy tak?&quot;">
+					<span>
+                        Hansova otázka: &quot; Bolo to vždy tak?&quot;                    </span>
+				</a>
+							</li>
+					<li id="category_o-dychani">
+				<a 					href="/rubrika/o-dychani"
+					title="O dýchaní">
+					<span>
+                        O dýchaní                    </span>
+				</a>
+							</li>
+			</ul>
+</div>
+
+<div id="archive" class="box">
+	<h3>Archiv</h3>
+	<ul>
+					<li class="year" title="Rok 2014"><a href="" title="Rok 2014">2014</a>
+								<ul>
+									<li>
+						<a 							href="/1404">
+							Duben 2014						</a>
+											</li>
+									<li>
+						<a 							href="/1402">
+							Únor 2014						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2013"><a href="" title="Rok 2013">2013</a>
+								<ul>
+									<li>
+						<a 							href="/1302">
+							Únor 2013						</a>
+											</li>
+									<li>
+						<a 							href="/1301">
+							Leden 2013						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2012"><a href="" title="Rok 2012">2012</a>
+								<ul>
+									<li>
+						<a 							href="/1212">
+							Prosinec 2012						</a>
+											</li>
+									<li>
+						<a 							href="/1208">
+							Srpen 2012						</a>
+											</li>
+									<li>
+						<a 							href="/1206">
+							Červen 2012						</a>
+											</li>
+									<li>
+						<a 							href="/1205">
+							Květen 2012						</a>
+											</li>
+									<li>
+						<a 							href="/1201">
+							Leden 2012						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2011"><a href="" title="Rok 2011">2011</a>
+								<ul>
+									<li>
+						<a 							href="/1111">
+							Listopad 2011						</a>
+											</li>
+									<li>
+						<a 							href="/1110">
+							Říjen 2011						</a>
+											</li>
+									<li>
+						<a 							href="/1109">
+							Září 2011						</a>
+											</li>
+									<li>
+						<a 							href="/1108">
+							Srpen 2011						</a>
+											</li>
+									<li>
+						<a 							href="/1107">
+							Červenec 2011						</a>
+											</li>
+									<li>
+						<a 							href="/1106">
+							Červen 2011						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2010"><a href="" title="Rok 2010">2010</a>
+								<ul>
+									<li>
+						<a 							href="/1012">
+							Prosinec 2010						</a>
+											</li>
+									<li>
+						<a 							href="/1011">
+							Listopad 2010						</a>
+											</li>
+									<li>
+						<a 							href="/1010">
+							Říjen 2010						</a>
+											</li>
+									<li>
+						<a 							href="/1008">
+							Srpen 2010						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2009"><a href="" title="Rok 2009">2009</a>
+								<ul>
+									<li>
+						<a 							href="/0909">
+							Září 2009						</a>
+											</li>
+									<li>
+						<a 							href="/0906">
+							Červen 2009						</a>
+											</li>
+									<li>
+						<a 							href="/0905">
+							Květen 2009						</a>
+											</li>
+									<li>
+						<a 							href="/0904">
+							Duben 2009						</a>
+											</li>
+									<li>
+						<a 							href="/0903">
+							Březen 2009						</a>
+											</li>
+									<li>
+						<a 							href="/0901">
+							Leden 2009						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year active" title="Rok 2008"><a href="" title="Rok 2008">2008</a>
+								<ul>
+									<li>
+						<a 							href="/0812">
+							Prosinec 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0811">
+							Listopad 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0810">
+							Říjen 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0809">
+							Září 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0808">
+							Srpen 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0807">
+							Červenec 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0806">
+							Červen 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0805">
+							Květen 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0804">
+							Duben 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0803">
+							Březen 2008						</a>
+											</li>
+									<li>
+						<a 							href="/0802">
+							Únor 2008						</a>
+											</li>
+									<li>
+						<a class="selected"							href="/0801">
+							Leden 2008						</a>
+											</li>
+								</ul>
+			</li>
+					<li class="year" title="Rok 2007"><a href="" title="Rok 2007">2007</a>
+								<ul>
+									<li>
+						<a 							href="/0712">
+							Prosinec 2007						</a>
+											</li>
+									<li>
+						<a 							href="/0711">
+							Listopad 2007						</a>
+											</li>
+									<li>
+						<a 							href="/0710">
+							Říjen 2007						</a>
+											</li>
+									<li>
+						<a 							href="/0709">
+							Září 2007						</a>
+											</li>
+									<li>
+						<a 							href="/0708">
+							Srpen 2007						</a>
+											</li>
+									<li>
+						<a 							href="/0707">
+							Červenec 2007						</a>
+											</li>
+								</ul>
+			</li>
+			</ul>
+</div>
+
+<div id="searchWrap" class="box">
+	
+<form action="/hledani" method="get" id="search"><fieldset id="searchFieldsetMenu"><input type="hidden" name="page" value="1" id="searchPage" />
+<input type="text" name="query" id="query" class="textField" accesskey="4" />
+<div class="buttonWrap"><button type="submit" value="Hledat" name="submit" id="searchButton">Hledat</button>
+</div>
+<div class="clear">&nbsp;</div>
+<input type="radio" name="search" value="ublog" id="searchublog" checked="checked" />
+<label for="searchublog">Na tomto blogu</label>
+<input type="radio" name="search" value="blog" id="searchblog" />
+<label for="searchblog">Na celém Blog.cz</label>
+</fieldset>
+</form>
+<script type="text/javascript">$(function(){$("#search").jyxoFormUI({"query":{"blur":[["filter","trim","",null],["validate","notEmpty","Vyhled\u00e1vac\u00ed pole nesm\u00ed b\u00fdt pr\u00e1zdn\u00e9.",null]]}});});</script>
+
+</div>
+	<div id="favPage" class="box">
+		<h3>Oblíbené odkazy</h3>
+		<ul>
+							<li>
+					<a href="http://www.libres.cz/autor/29-romana-samanka-ladyloba/?sekce=3"
+													class="newWindow"
+												title="Moje tvorba na Libresu :-)">
+						Moje tvorba na Libresu :-)					</a>
+				</li>
+							<li>
+					<a href="http://www.liter.cz/autor-vse-45823"
+													class="newWindow"
+												title="Liter - přispívám tam od r. 2007">
+						Liter - přispívám tam od r. 2007					</a>
+				</li>
+							<li>
+					<a href="http://www.pismak.cz/index.php?data=user&amp;id=28254"
+													class="newWindow"
+												title="Pismák - i tam lze něco ode mne najít">
+						Pismák - i tam lze něco ode mne najít					</a>
+				</li>
+							<li>
+					<a href="http://ladyloba.rajce.idnes.cz/"
+													class="newWindow"
+												title="Focení mě baví">
+						Focení mě baví					</a>
+				</li>
+							<li>
+					<a href="https://picasaweb.google.com/home"
+													class="newWindow"
+												title="I tady mám nějaké fotky">
+						I tady mám nějaké fotky					</a>
+				</li>
+					</ul>
+	</div>
+
+</div></div>
+
+</div></div>
+
+<div class="clear">&nbsp;</div>
+</div></div>
+
+
+</body>
+</html>
