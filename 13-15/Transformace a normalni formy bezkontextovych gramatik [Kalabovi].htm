@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="cs" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8"/>
+<title>Transformace a normální formy bezkontextových gramatik [Kalábovi]</title>
+<script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dokv=abba2f56bd/"},atok:"6330b4d218022ed63b5fdc86af3b943e",petok:"dcd432ddacaf4f653317e40d7c786cdccdd2448d-1402084354-1800",zone:"kalabovi.org",rocket:"m",apps:{"abetterbrowser":{"ie":"10"},"ga_key":{"ua":"UA-45339522-1","ga_bs":"2"}}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dokv=97fb4d042e/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script>
+<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+<meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="date" content="2013-04-02T14:16:52+0200"/>
+<meta name="keywords" content="pitel,msz,bezkontextove_gramatiky"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="Kalábovi"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/pitel:msz:bezkontextove_gramatiky?do=index" title="Index"/>
+<link rel="alternate" type="application/rss+xml" title="Poslední úpravy" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Aktuální jmenný prostor" href="/feed.php?mode=list&amp;ns=pitel:msz"/>
+<link rel="alternate" type="text/html" title="Čisté HTML" href="/_export/xhtml/pitel:msz:bezkontextove_gramatiky"/>
+<link rel="alternate" type="text/plain" title="Wiki jazyk" href="/_export/raw/pitel:msz:bezkontextove_gramatiky"/>
+<link rel="canonical" href="http://kalabovi.org/pitel:msz:bezkontextove_gramatiky"/>
+<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=dokuwiki&amp;tseed=b9bd34f542602b32b3f152f58caa6cf5"/>
+<script type="text/javascript">/*<![CDATA[*/var NS='pitel:msz';var JSINFO = {"id":"pitel:msz:bezkontextove_gramatiky","namespace":"pitel:msz"};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?tseed=b9bd34f542602b32b3f152f58caa6cf5"></script>
+<script type="text/x-mathjax-config">/*<![CDATA[*/MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+        processEscapes: true
+    }
+});
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="shortcut icon" href="/lib/tpl/dokuwiki/images/favicon.ico"/>
+<link rel="apple-touch-icon" href="/lib/tpl/dokuwiki/images/apple-touch-icon.png"/>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-45339522-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
+/* ]]> */
+</script>
+</head>
+<body>
+<!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+<div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_dokuwiki     ">
+ 
+<div id="dokuwiki__header"><div class="pad group">
+<div class="headings group">
+<ul class="a11y skip">
+<li><a href="#dokuwiki__content">jít k obsahu</a></li>
+</ul>
+<h1><a href="/start" accesskey="h" title="[H]"><img src="/lib/tpl/dokuwiki/images/logo.png" width="64" height="64" alt=""/> <span>Kalábovi</span></a></h1>
+<p class="claim">Kalábovic wikina</p>
+</div>
+<div class="tools group">
+ 
+<div id="dokuwiki__usertools">
+<h3 class="a11y">Uživatelské nástroje</h3>
+<ul>
+<li><a href="/pitel:msz:bezkontextove_gramatiky?do=login&amp;sectok=a6e4d6d03014a0f55aed0b9a8d5273e3" class="action login" rel="nofollow" title="Přihlásit se">Přihlásit se</a></li> </ul>
+</div>
+ 
+<div id="dokuwiki__sitetools">
+<h3 class="a11y">Nástroje pro tento web</h3>
+<form action="/start" accept-charset="utf-8" class="search" id="dw__search" method="get" role="search"><div class="no"><input type="hidden" name="do" value="search"/><input type="text" id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]"/><input type="submit" value="Hledat" class="button" title="Hledat"/><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form> <div class="mobileTools">
+<form action="/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="pitel:msz:bezkontextove_gramatiky"/><select name="do" class="edit quickselect" title="Nástroje"><option value="">Nástroje</option><optgroup label="Nástroje pro stránku"><option value="edit">Zdrojový kód stránky</option><option value="revisions">Starší verze</option><option value="backlink">Zpětné odkazy</option></optgroup><optgroup label="Nástroje pro tento web"><option value="recent">Poslední úpravy</option><option value="media">Správa médií</option><option value="index">Index</option></optgroup><optgroup label="Uživatelské nástroje"><option value="login">Přihlásit se</option></optgroup></select><input type="submit" value="&gt;"/></div></form> </div>
+<ul>
+<li><a href="/pitel:msz:bezkontextove_gramatiky?do=recent" class="action recent" accesskey="r" rel="nofollow" title="Poslední úpravy [R]">Poslední úpravy</a></li><li><a href="/pitel:msz:bezkontextove_gramatiky?do=media&amp;ns=pitel%3Amsz" class="action media" rel="nofollow" title="Správa médií">Správa médií</a></li><li><a href="/pitel:msz:bezkontextove_gramatiky?do=index" class="action index" accesskey="x" rel="nofollow" title="Index [X]">Index</a></li> </ul>
+</div>
+</div>
+ 
+<div class="breadcrumbs">
+<div class="trace"><span class="bchead">Historie:</span> <span class="bcsep">•</span> <bdi><a href="/pitel:start" class="breadcrumbs" title="pitel:start">PITwiki</a></bdi> <span class="bcsep">•</span> <bdi><a href="/fiona:wishlist" class="breadcrumbs" title="fiona:wishlist">Fíčkův WishList</a></bdi> <span class="bcsep">•</span> <bdi><a href="/fiona:start" class="breadcrumbs" title="fiona:start">Fíčkova wiki</a></bdi> <span class="bcsep">•</span> <bdi><a href="/start" class="breadcrumbs" title="start">Kalábovi</a></bdi> <span class="bcsep">•</span> <span class="curid"><bdi><a href="/pitel:msz:bezkontextove_gramatiky" class="breadcrumbs" title="pitel:msz:bezkontextove_gramatiky">Transformace a normální formy bezkontextových gramatik</a></bdi></span></div>
+</div>
+<hr class="a11y"/>
+</div></div> 
+<div class="wrapper group">
+ 
+<div id="dokuwiki__content"><div class="pad group">
+<div class="pageId"><span>pitel:msz:bezkontextove_gramatiky</span></div>
+<div class="page group">
+ 
+ 
+<div id="dw__toc">
+<h3 class="toggle">Obsah</h3>
+<div>
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#derivace_a_derivacni_stromy">Derivace a derivační stromy</a></div></li>
+<li class="level1"><div class="li"><a href="#transformace">Transformace</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#odstraneni_nedostupnych_symbolu">Odstranění nedostupných symbolů</a></div></li>
+<li class="level2"><div class="li"><a href="#odstraneni_zbytecnych_symbolu">Odstranění zbytečných symbolů</a></div></li>
+<li class="level2"><div class="li"><a href="#odstraneni_ε-pravidel">Odstranění ε-pravidel</a></div></li>
+<li class="level2"><div class="li"><a href="#odstraneni_jednoduchych_pravidel">Odstranění jednoduchých pravidel</a></div></li>
+<li class="level2"><div class="li"><a href="#odstraneni_leve_rekurze">Odstranění levé rekurze</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#normalni_formy">Normální formy</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#chomskeho_normalni_forma_cnf">Chomského normální forma (CNF)</a></div></li>
+<li class="level2"><div class="li"><a href="#greibachove_normalni_forma_gnf">Greibachové normální forma (GNF)</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+ 
+<h1 class="sectionedit1" id="transformace_a_normalni_formy_bezkontextovych_gramatik">Transformace a normální formy bezkontextových gramatik</h1>
+<div class="level1">
+</div>
+<h2 class="sectionedit2" id="derivace_a_derivacni_stromy">Derivace a derivační stromy</h2>
+<div class="level2">
+<p>
+Gramatika (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>)
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong><a href="http://en.wikipedia.org/wiki/Parse tree" class="interwiki iw_wp" title="http://en.wikipedia.org/wiki/Parse tree">Derivační strom</a></strong></div>
+<ul>
+<li class="level2"><div class="li"> Uzly jsou prvky z <em>N</em> ∪ <em>Σ</em></div>
+</li>
+<li class="level2"><div class="li"> Kořen stromu je <em>S</em></div>
+</li>
+<li class="level2"><div class="li"> Uzly označené prvky z <em>Σ</em> jsou koncové uzly stromu</div>
+</li>
+<li class="level2"><div class="li"> Hrany odpovídají přepisovacím pravidlům gramatiky <em>P</em></div>
+</li>
+<li class="level2"><div class="li"> Označení koncových uzlů zleva doprava tvoří větnou formu</div>
+</li>
+<li class="level2"><div class="li"> Každé derivaci přísluší jeden derivační strom, ale jednomu stromu může příslušet více derivací (více způsobů jak sestavit stejný strom).</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Levá/pravá derivace</strong></div>
+<ul>
+<li class="level2"><div class="li"> Při sestavování je vždy přepsán nejlevější/nejpravější nonterminál</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Fráze větné formy</strong></div>
+<ul>
+<li class="level2"><div class="li"> Řada symbolů na koncových uzlech některého podstromu derivačního stromu (řada symbolů, které lze získat derivacemi z jednoho nonterminálu)</div>
+</li>
+<li class="level2"><div class="li"> <em>β</em> je frází větné formy pokud <em>S</em> ⇒<sup>*</sup> <em>αAγ</em> ∧ <em>A</em> ⇒⁺ <em>β</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Jednoduchá fráze větné formy</strong></div>
+<ul>
+<li class="level2"><div class="li"> Řada sybmolů na koncových uzlech jednopatrového podstormu derivačního stromu</div>
+</li>
+<li class="level2"><div class="li"> <em>β</em> je jednoduchou frází větné formy pokud <em>S</em> ⇒<sup>*</sup> <em>αAγ</em> ∧ <em>A</em> ⇒ <em>β</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Nejlevější jednoduchá fráze (l-fráze)</strong></div>
+<ul>
+<li class="level2"><div class="li"> Fráze větné formy, která se nachází nejvíce vlevo</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Víceznačnost</strong></div>
+<ul>
+<li class="level2"><div class="li"> Věta je víceznačná pokud existuje více derivačních stromů tvořících tuto větu</div>
+</li>
+<li class="level2"><div class="li"> Existují jazyky, které nelze generovat bez víceznačnosti</div>
+</li>
+<li class="level2"><div class="li"> Gramatika, která obsahuje cykly je vždy víceznačná</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong><em>ε</em>-pravidlo</strong></div>
+<ul>
+<li class="level2"><div class="li"> <em>A</em> → <em>ε</em> (přepisují nonterminál na prázdný řetezec)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong><em>A</em>-pravidla</strong></div>
+<ul>
+<li class="level2"><div class="li"> Všechna pravidla, která mají <em>A</em> na levé straně</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Jednoduchá pravidlo</strong></div>
+<ul>
+<li class="level2"><div class="li"> <em>A</em> → <em>B</em> (přepisují nonterminál na jiný nonterminál)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Zbytečné symboly</strong></div>
+<ul>
+<li class="level2"><div class="li"> Nedostupné symboly (nelze jich dosáhnout žádným přepisem) a symboly negenerující terminální řetězce (nikdy nevytvoří větnou formu)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Cyklus</strong></div>
+<ul>
+<li class="level2"><div class="li"> <em>A</em> →⁺ <em>A</em></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Vlastní gramatika</strong></div>
+<ul>
+<li class="level2"><div class="li"> Gramatika bez zbytečných symbolů, bez cyklů a bez <em>ε</em>-pravidel</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Rekurzivní pravidla</strong></div>
+<ul>
+<li class="level2"><div class="li"> Rekurzivní zleva: <em>A</em> → <em>Aα</em></div>
+</li>
+<li class="level2"><div class="li"> Rekurzivní zprava: <em>A</em> → <em>αA</em></div>
+</li>
+<li class="level2"><div class="li"> Rekurzivní: <em>A</em> → <em>αAβ</em></div>
+</li>
+<li class="level2"><div class="li"> Každý bezkontextový jazyk lze generovat gramatikou bez levé rekurze</div>
+</li>
+<li class="level2"><div class="li"> Všechna pravidla s levou rekurzí lze nahradit pravidly s pravou rekurzí</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 class="sectionedit3" id="transformace">Transformace</h2>
+<div class="level2">
+<p>
+<a href="/pitel:tin:ukoly:2010:2#priklad_3" class="wikilink1" title="pitel:tin:ukoly:2010:2">Úkol z TINu 2010</a>, <a href="/pitel:tin:ukoly:2011:2#priklad_5" class="wikilink1" title="pitel:tin:ukoly:2011:2">Úkol z TINu 2011</a>
+</p>
+</div>
+<h3 class="sectionedit4" id="odstraneni_nedostupnych_symbolu">Odstranění nedostupných symbolů</h3>
+<div class="level3">
+<p>
+Převod gramatiky (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku bez nedostupných stavů (<em>N</em>′, <em>Σ</em>′, <em>P</em>′, <em>S</em>)
+</p>
+<ol>
+<li class="level1"><div class="li"> Najdeme všechny dostupné terminály a nonterminály</div>
+<ol>
+<li class="level2"><div class="li"> <em>i</em> = 0</div>
+</li>
+<li class="level2"><div class="li"> <em>V</em>₀ = {<em>S</em>} (tj. v nultém kroku je dostupný pouze počáteční stav)</div>
+</li>
+<li class="level2"><div class="li"> <code>repeat</code></div>
+<ol>
+<li class="level3"><div class="li"> <em>Vᵢ</em>₊₁ = <em>Vᵢ</em> ∪ {<em>X</em> | <em>A</em> → <em>αXβ</em> ∈ <em>P</em> ∧ <em>A</em> ∈ <em>Vᵢ</em>} (tj. do množiny dostupných přidáme všechny terminály a nonterminály, kterlé lze získat přepisem z některého nonterminálu z množiny dostupných z předchozího kroku)</div>
+</li>
+<li class="level3"><div class="li"> <em>i</em>++ (tj. přejdeme k dalšímu kroku)</div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> <code>until</code> <em>Vᵢ</em>₊₁ = <em>Vᵢ</em>₋₁ (tj. končíme pokud se nám v posledním kroku množina dostupných nezměnila)</div>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Novou gramatiku sestavíme jako:</div>
+<ul>
+<li class="level2"><div class="li"> <em>N</em>′ = <em>Vᵢ</em> ∩ <em>N</em> (tj. použijeme pouze dosažitelené nonterminály)</div>
+</li>
+<li class="level2"><div class="li"> <em>Σ</em>′ = <em>Vᵢ</em> ∩ <em>Σ</em> (tj. použijeme pouze dosažitelené terminály)</div>
+</li>
+<li class="level2"><div class="li"> <em>P</em>′ ⊂ <em>P</em> obsahuje pouze pravidla používající pouze symboly z <em>Vᵢ</em></div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<h3 class="sectionedit5" id="odstraneni_zbytecnych_symbolu">Odstranění zbytečných symbolů</h3>
+<div class="level3">
+<p>
+Převod gramatiky (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku bez nedostupných stavů (<em>N</em>′, <em>Σ</em>, <em>P</em>′, <em>S</em>)
+</p>
+<ol>
+<li class="level1"><div class="li"> Nalezení nonterminálů, které produkují terminální řetězce</div>
+<ol>
+<li class="level2"><div class="li"> <em>i</em> = 0</div>
+</li>
+<li class="level2"><div class="li"> <em>N</em>₀ = ∅ (tj. v nultém kroku začínáme s prázdnou množinou nonterminálů generujících terminální řetězce)</div>
+</li>
+<li class="level2"><div class="li"> <code>repeat</code></div>
+<ol>
+<li class="level3"><div class="li"> <em>Nᵢ</em>₊₁ = <em>Nᵢ</em> ∪ {<em>A</em> | <em>A</em> → <em>α</em> ∈ <em>P</em> ∧ α ∈ (<em>Nᵢ</em> ∪ <em>Σ</em>)<sup>*</sup>} (tj. do množiny všechny terminály, které lze přepsat na řetězce skladádající se pouze z terminálů nebo nonterminálů, které jsou již v množině nonterminálů generujících terminální řetězce)</div>
+</li>
+<li class="level3"><div class="li"> <em>i</em>++ (tj. přejdeme k dalšímu kroku)</div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> until <em>Nᵢ</em>₊₁ = <em>Nᵢ</em>₋₁ (tj. končíme pokud se nám v posledním kroku množina nezměnila)</div>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Vytvoříme gramatiku bez nonterminálů, které neprodukují terminální řetězce:</div>
+<ul>
+<li class="level2"><div class="li"> <em>N</em>′ = <em>Nᵢ</em></div>
+</li>
+<li class="level2"><div class="li"> <em>P</em>′ ⊂ <em>P</em> obsahuje pouze pravidla používající pouze symboly z <em>Nᵢ</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Odstraníme nedostupné symboly z gramatiky</div>
+</li>
+</ol>
+</div>
+<h3 class="sectionedit6" id="odstraneni_ε-pravidel">Odstranění ε-pravidel</h3>
+<div class="level3">
+<p>
+Převod gramatiky (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku bez <em>ε</em>-pravidel (<em>N</em>′, <em>Σ</em>′, <em>P</em>′, <em>S</em>′)
+</p>
+<ol>
+<li class="level1"><div class="li"> Sestavení množiny nonterminálů, které mohou generovat <em>ε</em> <em>N<sub>ε</sub></em></div>
+<ul>
+<li class="level2"><div class="li"> Postup je obdobný jako krok 1 algoritmu odstranění zbytečných symbolů pouze <em>Nᵢ</em>₊₁ = <em>Nᵢ</em> ∪ {<em>A</em> | <em>A</em> → <em>α</em> ∈ <em>P</em> ∧ <em>α</em> ∈ (<em>Nᵢ</em> ∪ {<em>ε</em>})<sup>*</sup>}, <em>N<sub>ε</sub></em> = <em>Nᵢ</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Sestavíme novou množinu přepisovacích pravidel <em>P</em>′</div>
+<ul>
+<li class="level2"><div class="li"> Jestliže <em>A</em> → <em>α</em>₀<em>B</em>₁<em>α</em>₁…<em>Bₖαₖ</em> ∈ <em>P</em>, <em>k</em> ≥ 0 a všechna <em>Bᵢ</em> jsou v <em>N<sub>ε</sub></em> a žádný symbol <em>αᵢ</em> není v <em>N<sub>ε</sub></em> pak k <em>P</em>′ přidej všechny prvidla tvaru <em>A</em> → <em>α</em>₀<em>X</em>₁<em>α</em>₂<em>X</em>₂…<em>Xₖαₖ</em> kde <em>Xᵢ</em> je buď <em>Bᵢ</em> nebo <em>ε</em>. Nepřidává se pravidlo A → <em>ε</em>.</div>
+</li>
+<li class="level2"><div class="li"> Tj. od každého pravidla sestavíme všechny možné kombinace, kde jsou jednotlivé částí přepsatelné na <em>ε</em> vynechány</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Zavedeme nový počáteční nonterminál <em>S</em>′</div>
+</li>
+<li class="level1"><div class="li"> Jestliže je <em>S</em> v <em>N<sub>ε</sub></em> pak přidáme do <em>P</em>′ pravidla <em>S</em>′ → <em>ε</em> a <em>S</em>′ → <em>S</em></div>
+</li>
+</ol>
+</div>
+<h3 class="sectionedit7" id="odstraneni_jednoduchych_pravidel">Odstranění jednoduchých pravidel</h3>
+<div class="level3">
+<p>
+Převod gramatiky bez <em>ε</em>-pravidel (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku bez jednoduchých pravidel (<em>N</em>, <em>Σ</em>, <em>P</em>′, <em>S</em>)
+</p>
+<ol>
+<li class="level1"><div class="li"> Pro každé <em>A</em> ∈ <em>N</em> sestrojíme množinu <em>N<sub>A</sub></em> = {<em>B</em> | <em>A</em> ⇒<sup>*</sup> <em>B</em>}</div>
+<ol>
+<li class="level2"><div class="li"> <em>i</em> = 0</div>
+</li>
+<li class="level2"><div class="li"> <em>N</em>₀ = {<em>A</em>}</div>
+</li>
+<li class="level2"><div class="li"> <code>repeat</code></div>
+<ol>
+<li class="level3"><div class="li"> <em>Nᵢ</em>₊₁ = <em>Nᵢ</em> ∪ {<em>C</em> | <em>B</em> → <em>C</em> ∈ <em>P</em> ∧ <em>B</em> ∈ <em>Nᵢ</em>}</div>
+</li>
+<li class="level3"><div class="li"> <em>i</em>++</div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> <code>until</code> <em>Nᵢ</em> = <em>Nᵢ</em>₋₁ (tj. končíme pokud se nám v posledním kroku množina nezměnila)</div>
+</li>
+<li class="level2"><div class="li"> <em>N<sub>A</sub></em> = <em>Nᵢ</em></div>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Sestavíme novou množinu <em>P</em>′</div>
+<ul>
+<li class="level2"><div class="li"> Pro všechna nejednoduchá pravidla <em>B</em> → <em>α</em> přidáme do <em>P</em>′ pravidla <em>A</em> → <em>α</em> pro všechna <em>A</em> pro něž platí <em>B</em> ∈ <em>N<sub>A</sub></em>, tj. pro každého nejednoduché pravidlo najdeme všechny nonterminály <em>A</em>, které jdou jednoduchými pravidly přepsat na <em>B</em>, a vytvoříme všechny varianty pravidla, kde levou stranu nahradíme za <em>A</em>.</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<h3 class="sectionedit8" id="odstraneni_leve_rekurze">Odstranění levé rekurze</h3>
+<div class="level3">
+<p>
+Převod vlastní gramatiky (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku bez levé rekurze (<em>N</em>′, <em>Σ</em>, <em>P</em>′, <em>S</em>).
+</p>
+<p>
+Nonterminály vyjádříme jako <em>N</em> = {<em>A</em>₁, <em>A</em>₂, …, <em>Aₙ</em>} tj. zvolíme pořadí jednotlivých nonterminálů.
+</p>
+<p>
+Gramatiku budeme transformovat tak, že je-li <em>Aᵢ</em> → <em>α</em> pravidlo pak <em>α</em> začíná buď terminálem nebo nonterminálem <em>A<sub>j</sub></em>, který je v pořadí až za <em>Aᵢ</em> (<em>j</em> &gt; <em>i</em>).
+</p>
+<ol>
+<li class="level1"><div class="li"> <em>i</em> = 1 (tj. začneme prvním nonterminálem v pořadí)</div>
+</li>
+<li class="level1"><div class="li"> Vezmeme všechna <em>Aᵢ</em>-pravidla, která jsou buď ve tvaru <em>Aᵢ</em> → <em>Aᵢαₓ</em> nebo <em>Aᵢ</em> → <em>βₓ</em>, kde <em>β</em> nezačíná nonterminálem, který je v pořadí před <em>Aᵢ</em></div>
+<ol>
+<li class="level2"><div class="li"> Přidáme nový nonterminál <em>Aᵢ</em>′ do <em>N</em>′</div>
+</li>
+<li class="level2"><div class="li"> Všechna <em>Aᵢ</em>-pravidla nahradíme za:</div>
+<ul>
+<li class="level3"><div class="li"> <em>Aᵢ</em> → <em>β</em>₁ | <em>β</em>₂ | … | <em>βₓ</em> (tj. přepisy na <em>β</em> zachováme)</div>
+</li>
+<li class="level3"><div class="li"> <em>Aᵢ</em> → <em>β</em>₁<em>Aᵢ</em>′ | <em>β</em>₂<em>Aᵢ</em>′ | … | <em>βₓAᵢ</em>′ (tj. pro všechny přepisy na <em>β</em> vytvoříme pravidla s vpravo přidaným <em>Aᵢ</em>′)</div>
+</li>
+<li class="level3"><div class="li"> <em>Aᵢ</em>′ → <em>α</em>₁ | <em>α</em>₂ | … | <em>αₓ</em> (tj. u přepisů na <em>Aᵢα</em> vytvoříme pravidla pouze s <em>α</em>)</div>
+</li>
+<li class="level3"><div class="li"> <em>Aᵢ</em>′ → <em>α</em>₁<em>Aᵢ</em>′ | <em>α</em>₂<em>Aᵢ</em>′ | … | <em>αₓAᵢ</em>′ (tj. u přepisů na <em>Aᵢα</em> vytvoříme pravidla s odstraněným <em>Aᵢ</em> a vpravo přidaným <em>Aᵢ</em>′</div>
+</li>
+<li class="level3"><div class="li"> Tím dosáhneme toho, že všechna <em>Aᵢ</em>-pravidla začínají buď terminálem nebo nonterminálem, který je v pořadí až za <em>Aᵢ</em>)</div>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Pokud jsme již prošli všechny nontermínály (<em>i</em> = <em>n</em>) končíme</div>
+</li>
+<li class="level1"><div class="li"> <em>i</em>++</div>
+</li>
+<li class="level1"><div class="li"> Pro všechny dosud procházené nonterminály <em>A<sub>j</sub></em> (1 &lt; <em>j</em> &lt; <em>i</em>)</div>
+<ol>
+<li class="level2"><div class="li"> Pravidlo <em>Aᵢ</em> → <em>A<sub>j</sub>α</em> odstraníme</div>
+</li>
+<li class="level2"><div class="li"> Pro každé <em>A<sub>j</sub></em>-pravidlo (<em>A<sub>j</sub></em> → <em>β</em>) vytvoříme <em>Aᵢ</em> → <em>βα</em>, tj. vezmeme všechna <em>Aᵢ</em>-pravidla, jejichž pravá strana začíná nonterminálem <em>A<sub>j</sub></em>, který je v pořadí před <em>Aᵢ</em>, a nahradíme je za pravidla ve kterých je <em>A<sub>j</sub></em> nahrazeno všemi řetězci na které jej lze přepsat.</div>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Jdeme na krok 2</div>
+</li>
+</ol>
+</div>
+<h2 class="sectionedit9" id="normalni_formy">Normální formy</h2>
+<div class="level2">
+</div>
+<h3 class="sectionedit10" id="chomskeho_normalni_forma_cnf">Chomského normální forma (CNF)</h3>
+<div class="level3">
+<p>
+<a href="http://en.wikipedia.org/wiki/Chomsky normal form" class="interwiki iw_wp" title="http://en.wikipedia.org/wiki/Chomsky normal form">Chomsky normal form</a>
+</p>
+<p>
+Přepisovací pravidla jsou pouze ve tvaru:
+</p>
+<ul>
+<li class="level1"><div class="li"> <em>A</em> → <em>BC</em></div>
+</li>
+<li class="level1"><div class="li"> <em>A</em> → <em>a</em></div>
+</li>
+<li class="level1"><div class="li"> Případně <em>S</em> → <em>ε</em> pokud <em>ε</em> ∈ <em>L</em>(<em>G</em>) a <em>S</em> nesmí být na pravé straně žádného přepisovacího pravidla.</div>
+</li>
+</ul>
+<p>
+Převod vlastní gramatiky bez jednoduchých pravidel (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku v CNF (<em>N</em>′, <em>Σ</em>, <em>P</em>′, <em>S</em>′)
+</p>
+<ol>
+<li class="level1"><div class="li"> Množina <em>P</em>′ obsahuje všechny pravidla z <em>P</em> ve tvaru <em>A</em> → <em>BC</em> a <em>A</em> → <em>a</em>, případně <em>S</em> → <em>ε</em>.</div>
+</li>
+<li class="level1"><div class="li"> Každé pravidlo tvaru <em>A</em> → <em>X</em>₁<em>X</em>₂…<em>Xₖ</em> (<em>k</em> &gt; <em>2</em>) přepíšeme do <em>P</em>′ jako sérii pravidel:</div>
+<ol>
+<li class="level2"><div class="li"> <em>A</em> → <em>X</em>₁<em>X</em>₂′</div>
+</li>
+<li class="level2"><div class="li"> <em>X</em>₂′ → <em>X</em>₂<em>X</em>₃′</div>
+</li>
+<li class="level2"><div class="li"> …</div>
+</li>
+<li class="level2"><div class="li"> <em>Xₖ</em>₋₁′ → <em>Xₖ</em>₋₁<em>Xₖ</em></div>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Zavedeme nové non-terminální symboly <em>A</em> → <em>X</em>₂′…<em>Xₖ</em>₋₁′ (tj. pravidla mající pravou stranu delší než dva prvky rozdělíme na navazující sérii pravidel majících napravo jen dva prvky)</div>
+</li>
+<li class="level1"><div class="li"> Ve všech pravidlech v <em>P</em>′ které nejsou ve tvaru <em>A</em> → <em>a</em>, kde se vyskytují na pravé straně terminály, nahradíme tyto terminály a za nové non-terminály <em>A</em>′ a přidáme pravidlo <em>A</em>′ → <em>a</em> (tj. nepovolená pravidla s terminály na pravé straně upravíme tak, že terminál nahradíme nonterminálem, který se přepisuje na původní terminál)</div>
+</li>
+</ol>
+</div>
+<h3 class="sectionedit11" id="greibachove_normalni_forma_gnf">Greibachové normální forma (GNF)</h3>
+<div class="level3">
+<p>
+<a href="http://en.wikipedia.org/wiki/Greibach normal form" class="interwiki iw_wp" title="http://en.wikipedia.org/wiki/Greibach normal form">Greibach normal form</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Nejsou žádná <em>ε</em> pravidla</div>
+</li>
+<li class="level1"><div class="li"> Přepisovací pravidla ve tvaru <em>A</em> → <em>aα</em> kde <em>aα</em> ∈ <em>N</em><sup>*</sup></div>
+</li>
+<li class="level1"><div class="li"> Případně <em>S</em> → <em>ε</em> pokud <em>ε</em> ∈ <em>L</em>(<em>G</em>) a <em>S</em> nesmí být na pravé straně žádného přepisovacího pravidla</div>
+</li>
+</ul>
+<p>
+Převod vlastní gramatiky bez levé rekurze (<em>N</em>, <em>Σ</em>, <em>P</em>, <em>S</em>) na gramatiku v GNF (<em>N</em>′, <em>Σ</em>, <em>P</em>′, <em>S</em>′):
+</p>
+<ol>
+<li class="level1"><div class="li"> Seřadíme všechny nonterminály tak, aby pravá strana žádného přepisovacího pravidla nezačínala nonterminálem, který je v pořadí před přepisovaným nonterminálem. (v podstatě stejná pořadí v jakém máme nonterminály během algoritmu odstranění levé rekurze): <em>N</em> = {<em>A</em>₁, <em>A</em>₂, …, <em>Aₙ</em>}</div>
+</li>
+<li class="level1"><div class="li"> Postupně pro všechny nonterminály <em>Aᵢ</em> od <em>Aₙ</em>₋₁ sestupně po <em>A</em>₁:</div>
+<ol>
+<li class="level2"><div class="li"> Pro každé pravidlo <em>Aᵢ</em> → <em>A<sub>j</sub>α</em>:</div>
+<ol>
+<li class="level3"><div class="li"> Odstraň toto pravidlo</div>
+</li>
+<li class="level3"><div class="li"> Pro všechna <em>A<sub>j</sub></em>-pravidla (<em>A<sub>j</sub>α</em> → <em>β</em>) vytvoř nová pravidla ve tvaru <em>Aᵢ</em> → <em>βα</em> (tj. všechna pravidla jejichž pravé strana začíná nonterminálem rozepíšeme tento nonterminál na všechny možnosti na jaké jej lze přepsat)</div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> Po dokončení tohoto kroku všechny pravidla mají pravou stranu začínající terminálem.</div>
+</li>
+<li class="level2"><div class="li"> Ve všech pravidlech v <em>P</em>′ ve kterých se na pravé straně vyskytují terminály na jiné než první pozici nahradíme tyto terminály a za nové non-terminály <em>A</em>′ a přidáme pravidlo <em>A</em>′ → <em>a</em> (tj. nepovolená pravidla s terminály na pravé straně upravíme tak, že terminál nahradíme nonterminálem, který se přepisuje na původní terminál)</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+ 
+</div>
+<div class="docInfo"><bdi>/var/www/wiki/data/pages/pitel/msz/bezkontextove_gramatiky.txt</bdi> · Poslední úprava: 02. 04. 2013, 14.16:52 autor: <bdi>pitel</bdi></div>
+</div></div> 
+<hr class="a11y"/>
+ 
+<div id="dokuwiki__pagetools">
+<h3 class="a11y">Nástroje pro stránku</h3>
+<div class="tools">
+<ul>
+<li><a href="/pitel:msz:bezkontextove_gramatiky?do=edit&amp;rev=0" class="action source" accesskey="v" rel="nofollow" title="Zdrojový kód stránky [V]"><span>Zdrojový kód stránky</span></a></li><li><a href="/pitel:msz:bezkontextove_gramatiky?do=revisions" class="action revs" accesskey="o" rel="nofollow" title="Starší verze [O]"><span>Starší verze</span></a></li><li><a href="/pitel:msz:bezkontextove_gramatiky?do=backlink" class="action backlink" rel="nofollow" title="Zpětné odkazy"><span>Zpětné odkazy</span></a></li><li><a href="#dokuwiki__top" class="action top" accesskey="t" rel="nofollow" title="Nahoru [T]"><span>Nahoru</span></a></li> </ul>
+</div>
+</div>
+</div> 
+ 
+<div id="dokuwiki__footer"><div class="pad">
+<div class="license">Kromě míst, kde je explicitně uvedeno jinak, je obsah této wiki licencován pod následující licencí: <bdi><a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="urlextern">CC Attribution-Share Alike 3.0 Unported</a></bdi></div>
+<div class="buttons">
+<a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license"><img src="/lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 3.0 Unported"/></a> <a href="http://www.dokuwiki.org/donate" title="Donate"><img src="/lib/tpl/dokuwiki/images/button-donate.gif" width="80" height="15" alt="Donate"/></a>
+<a href="http://www.php.net" title="Powered by PHP"><img src="/lib/tpl/dokuwiki/images/button-php.gif" width="80" height="15" alt="Powered by PHP"/></a>
+<a href="http://validator.w3.org/check/referer" title="Valid HTML5"><img src="/lib/tpl/dokuwiki/images/button-html5.png" width="80" height="15" alt="Valid HTML5"/></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS"><img src="/lib/tpl/dokuwiki/images/button-css.png" width="80" height="15" alt="Valid CSS"/></a>
+<a href="http://dokuwiki.org/" title="Driven by DokuWiki"><img src="/lib/tpl/dokuwiki/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki"/></a>
+</div>
+</div></div> 
+</div></div> 
+<div class="no"><img src="/lib/exe/indexer.php?id=pitel%3Amsz%3Abezkontextove_gramatiky&amp;1402084354" width="2" height="1" alt=""/></div>
+<div id="screen__mode" class="no"></div> <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</body>
+</html>

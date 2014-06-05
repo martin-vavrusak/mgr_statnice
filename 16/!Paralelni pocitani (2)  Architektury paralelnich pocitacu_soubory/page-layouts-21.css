@@ -1,0 +1,351 @@
+﻿/* _lcid="1029" _version="14.0.4750"
+    _LocalBinding */
+div.article,
+div.welcome
+{
+	padding: 10px 10px;
+}
+.article .article-header 
+{ 
+	overflow: hidden;
+	zoom: 1;
+	border-bottom: solid 1px #cccccc;
+	font-size: 8pt;
+	color: #666666; 
+}
+.article-header .date-line 
+{
+	float: left;
+	font-weight: bold; 
+}
+.article-header .by-line
+{
+	text-align: right; 
+}
+.article .captioned-image,
+.article .related-links,
+.welcome .welcome-image,
+.welcome .splash-image
+{
+	margin-bottom: 5px;
+}
+.article-left .captioned-image,
+.welcome .welcome-image
+{
+	float: left;
+	margin-right: 10px;
+}
+.article-right .captioned-image,
+.article .related-links
+{
+	float: right;
+	margin-left: 10px;
+}
+.article .related-links
+{
+	border: solid 1px #cccccc;
+	min-width: 150px;
+	width: 150px;
+}
+.captioned-image .caption 
+{
+	font-size: 8pt;
+	font-family: verdana; 
+	color: #666666;
+}
+.caption p
+{ 
+	padding-top: 2px; 
+	margin-bottom: 2px; 
+}
+.article-content,
+.welcome-content
+{ 
+	margin: 5px 0 0;
+	color: #666666; 
+}
+.clearer
+{
+    clear: both;
+}
+.col-50
+{
+    float: left;
+    width: 49.9%;
+}
+.col-fluid-1
+{
+    float: left;
+    width: 100%;    
+    margin-right: -235px;
+}
+.col-fluid-2
+{
+    zoom: 1;
+    margin-right: 215px;
+}
+.right-wp-zone-col
+{
+    float: right;
+    width: 215px;
+    border-left:1px dashed;
+}
+.edit-mode-border
+{
+    border:transparent 1px solid;
+    padding:8px;
+    margin:1px;
+}
+.ewiki-margin
+{
+    padding:0px 0px 0px 11px;
+}
+.ewiki-pagename-align
+{
+    vertical-align: middle;
+}
+*:first-child+html .right-wp-zone,
+{
+	width: 100%;
+}
+.s4-specialNavLinkList
+{
+    display: none;
+}
+.ewiki-right-col
+{
+    width:198px;
+}
+.ewiki-slink
+{
+    margin-left:10px;
+}
+.pop-rteStyle-Normal
+{
+-ms-name: "Odstavec s odsazením";
+	
+font-size: 12pt;
+     
+font-family: "Trebuchet MS", "helvetica";
+color: #000000;	
+margin: 1em 0;
+
+vertical-align: middle;
+
+}
+
+.pop-rteStyle-Normal-No-Margin
+{
+-ms-name: "Odstavec bez odsazení";
+	
+font-size: 12pt;
+     
+font-family: "Trebuchet MS", "helvetica";
+color: #000000;	
+margin: 0 0;
+
+vertical-align: middle;
+
+}
+
+.pop-rteStyle-H2
+{
+-ms-name: "Nadpis sekce";
+
+color: #969696;
+margin: 10pt 0;
+font-weight: bold;
+
+font-size: 1.5em;
+}
+
+.pop-rteStyle-H3
+{
+
+-ms-name: "Nadpis odstavce";
+
+color: #333333;
+margin: 1em 0;
+font-weight: bold;
+
+font-size: 1.3em;
+
+}
+
+.pop-rteStyle-SPAN
+{
+
+-ms-name: "Zdrojový kod v textu";
+
+background: #f7f8c5;
+color: #000000;
+font-family: "Courier New", Courier, monospace;
+
+white-space: nowrap;
+
+
+}
+
+.pop-rteStyle-DIV
+{
+
+-ms-name: "Zdrojový kod - blok";
+
+border: 1px dashed #f5f800;
+background: #f7f8c5;
+white-space: pre;
+color: #000000;
+margin: 0 5px;
+font-family: "Courier New", Courier, monospace;
+
+font-size: 1em;
+
+}
+
+div.pop-rteElement-inline-DIV
+{ 
+-ms-name: "Obrázek v textu";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+display: inline-block;
+padding: 10px;
+margin: 10px auto;
+}
+
+div.pop-rteElement-r-DIV
+{ 
+-ms-name: "Obrázek vpravo";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+float: right;
+padding: 10px;
+margin: 0 0 10px 10px;
+}
+
+div.pop-rteElement-l-DIV
+{ 
+-ms-name: "Obrázek vlevo";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+float: right;
+padding: 10px;
+margin: 0 10px 10px 0;
+}
+
+.ms-rteStyle-Normal-With-Margin
+{
+-ms-name: "Odstavec s odsazením";
+	
+font-size: 12pt;
+     
+font-family: "Trebuchet MS", "helvetica";
+color: #000000;	
+margin: 1em 0;
+
+vertical-align: middle;
+
+}
+
+.ms-rteStyle-Normal-No-Margin
+{
+-ms-name: "Odstavec bez odsazení";
+	
+font-size: 12pt;
+     
+font-family: "Trebuchet MS", "helvetica";
+color: #000000;	
+margin: 0 0;
+
+vertical-align: middle;
+
+}
+
+.ms-rteStyle-H2
+{
+-ms-name: "Nadpis sekce";
+
+color: #969696;
+margin: 10pt 0;
+font-weight: bold;
+
+font-size: 1.5em;
+}
+
+.ms-rteStyle-H3
+{
+
+-ms-name: "Nadpis odstavce";
+
+color: #333333;
+margin: 1em 0;
+font-weight: bold;
+
+font-size: 1.3em;
+
+}
+
+.ms-rteStyle-SPAN
+{
+
+-ms-name: "Zdrojový kod v textu";
+
+background: #f7f8c5;
+color: #000000;
+font-family: "Courier New", Courier, monospace;
+
+white-space: nowrap;
+
+
+}
+
+.ms-rteStyle-DIV
+{
+
+-ms-name: "Zdrojový kod - blok";
+
+border: 1px dashed #f5f800;
+background: #f7f8c5;
+white-space: pre;
+color: #000000;
+margin: 0 5px;
+font-family: "Courier New", Courier, monospace;
+
+font-size: 1em;
+
+}
+
+div.ms-rteElement-inline-DIV
+{ 
+-ms-name: "Obrázek v textu";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+display: inline-block;
+padding: 10px;
+margin: 10px auto;
+}
+
+div.ms-rteElement-r-DIV
+{ 
+-ms-name: "Obrázek vpravo";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+float: right;
+padding: 10px;
+margin: 0 0 10px 10px;
+}
+
+div.ms-rteElement-l-DIV
+{ 
+-ms-name: "Obrázek vlevo";
+background-color: white;
+border: 1px solid #36B000;
+color: #353738;
+float: right;
+padding: 10px;
+margin: 0 10px 10px 0;
+}

@@ -1,0 +1,928 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" __expr-val-dir="ltr" dir="ltr" lang="cs-cz"><head>
+<!--<meta http-equiv="X-UA-Compatible" content="IE=8" />-->
+<meta name="GENERATOR" content="Microsoft SharePoint"><meta name="progid" content="SharePoint.WebPartPage.Document"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="Expires" content="0"><title>
+	
+	Paralelní počítání (2): Architektury paralelních počítačů
+
+</title><link rel="stylesheet" type="text/css" href="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/controls-C7269AE8.css"><link rel="stylesheet" type="text/css" href="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/page-layouts-21.css"><link rel="stylesheet" type="text/css" href="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/corev4-706901AC.css">
+<script type="text/javascript">
+var _fV4UI = true;
+</script>
+<script type="text/javascript" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/jquery-1.js"></script>
+<script type="text/javascript" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/jquery-ui-1.js"></script>
+<link rel="stylesheet" href="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/smoothness.htm" type="text/css"><link href="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/css.css" rel="stylesheet" type="text/css"><script type="text/javascript">
+// <![CDATA[
+document.write('<script src="/_layouts/1029/init.js?rev=Pd6ZIrJrFbTRY5KBeoeR3g%3D%3D"></' + 'script>');
+document.write('<script type="text/javascript" src="/ScriptResource.axd?d=5X__BAatJJ_j5JuJoDWlJUjZRQ93Zhl5MOmMi4tX3-qywzyCp2Hr1fKsGpZs0h77OtB_CO8a2WkvNq5bFvaHe3b6ab9ck7idd8MlaU7PSKj43RIvm9zubzghcXxVXD5vKKRrlcLeszbjGL-eh1hilMRI4Ng1&amp;t=2e2045e2"></' + 'script>');
+document.write('<script type="text/javascript" src="/_layouts/blank.js?rev=QGOYAJlouiWgFRlhHVlMKA%3D%3D"></' + 'script>');
+document.write('<script type="text/javascript" src="/ScriptResource.axd?d=oW9eIraeT3Tcekj-ZZT_cJz8SaV1VYntujMM_l48GFF-XxSAvtBfAMAzb9q7qUoOnwloCBPtdHguUAsj9--VOodq2IDoAPWP1qVNlLlk8Rawkgn4EYL6e_mi6LHIaEN1kgW12HYPU4oVhyj5LwQP-8oKlK-r21jcLGnKEXtjgaKnGO0b0&amp;t=2e2045e2"></' + 'script>');
+// ]]>
+</script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/init.js"></script><script type="text/javascript" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/ScriptResource_002.js"></script><script type="text/javascript" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/blank.js"></script><script type="text/javascript" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/ScriptResource.js"></script>
+<link type="text/xml" rel="alternate" href="http://popular.fbmi.cvut.cz/it/_vti_bin/spsdisco.aspx">
+	
+	
+			
+			
+		
+	
+	
+<link rel="shortcut icon" href="http://popular.fbmi.cvut.cz/_layouts/images/favicon.ico" type="image/vnd.microsoft.icon">
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', Tahoma, Verdana !important;
+	font-weight: 400;
+	font-size: 13pt;
+	line-height: 18pt;
+}
+a {
+	border: 0;
+	text-decoration: none;
+}
+img {
+	border: 0;
+}
+p {
+	margin: 3px 0;
+}
+h1 {
+	margin: 0 0 10px;
+	padding: 0;
+	font-size: 26px;
+}
+h3 {
+	margin: 0 0 5px;
+	padding: 0;
+	font-size: 20px;
+}
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+div.site-image-title {
+	height: 180px;
+	overflow: hidden;
+}
+div.breadcrumbs {
+	margin-top: 30px;
+	text-align: right;
+	font-size: 16px;
+	color: white;
+}
+div.breadcrumbs a {
+	color: white;
+}
+div.header {
+	padding: 60px 0 0 286px;
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: bolder;
+	color: white;
+	text-transform:uppercase;
+}
+div.header a {
+	color: white;
+}
+.left-nav-bar {
+	position: absolute;
+	left: 5px;
+	top: 0;
+	border-radius: 8px;	
+}
+#s4-leftpanel > div.menu {
+	background: url('../../images/menu-bg.png');
+	width: 200px;
+	font-weight: 600;
+	overflow: hidden;
+	font-size: 14px;
+	line-height: 18px;
+}
+#menu-top {
+	background: url('../../images/menu-top.png') no-repeat;
+	width: 200px;
+	height: 11px;
+}
+#menu-bottom {
+	background: url('../../images/menu-bottom.png') no-repeat;
+	width: 200px;
+	height: 11px;
+}
+.menu a {
+	color: white;
+}
+.menu a:hover {
+	color: #fdb913;
+}
+.menu ul {
+	list-style: none;
+	list-style-position:inside;
+	margin: 0;
+	padding: 0;	
+}
+.menu li > a {
+	display: block;
+	padding: 10px 8px 10px 52px;
+}
+.menu ul ul {
+	display: none;
+}
+table.content {
+	color: black !important;
+	border-spacing: 0px;
+	margin: 0 0 20px 228px;
+	width: 735px;
+}
+table.content td {
+	padding: 0;
+	line-height: normal;
+}
+table.content td.content-cell {
+	font-size: 14px;
+	background: #f7f8fa;
+	padding: 20px;
+}
+table.content td.content-top {
+	background: url(../../images/content2-top.png) no-repeat;
+	height: 12px;
+}
+table.content td.content-bottom {
+	background: url(../../images/content2-bottom.png) no-repeat;
+	height: 16px;
+}
+table.content td.content-cell ul {
+/*
+	list-style: none;
+	list-style-position:inside;
+	padding: 0;	
+*/
+}
+.s4-ca {
+	margin: 0 !important;
+	background: transparent !important;
+}
+body #s4-leftpanel {
+	float: none;
+	width: auto;
+}
+body #s4-workspace {
+	overflow: visible;
+}
+table.s4-wpTopTable {
+	border-spacing: 3px;
+	border-collapse: separate;
+}
+table.s4-wpTopTable td {
+	padding: 2px;
+}
+
+body {
+   overflow: visible;
+   height: inherit;
+   width: inherit;
+}
+body #s4-workspace {
+	overflow: visible !important;
+}
+body #s4-ribbonrow {
+	min-height: 20px !important;
+	z-index: 2000;
+	overflow-y: visible;
+}
+#s4-ribbonrow .ms-MenuUIPopupBody, #s4-ribbonrow .ms-popoutMenu, .ms-cui-menu[id ^= "Ribbon."] {
+}
+.ms-dlgOverlay {
+	width: 100% !important;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("div.menu a.menu-item").each(function() {
+		$(this).hover(
+			function() {
+				linkDest = $(this).attr("href");
+				linkParts = linkDest.split(new RegExp("/"));
+				if (linkParts.length < 2) {
+					return;
+				}
+				
+				$(this).css("background", "no-repeat url(/images/Icons/"+linkParts[1]+"h.png) 13px 50%");
+			},
+			function() {
+				linkDest = $(this).attr("href");
+				linkParts = linkDest.split(new RegExp("/"));
+				if (linkParts.length < 2) {
+					return;
+				}
+				
+				$(this).css("background", "no-repeat url(/images/Icons/"+linkParts[1]+".png) 13px 50%");
+			}
+		);
+
+		linkDest = $(this).attr("href");
+		linkParts = linkDest.split(new RegExp("/"));
+		if (linkParts.length < 2) {
+			return;
+		}
+				
+		$(this).css("background", "no-repeat url(/images/Icons/"+linkParts[1]+".png) 13px 50%");
+	});
+});
+
+function FixRibbonAndWorkspaceDimensions(){
+  //  ULSxSy:;
+  //  g_frl = true;
+  //  var elmRibbon = GetCachedElement("s4-ribbonrow");
+  //  var elmWorkspace = GetCachedElement("s4-workspace");
+  //  var elmTitleArea = GetCachedElement("s4-titlerow");
+  //  var elmBodyTable = GetCachedElement("s4-bodyContainer");
+  //  if(!elmRibbon || !elmWorkspace || !elmBodyTable){
+  //    return;
+  //  }
+  //  if (!g_setWidthInited){
+  //    var setWidth = true;
+  //    if (elmWorkspace.className.indexOf("s4-nosetwidth") > -1)
+  //      setWidth = false;
+  //    g_setWidth = setWidth;
+  //    g_setWidthInited = true;
+  //  }
+  //  else{
+  //    var setWidth = g_setWidth;
+  //  }
+  //  var baseRibbonHeight = RibbonIsMinimized() ? 44 : 135;
+  //  var ribbonHeight = baseRibbonHeight + g_wpadderHeight;
+  //  if(GetCurrentEltStyle(elmRibbon, "visibility") == "hidden"){
+  //    ribbonHeight = 0;
+  //}
+
+  // Override default resizing behavior
+  // -- adds padding to the top of the "s4-workspace" <div> if the ribbon exists and has content
+  // -- allows the ribbon to be positioned using CSS instead of JavaScript (more accessible)
+  // -- checks to see if the page is inside a "no-ribbon" dialog
+  //if(elmRibbon.children.length > 0 && document.getElementsByTagName("html")[0].className.indexOf('ms-dialog-nr') == -1){
+  //  elmWorkspace.style.paddingTop = ribbonHeight + 'px';
+  //}
+}
+</script>
+<style type="text/css">
+	.s4-skipribbonshortcut { display:none; }
+	.ctl00_wpz_0 { border-color:Black;border-width:1px;border-style:Solid; }
+
+</style><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/core.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/sp_002.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/ScriptResx_002.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/cui.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/sp_004.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/sp_005.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/sp.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/inplview.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/sp_003.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/SP.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/ScriptResx.js" type="text/javascript"></script><script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/mdn.js" type="text/javascript"></script></head>
+<body onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();">
+<div style="position: relative;">
+<div style="background: url('../../PublishingImages/background.jpg') #010A1E center top no-repeat;">
+	<div style="width: 1000px; margin: 0 auto; overflow:hidden; position:relative;">
+		<form name="aspnetForm" method="post" action="/it/Stranky/Paralelni-pocitani-2-Architektury-paralelnich-pocitacu.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div>
+<input name="MSOWebPartPage_PostbackSource" id="MSOWebPartPage_PostbackSource" value="" type="hidden">
+<input name="MSOTlPn_SelectedWpId" id="MSOTlPn_SelectedWpId" value="" type="hidden">
+<input name="MSOTlPn_View" id="MSOTlPn_View" value="0" type="hidden">
+<input name="MSOTlPn_ShowSettings" id="MSOTlPn_ShowSettings" value="False" type="hidden">
+<input name="MSOGallery_SelectedLibrary" id="MSOGallery_SelectedLibrary" value="" type="hidden">
+<input name="MSOGallery_FilterString" id="MSOGallery_FilterString" value="" type="hidden">
+<input name="MSOTlPn_Button" id="MSOTlPn_Button" value="none" type="hidden">
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__REQUESTDIGEST" id="__REQUESTDIGEST" value="0x9CFC4456BD4B464A3B0044A24CEFDAAC2B5480A4F8B83070444AE41DC32965D8C0919805E77A2E637151D902005A5C8BBB5661B02B71C8FBE4C15651A8D1E028,08 Jun 2014 17:34:23 -0000" type="hidden">
+<input name="MSOSPWebPartManager_DisplayModeName" id="MSOSPWebPartManager_DisplayModeName" value="Browse" type="hidden">
+<input name="MSOSPWebPartManager_ExitingDesignMode" id="MSOSPWebPartManager_ExitingDesignMode" value="false" type="hidden">
+<input name="MSOWebPartPage_Shared" id="MSOWebPartPage_Shared" value="" type="hidden">
+<input name="MSOLayout_LayoutChanges" id="MSOLayout_LayoutChanges" value="" type="hidden">
+<input name="MSOLayout_InDesignMode" id="MSOLayout_InDesignMode" value="" type="hidden">
+<input name="_wpSelected" id="_wpSelected" value="" type="hidden">
+<input name="_wzSelected" id="_wzSelected" value="" type="hidden">
+<input name="MSOSPWebPartManager_OldDisplayModeName" id="MSOSPWebPartManager_OldDisplayModeName" value="Browse" type="hidden">
+<input name="MSOSPWebPartManager_StartWebPartEditingName" id="MSOSPWebPartManager_StartWebPartEditingName" value="false" type="hidden">
+<input name="MSOSPWebPartManager_EndWebPartEditing" id="MSOSPWebPartManager_EndWebPartEditing" value="false" type="hidden">
+<input name="_maintainWorkspaceScrollPosition" id="_maintainWorkspaceScrollPosition" value="0" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTk3OTY0Njg5Mg9kFgJmD2QWAgIBD2QWBAIBD2QWBAIID2QWAmYPZBYCAgEPFgIeE1ByZXZpb3VzQ29udHJvbE1vZGULKYgBTWljcm9zb2Z0LlNoYXJlUG9pbnQuV2ViQ29udHJvbHMuU1BDb250cm9sTW9kZSwgTWljcm9zb2Z0LlNoYXJlUG9pbnQsIFZlcnNpb249MTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NzFlOWJjZTExMWU5NDI5YwFkAhMPZBYCAgcPFgIfAAsrBAFkAgMPZBYEAiEPZBYCAgMPDxYCHgdWaXNpYmxlaGQWAgIDD2QWAmYPZBYCAgMPZBYCAgUPDxYEHgZIZWlnaHQbAAAAAAAAeUABAAAAHgRfIVNCAoABZBYCAgEPPCsACQEADxYEHg1QYXRoU2VwYXJhdG9yBAgeDU5ldmVyRXhwYW5kZWRnZGQCJw9kFggCCA9kFgJmD2QWAmYPFCsAA2RkZGQCCg9kFgRmD2QWBAIBDxYCHwFoFgJmD2QWBAICD2QWBgIBDxYCHwFoZAIDDxYIHhNDbGllbnRPbkNsaWNrU2NyaXB0BXdqYXZhU2NyaXB0OkNvcmVJbnZva2UoJ1Rha2VPZmZsaW5lVG9DbGllbnRSZWFsJywxLCA1MywgJ2h0dHA6XHUwMDJmXHUwMDJmcG9wdWxhci5mYm1pLmN2dXQuY3pcdTAwMmZpdCcsIC0xLCAtMSwgJycsICcnKR4YQ2xpZW50T25DbGlja05hdmlnYXRlVXJsZB4oQ2xpZW50T25DbGlja1NjcmlwdENvbnRhaW5pbmdQcmVmaXhlZFVybGQeDEhpZGRlblNjcmlwdAUiVGFrZU9mZmxpbmVEaXNhYmxlZCgxLCA1MywgLTEsIC0xKWQCBQ8WAh8BaGQCAw8PFgoeCUFjY2Vzc0tleQUBLx4PQXJyb3dJbWFnZVdpZHRoAgUeEEFycm93SW1hZ2VIZWlnaHQCAx4RQXJyb3dJbWFnZU9mZnNldFhmHhFBcnJvd0ltYWdlT2Zmc2V0WQLrA2RkAgMPZBYCAgMPZBYCAgMPZBYCAgEPPCsABQEADxYCHg9TaXRlTWFwUHJvdmlkZXIFEUN1cnJlbnROYXZpZ2F0aW9uZGQCAQ9kFgICAQ9kFgICAQ9kFgJmD2QWAgIBDw9kFgYeBWNsYXNzBSJtcy1zYnRhYmxlIG1zLXNidGFibGUtZXggczQtc2VhcmNoHgtjZWxscGFkZGluZwUBMB4LY2VsbHNwYWNpbmcFATBkAhIPZBYCAgMPZBYCAgEPFgIfAAsrBAFkAhYPZBYCAgMPZBYKAgMPFgIfAAsrBAFkAgUPFgIfAAsrBAFkAgcPFgIfAAsrBAFkAgkPFgIfAAsrBAFkAgsPFgIfAAsrBAFkGAEFJmN0bDAwJFBsYWNlSG9sZGVyTGVmdE5hdkJhciRDdXJyZW50TmF2Dw9kBRhJbmZvcm1hxI1uw60gdGVjaG5vbG9naWVk6uEOZRTX5hwG98btuVVJD0NCC4U=" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/WebResource.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var MSOWebPartPageFormName = 'aspnetForm';
+var g_presenceEnabled = true;
+var g_wsaEnabled = false;
+var g_wsaLCID = 1029;
+var g_wsaSiteTemplateId = 'BLANKINTERNET#2';
+var g_wsaListTemplateId = 850;
+var _fV4UI=true;var _spPageContextInfo = {webServerRelativeUrl: "\u002fit", webLanguage: 1029, currentLanguage: 1029, webUIVersion:4,pageListId:"{7037838b-eabd-4aa8-901c-1e182e3881a9}",pageItemId:5, alertsEnabled:false, siteServerRelativeUrl: "\u002f", allowSilverlightPrompt:'True'};function CallServer_18463912(arg, context) {WebForm_DoCallback('ctl00$ctl18',arg,SP.UI.MyLinksRibbon.MyLinksRibbonPageComponent.ribbonActionCallback,context,null,false); }function _myLinksRibbonLoad2()
+{
+    var fnd = function () {
+        try {
+            mylinks_init.MyLinksInit('CallServer_18463912'); 
+        } 
+        catch (Ex)
+        { }
+    };
+    RegisterSod('mylinks_init', '/_layouts/SP.UI.MyLinksRibbon.js');
+    LoadSodByKey('mylinks_init', fnd);
+}
+
+function _myLinksRibbonLoad1()
+{
+    ExecuteOrDelayUntilScriptLoaded(_myLinksRibbonLoad2, 'SP.Ribbon.js');
+}
+
+_spBodyOnLoadFunctionNames.push('_myLinksRibbonLoad1');
+var dlc_fvsi = {"DefaultViews":[],"ViewUrls":[],"WebUrl":"\/it"};//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+function _spNavigateHierarchy(nodeDiv, dataSourceId, dataPath, url, listInContext, type) {
+    CoreInvoke('ProcessDefaultNavigateHierarchy', nodeDiv, dataSourceId, dataPath, url, listInContext, type, document.forms.aspnetForm, "", "\u002fit\u002fStranky\u002fParalelni-pocitani-2-Architektury-paralelnich-pocitacu.aspx");
+
+}
+//]]>
+</script><script type="text/javascript">
+<!--
+var L_Menu_BaseUrl="/it";
+var L_Menu_LCID="1029";
+var L_Menu_SiteTheme="";
+//-->
+</script>
+<script type="text/javascript">
+//<![CDATA[
+document.onreadystatechange=fnRemoveAllStatus; function fnRemoveAllStatus(){removeAllStatus(true)};//]]>
+</script>
+<script type="text/javascript">
+<!--
+//-->
+</script>
+<script type="text/javascript">
+//<![CDATA[
+var __cultureInfo = '{"name":"cs-CZ","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":" ","CurrencySymbol":"Kč","NaNSymbol":"Není číslo","CurrencyNegativePattern":8,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-nekonečno","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":" ","CurrencyPositivePattern":3,"PositiveInfinitySymbol":"+nekonečno","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":" ","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"dop.","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402297199999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":".","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"d. MMMM yyyy H:mm:ss","LongDatePattern":"d. MMMM yyyy","LongTimePattern":"H:mm:ss","MonthDayPattern":"dd MMMM","PMDesignator":"odp.","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"d.M.yyyy","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM yyyy","AbbreviatedDayNames":["ne","po","út","st","čt","pá","so"],"ShortestDayNames":["ne","po","út","st","čt","pá","so"],"DayNames":["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],"AbbreviatedMonthNames":["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""],"MonthNames":["leden","únor","březen","duben","květen","červen","červenec","srpen","září","říjen","listopad","prosinec",""],"IsReadOnly":true,"NativeCalendarName":"gregoriánský kalendář","AbbreviatedMonthGenitiveNames":["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""],"MonthGenitiveNames":["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince",""]}}';//]]>
+</script>
+
+<script src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/blank.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(DeferWebFormInitCallback) == 'function') DeferWebFormInitCallback();function WebForm_OnSubmit() {
+UpdateFormDigest('\u002fit', 1440000);
+                    var workspaceElem = GetCachedElement("s4-workspace");
+                    if (workspaceElem != null)
+                    {
+                        var scrollElem = GetCachedElement("_maintainWorkspaceScrollPosition");
+                        if (scrollElem != null)
+                        {
+                            scrollElem.value = workspaceElem.scrollTop;
+                        }
+                    };
+                if (typeof(vwpcm) != 'undefined') {vwpcm.SetWpcmVal();};if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;};
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" type="hidden">
+	<input name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" type="hidden">
+</div>
+		<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', document.getElementById('aspnetForm'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['fctl00$WebPartAdderUpdatePanel','tctl00$panelZone'], [], ['ctl00$WebPartAdder'], 90);
+//]]>
+</script>
+
+		
+
+		<div class="site-image-title">
+			<a id="ctl00_onetidProjectPropertyTitleGraphic" href="http://popular.fbmi.cvut.cz/">
+				<img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/logo_fbmi.png" alt="Logo FBMI" style="position: absolute; left: 30px; top: 18px;">
+			</a>
+			<div class="header">
+	
+				<a id="ctl00_onetidProjectPropertyTitle" href="http://popular.fbmi.cvut.cz/">
+				Populárně naučný portál
+				<h1 style="font-weight: bold; font-size: 36px; line-height: 45px;">Popular</h1>
+				
+				</a>
+			</div>
+		</div>
+		<span id="TurnOnAccessibility" style="" class="s4-notdlg">
+		<a id="linkTurnOnAcc" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+		Zapnout režim s vyšším usnadněním</a>
+		</span>
+		<span id="TurnOffAccessibility" style="display:none" class="s4-notdlg">
+		<a id="linkTurnOffAcc" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+		Vypnout režim s vyšším usnadněním</a>
+		</span>
+		<span class="s4-notdlg s4-skipribbonshortcut">
+		<a href="javascript:;" onclick="javascript:this.href='#startNavigation';" class="ms-SkiptoNavigation" accesskey="Y">
+		Přeskočit příkazy pásu karet</a>
+		</span>
+		<span class="s4-notdlg">
+		<div class="breadcrumbs">
+			<span sitemapproviders="SPSiteMapProvider,SPXmlContentMapProvider" hideinteriorrootnodes="true"><span><a title="Domovská stránka" class="breadcrumbRootNode" href="http://popular.fbmi.cvut.cz/Stranky/default.aspx">Biomedicínský portál</a></span><span> &gt; </span><span><a class="breadcrumbNode" href="http://popular.fbmi.cvut.cz/it/Stranky/default.aspx">Informační technologie</a></span><span> &gt; </span><span class="breadcrumbCurrentNode">Paralelní počítání (2): Architektury paralelních počítačů</span></span>
+		</div>
+		<div style="position: relative;margin-top: 8px;">
+		<div id="s4-workspace">
+		<div id="s4-bodyContainer">
+		<a href="javascript:;" onclick="javascript:this.href='#mainContent';" class="ms-SkiptoMainContent" accesskey="X">
+		Přejít k hlavnímu obsahu</a>
+		<!--Begin Nav|Content area.-->
+		<div class="body-wrapper">
+		<a name="startNavigation"></a>
+		
+		
+		            <div id="s4-leftpanel" class="left-nav-bar s4-notdlg res-nav-l">
+		            
+		            
+		            
+		            
+		            
+		            
+					<div></div>
+					<div id="menu-top">&nbsp;</div>
+					<div id="zz1_CurrentNav" class="menu">
+	<div class="menu vertical menu-vertical">
+		<ul class="root static">
+			<li class="static"><a style="background: url(&quot;/images/Icons/biomedicina.png&quot;) no-repeat scroll 13px 50% transparent;" class="static menu-item" href="http://popular.fbmi.cvut.cz/biomedicina/Stranky/default.aspx"><span class="additional-background"><span class="menu-item-text">Biomedicínská technika</span></span></a></li><li class="static"><a style="background: url(&quot;/images/Icons/elektrotechnika.png&quot;) no-repeat scroll 13px 50% transparent;" class="static menu-item" href="http://popular.fbmi.cvut.cz/elektrotechnika/Stranky/default.aspx"><span class="additional-background"><span class="menu-item-text">Elektrotechnika</span></span></a></li><li class="static selected"><a style="background: url(&quot;/images/Icons/it.png&quot;) no-repeat scroll 13px 50% transparent;" class="static selected menu-item" href="http://popular.fbmi.cvut.cz/it/Stranky/default.aspx"><span class="additional-background"><span class="menu-item-text">Informační technologie</span><span class="ms-hidden">Aktuálně vybráno</span></span></a><ul class="static">
+				<li class="static"><a style="background: url(&quot;/images/Icons/it.png&quot;) no-repeat scroll 13px 50% transparent;" class="static menu-item" href="http://popular.fbmi.cvut.cz/it/_layouts/viewlsts.aspx?BaseType=0&amp;ListTemplate=108"><span class="additional-background"><span class="menu-item-text">Diskuse</span></span></a></li>
+			</ul></li><li class="static"><a style="background: url(&quot;/images/Icons/optoel.png&quot;) no-repeat scroll 13px 50% transparent;" class="static menu-item" href="http://popular.fbmi.cvut.cz/optoel/Stranky/default.aspx"><span class="additional-background"><span class="menu-item-text">Optoelektronika</span></span></a></li><li class="static"><a style="background: url(&quot;/images/Icons/repo.png&quot;) no-repeat scroll 13px 50% transparent;" class="static menu-item" href="http://popular.fbmi.cvut.cz/repo/Stranky/default.aspx"><span class="additional-background"><span class="menu-item-text">Repozitáře</span></span></a></li>
+		</ul>
+	</div>
+</div>
+		            <div id="menu-bottom">&nbsp;</div>
+		            
+		            
+		            
+		            
+		            </div>
+		        <div id="ctl00_MSO_ContentDiv" class="s4-ca main-container">
+		            <div class="main-content">
+		            <a name="mainContent"></a>
+		            <table class="content">
+		            <tbody><tr style="height: 12px;">
+		            	<td class="content-top"></td>
+		            </tr>
+		            <tr>
+		            	<td class="content-cell">
+							<div id="s4-statusbarcontainer">
+								<div style="display: none;" id="pageStatusBar" class="s4-status-s1"></div>
+							</div>
+									<a id="HiddenAnchor" href="javascript:;" style="display:none;"></a>
+									<div class="ribbonbackground">
+										<div class="s4-notdlg top-row">
+										<!--
+											<div class="s4-trc-container s4-notdlg top-row-elements">
+												
+
+												<a href="#" tabindex="-1" style="display:none"></a><a href="#" tabindex="-1" style="display:none"></a>
+												
+												<span class="s4-help">
+													<span style="height:17px;width:17px;position:relative;display:inline-block;overflow:hidden;display:none;" class="s4-clust"><a href="javascript:TopHelpButtonClick('HelpHome')" id="ctl00_TopHelpLink" style="height:17px;width:17px;display:inline-block;" accesskey="6" title="Nápověda (nové okno)"><img src="/_layouts/images/fgimg.png" style="left:-0px !important;top:-309px !important;position:absolute;" align="absmiddle" border="0" alt="Nápověda (nové okno)" /></a></span>
+												</span>
+												
+											</div>
+										-->
+										</div>
+									<div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle" style="display: none;">
+										<div class="ms-cui-ribbonTopBars"><div class="ms-cui-topBar1"></div><div class="ms-cui-topBar2"><div id="RibbonContainer-TabRowLeft" class="ms-cui-TabRowLeft ms-siteactionscontainer s4-notdlg">
+											   <span class="ms-siteactionsmenu" id="siteactiontd">
+											   
+										</span>
+									<span class="s4-breadcrumb-anchor"><span style="height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust"><a id="GlobalBreadCrumbNavPopout-anchor" onclick="CoreInvoke('callOpenBreadcrumbMenu', event, 'GlobalBreadCrumbNavPopout-anchor', 'GlobalBreadCrumbNavPopout-menu', 'GlobalBreadCrumbNavPopout-img', 's4-breadcrumb-anchor-open', 'ltr', '', false); return false;" onmouseover="" onmouseout="" title="Přejít nahoru" href="javascript:;" style="display:inline-block;height:16px;width:16px;"><img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/fgimg.png" alt="Přejít nahoru" style="border:0;position:absolute;left:-0px !important;top:-112px !important;"></a></span></span><div class="ms-popoutMenu s4-breadcrumb-menu" id="GlobalBreadCrumbNavPopout-menu" style="display:none;">
+									<div class="s4-breadcrumb-top">
+									<span id="ctl00_GlobalBreadCrumbNavPopout_Label1" class="s4-breadcrumb-header">Umístění této stránky:</span>
+									</div>
+									   <ul class="s4-breadcrumb">
+	<li class="s4-breadcrumbRootNode"><span class="s4-breadcrumb-arrowcont"><span style="height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust s4-breadcrumb"><img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/fgimg.png" alt="" style="border-width:0px;position:absolute;left:-0px !important;top:-353px !important;"></span></span><a title="Domovská stránka" class="s4-breadcrumbRootNode" href="http://popular.fbmi.cvut.cz/Stranky/default.aspx">Biomedicínský portál</a><ul class="s4-breadcrumbRootNode"><li class="s4-breadcrumbNode"><span class="s4-breadcrumb-arrowcont"><span style="height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust s4-breadcrumb"><img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/fgimg.png" alt="" style="border-width:0px;position:absolute;left:-0px !important;top:-353px !important;"></span></span><a class="s4-breadcrumbNode" href="http://popular.fbmi.cvut.cz/it/Stranky/default.aspx">Informační technologie</a><ul class="s4-breadcrumbNode"><li class="s4-breadcrumbCurrentNode"><span class="s4-breadcrumb-arrowcont"><span style="height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust s4-breadcrumb"><img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/fgimg.png" alt="" style="border-width:0px;position:absolute;left:-0px !important;top:-353px !important;"></span></span><span class="s4-breadcrumbCurrentNode">Paralelní počítání (2): Architektury paralelních počítačů</span></li></ul></li></ul></li>
+</ul>  
+									</div>
+									
+									</div><div id="RibbonContainer-TabRowRight" class="ms-cui-TabRowRight s4-trc-container s4-notdlg">
+									<div id="s4-searcharea" class="s4-search s4-rp">
+									
+									</div>
+									</div></div></div>
+<script type="text/javascript">
+//<![CDATA[
+var g_commandUIHandlers = {"name":"CommandHandlers","attrs":{},"children":[]};
+//]]>
+</script>
+									<div id="notificationArea" class="s4-noti"></div>
+									
+									
+<span id="ctl00_SPNavigation_ctl00_publishingConsoleV4_publishingRibbon"></span>
+
+
+
+									
+									<div id="WebPartAdderUpdatePanelContainer">
+									<div id="ctl00_WebPartAdderUpdatePanel">
+	
+										<span id="ctl00_WebPartAdder"></span>
+									
+</div>
+									</div>
+									</div>
+									</div>
+									
+							<div id="s4-titlerow" class="s4-pr s4-notdlg s4-titlerowhidetitle">
+
+								<h1>
+	
+	
+			Paralelní počítání (2): Architektury paralelních počítačů
+		
+</h1>
+								<h3></h3>
+							</div>
+				            
+	
+	
+			<div class="article article-left">
+				
+				<div class="captioned-image">
+					<div class="image">
+						<div id="ctl00_PlaceHolderMain_ctl01_ctl01_label" style="display:none">Obrázek stránky</div><div id="ctl00_PlaceHolderMain_ctl01_ctl01__ControlWrapper_RichImageField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl01_ctl01_label"><div class="ms-rtestate-field"></div></div>
+					</div>
+					<div class="caption">
+						<div id="ctl00_PlaceHolderMain_ctl01_ctl02_label" style="display:none">Titulek obrázku</div><div id="ctl00_PlaceHolderMain_ctl01_ctl02__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl01_ctl02_label"></div>
+					</div>
+				</div>
+				<div class="article-header">
+					<div class="date-line">
+						
+					</div>
+					<div class="by-line">
+						
+					</div>
+				</div>
+				<div class="article-content">
+					<div id="ctl00_PlaceHolderMain_ctl01_ctl05_label" style="display:none">Obsah stránky</div><div id="ctl00_PlaceHolderMain_ctl01_ctl05__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl01_ctl05_label"><div class="ms-rteElement-Callout1" style="height:118px;float:right;margin:0px 0px 10px 10px;width:17.88em"><a href="https://webhosting.vse.cz/maco01/">Ondřej Machek</a>
+ je absolventem Fakulty elektrotechnické ČVUT v Praze, obor Softwarové 
+inženýrství (2009). Od roku 2008 se věnuje mimo jiné konzultační 
+činnosti v oblasti IT a&nbsp; programování zejména webových 
+aplikací.&nbsp;</div>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">V 
+minulém článku jsme představili paralelní počítače, důvody jejich 
+rostoucího významu a možnosti jejich využití pro zvýšení výpočetního 
+výkonu. Nyní se nabízí otázka, jakým způsobem jsou paralelní počítače 
+vnitřně organizovány.</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Základem je, stejně jako v případě sekvenčních výpočtů, <strong>von Neumannova architektura počítače</strong>.
+ Von Neumannova architektura je založena na jednoduchém schématu 
+počítače, který se skládá z paměti, řadiče, aritmeticko-logické jednotky
+ a vstupních a výstupních jednotek. Řadič a aritmeticko-logická jednotka
+ dohromady tvoří procesor. <em>Řadič </em>vydává příkazy, <em>procesor </em>je vykonává a výsledky výpočtů zapisuje do <em>paměti</em>. Paralelní počítače využívají stejného teoretického základu, rozdíl je zejména v tom, že procesorů je více.</p>
+<h2 class="ms-rteStyle-Caption" style="margin:10pt 0cm">Flynnova klasifikace paralelních systémů</h2>
+<div class="ms-rteElement-Callout2" style="height:343px;margin:5px 0px 5px 10px;width:23.91em"><img alt="par2_fig1.png" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig1.png"><br>Obrázek 1: Flynnova klasifikace paralelních systémů</div>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Jak bylo
+ řečeno, počítače pracují na základě toku příkazů (instrukcí) a pracují 
+nad určitou pamětí. Podle toho, jestli pracují nad stejným úsekem paměti
+ nebo na různých úsecích paměti, a podle toho, jestli jsou řízeny 
+jedinou instrukcí nebo více instrukcemi, je možné rozdělit počítače do 4
+ skupin (hovoříme o tzv. Flynnově klasifikaci paralelních systémů). Tyto
+ skupiny jsou znázorněny na obrázku 1.</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Prvním typem počítače je <strong>SISD </strong>(<em>single instruction, single data</em>).
+ Jedná se o klasický počítač s jedním procesorem, jedním tokem dat a 
+jednou pamětí. Příkladem je řada běžně používaných stolních počítačů či 
+notebooků, nebo např. mobilních telefonů. V tomto případě se nejedná o 
+skutečný paralelismus a ten může být realizován pouze virtuálně – na 
+úrovni software, např. pomocí vláken.&nbsp; Druhým typem počítače je <strong>SIMD </strong>(<em>single instruction, multiple data</em>).
+ V tomto případě vykonávají všechny procesory identické operace nad 
+různými daty. Sem můžeme zařadit některé starší superpočítače, jako 
+např. IBM 9000, Cray X-MP, Fujitsu VP, NEC SX-2, Hitachi S820 nebo ETA1.
+ Třetím typem počítače je <strong>MISD </strong>(<em>multiple instruction, single data</em>).
+ Exemplářů tohoto typu počítače v historii moc nenajdeme, jedním 
+příkladem je počítač Carnegie-Mellon C.mmp z roku 1971. Čtvrtým typem 
+počítače je <strong>MIMD </strong>(<em>multiple instruction, multiple data</em>),
+ kdy více procesorů zpracovává různý tok instrukcí a pracuje nad různými
+ daty. Většina moderních počítačů je právě tohoto typu.&nbsp;&nbsp;</p>
+<h2 class="ms-rteStyle-Caption" style="margin:10pt 0cm">Klasifikace podle typu paměti</h2>
+<div class="ms-rteElement-Callout2" style="height:334px;margin:5px 0px 5px 10px;width:22.6em"><img alt="par2_fig2.png" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig2.png">​<br>Obrázek 2: Typy paralelních počítačů: a) sdílená paměť, b) distribuovaná paměť, c) cluster</div>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Procesory mohou mít buď <em>sdílenou paměť </em>(společnou pro všechny procesory), anebo <em>distribuovanou paměť</em> (to znamená, že každý disponuje svou vlastní pamětí). Komunikaci mezi procesory s distribuovanou pamětí zajištuje přepínač (<em>switch</em>), v případě sdílené paměti probíhá komunikace přes tuto paměť a switch není zapotřebí. Paralelní systém typu <em>cluster </em>se skládá z nezávislých počítačů, které virtuálně vystupují jako jeden počítač. Vše je znázorněno na obrázku 2.</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Paralelní
+ systémy, se kterými se setkáme v běžném životě nejčastěji, tj. 
+vícejádrové procesory, jsou případem systémů se sdílenou pamětí (jeden 
+nebo více výpočetních uzlů – „jader“ – na jednom čipu). Jedná se o 
+speciální případ architektury, kterou nazýváme <em>symetrický multiprocesor</em>,
+ tj. procesorů, které mají společnou paměť a sběrnici. Společná sběrnice
+ představuje omezení, díky kterému není maximální počet procesorů 
+připojených na tuto sběrnici větší než 32. </p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">V případě výkonnějších počítačů je nutné využít speciální vysokorychlostní propojovací sítě a hovoříme o <em>masivně-paralelních počítačích</em>,
+ které představují naprostou většinu ze současných nejvýkonnějších 
+počítačů (v minulém díle jsme uvedli seznam TOP 500 počítačů, který se 
+nachází na <a href="http://top500.org/">http://top500.org/</a>).</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3"><em>Distribuované systémy</em>
+ mohou být založeny na propojení jiným typem sítí, např. LAN nebo WAN. 
+Známým příkladem distribuovaných systémů je internetový dobrovolnický 
+projekt SETI@home, který je zaměřen na hledání mimozemských signálů a je
+ založen na paralelní spolupráci mnoha počítačů přes internet. 
+Samozřejmě, že rozdíly ve výkonu počítačů a omezená rychlost 
+internetového připojení do značné míry možnosti tohoto systému omezují.</p>
+<h2 class="ms-rteStyle-Caption" style="margin:10pt 0cm">Vybrané typy propojovacích sítí</h2>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Propojovací
+ síť paralelního počítače je způsob vzájemného propojení procesorů. 
+Přímá propojovací síť může být popsána pomocí teorie grafů. Graf je, 
+zjednodušeně řečeno, množina bodů – tzv. uzlů, které jsou navzájem 
+propojeny spojnicemi – hranami.</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Procesory
+ jsou znázorněny pomocí uzlů grafu, komunikační linky pomocí jeho hran. 
+Pomocí grafů můžeme konstruovat rozličné typy sítí, fantazii se meze 
+nekladou. Měly by však splňovat několik vlastností:</p>
+<ul><li><div class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">malý počet sousedů každého uzlu (čím více vzájemných propojení, tím nákladnější bude počítač),</div></li>
+<li><div class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">malý
+ průměr, neboli co nejmenší maximální vzdálenost libovolných dvou uzlů v
+ grafu (to znamená menší počet komunikačních linek, menší počet zpráv, 
+méně chyb a zahlcení linek),</div></li>
+<li><div class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">co nejmenší počet úzkých míst, aby byla snížena chybovost v případě přerušení důležitých linek,</div></li>
+<li><div class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">sítě by měly být pravidelné, reprodukovatelné a algebraicky popsatelné.</div></li></ul>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">​V tomto
+ článku si popíšeme základní typy sítí používané v návrhu paralelních 
+počítačů, kterými jsou úplný binární strom, hyperkrychle, mřížka a 
+toroid.</p>
+<h3 class="ms-rteElement-H3" style="font-size:1.3em">Úplný binární strom&nbsp;</h3>
+<p class="ms-rteElement-H3 ms-rteFontFace-8 ms-rteStyle-Normal ms-rteFontSize-3">Binární
+ strom je struktura definovaná nad konečným počtem uzlů, která se skládá
+ ze tří částí: kořen, levý podstrom a pravý podstrom. Kořen je tedy 
+uzel, který má pod sebou dva následníky (potomky). Tato jednoduchá 
+definice umožňuje rekurzivně strom rozšiřovat – pokud považujeme levý a 
+pravý podstrom za nový kořen, dostaneme se na další úroveň stromu a tím 
+rozšiřujeme jeho výšku. Strom je zajímavý tím, že mezi dvěma uzly 
+existuje jen jediná cesta. Úplný binární strom výšky <em>N</em> má přesně 2^(N+1) uzlů a 2^(N+1)-2 hran. Příklad úplného binárního stromu je znázorněn na obrázku 3.&nbsp;</p>
+<div class="ms-rteElement-Callout2" style="height:156px;float:none;margin:5px auto;width:9.65em"><img alt="par2_fig3.png" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig3.png"><br>Obrázek 3: Úplný binární strom výšky 2</div>
+<h3 class="ms-rteElement-H3" style="font-size:1.3em">Hyperkrychle</h3>
+<p class="ms-rteFontSize-3 ms-rteFontFace-8 ms-rteStyle-Normal">Hyperkrychle (n-cube) patří k nejjednodušším síťovým strukturám. n-rozměrnou hyperkrychli můžeme označit jako <em>Q(n)</em>. Třírozměrnou hyperkrychli, tedy <em>Q(3)</em>,
+ zná každý z vlastní zkušenosti například při házení kostkou. 
+Dvourozměrná hyperkrychle je prostý čtverec a jednorozměrná krychle jsou
+ dva spojené uzly - úsečka. Zkusme si představit, jak dospějeme od 
+úsečky ke čtverci a od čtverce ke krychli. V každém kroku „zdvojíme“ 
+výchozí konstrukci a spojíme příslušné uzly novými hranami. Stejnými 
+způsobem je možné dospět i k hyperkrychlím vyšších dimenzí. Na obrázku 4
+ jsou znázorněny hyperkrychle dimenze 1, 2, 3 a 4.</p>
+<div class="ms-rteElement-Callout2" style="height:157px;float:none;margin:15px auto;width:43.37em"><img alt="par2_fig4.png" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig4.png">Obrázek 4: Hyperkrychle dimenze (a) 1, (b) 2, (c) 3, (d) 4.</div>
+<p class="ms-rteFontFace-8 ms-rteFontSize-3 ms-rteStyle-Normal ">Hyperkrychli dimenze <em>n</em> je také možné představit si jako binární posloupnost (posloupnost jedniček a nul) délky <em>n</em>.
+ Tato posloupnost – například 0001 - vyjadřuje souřadnice jednoho 
+konkrétního uzlu. Kolik je celkový počet permutací v binární 
+posloupnosti? Přesně <em>2n</em>, tedy tolik uzlů, kolik má 
+hyperkrychle. Mezi dvěma uzly vede hrany právě tehdy, když se liší v 
+nějakém bitu. Každý uzel má přesně <em>n</em> sousedů, protože je možné znegovat&nbsp;<em>n</em> bitů v dané posloupnosti.</p>
+<h2 class="ms-rteElement-H2">Mřížka</h2>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Mřížka 
+je, podobně jako hyperkrychle, poměrně snadno představitelnou sítí. 
+Trojrozměrná mříž je známá z běžného života, např. návštěvy zoo. 
+Dvojrozměrná mřížka je síť, která je stejně tak dobře známá, třeba z 
+rybolovu. Jednorozměrná mřížka je prostá řada procesorů spojená hranami.
+ Na obrázku 5 je znázorněna dvourozměrná a třírozměrná mřížka.</p>
+<div class="ms-rteElement-Callout2" style="height:209px;float:none;clear:both;margin:10px auto;width:18.62em"><img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig5.png" alt="" style="margin:5px"><br>Obrázek 5: Dvourozměrná a třírozměrná mřížka<br><br></div>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Zatímco u
+ hyperkrychle byla souřadnice uzlu vyjádřena binární posloupností, u 
+n-rozměrné mřížky je možné ji vyjádřit posloupností kladných čísel, 
+přičemž délka posloupnosti je n – příkladem souřadnice jednoho uzlu v 
+třírozměrné mřížce je posloupnost (1,2,3). Podobně jako u hyperkrychle 
+vede mezi dvěma uzly hrana právě tehdy, když se v některé souřadnici 
+liší o jedničku. Jak je vidět z obrázku, jednoduchá změna v definici 
+způsobila významnou změnu ve struktuře.</p>
+<h2 class="ms-rteElement-H2">Toroid</h2>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Toroid 
+je velmi podobný mřížce, s jedním rozdílem, a to tím, že základní 
+stavební kámen není řada procesorů, ale tzv. kružnice. Kružnici 
+dostaneme z řady uzlů tak, že spojíme dva koncové uzly, a vytvoříme tak 
+cyklus. Tato jednoduchá modifikace přináší poměrně významnou změnu ve 
+struktuře – najednou má každý uzel v každé dimenzi právě dva sousedy, 
+zatímco u mřížky měly dva sousedy jen vnitřní body, tj. ne uzly na 
+okraji. Příklady toroidů dimenze 2 a 3 jsou uvedeny na obrázku 6.</p>
+<div class="ms-rteElement-Callout2" style="height:198px;float:none;margin:15px auto;width:19.84em"><img alt="par2_fig6.png" src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/par2_fig6.png"><br>Obrázek 6: Dvourozměrný a třírozměrný toroid</div>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Výčet 
+sítí samozřejmě zdaleka není úplný. Existuje řada různých topologií, 
+například tzv. motýlek (butterfly) nebo graf hvězda (star graph), 
+nicméně více typů sítí si již uvádět nebudeme. </p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">&nbsp;</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">&nbsp;</p>
+<p class="ms-rteStyle-Normal ms-rteFontFace-8 ms-rteFontSize-3">Důležitý
+ je zejména poznatek, že paralelní systémy se obvykle dají popsat 
+grafem, který má určité vlastnosti a zákonitosti, a od toho se odvíjí 
+návrh paralelních programů, které bude tento počítač vykonávat. Situace 
+je tedy komplikovanější než v případě sekvenčního počítače. V příštím 
+díle se podíváme na to, jakým způsobem se navrhují paralelní algoritmy.<br></p></div>
+				</div>
+				
+			</div>
+		
+
+			        	</td>
+		            </tr>
+		            <tr style="height: 16px;">
+		            	<td class="content-bottom"></td>
+		            </tr>
+		            </tbody></table>
+		            </div>
+		            </div>
+		            <!--End Nav|Content area.-->
+		<div id="DeveloperDashboard" class="ms-developerdashboard">
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+		
+		</div>
+		</span>
+
+		<div id="ctl00_panelZone">
+	<div style="display:none" id="hidZone"><menu class="ms-SrvMenuUI">
+		<ie:menuitem id="MSOMenu_Help" iconsrc="/_layouts/images/HelpIcon.gif" onmenuclick="MSOWebPartPage_SetNewWindowLocation(MenuWebPart.getAttribute('helpLink'), MenuWebPart.getAttribute('helpMode'))" text="Nápověda" type="option" style="display:none">
+
+		</ie:menuitem>
+	</menu></div>
+</div><input id="_wpcmWpid" name="_wpcmWpid" value="" type="hidden"><input id="wpcmVal" name="wpcmVal" value="" type="hidden">
+
+<script type="text/javascript">
+//<![CDATA[
+
+WebForm_InitCallback();var _spFormDigestRefreshInterval = 1440000;function loadMDN2() { EnsureScript('MDN.js', typeof(loadFilterFn), null); }
+function loadMDN1() { ExecuteOrDelayUntilScriptLoaded(loadMDN2, 'sp.ribbon.js'); }
+_spBodyOnLoadFunctionNames.push('loadMDN1');
+function _spNavigateHierarchyEx(nodeDiv, dataSourceId, dataPath, url, listInContext, type, additionalQString) {
+    SetAdditionalNavigateHierarchyQString(additionalQString);
+    g_originalSPNavigateFunc(nodeDiv, dataSourceId, dataPath, url, listInContext, type);
+}
+
+g_originalSPNavigateFunc = _spNavigateHierarchy;
+_spNavigateHierarchy = _spNavigateHierarchyEx;
+
+function EnsureScripts(scriptInfoList, finalFunction)
+{
+if (scriptInfoList.length == 0)
+{
+finalFunction();
+}
+else
+{
+var scriptInfo = scriptInfoList.shift();
+var rest = function () { EnsureScripts(scriptInfoList, finalFunction); };
+var defd;
+try
+{
+eval('defd = typeof(' + scriptInfo[1] + ');');
+}
+catch (e)
+{
+defd = 'undefined';
+}
+if (scriptInfo[2])
+{
+EnsureScript(scriptInfo[0], defd, null);
+ExecuteOrDelayUntilScriptLoaded(rest, scriptInfo[0]);
+}
+else
+{
+EnsureScript(scriptInfo[0], defd, rest);
+}
+}
+}
+function PublishingRibbonUpdateRibbon()
+{
+var pageManager = SP.Ribbon.PageManager.get_instance();
+if (pageManager)
+{
+pageManager.get_commandDispatcher().executeCommand('appstatechanged', null);
+}
+}var _fV4UI = true;
+function _RegisterWebPartPageCUI()
+{
+    var initInfo = {editable: false,isEditMode: false,allowWebPartAdder: false,listId: "{7037838b-eabd-4aa8-901c-1e182e3881a9}",itemId: 5,recycleBinEnabled: true,enableMinorVersioning: true,enableModeration: true,forceCheckout: true,rootFolderUrl: "\u002fit\u002fStranky",itemPermissions:{High:16,Low:196673}};
+    SP.Ribbon.WebPartComponent.registerWithPageManager(initInfo);
+    var wpcomp = SP.Ribbon.WebPartComponent.get_instance();
+    var hid;
+    hid = document.getElementById("_wpSelected");
+    if (hid != null)
+    {
+        var wpid = hid.value;
+        if (wpid.length > 0)
+        {
+            var zc = document.getElementById(wpid);
+            if (zc != null)
+                wpcomp.selectWebPart(zc, false);
+        }
+    }
+    hid = document.getElementById("_wzSelected");
+    if (hid != null)
+    {
+        var wzid = hid.value;
+        if (wzid.length > 0)
+        {
+            wpcomp.selectWebPartZone(null, wzid);
+        }
+    }
+}
+ExecuteOrDelayUntilScriptLoaded(_RegisterWebPartPageCUI, "sp.ribbon.js"); var __wpmExportWarning='This Web Part Page has been personalized. As a result, one or more Web Part properties may contain confidential information. Make sure the properties contain information that is safe for others to read. After exporting this Web Part, view properties in the Web Part description file (.WebPart) by using a text editor such as Microsoft Notepad.';var __wpmCloseProviderWarning='You are about to close this Web Part.  It is currently providing data to other Web Parts, and these connections will be deleted if this Web Part is closed.  To close this Web Part, click OK.  To keep this Web Part, click Cancel.';var __wpmDeleteWarning='You are about to permanently delete this Web Part.  Are you sure you want to do this?  To delete this Web Part, click OK.  To keep this Web Part, click Cancel.';
+ExecuteOrDelayUntilScriptLoaded(
+function()
+{
+var initInfo = 
+{
+itemPermMasks: {High:16,Low:196673},
+listPermMasks: {High:16,Low:196673},
+listId: "7037838b-eabd-4aa8-901c-1e182e3881a9",
+itemId: 5,
+workflowsAssociated: false,
+editable: false,
+doNotShowProperties: false,
+enableVersioning: true
+};
+SP.Ribbon.DocLibAspxPageComponent.registerWithPageManager(initInfo);
+},
+"sp.ribbon.js");
+var g_disableCheckoutInEditMode = false;
+var _spWebPermMasks = {High:16,Low:196673};//]]>
+</script>
+<script type="text/javascript">
+// <![CDATA[
+// ]]>
+</script>
+<script type="text/javascript">RegisterSod("sp.core.js", "\u002f_layouts\u002fsp.core.js?rev=7ByNlH\u00252BvcgRJg\u00252BRCctdC0w\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("sp.res.resx", "\u002f_layouts\u002fScriptResx.ashx?culture=cs\u00252Dcz\u0026name=SP\u00252ERes\u0026rev=1pKO434LMEAdl\u00252FBAkL3jCQ\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("sp.ui.dialog.js", "\u002f_layouts\u002fsp.ui.dialog.js?rev=IuXtJ2CrScK6oX4zOTTy\u00252BA\u00253D\u00253D");RegisterSodDep("sp.ui.dialog.js", "sp.core.js");RegisterSodDep("sp.ui.dialog.js", "sp.res.resx");</script>
+<script type="text/javascript">RegisterSod("core.js", "\u002f_layouts\u002f1029\u002fcore.js?rev=f\u00252Fr4YTUhAk3PFfYplBx4Sg\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("sp.runtime.js", "\u002f_layouts\u002fsp.runtime.js?rev=9sKdsC9N6p2BiRk3313M7Q\u00253D\u00253D");RegisterSodDep("sp.runtime.js", "sp.core.js");RegisterSodDep("sp.runtime.js", "sp.res.resx");</script>
+<script type="text/javascript">RegisterSod("sp.js", "\u002f_layouts\u002fsp.js?rev=qBNQA0vLC3xm6SE69K2hzw\u00253D\u00253D");RegisterSodDep("sp.js", "sp.core.js");RegisterSodDep("sp.js", "sp.runtime.js");RegisterSodDep("sp.js", "sp.ui.dialog.js");RegisterSodDep("sp.js", "sp.res.resx");</script>
+<script type="text/javascript">RegisterSod("cui.js", "\u002f_layouts\u002fcui.js?rev=k\u00252B4HtUzT9\u00252B3mSycgD7gPaQ\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("inplview", "\u002f_layouts\u002finplview.js?rev=lxCL6dT9E0o\u00252F9jNw7YlGng\u00253D\u00253D");RegisterSodDep("inplview", "core.js");RegisterSodDep("inplview", "sp.js");</script>
+<script type="text/javascript">RegisterSod("ribbon", "\u002f_layouts\u002fsp.ribbon.js?rev=F\u00252BUEJ66rbXzSvpf7nN69wQ\u00253D\u00253D");RegisterSodDep("ribbon", "core.js");RegisterSodDep("ribbon", "sp.core.js");RegisterSodDep("ribbon", "sp.js");RegisterSodDep("ribbon", "cui.js");RegisterSodDep("ribbon", "sp.res.resx");RegisterSodDep("ribbon", "sp.runtime.js");RegisterSodDep("ribbon", "inplview");</script>
+<script type="text/javascript">RegisterSod("sp.ui.policy.resources.resx", "\u002f_layouts\u002fScriptResx.ashx?culture=cs\u00252Dcz\u0026name=SP\u00252EUI\u00252EPolicy\u00252EResources\u0026rev=ZWiu0FzUrieUzXPB3Vm2hA\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("mdn.js", "\u002f_layouts\u002fmdn.js?rev=gwmFFJ2\u00252FfFacqXWAqG\u00252FqKg\u00253D\u00253D");RegisterSodDep("mdn.js", "sp.core.js");RegisterSodDep("mdn.js", "sp.runtime.js");RegisterSodDep("mdn.js", "sp.js");RegisterSodDep("mdn.js", "cui.js");RegisterSodDep("mdn.js", "ribbon");RegisterSodDep("mdn.js", "sp.ui.policy.resources.resx");</script>
+<script type="text/javascript">RegisterSod("sp.publishing.resources.resx", "\u002f_layouts\u002fScriptResx.ashx?culture=cs\u00252Dcz\u0026name=SP\u00252EPublishing\u00252EResources\u0026rev=OuK8Bsn4IwjTmTvWRd8nJw\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("sp.ui.pub.ribbon.js", "\u002f_layouts\u002fsp.ui.pub.ribbon.js?rev=RGQSBI9Dm0E345iq\u00252FxUpHg\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("msstring.js", "\u002f_layouts\u002f1029\u002fmsstring.js?rev=4zUE\u00252B5WoLjrrXWPJroHUIw\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("browserScript", "\u002f_layouts\u002f1029\u002fie55up.js?rev=aLkCI\u00252BqMbk0\u00252BXpjAY7eBcA\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("WPAdderClass", "\u002f_layouts\u002fwpadder.js?rev=hnGJJEMcU5XH\u00252BCq7PlSxJw\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSodDep("browserScript", "msstring.js");</script>
+<script type="text/javascript">
+//<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+Sys.Application.initialize();
+function init_zz1_CurrentNav() {$create(SP.UI.AspMenu, null, null, null, $get('zz1_CurrentNav'));}ExecuteOrDelayUntilScriptLoaded(init_zz1_CurrentNav, 'sp.js');
+//]]>
+</script>
+</form>
+		
+	</div>
+</div>
+<div style="height: 295px; background: url(../../images/footer_bg.gif) repeat-x white; overflow: hidden;">
+	<div style="width: 440px; margin: 0 auto; padding: 35px 230px 35px 430px; position:relative; font-size: 11px; line-height: 16pt;">
+		<img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/logolinkEU_middle.png" alt="Logolink EU" style="position: absolute; left: 0; top: 70px; z-index: 5;" height="77" width="400">
+		<p style="color: black;">
+			Tento projekt je spolufinancován z Evropského sociálního <br>fondu a státního rozpočtu České republiky.
+		</p>
+		<p style="color: #666;">
+			Název: Popularizace vědy a výzkumu ČVUT<br>
+			Registrační číslo: CZ.1.07/2.3.00/35.0021<br>
+			Operační program Vzdělávání pro konkurenceschopnost
+		</p>
+		<br><br>
+		<p style="text-align: right;">
+		  <a href="http://daedalus.fbmi.cvut.cz:8080/">
+		  	Registrace do Popularu
+		  </a>
+		  <br><br>
+		  <a id="ctl00_viewlstshprlnk" href="http://popular.fbmi.cvut.cz/it/_layouts/viewlsts.aspx">
+			Autorský mód
+		  </a>
+		</p>
+	</div>
+</div>
+<div style="position: absolute; right: 100px; bottom: 100px; z-index: 3;">
+	<img src="%21Paralelni%20pocitani%20%282%29%20%20Architektury%20paralelnich%20pocitacu_soubory/molecules.png" alt="Molekula" height="254" width="315">
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="CMS-Author" content="Ashus, http://ashus.ashus.net" />
+<meta name="ROBOTS" content="ALL" />
+<meta name="GOOGLEBOT" content="ARCHIVE,FOLLOW" />
+<meta property="og:image" content="http://radovan.bloger.cz/styles/_/fb-banner-bloger-100x100.gif" />
+<meta name="keywords" content="Základní, typy, paralelních, počítačů, Mgr, Radovan, Kaluža" />
+<meta property="fb:admins" content="1458944144,100000723296161" />
+<link rel="author" href="https://plus.google.com/106231017246140536801" />
+
+<title>Základní typy paralelních počítačů | Mgr. Radovan Kaluža</title>
+
+<link rel="stylesheet" href="/styles/share.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/styles/guitar_hero/_.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/styles/share2.css" type="text/css" media="screen" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="text/javascript" src="/jquery.js"></script>
+<script type="text/javascript" src="/jquery.ui.js"></script>
+<link rel="stylesheet" href="/styles/_/jquery-ui-smoothness/jquery.ui.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="/roundblocks/_/roundblocks.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/jquery.roundblock.js"></script>
+
+<link rel="stylesheet" href="/thickbox/thickbox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/thickbox/thickbox.js.php"></script>
+
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="/styles/ie.css" />
+<![endif]-->
+
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/jquery.ifixpng.js"></script>
+<![endif]-->
+
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/styles/ie7.css" />
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Články blogu" href="/rss.php" />
+<link rel="alternate" type="application/rss+xml" title="Články v této kategorii" href="/rss.php?p=IT-internet" />
+<link rel="alternate" type="application/rss+xml" title="Komentáře tohoto článku" href="/rss.php?p=IT-internet/Zakladni-typy-paralelnich-pocitacu" />
+<link rel="stylesheet" href="/custom/radovan.bloger.cz.css" type="text/css" media="screen" /><script type="text/javascript" src="/scripts.js"></script>
+</head>
+
+<body class="main">
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : "486735741442178",
+      channelUrl : "//www.bloger.cz/fb.channel.php",
+      status     : true,
+      xfbml      : true
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/cs_CZ/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, "script", "facebook-jssdk"));
+</script><div id="pagecnt">
+<div id="pagecnt2">
+<div id="page">
+	<div id="header">
+
+		<div><a href="/" id="nazevblogu"><span id="headertxt">Mgr. Radovan Kaluža</span></a></div>
+	</div>
+
+<div id="wrapper">
+
+	<div id="menuside"><div class="top"></div><div class="box reklama"><div class="nadpis"><div class="icon reklama"></div>Reklama</div><div class="top"></div><div class="content"><div style="text-align: center;">
+
+<a href="https://www.facebook.com/banan.sro"><span style="background: url(http://banan.banan.cz/reklama/banan_120_120.gif) no-repeat top left; width: 120px; height: 120px; display: block; border: 2px solid white; margin: 0 auto; padding: 0;" title="zaloz blog, ziskej penize"></span></a>
+<br />
+<a href="/registrace.php">REGISTROVAT BLOG</a>
+
+<script language="JavaScript" type="text/javascript">
+	<!--
+	//ie6
+	var wposition = 0;
+	function scrollingDetector()
+		{
+		if (document.documentElement.scrollTop != wposition)
+        	{
+			wposition = document.documentElement.scrollTop;
+            $("#banroh").css("top",wposition+"px");
+			}
+		}
+
+	$(document).ready(function(){
+		var p = $("#pagecnt");
+		p.before('<a href="http://www.banan.cz/" target="_blank" style="position: fixed; top: 0; right: 0; z-index: 3000;" title="Banan.cz" id="banroh"><img src="/bloger-strip.gif" alt="Banan"></a>');
+
+		if (($.browser.msie) && (parseInt($.browser.version)<7))
+			{
+			$("#banroh").css({position:"absolute", top: "0px", right: "0px"});
+            setInterval("scrollingDetector()", 50);
+			}
+		});
+
+	//-->
+</script>
+</div>
+</div><div class="bottom"></div></div><div class="box hledani"><div class="nadpis"><div class="icon hledani"></div>Hledání</div><div class="top"></div><div class="content hledani"><form action="/hledej_" method="get">
+
+<table width="100%" style="white-space: nowrap;">
+<tr><td>
+<input name="s" type="text" value="" class="query full" maxlength="100" />
+</td><td style="width:1%">
+&nbsp;&nbsp;<input type="submit" class="button" value="Hledat" />
+</td></tr>
+</table>
+
+</form></div><div class="bottom"></div></div><div class="box kategorie"><div class="nadpis"><div class="icon kategorie"></div>Kategorie</div><div class="top"></div><div class="content"><a href="/ja-banan-a-projekty" class="menuitem first">já, banan a projekty (178)</a>
+<a href="/IT-internet" class="menuitem">IT, internet (106)</a>
+<a href="/pribehy-cestovani" class="menuitem">přiběhy, cestování (225)</a>
+<a href="/politika-penize" class="menuitem">politika, peníze (44)</a>
+<a href="/o-lidech-trendy" class="menuitem">o lidech, trendy (138)</a>
+<a href="/pel-mel" class="menuitem">pel mel (74)</a>
+</div><div class="bottom"></div></div><div class="box prihlaseni"><div class="nadpis"><div class="icon prihlaseni"></div>Přihlášení</div><div class="top"></div><div class="content"><form action="/IT-internet/Zakladni-typy-paralelnich-pocitacu" method="post">
+		<table width="100%" border="0">
+		<tr><td style="width:10%">Jméno:</td><td><input name="url" type="text" value="" class="query" style="width: 95%; max-width: 200px;" maxlength="100" /><br />
+		<select name="domena" class="query" style="width: 95%; max-width: 200px;"><option value="bloger.cz" selected="selected">bloger.cz</option><option value="blogerka.cz">blogerka.cz</option><option value="pise.sk">pise.sk</option><option value="quicksnake.cz">quicksnake.cz</option><option value="quicksnake.sk">quicksnake.sk</option><option value="quicksnake.de">quicksnake.de</option><option value="quicksnake.at">quicksnake.at</option><option value="quicksnake.dk">quicksnake.dk</option><option value="quicksnake.eu">quicksnake.eu</option><option value="quicksnake.com">quicksnake.com</option><option value="quicksnake.net">quicksnake.net</option><option value="quicksnake.info">quicksnake.info</option><option value="quicksnake.org">quicksnake.org</option><option value="quicksnake.co.uk">quicksnake.co.uk</option><option value="quicksnake.es">quicksnake.es</option><option value="quicksnake.it">quicksnake.it</option><option value="quicksnake.nl">quicksnake.nl</option><option value="blog.quicksnake.pl">blog.quicksnake.pl</option><option value="quicksnake.ro">quicksnake.ro</option><option value="ceskoslovensko-ma-talent-2012.cz">ceskoslovensko-ma-talent-2012.cz</option></select></td></tr>
+		<tr><td>Heslo:</td><td><input name="pass" type="password" class="query" style="width: 95%; max-width: 200px;" /></td></tr>
+		</table>
+
+
+		<div style="text-align: center">
+			<input type="hidden" name="login" value="do" />
+			<input type="submit" class="button" value="Přihlásit se" />
+			<br />
+
+			<input type="checkbox" class="checkbox" name="gotoadmin" value="1" id="gotoadmin" /><label for="gotoadmin"> a přejít do administrace</label><br />
+			
+			<a href="/registrace.php">Registrace</a> | 
+			<a href="/zapomenute.heslo.php">Zapomenuté heslo</a>
+			</div>
+		</form></div><div class="bottom"></div></div><div class="box rss"><div class="nadpis"><div class="icon rss"></div>RSS zdroje</div><div class="top"></div><div class="content"><a href="/rss.php" class="menuitem first">Články blogu</a>
+<a href="/rss.php?p=IT-internet" class="menuitem">Články v této kategorii</a>
+<a href="/rss.php?p=IT-internet/Zakladni-typy-paralelnich-pocitacu" class="menuitem">Komentáře tohoto článku</a>
+<a href="http://owebu.bloger.cz/Internet/Co-je-to-RSS" class="menuitem" target="_blank">Co to je RSS?</a>
+</div><div class="bottom"></div></div><div class="box stitky"><div class="nadpis"><div class="icon stitky"></div>Štítky</div><div class="top"></div><div class="content"><a href="/stitek_?s=%C4%8D%C3%ADnsk%C3%BD+horoskop" class="menuitem first">čínský horoskop</a>
+<a href="/stitek_?s=%C5%A1patn%C3%A9+firmy" class="menuitem">špatné firmy</a>
+<a href="/stitek_?s=alza" class="menuitem">alza</a>
+<a href="/stitek_?s=bydlen%C3%AD" class="menuitem">bydlení</a>
+<a href="/stitek_?s=facebook" class="menuitem">facebook</a>
+<a href="/stitek_?s=fajn%C3%A9+obr%C3%A1zky" class="menuitem">fajné obrázky</a>
+<a href="/stitek_?s=hubnut%C3%AD" class="menuitem">hubnutí</a>
+<a href="/stitek_?s=jin%C3%AD+o+Radovanovi" class="menuitem">jiní o Radovanovi</a>
+<a href="/stitek_?s=Maluas" class="menuitem">Maluas</a>
+<a href="/stitek_?s=modeling" class="menuitem">modeling</a>
+<a href="/stitek_?s=novapravidla.cz" class="menuitem">novapravidla.cz</a>
+<a href="/stitek_?s=odr%C5%AFdy+%C4%8Derven%C3%BDch+v%C3%ADn" class="menuitem">odrůdy červených vín</a>
+<a href="/stitek_?s=odr%C5%AFdy+b%C3%ADl%C3%BDch+v%C3%ADn" class="menuitem">odrůdy bílých vín</a>
+<a href="/stitek_?s=owebu.cz" class="menuitem">owebu.cz</a>
+<a href="/stitek_?s=Radovan+Kalu%C5%BEa" class="menuitem">Radovan Kaluža</a>
+<a href="/stitek_?s=recenze" class="menuitem">recenze</a>
+<a href="/stitek_?s=Recenze+aut+pro+smrteln%C3%ADky" class="menuitem">Recenze aut pro smrtelníky</a>
+<a href="/stitek_?s=robotick%C3%BD+vysava%C4%8D+recenze" class="menuitem">robotický vysavač recenze</a>
+<a href="/stitek_?s=rozd%C4%9Blen%C3%AD+v%C3%ADn" class="menuitem">rozdělení vín</a>
+<a href="/stitek_?s=stalking+v+praxi" class="menuitem">stalking v praxi</a>
+<a href="/stitek_?s=stav%C3%ADme+d%C5%AFm" class="menuitem">stavíme dům</a>
+<a href="/stitek_?s=v%C3%BDro%C4%8Dn%C3%AD+zpr%C3%A1vy++a+%C3%BAsp%C4%9Bchy" class="menuitem">výroční zprávy  a úspěchy</a>
+<a href="/stitek_?s=videa" class="menuitem">videa</a>
+<a href="/stitek_?s=volte+ODS" class="menuitem">volte ODS</a>
+<a href="/stitek_?s=webov%C3%A9+str%C3%A1nky+zdarma" class="menuitem">webové stránky zdarma</a>
+</div><div class="bottom"></div></div><div class="box obdobi"><div class="nadpis"><div class="icon obdobi"></div>Období</div><div class="top"></div><div class="content">
+			 <div class="accordion"><a href="javascript:;" class="menuitem big first">2014 (15)</a><div><a href="/obdobi_2014" class="menuitem sub1">celý rok</a><a href="/obdobi_2014_1" class="menuitem sub1">leden (2)</a>
+<a href="/obdobi_2014_2" class="menuitem sub1">únor (1)</a>
+<a href="/obdobi_2014_3" class="menuitem sub1">březen (1)</a>
+<a href="/obdobi_2014_4" class="menuitem sub1">duben (6)</a>
+<a href="/obdobi_2014_5" class="menuitem sub1">květen (5)</a>
+</div><a href="javascript:;" class="menuitem big">2013 (58)</a><div><a href="/obdobi_2013" class="menuitem sub1">celý rok</a><a href="/obdobi_2013_1" class="menuitem sub1">leden (1)</a>
+<a href="/obdobi_2013_2" class="menuitem sub1">únor (2)</a>
+<a href="/obdobi_2013_3" class="menuitem sub1">březen (3)</a>
+<a href="/obdobi_2013_4" class="menuitem sub1">duben (2)</a>
+<a href="/obdobi_2013_5" class="menuitem sub1">květen (2)</a>
+<a href="/obdobi_2013_6" class="menuitem sub1">červen (4)</a>
+<a href="/obdobi_2013_7" class="menuitem sub1">červenec (3)</a>
+<a href="/obdobi_2013_8" class="menuitem sub1">srpen (5)</a>
+<a href="/obdobi_2013_9" class="menuitem sub1">září (14)</a>
+<a href="/obdobi_2013_10" class="menuitem sub1">říjen (8)</a>
+<a href="/obdobi_2013_11" class="menuitem sub1">listopad (10)</a>
+<a href="/obdobi_2013_12" class="menuitem sub1">prosinec (4)</a>
+</div><a href="javascript:;" class="menuitem big">2012 (51)</a><div><a href="/obdobi_2012" class="menuitem sub1">celý rok</a><a href="/obdobi_2012_1" class="menuitem sub1">leden (4)</a>
+<a href="/obdobi_2012_2" class="menuitem sub1">únor (6)</a>
+<a href="/obdobi_2012_3" class="menuitem sub1">březen (3)</a>
+<a href="/obdobi_2012_4" class="menuitem sub1">duben (8)</a>
+<a href="/obdobi_2012_5" class="menuitem sub1">květen (2)</a>
+<a href="/obdobi_2012_6" class="menuitem sub1">červen (5)</a>
+<a href="/obdobi_2012_7" class="menuitem sub1">červenec (1)</a>
+<a href="/obdobi_2012_8" class="menuitem sub1">srpen (4)</a>
+<a href="/obdobi_2012_9" class="menuitem sub1">září (5)</a>
+<a href="/obdobi_2012_10" class="menuitem sub1">říjen (4)</a>
+<a href="/obdobi_2012_11" class="menuitem sub1">listopad (3)</a>
+<a href="/obdobi_2012_12" class="menuitem sub1">prosinec (6)</a>
+</div><a href="javascript:;" class="menuitem big">2011 (51)</a><div><a href="/obdobi_2011" class="menuitem sub1">celý rok</a><a href="/obdobi_2011_1" class="menuitem sub1">leden (5)</a>
+<a href="/obdobi_2011_2" class="menuitem sub1">únor (8)</a>
+<a href="/obdobi_2011_3" class="menuitem sub1">březen (9)</a>
+<a href="/obdobi_2011_4" class="menuitem sub1">duben (5)</a>
+<a href="/obdobi_2011_5" class="menuitem sub1">květen (5)</a>
+<a href="/obdobi_2011_6" class="menuitem sub1">červen (4)</a>
+<a href="/obdobi_2011_7" class="menuitem sub1">červenec (2)</a>
+<a href="/obdobi_2011_9" class="menuitem sub1">září (4)</a>
+<a href="/obdobi_2011_10" class="menuitem sub1">říjen (3)</a>
+<a href="/obdobi_2011_11" class="menuitem sub1">listopad (4)</a>
+<a href="/obdobi_2011_12" class="menuitem sub1">prosinec (2)</a>
+</div><a href="javascript:;" class="menuitem big">2010 (116)</a><div><a href="/obdobi_2010" class="menuitem sub1">celý rok</a><a href="/obdobi_2010_1" class="menuitem sub1">leden (20)</a>
+<a href="/obdobi_2010_2" class="menuitem sub1">únor (18)</a>
+<a href="/obdobi_2010_3" class="menuitem sub1">březen (14)</a>
+<a href="/obdobi_2010_4" class="menuitem sub1">duben (13)</a>
+<a href="/obdobi_2010_5" class="menuitem sub1">květen (11)</a>
+<a href="/obdobi_2010_6" class="menuitem sub1">červen (8)</a>
+<a href="/obdobi_2010_7" class="menuitem sub1">červenec (7)</a>
+<a href="/obdobi_2010_8" class="menuitem sub1">srpen (4)</a>
+<a href="/obdobi_2010_9" class="menuitem sub1">září (4)</a>
+<a href="/obdobi_2010_10" class="menuitem sub1">říjen (5)</a>
+<a href="/obdobi_2010_11" class="menuitem sub1">listopad (4)</a>
+<a href="/obdobi_2010_12" class="menuitem sub1">prosinec (8)</a>
+</div><a href="javascript:;" class="menuitem big">2009 (148)</a><div><a href="/obdobi_2009" class="menuitem sub1">celý rok</a><a href="/obdobi_2009_1" class="menuitem sub1">leden (13)</a>
+<a href="/obdobi_2009_2" class="menuitem sub1">únor (14)</a>
+<a href="/obdobi_2009_3" class="menuitem sub1">březen (17)</a>
+<a href="/obdobi_2009_4" class="menuitem sub1">duben (11)</a>
+<a href="/obdobi_2009_5" class="menuitem sub1">květen (9)</a>
+<a href="/obdobi_2009_6" class="menuitem sub1">červen (9)</a>
+<a href="/obdobi_2009_7" class="menuitem sub1">červenec (8)</a>
+<a href="/obdobi_2009_8" class="menuitem sub1">srpen (6)</a>
+<a href="/obdobi_2009_9" class="menuitem sub1">září (10)</a>
+<a href="/obdobi_2009_10" class="menuitem sub1">říjen (13)</a>
+<a href="/obdobi_2009_11" class="menuitem sub1">listopad (15)</a>
+<a href="/obdobi_2009_12" class="menuitem sub1">prosinec (23)</a>
+</div><a href="javascript:;" class="menuitem big">2008 (178)</a><div><a href="/obdobi_2008" class="menuitem sub1">celý rok</a><a href="/obdobi_2008_1" class="menuitem sub1">leden (16)</a>
+<a href="/obdobi_2008_2" class="menuitem sub1">únor (15)</a>
+<a href="/obdobi_2008_3" class="menuitem sub1">březen (15)</a>
+<a href="/obdobi_2008_4" class="menuitem sub1">duben (8)</a>
+<a href="/obdobi_2008_5" class="menuitem sub1">květen (5)</a>
+<a href="/obdobi_2008_6" class="menuitem sub1">červen (4)</a>
+<a href="/obdobi_2008_7" class="menuitem sub1">červenec (10)</a>
+<a href="/obdobi_2008_8" class="menuitem sub1">srpen (24)</a>
+<a href="/obdobi_2008_9" class="menuitem sub1">září (25)</a>
+<a href="/obdobi_2008_10" class="menuitem sub1">říjen (24)</a>
+<a href="/obdobi_2008_11" class="menuitem sub1">listopad (18)</a>
+<a href="/obdobi_2008_12" class="menuitem sub1">prosinec (14)</a>
+</div><a href="javascript:;" class="menuitem big">2007 (61)</a><div><a href="/obdobi_2007" class="menuitem sub1">celý rok</a><a href="/obdobi_2007_1" class="menuitem sub1">leden (3)</a>
+<a href="/obdobi_2007_2" class="menuitem sub1">únor (6)</a>
+<a href="/obdobi_2007_3" class="menuitem sub1">březen (5)</a>
+<a href="/obdobi_2007_4" class="menuitem sub1">duben (2)</a>
+<a href="/obdobi_2007_5" class="menuitem sub1">květen (2)</a>
+<a href="/obdobi_2007_6" class="menuitem sub1">červen (5)</a>
+<a href="/obdobi_2007_7" class="menuitem sub1">červenec (5)</a>
+<a href="/obdobi_2007_8" class="menuitem sub1">srpen (2)</a>
+<a href="/obdobi_2007_9" class="menuitem sub1">září (4)</a>
+<a href="/obdobi_2007_10" class="menuitem sub1">říjen (6)</a>
+<a href="/obdobi_2007_11" class="menuitem sub1">listopad (5)</a>
+<a href="/obdobi_2007_12" class="menuitem sub1">prosinec (16)</a>
+</div><a href="javascript:;" class="menuitem big">2006 (93)</a><div><a href="/obdobi_2006" class="menuitem sub1">celý rok</a><a href="/obdobi_2006_3" class="menuitem sub1">březen (9)</a>
+<a href="/obdobi_2006_4" class="menuitem sub1">duben (27)</a>
+<a href="/obdobi_2006_5" class="menuitem sub1">květen (19)</a>
+<a href="/obdobi_2006_6" class="menuitem sub1">červen (15)</a>
+<a href="/obdobi_2006_7" class="menuitem sub1">červenec (8)</a>
+<a href="/obdobi_2006_8" class="menuitem sub1">srpen (3)</a>
+<a href="/obdobi_2006_9" class="menuitem sub1">září (3)</a>
+<a href="/obdobi_2006_10" class="menuitem sub1">říjen (2)</a>
+<a href="/obdobi_2006_11" class="menuitem sub1">listopad (4)</a>
+<a href="/obdobi_2006_12" class="menuitem sub1">prosinec (3)</a>
+</div></div>
+			</div><div class="bottom"></div></div><div class="box odkazy"><div class="nadpis"><div class="icon odkazy"></div>Odkazy</div><div class="top"></div><div class="content"><a href="http://www.banan.cz" class="menuitem first" target="_blank">banan.cz webhosting
+</a>
+<a href="http://www.banan.cz/webhosting-a-stranky-zdarma" class="menuitem" target="_blank">webhosting a stránky zdarma</a>
+<a href="http://rotavator.678.cz/" class="menuitem" target="_blank">půjčovna zahradní techniky ostrava</a>
+<a href="http://www.hosting-webhosting-domeny.cz/" class="menuitem" target="_blank">Webhosting, hosting, domény</a>
+<a href="http://www.klec-pro-psa.cz/" class="menuitem" target="_blank">Klec pro psa</a>
+<a href="http://www.virtualni-sidlo-praha-brno-ostrava.cz/" class="menuitem" target="_blank">virtuální sídlo praha, brno , ostrava</a>
+<a href="http://www.eshop.re/" class="menuitem" target="_blank">eshop</a>
+<a href="http://www-stranky.banan.cz/" class="menuitem" target="_blank">www stránky banan.cz</a>
+<a href="http://www.hosting-banan.cz/" class="menuitem" target="_blank">hosting banan.cz</a>
+<a href="http://www.banan.cz/webdesign-banan_cz" class="menuitem" target="_blank">webdesign banan</a>
+<a href="http://pujcovna-fotoaparatu.678.cz/" class="menuitem" target="_blank">Půjčovna Fotoaparátů ostrava, karviná, orlová , frýdek-místek , havířov</a>
+<a href="http://pujcovna-nosicu-kol-ostrava.678.cz/" class="menuitem" target="_blank">půjčovna nosičů kol Ostrava</a>
+<a href="http://pujcovna-nosicu-kol-havirov.678.cz/" class="menuitem" target="_blank">Půjčovna nosičů kol Havířov</a>
+</div><div class="bottom"></div></div><a href="http://www.toplist.cz/"><script type="text/javascript">
+<!--
+document.write ('<img src="http://toplist.cz/dot.asp?id=673432&http='+escape(document.referrer)+'&wi='+escape(window.screen.width)+'&he='+escape(window.screen.height)+'&cd='+escape(window.screen.colorDepth)+'&t='+escape(document.title)+'" width="1" height="1" style="border:0" alt="TOPlist" />');
+//--></script></a><noscript><div><img src="http://toplist.cz/dot.asp?id=673432" style="border:0" alt="TOPlist" width="1" height="1" /></div></noscript>
+<br><br>
+<a href="http://www.banan.cz/domeny/registrace-domeny" title="Domény od Banán.cz">Domény</a>
+<a href="http://www.banan.cz/" title="Hosting od Banán.cz">Hosting</a>
+<a href="http://www.banan.cz/domeny/co-je-to-domena" title="Doména od Banán.cz">Doména</a>
+<a href="http://www.banan.cz/index/webhostingove-programy" title="Webhosting od Banán.cz">Webhosting</a>
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10949546-1");
+pageTracker._trackPageview();
+} catch(err) {}</script><div class="box stats"><div class="nadpis"><div class="icon stats"></div>Moje statistiky</div><div class="top"></div><div class="content">
+<div class="accordion"><a href="javascript:;" class="menuitem big first">Poslední komentáře blogu</a><div>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Muj-novy-dum?km=d#kom_451830" class="menuitem sub1" title="Můj nový dům">klimoška (5. 6.)</a>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/4-duvody-proc-jsem-se-stala-tak-tlusta?km=d#kom_451817" class="menuitem sub1" title="4 důvody proč jsem se stala tak tlustá ">Moje tělo (3. 6.)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Jak-vypadal-banan-10let-zpet?km=d#kom_451791" class="menuitem sub1" title="Jak vypadal banán 10let zpět">Re: hovno (1. 6.)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/webovky-zdarma-chcete-vedet-jak-vypadaji?km=d#kom_451787" class="menuitem sub1" title="webovky zdarma, chcete vědět jak vypadají ?">zdarma webovky (1. 6.)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Jak-vypadal-banan-10let-zpet?km=d#kom_451786" class="menuitem sub1" title="Jak vypadal banán 10let zpět">hovno (1. 6.)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Moje poslední komentáře</a><div>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-stahla-nevodeodolne-vodedolne-fotaky-z-nabidky-ale-chybu-v-popisu-stale-maji?km=d#kom_451256" class="menuitem sub1" title="Alza stáhla nevoděodolné-vodědolné foťáky z nabídky, ale chybu v popisu stále mají ...">Re: Technici (15. 5.)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-stahla-nevodeodolne-vodedolne-fotaky-z-nabidky-ale-chybu-v-popisu-stale-maji?km=d#kom_451250" class="menuitem sub1" title="Alza stáhla nevoděodolné-vodědolné foťáky z nabídky, ale chybu v popisu stále mají ...">Re: Technici (15. 5.)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Koliba-u-dobreho-pastiera-kupele-lucky-fajny-vikend-no-ni?km=d#kom_451136" class="menuitem sub1" title=" Koliba u dobrého pastiera , kúpele lúčky - fajný víkend no ni">Re: Vyuctovani (13. 5.)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Koliba-u-dobreho-pastiera-kupele-lucky-fajny-vikend-no-ni?km=d#kom_451008" class="menuitem sub1" title=" Koliba u dobrého pastiera , kúpele lúčky - fajný víkend no ni">Re: Rating (7. 5.)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Koliba-u-dobreho-pastiera-kupele-lucky-fajny-vikend-no-ni?km=d#kom_451007" class="menuitem sub1" title=" Koliba u dobrého pastiera , kúpele lúčky - fajný víkend no ni">Re: vyvedeno do detailu (7. 5.)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejdiskutovanější za měsíc</a><div>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-stahla-nevodeodolne-vodedolne-fotaky-z-nabidky-ale-chybu-v-popisu-stale-maji" class="menuitem sub1" title="Alza stáhla nevoděodolné-vodědolné foťáky z nabídky, ale chybu v popisu stále mají ...">Alza stáhla nevoděodol... (17×)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-svou-chybu-uznala-omluvila-se-a-na-webu-udaje-opravila" class="menuitem sub1" title="Alza - svou chybu uznala, omluvila se a na webu údaje opravila">Alza - svou chybu uzna... (7×)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Jak-vypadal-banan-10let-zpet" class="menuitem sub1" title="Jak vypadal banán 10let zpět">Jak vypadal banán 10le... (2×)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejdiskutovanější celkem</a><div>
+<a href="http://owebu.bloger.cz/Kritika-webu/Kritika-stranek" class="menuitem sub1" title="Kritika stránek">Kritika stránek (3165×)</a>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/emo" class="menuitem sub1" title="emo">emo (1608×)</a>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/z-hnusaka-metrosexual" class="menuitem sub1" title="z hnusáka metrosexuál">z hnusáka metrosexuál (545×)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/radovan-kaluza-z-bezdomovce-milionar" class="menuitem sub1" title="radovan kaluža - z bezdomovce milionář">radovan kaluža - z bez... (328×)</a>
+<a href="http://radovan.bloger.cz/politika-penize/inteligentni-lide-voli-ODS" class="menuitem sub1" title="inteligentní lidé volí ODS">inteligentní lidé volí... (288×)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejčtenější za měsíc</a><div>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Jak-vypadal-banan-10let-zpet" class="menuitem sub1" title="Jak vypadal banán 10let zpět">Jak vypadal banán 10le... (791×)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-svou-chybu-uznala-omluvila-se-a-na-webu-udaje-opravila" class="menuitem sub1" title="Alza - svou chybu uznala, omluvila se a na webu údaje opravila">Alza - svou chybu uzna... (695×)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-stahla-nevodeodolne-vodedolne-fotaky-z-nabidky-ale-chybu-v-popisu-stale-maji" class="menuitem sub1" title="Alza stáhla nevoděodolné-vodědolné foťáky z nabídky, ale chybu v popisu stále mají ...">Alza stáhla nevoděodol... (689×)</a>
+<a href="http://owebu.bloger.cz/Banan-cz/Pujcovna-Fotoaparatu-ostrava" class="menuitem sub1" title="Půjčovna Fotoaparátů ostrava">Půjčovna Fotoaparátů o... (146×)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejčtenější celkem</a><div>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/Posilovna-cast-1-Rychly-rust-svalove-hmoty-" class="menuitem sub1" title="Posilovna ( část 1. ) Rychlý růst svalové hmoty ">Posilovna ( část 1. ) ... (66883×)</a>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/z-hnusaka-metrosexual" class="menuitem sub1" title="z hnusáka metrosexuál">z hnusáka metrosexuál (60882×)</a>
+<a href="http://radovan.bloger.cz/politika-penize/Byvaly-komunista-Paroubek-nevolit-jej" class="menuitem sub1" title="Bývalý komunista Paroubek – nevolit jej !">Bývalý komunista Parou... (48178×)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/radovan-kaluza-z-bezdomovce-milionar" class="menuitem sub1" title="radovan kaluža - z bezdomovce milionář">radovan kaluža - z bez... (43329×)</a>
+<a href="http://owebu.bloger.cz/Banan-cz/Jak-dostat-stranky-na-Internet" class="menuitem sub1" title="Jak &quot;dostat&quot; stránky na Internet">Jak &quot;dostat&quot; stránky n... (42443×)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejčtenější na blogu za měsíc</a><div>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/Jak-vypadal-banan-10let-zpet" class="menuitem sub1" title="Jak vypadal banán 10let zpět">Jak vypadal banán 10le... (791×)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-svou-chybu-uznala-omluvila-se-a-na-webu-udaje-opravila" class="menuitem sub1" title="Alza - svou chybu uznala, omluvila se a na webu údaje opravila">Alza - svou chybu uzna... (695×)</a>
+<a href="http://radovan.bloger.cz/pribehy-cestovani/Alza-stahla-nevodeodolne-vodedolne-fotaky-z-nabidky-ale-chybu-v-popisu-stale-maji" class="menuitem sub1" title="Alza stáhla nevoděodolné-vodědolné foťáky z nabídky, ale chybu v popisu stále mají ...">Alza stáhla nevoděodol... (689×)</a>
+</div>
+<a href="javascript:;" class="menuitem big">Nejčtenější na blogu celkem</a><div>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/Posilovna-cast-1-Rychly-rust-svalove-hmoty-" class="menuitem sub1" title="Posilovna ( část 1. ) Rychlý růst svalové hmoty ">Posilovna ( část 1. ) ... (66883×)</a>
+<a href="http://radovan.bloger.cz/o-lidech-trendy/z-hnusaka-metrosexual" class="menuitem sub1" title="z hnusáka metrosexuál">z hnusáka metrosexuál (60882×)</a>
+<a href="http://radovan.bloger.cz/politika-penize/Byvaly-komunista-Paroubek-nevolit-jej" class="menuitem sub1" title="Bývalý komunista Paroubek – nevolit jej !">Bývalý komunista Parou... (48178×)</a>
+<a href="http://radovan.bloger.cz/ja-banan-a-projekty/radovan-kaluza-z-bezdomovce-milionar" class="menuitem sub1" title="radovan kaluža - z bezdomovce milionář">radovan kaluža - z bez... (43329×)</a>
+<a href="http://radovan.bloger.cz/pel-mel/pica-zmrd-teplous-buzna" class="menuitem sub1" title="píča, zmrd, teplouš, buzna">píča, zmrd, teplouš, b... (32292×)</a>
+</div></div></div><div class="bottom"></div></div><div class="menubottom"></div>
+	<script type="text/javascript">
+		<!--
+
+		$(function() {
+				$("#menuside .accordion").accordion({
+				    collapsible: true,
+				    active: false,
+					autoHeight: false
+				});
+			});
+
+		//-->
+		</script>
+		<div class="bottom"></div></div>
+
+	<div id="content"><div id="content2">
+<h1>Základní typy paralelních počítačů</h1>
+
+<div class="clanekcnt"><div class="clanek"><div class="autor">Napsal <a href="/autor_?a=radovan.bloger.cz" title="Zobrazit články autora">Mgr.Radovan Kaluža</a> <a href="http://radovan.bloger.cz/" title="Přejít na blog autora">(»)</a>  11. 4. 2006 v kategorii <a href="/IT-internet">IT, internet</a>, přečteno: 2687×</div><div class="inline-reklama"></div><div class="text">Počítačové sítě (někdy také vícepočítačové nebo multipočítačové systémy)  jsou tvořeny spojením několika počítačů za pomoci komunikačních linek. Počítače samy o sobě nespolupracují na řešení jedné aplikace. A lze ale programově tuto síť přizpůsobit pro distribuované řešení jedné aplikace. Z toho vyplývá, že tuto síť můžeme zahrnout do kategorie paralelních počítačů.  </p><p><h2>Paralelní počítače</h2>Jsou tvořeny spojením několika výpočetních a dalších prvků do jednoho funkčního celku. Paralelní počítače jsou většinou kompaktní (v jedné skříni) a homogenní (výpočetní prvky stejného typu). Mají jeden OS a musí umožňovat paralelní výpočet jedné aplikace. </p><p><h2>SISD  Single Instruction, Single Data </h2>
+Jedná se o klasickou architekturu von Neumann, kdy jeden program („tok“ instrukcí) zpracovává jeden „tok“ dat. </p><p><strong>Vektorové počítače </strong> mají technický realizované instrukce pro operace s vektory. Realizace instrukcí je prováděna paralelně a jde o systém typu SISD. ( i když někdy se uvádí SIMD)  </p><p><h2>SIMD Single Instruction, Multiple Dat </h2>   <br>
+Stejná instrukce se provádí ve všech procesorech současně, ale každý procesor má svá jedinečná data. Této architektury využívají maticové počítače. Dělíme je na SIMD se sdílenou nebo distribuovanou pamětí. </p><p><h2>MISD (Multiple Instruction Single Data) </h2> Je kategorie počítačů, která není v praxi příliš běžná. Můžeme zde zařadit systolická pole nebo neuronové sítě. </p><p><strong>Systolické pole </strong>je pevně propojená síť funkčních jednotek určená pro řešení jedné konkrétní úlohy. Není potřeba již žádný program, neboť její propojení je obvodová realizace algoritmu výpočtu. </p><p><strong>Umělé neuronové sítě</strong> se pokoušejí napodobit funkci biologických neuronových síti, tedy mozku. Základním stavebním prvkem neuronových síti je neuron, přesněji model neuronu vyskytujícího se v živé tkáni. </p><p><h2>MIMD  Multiple Instruction, Multiple Data </h2>Několik „toků“ instrukcí zpracovává každý svůj „tok“ dat - jedná se o multiprocesor. Každý procesor řízen samostatným programem a pracuje nad svými daty. Mezi MIDM patří symetrické multiprocesory a masivně paralelní počítače.<br>
+<strong>Symetrické multiprocesory</strong> <br />Symetrické multiprocesory mají sdílenou paměť, a skládají se z několika desítek procesorů. Vše je propojeno sběrnici (komunikačním systémem).  Každý procesor má svá vlastní data a instrukce, procesory komunikují mezi sebou přes sdílenou paměť.<br>
+<strong>Masivně paralelní počítače</strong> <br />Masivně paralelní počítače mají distribuovanou paměť, Mají velký počet procesorů (uzlů) se svou vlastní pamětí. Komunikují mezisebou na meziuzlových linkách. Komunikace je pomalejší, ale máme k dispozici větší počet procesorů.<br>
+</div><div class="cleaner"></div></div><div class="cleaner"></div><table class="full"><tr><td class="fb_like"><div class="fb-like" data-href="http://radovan.bloger.cz/IT-internet/Zakladni-typy-paralelnich-pocitacu" data-width="400" data-show-faces="false" data-send="false" data-font="tahoma" data-colorscheme="dark"></div></td>
+</tr></table><div class="cleaner"></div><a name="linkovani"></a><div id="linkovani"><a href="http://www.facebook.com/sharer.php?u=http://radovan.bloger.cz/IT-internet/Zakladni-typy-paralelnich-pocitacu&amp;t=Z&aacute;kladn&iacute; typy paraleln&iacute;ch poč&iacute;tačů" class="l0" target="_blank" title="Linkuj na Facebook">Facebook</a>
+<a href="http://twitthis.com/twit?url=http://radovan.bloger.cz/IT-internet/Zakladni-typy-paralelnich-pocitacu&amp;title=Z&aacute;kladn&iacute; typy paraleln&iacute;ch poč&iacute;tačů" class="l3" target="_blank" title="Linkuj na Twitter">Twitter</a>
+<a href="http://linkuj.cz/?id=linkuj&amp;url=http://radovan.bloger.cz/IT-internet/Zakladni-typy-paralelnich-pocitacu&amp;title=Z&aacute;kladn&iacute; typy paraleln&iacute;ch poč&iacute;tačů" class="l5" target="_blank" title="Linkuj na Linkuj.cz">Linkuj.cz</a>
+
+<!-- AddThis Button BEGIN -->
+
+<div class="addthis_container" style="float: left;">
+<div class="addthis_toolbox addthis_default_style">
+<a href="http://addthis.com/bookmark.php?v=250&amp;username=xa-4b7046b051b49e49" class="addthis_button_compact" style="text-indent: 0px; padding: 0;">Sdílet</a>
+</div>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4b7046b051b49e49"></script>
+<style type="text/css">
+<!--
+.addthis_container, .addthis_toolbox {
+	display: inline;
+}
+.addthis_container span.at300bs {
+	margin: 0 2px 0 3px;
+}
+//-->
+</style>
+
+<!-- AddThis Button END -->
+</div><div class="cleaner"></div><a name="komentare"></a><div id="komentare"><h2>Komentáře</h2>
+
+<div id="komentare-classic""><div id="kmvolba">Zobrazit: <span title="zobrazí obvyklým způsobem od nejstaršího ve vláknech">standardní</span> | <a href="/IT-internet/Zakladni-typy-paralelnich-pocitacu?km=b#komentare" title="zobrazí ve vláknech od nejnověji diskutovaných vláken">od aktivních</a> | <a href="/IT-internet/Zakladni-typy-paralelnich-pocitacu?km=c#komentare" title="zobrazí poslední komentáře s odkazy na kontext vláken">poslední příspěvky</a> | <a href="/IT-internet/Zakladni-typy-paralelnich-pocitacu?km=d#komentare" title="zobrazí všechny komentáře od nejstaršího bez stránkování">všechno</a></div>Článek ještě nebyl okomentován.<br /><br /><br /><div id="komentare_pridej_add"><div id="komentare_pridej"><h2>Nový komentář</h2><a name="komentare_pridej"></a>
+	<form action="/komentare.pridej.php" method="post" target="_self" id="komentare_pridej_form">
+	<input type="hidden" name="f" value="" />
+	<input type="hidden" name="t" value="" />
+	<input type="hidden" name="p" value="IT-internet/Zakladni-typy-paralelnich-pocitacu" />
+	<input type="hidden" name="km" value="a" />
+	<input type="hidden" name="pg" value="" />
+	<input type="hidden" id="i_reakce" name="i_reakce" value="" />
+
+	<table width="100%" border="0">
+
+	<tr><td width="100"><span class="nazevpole" id="t_reakce">Téma:</span></td><td>
+	<input type="text" name="i_nazev" id="i_nazev" value="" class="query full" /></td></tr>
+
+	<tr><td><span class="nazevpole">Jméno:</span></td><td>
+		<input type="text" name="i_jmeno" value="" class="query full" />
+		</td></tr><tr><td><span class="nazevpole" title="Nepovinné pole. E-mail bude použit pouze pro odesílání oznámení o nových odpovědích na komentáře tohoto článku, veřejnosti zůstane skrytý, odhlášení možné.">Notif. e-mail *:</span></td><td>
+		<input type="text" name="i_email" id="i_email" value="" class="query full" /></td></tr><tr><td><span class="nazevpole">Komentář:</span></td><td>
+	<textarea id="i_text" name="i_text" class="query full" rows="4" cols="80"></textarea>
+	</td></tr><tr><td></td><td style="padding-top: 8px; line-height: 15px; vertical-align: middle;"><img src="http://banan.banan.cz/bloger/emotions/1.gif" alt="[*1*]" title="[*1*]"  class="smile" onclick="return smile(1);" />
+<img src="http://banan.banan.cz/bloger/emotions/2.gif" alt="[*2*]" title="[*2*]"  class="smile" onclick="return smile(2);" />
+<img src="http://banan.banan.cz/bloger/emotions/3.gif" alt="[*3*]" title="[*3*]"  class="smile" onclick="return smile(3);" />
+<img src="http://banan.banan.cz/bloger/emotions/4.gif" alt="[*4*]" title="[*4*]"  class="smile" onclick="return smile(4);" />
+<img src="http://banan.banan.cz/bloger/emotions/5.gif" alt="[*5*]" title="[*5*]"  class="smile" onclick="return smile(5);" />
+<img src="http://banan.banan.cz/bloger/emotions/6.gif" alt="[*6*]" title="[*6*]"  class="smile" onclick="return smile(6);" />
+<img src="http://banan.banan.cz/bloger/emotions/7.gif" alt="[*7*]" title="[*7*]"  class="smile" onclick="return smile(7);" />
+<img src="http://banan.banan.cz/bloger/emotions/8.gif" alt="[*8*]" title="[*8*]"  class="smile" onclick="return smile(8);" />
+<img src="http://banan.banan.cz/bloger/emotions/9.gif" alt="[*9*]" title="[*9*]"  class="smile" onclick="return smile(9);" />
+<img src="http://banan.banan.cz/bloger/emotions/10.gif" alt="[*10*]" title="[*10*]"  class="smile" onclick="return smile(10);" />
+<img src="http://banan.banan.cz/bloger/emotions/11.gif" alt="[*11*]" title="[*11*]"  class="smile" onclick="return smile(11);" />
+<img src="http://banan.banan.cz/bloger/emotions/12.gif" alt="[*12*]" title="[*12*]"  class="smile" onclick="return smile(12);" />
+<img src="http://banan.banan.cz/bloger/emotions/13.gif" alt="[*13*]" title="[*13*]"  class="smile" onclick="return smile(13);" />
+<img src="http://banan.banan.cz/bloger/emotions/14.gif" alt="[*14*]" title="[*14*]"  class="smile" onclick="return smile(14);" />
+<img src="http://banan.banan.cz/bloger/emotions/15.gif" alt="[*15*]" title="[*15*]"  class="smile" onclick="return smile(15);" />
+<img src="http://banan.banan.cz/bloger/emotions/16.gif" alt="[*16*]" title="[*16*]"  class="smile" onclick="return smile(16);" />
+<img src="http://banan.banan.cz/bloger/emotions/17.gif" alt="[*17*]" title="[*17*]"  class="smile" onclick="return smile(17);" />
+<img src="http://banan.banan.cz/bloger/emotions/18.gif" alt="[*18*]" title="[*18*]"  class="smile" onclick="return smile(18);" />
+<img src="http://banan.banan.cz/bloger/emotions/19.gif" alt="[*19*]" title="[*19*]"  class="smile" onclick="return smile(19);" />
+<img src="http://banan.banan.cz/bloger/emotions/20.gif" alt="[*20*]" title="[*20*]"  class="smile" onclick="return smile(20);" />
+<img src="http://banan.banan.cz/bloger/emotions/21.gif" alt="[*21*]" title="[*21*]"  class="smile" onclick="return smile(21);" />
+<img src="http://banan.banan.cz/bloger/emotions/22.gif" alt="[*22*]" title="[*22*]"  class="smile" onclick="return smile(22);" />
+<img src="http://banan.banan.cz/bloger/emotions/23.gif" alt="[*23*]" title="[*23*]"  class="smile" onclick="return smile(23);" />
+<img src="http://banan.banan.cz/bloger/emotions/24.gif" alt="[*24*]" title="[*24*]"  class="smile" onclick="return smile(24);" />
+<img src="http://banan.banan.cz/bloger/emotions/25.gif" alt="[*25*]" title="[*25*]"  class="smile" onclick="return smile(25);" />
+<img src="http://banan.banan.cz/bloger/emotions/26.gif" alt="[*26*]" title="[*26*]"  class="smile" onclick="return smile(26);" />
+<img src="http://banan.banan.cz/bloger/emotions/27.gif" alt="[*27*]" title="[*27*]"  class="smile" onclick="return smile(27);" />
+<img src="http://banan.banan.cz/bloger/emotions/28.gif" alt="[*28*]" title="[*28*]"  class="smile" onclick="return smile(28);" />
+<img src="http://banan.banan.cz/bloger/emotions/29.gif" alt="[*29*]" title="[*29*]"  class="smile" onclick="return smile(29);" />
+<img src="http://banan.banan.cz/bloger/emotions/30.gif" alt="[*30*]" title="[*30*]"  class="smile" onclick="return smile(30);" />
+<img src="http://banan.banan.cz/bloger/emotions/31.gif" alt="[*31*]" title="[*31*]"  class="smile" onclick="return smile(31);" />
+<img src="http://banan.banan.cz/bloger/emotions/32.gif" alt="[*32*]" title="[*32*]"  class="smile" onclick="return smile(32);" />
+<img src="http://banan.banan.cz/bloger/emotions/33.gif" alt="[*33*]" title="[*33*]"  class="smile" onclick="return smile(33);" />
+<img src="http://banan.banan.cz/bloger/emotions/34.gif" alt="[*34*]" title="[*34*]"  class="smile" onclick="return smile(34);" />
+<img src="http://banan.banan.cz/bloger/emotions/35.gif" alt="[*35*]" title="[*35*]"  class="smile" onclick="return smile(35);" />
+<img src="http://banan.banan.cz/bloger/emotions/36.gif" alt="[*36*]" title="[*36*]"  class="smile" onclick="return smile(36);" />
+<img src="http://banan.banan.cz/bloger/emotions/37.gif" alt="[*37*]" title="[*37*]"  class="smile" onclick="return smile(37);" />
+<img src="http://banan.banan.cz/bloger/emotions/38.gif" alt="[*38*]" title="[*38*]"  class="smile" onclick="return smile(38);" />
+<img src="http://banan.banan.cz/bloger/emotions/39.gif" alt="[*39*]" title="[*39*]"  class="smile" onclick="return smile(39);" />
+<img src="http://banan.banan.cz/bloger/emotions/40.gif" alt="[*40*]" title="[*40*]"  class="smile" onclick="return smile(40);" />
+<img src="http://banan.banan.cz/bloger/emotions/41.gif" alt="[*41*]" title="[*41*]"  class="smile" onclick="return smile(41);" />
+<img src="http://banan.banan.cz/bloger/emotions/42.gif" alt="[*42*]" title="[*42*]"  class="smile" onclick="return smile(42);" />
+<img src="http://banan.banan.cz/bloger/emotions/43.gif" alt="[*43*]" title="[*43*]"  class="smile" onclick="return smile(43);" />
+<img src="http://banan.banan.cz/bloger/emotions/44.gif" alt="[*44*]" title="[*44*]"  class="smile" onclick="return smile(44);" />
+<img src="http://banan.banan.cz/bloger/emotions/45.gif" alt="[*45*]" title="[*45*]"  class="smile" onclick="return smile(45);" />
+<img src="http://banan.banan.cz/bloger/emotions/46.gif" alt="[*46*]" title="[*46*]"  class="smile" onclick="return smile(46);" />
+<img src="http://banan.banan.cz/bloger/emotions/47.gif" alt="[*47*]" title="[*47*]"  class="smile" onclick="return smile(47);" />
+<img src="http://banan.banan.cz/bloger/emotions/48.gif" alt="[*48*]" title="[*48*]"  class="smile" onclick="return smile(48);" />
+<img src="http://banan.banan.cz/bloger/emotions/49.gif" alt="[*49*]" title="[*49*]"  class="smile" onclick="return smile(49);" />
+<img src="http://banan.banan.cz/bloger/emotions/50.gif" alt="[*50*]" title="[*50*]"  class="smile" onclick="return smile(50);" />
+&nbsp; <a href="#" title="tučné písmo"  onclick="return bold();">[b]</a>
+		 <a href="#" title="vloží obrázek" onclick="return img();">[obr]</a></td></tr><tr><td><span class="nazevpole">Odpovězte prosím číslicemi:</span></td><td>
+		<i>Součet čísel jedna a deset</i>&nbsp;
+		<input name="caa" type="text" value="" class="query" style="width: 50px;" /></td></tr></table>
+	<div class="center">
+		<input type="button" value="Komentovat" class="button" onclick="FormSub(true)" />
+		<input type="button" value="Náhled v novém okně" class="button" onclick="FormSub(false)" />
+		</div>
+	<br />
+
+	</form></div></div><script type="text/javascript" src="/komentare.js.php"></script></div></div></div>		</div></div>
+
+		
+	</div>
+	
+	<div class="cleaner"></div>
+
+	
+	<div id="footer">
+		<img src="/connected-ipv4.gif" alt="IPv4" style="vertical-align: middle;" /> 2014 &copy; <a href="http://www.bloger.cz/" target="_blank">Bloger.cz</a>
+		<a href="/registrace.php" target="_blank">Registrovat blog</a>
+<a href="/statistiky.hledani.php">Hledání</a>
+<span class="paticka_styl">vzhled: <a href="http://arnaudvalle.free.fr/" target="_blank">Arnaud Valle</a></span>
+ <span style="opacity: 0.3;">
+		<a href="http://www.lexia.cz/" target="_blank">virtuální sídla</a>
+		<a href="http://www.banan.cz/produkty/eshop" target="_blank">eshop</a>
+		<a href="http://www.banan.cz/domeny/registrace-domeny" title="Domény od Banán.cz">Domény</a>
+		<a href="http://www.banan.cz/" title="Hosting od Banán.cz">Hosting</a>
+		<a href="http://www.banan.cz/domeny/co-je-to-domena" title="Doména od Banán.cz">Doména</a>
+		<a href="http://www.banan.cz/index/webhostingove-programy" title="Webhosting od Banán.cz">Webhosting</a>
+        <a href="http://www.hosting-banan-cz.cz/" title="hosting banan.cz">hosting banan.cz</a>
+		<a href="http://www.hosting-banan.cz/" title="hosting banan.cz">hosting banan.cz</a>
+        <a href="http://owebu.bloger.cz/" title="hosting banan.cz">hosting banan.cz</a>
+ </span><a href="http://www.bloger.cz/vymena.odkazu.php" target="_blank" class="posledni">Výměna odkazů</a>	</div>
+
+	</div></div></div>
+</body>
+</html>

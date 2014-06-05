@@ -1,0 +1,525 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" />
+<head>
+<title>FJP - cvičení 9</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+<h1>
+Formální jazyky a překladače - cvičení 9
+</h1>
+<h2>
+Transformace bezkontextových gramatik
+</h2>
+
+
+V tomto cvičení se budeme zabývat základními transformacemi bezkontextových gramatik - BKG (též CFG, context-free 
+grammar). Popsané postupy a myšlenky jsou jednoduché a vcelku přímočaré, leč začátečník se může na chvíli
+v záplavě písmenek ztratit. Stane-li se vám to, nezoufejte. Zkuste na věc přijít selským rozumem a uvidíte, že 
+na tom nic není :).
+<p>
+Nechť G je bezkontextová gramatika daná čtveřicí (N, T, P, S), kde N je množina neterminálních symbolů, T množina
+terminálních symbolů, P přepisovací pravidla a S startovací symbol. Připomeňme si, že gramatika je bezkontextová, 
+tvoří-li levou stranu všech přepisovacích pravidel právě jeden neterminální symbol, tj. pravidla jsou ve tvaru 
+<tt>X --> <b><i>w</b></i></tt>, kde X je neterminální symbol a <b><i>w</i></b> řetězec složený z 
+terminálních i neterminálních symbolů.
+<p>
+Gramatika generuje nějaký jazyk, tj. množinu řetězců terminálních symbolů. Tato množina může být konečná, 
+nekonečná nebo i prázdná. Postupně se budeme zabývat těmito otázkami: Je generovaný jazyk prázdný? Jsou 
+v gramatice takové symboly, které by v ní být nemusely? Dá se něco udělat s přepisovacími pravidly, aby gramatika
+vypadala "lépe"?
+
+<h3>Nedostupné symboly</h3>
+Začneme-li vytvářet ze startovacího symbolu S gramatiky G větné formy, může se stát, že k některým symbolům 
+(terminálním či neterminálním) vůbec nedojdeme. Takové symboly nazveme nedostupné. Základem algoritmu k jejich 
+vyhledání je přímočarý postup, kterým "prolézáme" pravidla a sespisujeme symboly, na které jsme narazili.
+<p>
+Algoritmus<p>
+<pre>
+1) V<sub>0</sub> = {S}, i=1
+2) V<sub>i</sub> = {X: A --> <i>a</i> X <i>b</i> je přepisovací pravidlo, <i>a</i> a <i>b</i> jsou řetězce symbolů, A náleží V<sub>i-1</sub>} + V<sub>i-1</sub>
+3) Je-li V<sub>i</sub> != V<sub>i-1</sub>, pak i++ a jdi na (2), jinak
+   V<sub>D</sub> = V<sub>i</sub> (dostupné symboly)
+   V<sub>N</sub> = N + T - V<sub>D</sub> (nedostupné symboly)
+</pre>
+Gramatiku bez nedostupných symbolů zapíšeme snadno - budeme psát  jen ta přepisovací pravidla, ve kterých figurují
+dostupné symboly. Zároveň upravíme i množiny N a T.
+<p>
+
+<h3>
+Příklady
+</h3>
+<ol>
+<li> G = (N, T, P, S), N = {S, A, B}, T = {a, b}, P:
+<pre>
+S --> aB | bB
+A --> a | BA
+B --> aS | bB
+</pre>
+Postupujeme podle algoritmu:
+<pre>
+V<sub>0</sub> = {S}
+V<sub>1</sub> = {S, B, a, b}
+V<sub>2</sub> = {S, B, a, b} = V<sub>1</sub>, tj. V<sub>D</sub> = {S, B, a, b}
+</pre>
+Potom G' = {N', T', P', S}, kde N' = {S, B}, T' = {a, b} a P:
+<pre>
+S --> aB | bB
+B --> aS | bB
+</pre>
+
+<li> G = (N, T, P, S), N = {S, A, B, C}, T = {a, b}, P:
+<pre>
+S --> A | aB
+A --> a | BA
+B --> bB | e
+C --> ABC | S
+</pre>
+Postupujeme podle algoritmu:
+<pre>
+V<sub>0</sub> = {S}
+V<sub>1</sub> = {S, A, B, a}
+V<sub>2</sub> = {S, A, B, a, b} 
+V<sub>3</sub> = V<sub>2</sub>, tj. V<sub>D</sub> = {S, A, B, a, b}
+</pre>
+Potom G' = {N', T', P', S}, kde N' = {S, A, B}, T' = {a, b} a P:
+<pre>
+S --> A | aB
+A --> a | BA
+B --> bB | e
+</pre>
+</ol>
+<h3>Je jazyk prázdný?</h3>
+Díky předchozímu textu umíme vyloučit z gramatiky takové symboly, které v ní nejsou evidentně užitečné. Za chvíli
+si ukážeme, že existuje ještě jeden typ takových symbolů. K tomu budeme potřebovat vědět, zda jazyk generovaný 
+gramatikou G není prázdný, respektive budeme potřebovat algoritmus, který to zjistí.<p>
+Jazyk L(G) je množina řetězců terminálních symbolů. Gramatika může mít ale takovou vlastnost, že při derivacích
+(přepisování) nebudou ubývat neterminální symboly. Nyní tedy chceme zjistit, zda z gramatiky G vůbec lze takový
+řetězec generovat.
+<p>
+Algoritmus:<p>
+<pre>
+1) N<sub>0</sub> = {}, i = 1
+2) N<sub>i</sub> = {A: A --> <i>a</i>, <i>a</i> je řetězec složený ze symbolů N<sub>i-1</sub> a T} + N<sub>i-1</sub>
+3) Je-li N<sub>i</sub> != N<sub>i-1</sub>, i++ a jdi na (2), jinak
+   N<sub>t</sub> = N<sub>i</sub>
+4) Je-li S prvkem N<sub>t</sub>, je L(G) neprázdný, v opačném případě je prázdný.
+</pre>
+Základní myšlenka je prostá. Pravidla bývají rekurzivní. Aby se mohl generovat řetězec terminálních symbolů, musí
+se rekurze někde zastavit. Nejprve najdeme takové neterminální symboly, u kterých se rekurze může zastavit díky
+vhodnému přepisovacímu pravidlu (symbol se přepisuje na prázdný řetězec nebo na řetězec terminálních symbolů). 
+Takovým symbolům budeme říkat "dobré".
+Má-li nějaký jiný neterminální symbol X na pravé straně přepisovacího pravidla řetězec z terminálních symbolů a 
+"dobrých" neterminálních symbolů, je i X "dobrý". A tak dále. Je-li "dobrý" i startovací symbol, je celá
+gramatika "dobrá", tj. generuje neprázdný jazyk. Jasné?
+
+<h3>Příklady</h3>
+
+<ol start="3">
+<li>gramatika G z příkladu 1 bez nedostupných symbolů, tj. G = (N, T, P, S), N = {S, B}, T = {a, b}, P:
+<pre>
+S --> aB | bS
+B --> aS | bB
+</pre>
+Postupujeme podle algoritmu:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = N<sub>0</sub>, protože P neobsahuje žádné "dobré" pravidlo
+</pre>
+Jazyk L(G) je tedy prázdný.
+<p>
+<li>G = (N, T, P, S), N = {S, A, B}, T = {a, b}, P:
+<pre>
+S --> A | aB
+A --> a | BA
+B --> bB | e
+</pre>
+Postupujeme podle algoritmu:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {A, B}
+N<sub>2</sub> = {S, A, B} = N<sub>t</sub>
+</pre>
+Startovací symbol je "dobrý", tj. náleží do množiny N<sub>t</sub>, tj. L(G) je neprázdný.
+<p>
+<li>G = (N, T, P, S), N = {S, A, B, C, D}, T = {a, b}, P:
+<pre>
+S --> aAB | A
+A --> bC | D
+B --> A | b
+C --> S
+</pre>
+Připadá-li vám, že je v zadání chyba, neboť pravidla nedefinují přepisovací pravidla pro symbol D, dáváte pozor. 
+Ale ne úplně, protože není nikde řečeno, že se všechny neterminální symboly musí vyskytovat na levé straně!
+Asi cítíte, že symbol D je v této gramatice zbytečný, tím se ale budeme zabývat až za chvíli. Nyní jen zjistíme,
+zda je L(G) prázdný nebo ne.
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {B}
+N<sub>2</sub> = {B} = N<sub>1</sub> = N<sub>t</sub>
+</pre>
+Nejenže gramatika obsahuje zbytečný symbol, gramatika je nějak zbytečná celá, protože generuje prázdný jazyk.
+</ol>
+
+
+<h3>Zbytečné symboly</h3>
+Víme, že některé symboly gramatiky mohou být nedostupné. Ty jsou zbytečné automaticky. V posledním příkladu 
+jsme viděli, že symbol D byl také zbytečný, protože pro něj neexistovalo přepisovací pravidlo. Pokud si celý
+problém formalizujeme, zjistíme, že přepisování probíhá asi takto:
+<pre>
+S -->* <i>a</i> X <i>b</i> -->* <i>a</i> <i>c</i> <i>b</i>
+</pre>
+kde <i>a</i>, <i>b</i> a <i>c</i> jsou řetězce terminálních symbolů, X je neterminální symbol a S startovací 
+symbol. Šipka s hvězdičkou představuje přepsání, které může být sérií základních derivací. 
+Pokud pro symbol X neexistuje takové přepsání, je symbol X zbytečný. Jinými slovy, jakmile se ve větné formě 
+objeví X, nikdy už z ní nevyloučím neterminální symboly.<p>
+Odstranění zbytečných symbolů probíhá ve dvou krocích. Nejprve najdeme množinu N<sub>t</sub>. 
+Nová gramatika bude obsahovat jen tyto "dobré" neterminální symboly. Z nich je ale zapotřebí vyházet všechny 
+nedostupné symboly. Snadné, že?
+
+<h3>Příklady</h3>
+<ol start="6">
+<li>G = (N, T, P, S), N = {S, A, B}, T = {a, b}, P:
+<pre>
+S --> ab | AB
+A --> AB
+B --> b
+</pre>
+Nejprve najdeme N<sub>t</sub>:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {S, B}
+N<sub>2</sub> = N<sub>1</sub> = N<sub>t</sub>
+</pre>
+Pomocná gramatika je:
+<pre>
+S --> ab
+B --> b
+</pre>
+Vyloučíme nedostupné symboly:
+<pre>
+V<sub>0</sub> = {S}
+V<sub>1</sub> = {S, a, b} = V<sub>D</sub>
+</pre>
+Gramatika bez zbytečných symbolů obsahuje jen jedno pravidlo, a to:
+<pre>
+S --> ab
+</pre>
+<p>
+
+<li>G = (N, T, P, S), N = {S, A, B, C, D}, T = {a, b, c}, P:
+<pre>
+S --> aB | bD
+A --> aB | bCD
+B --> ABCD
+C --> cC | A
+D --> aD | e
+</pre>
+Najdeme N<sub>t</sub>:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {D}
+N<sub>2</sub> = {S, D}
+N<sub>3</sub> = N<sub>2</sub> = N<sub>t</sub>
+</pre>
+Nová gramatika má dvě pravidla (všechny symboly jsou dostupné):
+<pre>
+S --> bD
+D --> aD | e
+</pre>
+</ol>
+
+<h3>Vyloučení pravidla</h3>
+V tomto okamžiku umíme z gramatiky vyloučit všechny nepotřebné symboly. Někdy je také vhodné
+upravit či vyloučit nějaká pravidla. Princip je prostý: místo toho, aby se přepisování provedlo
+při derivaci větné formy, provedeme ho už v zápisu gramatiky. Potřebujeme-li pozměnit pravidlo
+<tt>A --> <i>a</i>B<i>b</i></tt> a všechna pravidla pro B jsou 
+<tt>B --> <i>c<sub>1</sub></i>, <i>c<sub>2</sub></i>, ..., <i>c<sub>n</sub></i></tt>, 
+přepíšeme pravidlo pro A na 
+<tt>A --> <i>ac<sub>1</sub>b</i>, <i>ac<sub>2</sub>b</i>, ..., <i>ac<sub>n</sub>b</i></tt> 
+(<i>a, b, c</i> jsou řetězce terminálních symbolů)
+<p>
+Speciálními pravidly, kterých se někdy potřebujeme zbavit, jsou tzv. e-pravidla, tj. přepsání 
+neterminálního symbolu na prázdný řetězec. Gramatikou bez e-pravidel pak budeme rozumět takovou 
+gramatiku, ve které nejsou žádná e-pravidla, až na jednu výjimku. Tou je pravidlo <tt>S --> e</tt>,
+které do gramatiky zahrneme v případě, že gramatika generuje prázdný řetězec (S je startovací
+symbol). Potom se ovšem nesmí symbol S objevit na žádné z pravých stran přepisovacích pravidel.
+<p>
+Algoritmus:
+<p>
+1) Způsobem podobným jako při hledání N<sub>t</sub> najdeme N<sub>e</sub>, množinu symbolů, které se
+dají přepsat na e.<p>
+
+2) Pravidlo <tt>A --> <i>a<sub>0</sub></i>
+                      B<sub>1</sub>
+                      <i>a<sub>1</sub></i>
+                      B<sub>2</sub>
+                      <i>a<sub>2</sub></i>
+                      ...
+                      B<sub>n</sub>
+                      <i>a<sub>n</sub></i></tt>
+nahradíme pravidly <tt>A --> <i>a<sub>0</sub></i>
+                      X<sub>1</sub>
+                      <i>a<sub>1</sub></i>
+                      X<sub>2</sub>
+                      <i>a<sub>2</sub></i>
+                      ...
+                      X<sub>n</sub>
+                      <i>a<sub>n</sub></i></tt>,
+kde X<sub>i</sub> je buď e nebo B<sub>i</sub> (vystřídáme všech 2<sup>i</sup> možností). 
+Pravidlo typu <tt>A --> e</tt> pochopitelně zapisovat nebudeme, protože takových pravidel se 
+snažíme zbavit.
+<p>
+3) Patří-li startovací symbol S do množiny N<sub>e</sub>, zařadíme do gramatiky pravidlo
+<tt>S' --> S | e</tt>. Novým startovacím symbolem pak bude S'.
+
+<h3>Příklady</h3>
+<ol start="8">
+<li> G = (N, T, P, S), N = {S, A}, T = {a, b}, P:
+<pre>
+S --> aSbS | aSbA | A
+A --> aA | e
+</pre>
+Najdeme množinu N<sub>e</sub>:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {A}       (protože A se dá přepsat na e)
+N<sub>2</sub> = {A, S}    (protože S se dá přepsat na A)
+N<sub>e</sub> = N<sub>2</sub>
+</pre>
+Nyní budeme postupně vynechávat v pravidlech ty symboly, které se dají přepsat na e:
+<pre>
+S --> aSbS | aSb | abS | ab |
+      aSbA | abA | 
+      A
+A --> aA | a
+S' --> S | e   (protože S patří do N<sub>e</sub>)
+</pre>
+<p>
+<li>G = (N, T, P, S), N = {S, A, B}, T = {a, b}, P:
+<pre>
+S --> aB | bA 
+A --> aA | B | e
+B --> bB | A | e
+</pre>
+Najdeme množinu N<sub>e</sub>:
+<pre>
+N<sub>0</sub> = {}
+N<sub>1</sub> = {A, B}
+N<sub>2</sub> = N<sub>1</sub> = N<sub>e</sub>
+</pre>
+Po přepisu:
+<pre>
+S --> aB | bA | a | b
+A --> aA | a | B
+B --> bB | b | A
+</pre>
+</ol>
+
+<h3>Jednoduchá pravidla</h3>
+Jednoduché pravidlo ja takové, při kterém se neterminální symbol přepisuje na jiný neterminální
+symbol, tedy pravidlo typu <tt>A --> B</tt>. Sama o sobě by taková pravidla v gramatice nevadila,
+i když se dá diskutovat nad tím, zda jsou skutečně nutná. Hlavní motivací jejich odstranění je
+vedlejší jev, a to cykly. Na gramatice v posledním příkladu můžeme takový cyklus vidět: A se 
+přepisuje na B a to opět na A. Odstraněním jednoduchých pravidel tedy odstraníme i cykly,
+které jsou nežádoucí při syntaktické analýze.<p>
+Nejprve pro každý neterminální symbol zjistíme, na jaké neterminální symboly se může přepsat pomocí
+jednoduchých pravidel. To se dá zjistit postupem podobným jako při hledání dostupných symbolů.
+Pro neterminální symbol <tt>A</tt> zařadíme do množiny <tt>N<sub>A</sub></tt> jak symbol <tt>A</tt>,
+tak všechny "jednoduše dostupné" symboly.<p>
+V dalším kroku již píšeme nová pravidla. Pro neterminální symbol <tt>A</tt> napíšeme vechna pravidla
+<tt>A --> </tt><i>a</i>, kde <i>a</i> jsou ne-jednoduchá pravidla pro všechny symboly z
+<tt>N<sub>A</sub></tt>.
+
+<h3>Příklady</h3>
+<ol start="10">
+<li>G = (N, T, P, E), N = {E, T, F}, T = {+, *, (, ), i}, P:
+<pre>
+E --> E + T | T
+T --> T * F | F
+F --> (E) | i
+</pre>
+V této gramatice se sice cykly nevyskytují, ale z cvičných důvodů jednoduchá pravidla odstraníme:
+<pre>
+N<sub>E</sub> = {E, T, F}
+N<sub>T</sub> = {T, F}
+N<sub>F</sub> = {F}
+</pre>
+Nová gramatika je tedy:
+<pre>
+E --> E + T | T * F | (E) | i
+T --> T * F | (E) | i
+F --> (E) | i
+</pre>
+<p>
+<li>G = (N, T, P, S), N = {A, B, S}, T = {a, b}, P:
+<pre>
+S --> aB | bA
+A --> aA | a | B
+B --> bB | b | A
+</pre>
+Sestavíme množiny N<sub>?</sub>:
+<pre>
+N<sub>S</sub> = {S}               (zajímají nás jen jednoduchá pravidla!)
+N<sub>A</sub> = {A, B}
+N<sub>B</sub> = {A, B}
+</pre>
+Nová gramatika je:
+<pre>
+S --> aB | bA 
+A --> a | aA | b | bB
+B --> a | aA | b | bB
+</pre>
+</ol>
+<b>Vlastní gramatika</b> je gramatika bez zbytečných symbolů, bez e-pravidel a bez cyklů.
+
+<h3>Odstranění levé rekurze</h3>
+Pravidlo je levorekurzivní, je-li ve tvaru <tt>A --> A...</tt>. Gramatiky s levorekurzivními
+pravidly jsou nevhodné pro některé typy syntaktické analýzy. Jsou-li všechna pravidla 
+pro neterminální symbol A zapsána jako
+<pre>
+A --> A<i>a</i><sub>1</sub> | A<i>a</i><sub>2</sub> | ... | A<i>a</i><sub>m</sub> |
+      <i>b</i><sub>1</sub> | <i>b</i><sub>2</sub> | ... | <i>b</i><sub>n</sub>
+</pre>
+kde <i>a</i><sub>i</sub> a <i>b</i><sub>i</sub> jsou řetězce terminálních a neterminálních
+symbolů a žádné <i>b</i><sub>i</sub> nezačíná symbolem A, můžeme odstranit přímou levou rekurzi
+takto:
+<pre>
+A  --> <i>b</i><sub>1</sub> | <i>b</i><sub>2</sub> | ... | <i>b</i><sub>n</sub> |
+       <i>b</i><sub>1</sub>A' | <i>b</i><sub>2</sub>A' | ... | <i>b</i><sub>n</sub>A'
+A' --> <i>a</i><sub>1</sub> | <i>a</i><sub>2</sub> | ... | <i>a</i><sub>m</sub> |
+       <i>a</i><sub>1</sub>A' | <i>a</i><sub>2</sub>A' | ... | <i>a</i><sub>m</sub>A'
+</pre>
+nebo pomocí e-pravidel:
+<pre>
+A  --> <i>b</i><sub>1</sub>A' | <i>b</i><sub>2</sub>A' | ... | <i>b</i><sub>n</sub>A'
+A' --> e | <i>a</i><sub>1</sub>A' | <i>a</i><sub>2</sub>A' | ... | <i>a</i><sub>m</sub>A'
+</pre>
+Sice jsme se učili e-pravidla odstraňovat, ale někdy jsou menší zlo.<p>
+Nepřímá levá rekurze je například toto: <tt>A --> B..., B --> A...</tt>. Její odstranění funguje
+podobně jako u přímé rekurze. Je velmi vhodné si do odstraňování zavést nějaký systém, jinak je 
+slušná šance, že se v záplavě písmenek člověk ztratí!<p>
+
+Jeden ze systémů je následující. Označíme si neterminální symboly jako <tt>N<sub>1</sub></tt>,
+<tt>N<sub>2</sub></tt>, ..., <tt>N<sub>n</sub></tt>. Jsou-li v gramatice pravidla typu
+<tt>N<sub>i</sub> --> N<sub>j</sub>...</tt>, budeme se snažit, aby pokud možno
+<tt>i&lt;j</tt>, tj. aby se přepisování neodkazovalo na předcházející symboly. Není to nutné, ale může 
+to ušetřit práci. Pro pravidlo <tt>N<sub>i</sub> --> ...</tt> nejprve zajistíme, aby se 
+neodkazovalo na předcházející symboly. I v tom je třeba zavést pořádek, proto nejdříve odstraníme 
+odkaz na <tt>N<sub>1</sub></tt>, pak na <tt>N<sub>2</sub></tt> atd. Až na závěr si necháme odstranění
+přímé levé rekurze <tt>N<sub>i</sub> --> N<sub>i</sub></tt>. Toto "čištění" pravidel 
+provedeme postupně pro <tt>N<sub>1</sub></tt>, <tt>N<sub>2</sub></tt> atd.
+<h3>Příklady</h3>
+<ol start="12">
+<li>G = (N, T, P, E), N = {E, T, F}, T = {+, *, (, ), i}, P:
+<pre>
+E --> E + T | T
+T --> T * F | F
+F --> (E) | i
+</pre>
+Vidíme, že zde nepřímá levá rekurze není, budeme mít méně práce. Nejprve bez e-pravidel:
+<pre>
+E  --> T | TE'
+E' --> + T | + TE'
+T  --> F | FT'
+T' --> * F | * FT'
+F  --> (E) | i
+</pre>
+V dalším cvičení zjistíme, že pro syntaktickou analýzu je vhodnější zavedení e-pravidel:
+<pre>
+E  --> TE'
+E' --> e | + TE'
+T  --> FT'
+T' --> e | * FT'
+F  --> (E) | i
+</pre>
+<p>
+<li>G = (N, T, P, A), N = {A, B, C}, T = {a, b}, P:
+<pre>
+A --> AB | C | Bb
+B --> Ab | Ca
+C --> Aa | b
+</pre>
+Zde se nepřímá levá rekurze vyskytuje. Při uspořádání symbolů A-B-C se B i C odkazují na předešlý
+symbol, A. V uspořádání B-C-A se na předešlý symbol odkazuje jen A. Použijeme tedy pořadí B-C-A.
+<pre>
+B  --> Ab | Ca      (první pravidlo se nemůže odkazovat na předešlé symboly,
+                     přímá levá rekurze zde není)
+C  --> Aa | b       (neodkazuje se na B, přímá levá rekurze zde není)
+
+   A --> AB | C | Bb                          (původní pravidla)
+   A --> AB | C | Abb | Cab                   (odstranili jsme odkaz na B)
+   A --> AB | Aa | b | Abb | Aaab | bab       (odstranili jsme odkaz na C)
+
+A  --> b | bab | bA' | babA'                  (nyní už píšeme definitivní pravidla)
+A' --> B | a | bb | aab | BA' | aA' | bbA' | aabA'
+</pre>
+S e-pravidly:
+<pre>
+B  --> Ab | Ca      
+C  --> Aa | b
+
+   A --> AB | C | Bb                          (původní pravidla)
+   A --> AB | C | Abb | Cab                   (odstranili jsme odkaz na B)
+   A --> AB | Aa | b | Abb | Aaab | bab       (odstranili jsme odkaz na C)
+
+A  --> bA' | babA'                            (definitivní pravidla)
+A' --> e | BA' | aA' | bbA' | aabA'
+</pre>
+</ol>
+<hr>
+<h2>Příklady na procvičení</h2>
+<ol>
+<li>Převeďte G = (N, T, P, S) na gramatiku bez zbytečných symbolů:
+<pre>
+S --> A | B
+A --> aB | bS | b
+B --> AB | Ba
+C --> AS | b
+</pre>
+<p>
+<li>Odstraňte u G=(N, T, P, S) e-pravidla:
+<pre>
+S --> ABC
+A --> BB | e
+B --> CC | a
+C --> AA | b
+</pre>
+<p>
+<li>Odstraňte u G=(N, T, P, S') jednoduchá pravidla:
+<pre>
+S' --> S | e
+S  --> A | B
+A  --> C | D
+B  --> D | E
+C  --> S | a
+D  --> S | b
+E  --> S | c
+</pre>
+<p>
+<li>Odstraňte u G=(N, T, P, A) levou rekurzi bez použití e-pravidel:
+<pre>
+A --> Ba | c
+B --> CA | bb
+C --> Ab | Bb
+</pre>
+<p>
+<li>Odstraňte u G=(N, T, P, S) levou rekurzi s použitím e-pravidel:
+<pre>
+S --> AB
+A --> BS | b
+B --> SA | a
+</pre>
+</ol>
+
+<!--
+<p>Ale protože už je termín odevzdání pryč, <a href="fjp9_reseni.html">zde</a> je řešení. </p>
+-->
+
+<p>
+<a href="index.html">Zpět na hlavní stránku</a>
+<hr>
+<small>Poslední úprava 24.11.2008. Zjistíte-li někde chybu, zašlete ji prosím na adresu 
+<a href="mailto:lobaz@kiv.zcu.cz">cvičícího</a>.
+</small>
+</body>
+</html>
