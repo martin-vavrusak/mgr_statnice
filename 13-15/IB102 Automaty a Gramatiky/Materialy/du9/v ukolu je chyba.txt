@@ -1,0 +1,3 @@
+A -> bAb |Sas |ABS | aaS  je spatne spravne ma byt:
+
+A -> bAb |aSaS |ABS | aaS
