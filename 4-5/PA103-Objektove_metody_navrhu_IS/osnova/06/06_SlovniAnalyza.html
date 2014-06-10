@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> Hledání analytických tøíd - Slovní analýza </title>
+</head>
+
+<body>
+
+<h3>Informaèní systém <i>Studium</i></h3>
+
+<p>Informaèní systém <i>Studium</i> bude sloužit pro podporu <font color="blue">správy</font> <font color="red">kurzù</font> vèetnì elektronického <font color="blue">pøihlašování</font> a <font color="blue">odhlašování</font>.</p>
+
+<p><font color="blue">Správa</font> <font color="red">studijích kurzù</font> umožní <font color="red">lektorùm</font> <font color="blue">pøidávání</font> nových <font color="red">kurzù</font>, <font color="blue">mazání</font> <font color="red">kurzù</font> a <font color="blue">úpravu</font> stávajících parametrù, kterými jsou <font color="green">název</font>, <font color="green">popis</font>, <font color="green">prerekvizity</font>, <font color="green">kapacita</font>, <font color="blue">nastavení</font> <font color="green">rozvrhu</font> a rozlišení, zda jde o <font color="red">prezenèní</font> nebo <font color="red">distanèní kurz</font>.</p>
+
+<p><font color="red">Studenti</font> dostanou možnost využít systém k elektronickému <font color="blue">zápisu</font> do <font color="red">kurzù</font> a <font color="blue">odhlašování</font> z <font color="red">kurzù</font>. <font color="blue">Zápis</font> do <font color="red">kurzu</font> bude umožnìn jen v pøípadì, že dosud není <font color="blue">naplnìna</font> <font color="green">kapacita</font> <font color="red">kurzu</font>. Pokud dojde k <font color="blue">vyèerpání</font> <font color="green">kapacity</font> <font color="red">kurzu</font>, systém <font color="blue">pošle upozornìní</font> na <font color="green">email</font> <font color="red">lektora</font> <font color="green">zodpovìdnìho za</font> <font color="red">kurz</font>.</p>
+
+<p>Jednou z doplòkových funkcí systému bude podpora pro <font color="blue">vkládání</font> <font color="red">pracovních výkazù</font> o <font color="green">odpracovaných hodinách</font> pro <font color="red">externí lektory</font>, kteøí na rozdíl od <font color="red">interních lektorù</font> nepobírají <font color="green">mìsíèní mzdu</font> a jsou placeni na základì <font color="green">odpracovaných hodin</font>.</p>
+
+<p><b>Legenda:</b><br/>
+<font color="red">èervenì</font> - podstatné jméno kadnidátem na tøídu<br/>
+<font color="green">zelenì</font> - podstatné jméno kandidátem na atribut<br/>
+<font color="blue">modøe</font> - sloveso kandidátem na operaci/metodu</p>
+
+<h3>Získané tøídy, atributy a operace:</h3>
+
+<p><font color="red">Tøída:</font> Kurz/PrezencniKurz/DistancniKurz<br/>
+<font color="green">Atributy:</font> nazev, popis, prerekvizity, kapacita, rozvrh, zodpovednyLektor<br/>
+<font color="blue">Operace:</font> spravovatKurz, prihlasitStudenta, odhlasitStudenta, zaslatUpozorneni</p>
+
+<p><font color="red">Tøída:</font> Student<br/>
+<font color="green">Atributy:</font> ---<br/>
+<font color="blue">Operace:</font> ---</p>
+
+<p><font color="red">Tøída:</font> Lektor/InterniLektor/ExterniLektor<br/>
+<font color="green">Atributy:</font> email, mesicniMzda<br/>
+<font color="blue">Operace:</font> ---</p>
+
+<p><font color="red">Tøída:</font> PracovniVykaz<br/>
+<font color="green">Atributy:</font> odpracovaneHodiny<br/>
+<font color="blue">Operace:</font> vlozitVykaz</p>
+
+<h3>Výsledné tøídy, atributy a operace po doplnìní v podobì CRC:</h3>
+
+<p><font color="red">Tøída:</font> Kurz/PrezencniKurz/DistancniKurz<br/>
+<font color="green">Atributy:</font> nazev, popis, prerekvizity, kapacita, rozvrh<br/>
+<font color="blue">Operace (zodpovìdnosti):</font> pridatKurz, smazatKurz, upravitUdaje, prihlasitStudenta, odhlasitStudenta, zaslatUpozorneni<br/>
+<b>Spolupracovníci:</b> Studenti, zodpovìdný Lektor, vyuèující Lektoøi</p>
+
+<p><font color="red">Tøída:</font> Student<br/>
+<font color="green">Atributy:</font> jmeno, adresa, email<br/>
+<font color="blue">Operace (zodpovìdnosti):</font> pridatStudenta, smazatStudenta, upravitUdaje<br/>
+<b>Spolupracovníci:</b> Kurzy</p>
+
+<p><font color="red">Tøída:</font> Lektor/InterniLektor/ExterniLektor<br/>
+<font color="green">Atributy:</font> jmeno, adresa, email, mesicniMzda/hodinovaMzda<br/>
+<font color="blue">Operace (zodpovìdnosti):</font> pridatLektora, smazatLektora, upravitUdaje<br/>
+<b>Spolupracovníci:</b> PracovniVykaz, vyuèované Kurzy, spravované Kurzy</p>
+
+<p><font color="red">Tøída:</font> PracovniVykaz<br/>
+<font color="green">Atributy:</font> odpracovaneHodiny, datum<br/>
+<font color="blue">Operace (zodpovìdnosti):</font> vlozitVykaz, smazatVykaz<br/>
+<b>Spolupracovníci:</b> Lektor, Kurz</p>
+
+</body>
+</html>

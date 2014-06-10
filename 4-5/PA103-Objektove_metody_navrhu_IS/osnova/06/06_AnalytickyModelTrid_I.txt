@@ -1,0 +1,79 @@
+Analytický model tříd - 1. část
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+28. března 2011
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 1 / 7
+Diagram tříd - opakování
+Diagram tříd poskytuje statický pohled na třídy systému, jejich
+atributy, operace a vzájemné vztahy.
+UML určuje pouze vizuální syntaxi diagramu tříd, postup tvorby
+včetně rozdělení na analytickou a návrhovou fázi určují metodiky.
+Analytický model tříd:
+• Modeluje obchodní doménu systému - typy objektů a vztahy
+mezi nimi.
+• Snaha o zachování přehlednosti a jednoduchosti bez zanášení
+implementačních detailů.
+Návrhový model tříd:
+• Rozšiřuje analytický model tříd o implementační třídy a
+detaily.
+• Často obsahuje až 10x více tříd.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 2 / 7
+Analytický model tříd
+Možný postup tvorby:
+1 Nalezení tříd, základních atributů, operací a spolupracovníků
+2 Určení dědičnosti mezi třídami
+3 Zachycení vztahů pomocí asociací
+4 Pojmenování asociací nebo rolí na nich
+5 Určení násobností relací
+6 Zachycení závislostí
+7 Doplnění dalších atributů a operací, které mají analytický
+charakter
+Pozn.: Dnes se zaměříme na kroky 1-4.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 3 / 7
+Hledání analytických tříd
+Pro nalezení analytických tříd lze použít:
+• Analýzu podstatných jmen a sloves dostupných dokumentů
+(speciﬁkace, dokumentace případů užití)
+• Metodu štítků CRC (Class, Responsibilities and Collaborators)
+• Analýzu dalších zdrojů (ﬁremní dokumenty, externí systémy,
+fyzické objekty)
+Snažte se hledat třídy nezávisle ve více zdrojích a poté výsledky
+porovnejte a sestavte výslednou množinu tříd.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 4 / 7
+Jak poznat dobrou analytickou třídu
+Dobrá analytická třída nese tyto vlastnosti:
+• Jednoduchost - pouze 3-5 odpovědností
+• Soudržnost - vnitřní soudržnost a min. vazeb na jiné třídy
+• Spolupráce - třída neexistuje ve vzduchoprázdnu
+• Dobré pojmenování - název třídy by měl odrážet její účel
+Dejte si pozor na:
+• velké množství malých tříd - pokuste se je sloučit
+• malé množství velkých tříd - pokuste se je rozložit
+• schovávání procedurálních funkcí za obal třídy
+• třídy, které řídí běh jiných tříd
+• hluboké hierarchie dědičnosti
+• modelování implementačních detailů (to je otázkou návrhu)
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 5 / 7
+Relace mezi třídami (1)
+Relace mezi třídami nám umožňují modelovat vzájemnou
+spolupráci a závislost tříd.
+Základními typy jsou:
+• Generalizace (dědičnost)
+• Asociace
+• Závislosti
+Generalizace pomáhají určit hierarchii dědičnosti. Často se
+používají abstraktní třídy a metody.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 6 / 7
+Relace mezi třídami (2)
+Asociace vyjadřují sémantickou vazbu mezi třídami.
+Vlastnosti asociací:
+• Název asociace - vyjádřen slovesnou frází
+• Názvy rolí na jejích koncích
+• Násobnosti - omezení na počet spolupracujících objektů
+• Řiditelnost - vyjadřuje, zda jde o jednosměrnou nebo
+obousměrnou relaci
+Pozn.: Pokud se v analytickém modelu vyskytne vazba N:M,
+nerozkládejte ji, pokud nepotřebujete zachytit atributy této vazby.
+Pokud atributy potřebujete zachytit, vyjádřete vazbu pomocí
+asociační třídy nebo samostatné třídy.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 1. část 28. března 2011 7 / 7

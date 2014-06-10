@@ -1,0 +1,68 @@
+<HTML><HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-2">
+<META NAME="generator" CONTENT="text to html for is.muni.cz">
+</HEAD>
+<BODY><PRE>Interakční diagramy
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+11. dubna 2011
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 1 / 6
+Interakční diagramy (1)
+Slouží k zachycení dynamického chování systému (interakce mezi
+třídami/objekty/účastníky systému) pro dosažení požadované
+funkčnosti.
+1. Communication diagram (komunikační diagram) zachycuje
+interakci jako provázání objektů/tříd a vzájemnou komunikaci
+putující po těchto vazbách.
+2. Sequence diagram (sekvenční diagram) zachycuje opět
+komunikaci mezi objekty/třídami, ale klade důraz na časovou
+složku (souslednosti).
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 2 / 6
+Interakční diagramy (2)
+3. Timing diagram pomáhá modelovat real-time systémy, kde je
+největší důraz kladen na časová omezení jednotlivých částí
+interakce.
+4. Interaction overview diagram nabízí pohled zhora na
+souvislosti složitějších interakcí (například v jakém pořadí jsou
+vykonávány jednotlivé případy užití).
+My se zaměříme na 1. a 2.
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 3 / 6
+Komunikační a sekvenční diagramy
+Spolupráce probíhá v obou diagramech přes zasílání zpráv typu:
+• Volání metody, které může být synchronní (odesílatel čeká na
+dokončení) nebo asynchronní (odesílatel nečeká na dokončení)
+• Návrat z volání metody (implicitní, ale lze vyjádřit explicitně)
+• Vytvoření/destrukce objektu (stereotypy create /
+destroy )
+Pro komunikační i sekvenční diagram existují dvě varianty:
+• Diagram obecné interakce - třídy, asociace
+Př.: Lektor
+• Diagram konkrétní interakce - objekty, spojení
+Př.: :Lektor, pepa :Lektor,
+pepa [jmeno = ”Josef Novak”] :Lektor
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 4 / 6
+Komunikační diagram
+Komunikační diagram zachycuje interakci jako provázání
+objektů/tříd a vzájemnou komunikaci putující po těchto vazbách.
+Hlavní prvky diagramu spolupráce:
+• Objekty/třídy/účastníci
+• Zaslání zprávy jinému objektu
+Př.: 1.2 [!found]: zasliUpozorneni() //found = (student !=
+null) & (kurz != null)
+Př.: 2.1b *[i:=1..n]: vysledek := vyhledej(i)
+• Sebepověření
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 5 / 6
+Sekvenční diagram
+Sekvenční diagram slouží k zachycení časově orientovaných
+posloupností zpráv zasílaných mezi objekty.
+Hlavní prvky sekvenčního diagramu:
+• Objekty/třídy/účastníci
+• Čára života (včetně vzniku a zániku objektu)
+• Aktivace (focus of control) - možnost vnořování
+(sebepověření)
+• Zaslání zprávy jinému objektu (viz. výše)
+• Oddělení části interakce do fragmentů označených operátory
+jako opt, alt, loop (např. loop [pro kazdy objekt z vysledek];
+loop 1,n), par, ref, ...
+PV167 Projekt z obj. návrhu IS Interakční diagramy 11. dubna 2011 6 / 6</PRE></BODY>
+</HTML>

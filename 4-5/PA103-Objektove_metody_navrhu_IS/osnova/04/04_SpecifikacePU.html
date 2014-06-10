@@ -1,0 +1,60 @@
+<HTML><HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-2">
+<META NAME="generator" CONTENT="text to html for is.muni.cz">
+</HEAD>
+<BODY><PRE>Speciﬁkace případů užití
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+14. března 2011
+PV167 Projekt z obj. návrhu IS Speciﬁkace případů užití 14. března 2011 1 / 5
+Speciﬁkace případů užití
+Speciﬁkace případů užití blíže popisuje vlastnosti a chování (tok
+událostí) konkrétního případu užití.
+Pro speciﬁkaci případu užití můžeme použít:
+• Textovou speciﬁkaci
+• Diagram aktivit
+• Stavový diagram
+• Sekvenční diagram
+• Komunikační diagram
+PV167 Projekt z obj. návrhu IS Speciﬁkace případů užití 14. března 2011 2 / 5
+Diagram aktivit 1/2
+Diagram aktivit je objektově orientovaný diagram toků (kolekce
+aktivit/akcí a přechodů mezi nimi).
+Základní prvky diagramu aktivit jsou:
+• Akce (nedělitelné, nepřerušitelné, okamžité)
+• Dílčí aktivity (lze je dělit na další dílčí aktivity a akce, jsou
+přerušitelné, mohou trvat určitou dobu)
+• Počáteční a koncový stav
+• Přechody doplněné o rozhodovací stavy (podmíněné větvení)
+a souběžný běh
+PV167 Projekt z obj. návrhu IS Speciﬁkace případů užití 14. března 2011 3 / 5
+Diagram aktivit 2/2
+Můžete se setkat i s dalšími prvky:
+• Zajímavé jsou např. plavecké zóny – rozdělení dle účastníků,
+případů užití, tříd, komponent, organizačních jednotek
+Nezapomínejte, že:
+• Při podmíněném větvení přechodu se musí podmínky na
+výstupních přechodech vylučovat a pokrývat všechny
+možnosti.
+• Akce a aktivity popisujte slovesnou vazbou nebo
+pseudokódem.
+• Pokud z akce/aktivity vystupuje více šipek, interpretuje se
+jejich provádění jako paralelní běh; stejně to platí se
+vstupujícími šipkami
+• Proto je lepší si hlídat, aby do/z každého stavu
+vstupovala/vystupovala pouze jedna šipka
+PV167 Projekt z obj. návrhu IS Speciﬁkace případů užití 14. března 2011 4 / 5
+Relace include a extend v diagramu aktivit
+Vyznačení těchto relací v diagramu aktivit UML přímo
+nespeciﬁkuje. Lze použít následující značení.
+Relace include :
+• Odlišením aktivit vkládajícího a vkládaného případů užití
+rozdělením do dvou plaveckých zón.
+Relace extend :
+• Pokud má být bod rozšíření vložen mezi Aktivitu1 a Aktivitu2,
+vložte za Aktivitu1 rozhodovací bod pro větvení, ze kterého
+umožněte jeden přechod do Aktivity2 a druhý přechod do
+rozšiřujícího případu užití, po jehož ukončení se přejde do
+Aktivity2. Opět lze použít plavecké zóny.
+PV167 Projekt z obj. návrhu IS Speciﬁkace případů užití 14. března 2011 5 / 5</PRE></BODY>
+</HTML>

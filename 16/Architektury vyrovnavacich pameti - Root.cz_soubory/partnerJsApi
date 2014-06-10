@@ -1,0 +1,67 @@
+
+sklik014829531985370326(
+    [ 
+        
+        { 
+            isBanner      : false,
+            adUrl         : "http://www.lcd-display.cz/",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://www.lcd-display.cz/&c=2V3WDEC28MDFH6FFW5B3DJU2VZFDAKZIFDYFDEK69AB9KR67B5GUIXBZN2Y7XC3SW5MAFTS8P4M9HSHZXKGCSZ7V8XTBIIZBBEABWPXDAU7N9SDDF8MF88AVEVBZ2RFK5744VPMYQZABYCU6MDMUN56PRXIXIRVQTPP5RGTBQ7V5X9AZIFPIBTTCISP9CPNPICP8R6NJ63NUY3K8VX4W78USXDCTJS5QQSMA3SPUH4AKQ3G39ATZMYP6WSCY2IEPJJW5C8NXC4RDEJXT3845EQ67YE9Y7VJMDY5RDZD5TDJI45MIXZCPAPK3AH3AIYBQQJJTSIQ7XC4KXUGMIGFGVHFPVJ9R2BRA3NWSR6S6G4XUBWVCFCE835MQESW3A3HTVIS8Y4RSTYYEVZ2XHNFF3USEFG8HKE6EEYJKG8Q7ZFPTWTT4MXFYCRY42ZJIBEZX8ESZ2",
+            visibleUrl    : "www.lcd-display.cz",
+            creative1     : "Displeje do Laptopů",
+            creative2     : "3000Kč za displej + 150kč kuryr GLS", 
+            creative3     : "Dodání k Vám domů do 24hod"
+        } ,  
+        { 
+            isBanner      : false,
+            adUrl         : "http://rozjezdyroku.cz/hlasovani/?utm_medium=cpc&utm_source=sklik&utm_campaign=Rozjezdy&utm_content=Hlasovani",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://rozjezdyroku.cz/hlasovani/%3Futm_medium%3Dcpc%26utm_source%3Dsklik%26utm_campaign%3DRozjezdy%26utm_content%3DHlasovani&c=PII7QPVKDXISS3PI9RGAJFP69WEJ2QT3A5ZQTHDQBIYZ9G2P25ZIPXCUKUKEHWJMCW7X5YHPAZ9WJH8DB6IEGCKHX8PFREDHGP279TQB2KFQ6RYP6WSVRJBA7YQGUIXRZHM8K7ZPADYUFU49VTITRM8395VDH7NM9SGAKRFBAP7BXGGKMY4RZD9IFVIEIW4FMKUIHQZ7J5WMZ8F55FWXKRMATH9BAKY7ZKENCCM3EXNAGDGF3XAMM2MJ6PE5G433QY72MH8UZWI4Z29UDMYDCKA4AC9C7BDTH2CY2QCNKBHDR9MKQSPDVPVXD7J68MKMIHA9T2BUU9QCC4TPYTTGMQE75EI4HA5DGHBZMNGKJNUD2RMXTX5DI2P2TPQWG7H864J7QFWB4P5DXH7WK9TR5CYUPM9S8NW84RS2KVA47ZQCXNS6IGNZTCRHHUTGHBXSVEECUBA",
+            visibleUrl    : "Rozjezdyroku.cz/hlasovani",
+            creative1     : "Dejte hlas tomu",
+            creative2     : "nejlepšímu v Rozjezdech roku 2014.", 
+            creative3     : "Podpořte začínající podnikatele."
+        } ,  
+        { 
+            isBanner      : false,
+            adUrl         : "http://superlevnapc.cz/index.php?kat_id=10",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://superlevnapc.cz/index.php%3Fkat_id%3D10&c=FHDXTFY9X3KI3QPI3AZEQD4T8UJIAD4B3PD2EGQKQC6QQYCZHQ9TKGW363WNGEQM9Y3IQ7W36QR43NZ4NVCR8M8XRHTEIXMSFXQA9M7YNFCKMU3B2R72VRDS5SRK7N25AP4RBYMFRPCYUQBUPQTT24W8B27ZQGR2FNRYKIV27AX7WA4C2IUUZ2967YJDTTSX83QVIYBJCSVVW2BFTFFCTHZB7IXJ4N6T6CX67T9RIUBFB86UPW3DSGIWE9RKITC3NNT8RVG3HTVRRIJQZVUB8PPD42FHRTW4VC5R7Q5VRJW56Q9DWWMQQKU7U5E37PMS4X82AKW7G6FGUQTVZK9B4Z5DJT5WREANBF9UTUB7I2TVYCE3VJRVTANCQ65YKVV8NNGS568AFU9NYM9EJNN49S7XGDXA4KTBHE5RVS5FK5GV6YI395IJDVTJ7N9DCQ6MWKRAU",
+            visibleUrl    : "SuperLevnaPc.cz",
+            creative1     : "Repasované notebooky",
+            creative2     : "On-line prodej repasovaných", 
+            creative3     : "notebooků! Profesionální servis."
+        } ,  
+        { 
+            isBanner      : false,
+            adUrl         : "http://www.zonercloud.cz/?utm_source=seznam&utm_medium=cpc&utm_content=text+obsah&utm_campaign=cloud",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://www.zonercloud.cz/%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3Dtext%2Bobsah%26utm_campaign%3Dcloud&c=X2HBRW4VVKFEESP342G3BC4V7CJH9A4W2HHTS6G4XD6BWDWD5GED8Y3KH7Q4WS34Q3PVSN3EX5WQZ32F5E5XSUEWYZV2URJVZGFWA5VXA7VHXQITICG3PTFPNXD4AVMUCHG3UNZJMSKYPU9UMZGVVMG7VVP6JGIBVJI8MM69ATCBRCDVB532GPKFYE7UJPGT8U6BX8FMH7X3CG4WZZZY7ZHU525NYPHQWABHPQKYWGWR3RWMBAZT7JZRU5WSEFE4I753VVX6FU63ZXZ6M5NFSHQ2MNP2NJ6V4BTWEGRBMCVW6GE2QNW8H37W39XS5HD737PNAB3972CD4CK6Y4CMJVHIQNQZN4I3WBAH855A8ZYZWUFBNDNNEYXCJBCUKT3A64TDH7DQE6M3F9SWDIP8QEF943TS5PR8M8UZNNJCC7I949HTURAZQYGR88X4JT7S9ZFJ2EWQ",
+            visibleUrl    : "www.ZonerCloud.cz",
+            creative1     : "Výkonné a levné virtuální",
+            creative2     : "cloud servery do 55 sekund.", 
+            creative3     : "Linux nebo Win server bez čekání."
+        } ,  
+        { 
+            isBanner      : false,
+            adUrl         : "http://www.vedaprozivot.cz/index.html?utm_source=seznam&utm_medium=cpc&utm_content=Umisteni&utm_campaign=AKAD-1403-0101-PABA",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://www.vedaprozivot.cz/index.html%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3DUmisteni%26utm_campaign%3DAKAD-1403-0101-PABA&c=KETAUHM3D4TYPR6JCK554SNJNYRAVDKZC8PZB8SPNDEQT983QMCD4IH6WTNRY754RSDRJI9T665U55T67G8YUG2MX42DTJT9DFV2BRCMZ6H5F5F4V289Z9GBIHBN4ESGE6ZUUDVKQW8WS3S53D8KG64I3TUSPTA6Y8KMR2K8X5ZMWGDK4HXGNSNMWMEEQDTCCHKY2Y2U7PRTFT8N78WZP2N28MMSRMZRG5WFCA5E2J65472C8HFRAAEZ9QI7YN7RSEXKHRMIF6IYXPQIJK8H4YSU5HU37SXZYPJTT3PA2DR6QKFSZMVDG2RHN4DMYAQPKPCXSME9KIRN8H9NCIGYIAHV93DNM6VJKTXREK6R3HTAPBNBUN3CXKH98R35XZTZA6FEM2BZHNIQJIGA98BXW7U2F6JXHU6D64VGHEH9JEPIMZAQYMRZPNP6CADATFUDTK2C4GDD",
+            visibleUrl    : "VedaProZivot.cz",
+            creative1     : "Novinky ze světa vědy",
+            creative2     : "Aktuality ze světa vědy včetně", 
+            creative3     : "zajímavých akcí. Vše na 1 místě!"
+        } ,  
+        { 
+            isBanner      : false,
+            adUrl         : "http://www.alfacomp.cz/php/index.php?eid=106140&Search=hp+250+notebook&SearchType=1&SearchSubmit=1",
+            targetingType : "contextual", 
+            clickUrl      : "http://c.imedia.cz/click?adurl=http://www.alfacomp.cz/php/index.php%3Feid%3D106140%26Search%3Dhp%2B250%2Bnotebook%26SearchType%3D1%26SearchSubmit%3D1&c=4BWEFJ5KCBNTFN2RXPPAJ95IKPRJZUA4KTYFCMEFFS4HRXF9EBV7UPCT8ATU8VN8B5K4JTKNBFUY9MEAFIEQHJ7NJFJG5QJ93G7226H3ISXR2J58DGZMUZIQZQPMUCTVDXXASQ3UXRJFZBWATCFF5K7DJYEAP95VH9TT6IWUQ92FRU8K98U9HC3NEVVJQZPDYRHU4BBGQCPSE32F2QVZE6DZ6CR758ZGVKJZXEQAB6G69DIUNV2H2DV6KWCGJXFC59XDEY3ZJIHD7IFEE8R3ZK85H67DRSDZDKTYTT35ZCUFGRSFDI9UWVS8F9VZTCSJAJUIFXKH24NNPQFZ9DB52G7ERN5CUJVXQEI98N8VCCA743U655NQQNTABUN4P4G3MCNEI469B5YT8CJGHAF4GF94W8B2QHV2NNZPEBSGCFJT6VJ3XZ7DNSSTR8KZBKUN29MS",
+            visibleUrl    : "www.alfa.cz",
+            creative1     : "Alfa.cz notebooky HP 250",
+            creative2     : "Váš oblíbený obchod s počítači a", 
+            creative3     : "elektronikou. Nakupujte výhodně."
+        }   
+      
+    ]
+);

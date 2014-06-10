@@ -1,0 +1,106 @@
+Diagram případů užití – pokračování
+PV167 Projekt z obj. návrhu IS
+B. Bühnová, R. Ošlejšek
+27. února 2012
+PV167 Projekt z obj. návrhu IS 1
+Diagram případů užití
+Diagramy případů užití (Use Case Diagrams) jsou způsobem
+zachycení funkčních požadavků na systém pohledem z vnějšku.
+Modelování případů užití probíhá v následujících krocích:
+Nalezení hranic systému
+Vyhledání účastníků
+Nalezení případů užití
+Stanovení vazeb mezi nimi a přidání detailů
+Speciﬁkace případů užití
+PV167 Projekt z obj. návrhu IS 2
+Diagram případů užití
+Diagramy případů užití (Use Case Diagrams) jsou způsobem
+zachycení funkčních požadavků na systém pohledem z vnějšku.
+Modelování případů užití probíhá v následujících krocích:
+Nalezení hranic systému
+Vyhledání účastníků
+Nalezení případů užití
+Stanovení vazeb mezi nimi a přidání detailů
+Speciﬁkace případů užití
+PV167 Projekt z obj. návrhu IS 3
+Vazby v diagramu případů užití
+Používané vazby jsou:
+Komunikační relace mezi účastníkem a případem užití
+(«communicate»)
+Generalizace (mezi účastníky, mezi případy užití)
+Relace «include» a «extend»
+S používáním rozšiřujících relací generalizace (zobecnění),
+«include» a «extend» se snažte šetřit. Nepoužívejte je zbytečně
+(tam kde nepřinášejí novou informaci).
+PV167 Projekt z obj. návrhu IS 4
+Relace «include» a «extend»
+Relace «include»:
+umožňuje do případu užití A vložit případ už. B (A includes B)
+používá se v případech, kdy B obsahuje funkcionalitu
+společnou více případům užití
+případ užití A je bez B neúplný
+B neví, jaké případy užití ho používají
+Relace «extend»:
+umožňuje rozšířit případ užití A o dodatečnou funkcionalitu
+případu užití B (B extends A)
+případ užití A je bez B úplný
+A nabízí body rozšíření, přes které mohou být připojeny
+rozšiřující případy užití
+PV167 Projekt z obj. návrhu IS 5
+Speciﬁkace případů užití
+Speciﬁkace případů užití blíže popisuje vlastnosti a chování (tok
+událostí) konkrétního případu užití.
+Pro speciﬁkaci případu užití můžeme použít:
+Textovou speciﬁkaci
+Diagram aktivit
+Stavový diagram
+Sekvenční diagram
+Komunikační diagram
+PV167 Projekt z obj. návrhu IS 6
+Textová speciﬁkace
+Textová speciﬁkace většinou obsahuje:
+Název případu užití (ID)
+Stručný popis
+Účastnící (primární – vyvolávají PU, sekundární – ostatní)
+Vstupní podmínky
+Hlavní tok událostí
+Následné podmínky
+Alternativní toky
+Tok událostí může být deﬁnován dvěma způsoby:
+Pomocí rozvětveného toku událostí a alternativních toků
+Rozdělením na několik scénářů (jeden hlavní a několik
+vedlejších reprezentující jeden průchod systémem)
+PV167 Projekt z obj. návrhu IS 7
+Tok událostí
+Nezapomínejte, že:
+Pro zvýšení přehlednosti by jednotlivé kroky měly být
+očíslovány: 1.6.2. Popis kroku.
+První krok je dobré zvolit tvaru:
+1. Případ užití začíná, když <účastník> <funkce>.
+Vyvarujte se vět obsahujících neurčitost.
+K větvení můžete použít výrazy (POKUD, JINAK, PRO
+KAŽDÝ, DOKUD) nebo anglické alternativy.
+Pokud chcete zachytit rozvětvení, o nemž nevíte zda a kdy
+nastane, použijte alternativní tok.
+PV167 Projekt z obj. návrhu IS 8
+Relace «include» a «extend» v toku událostí
+Lze použít následující značení.
+Relace «include»:
+V toku PripaduUzitiA, který vkládá PripadUzitiB, vložte na
+místo příslušného kroku ”INCLUDE(PripadUzitiB)”.
+Relace «extend»:
+Do toku případu užití, který nabízí bod rozšíření, přidejte na
+příslušné místo (bez očíslování) informaci o bodu rozšíření
+tvaru ”EXTENSION POINT(BodRozsireni)”.
+PV167 Projekt z obj. návrhu IS 9
+Generalizace v toku událostí
+Lze použít následující pravidla.
+Generalizace:
+Očíslování kroků rodičovského případu užití a potomka by si
+měla odpovídat. Pokud tomu tak není, uveďte u potomka v
+toku událostí za čísla kroků do závorek odpovídající čísla
+rodičovského případu užití.
+U potomka je vhodné odlišit části kroků, které neodpovídají
+rodičovskému toku událostí (překryté části kurzívou, nově
+přidané části tučně).
+PV167 Projekt z obj. návrhu IS 10

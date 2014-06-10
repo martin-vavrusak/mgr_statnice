@@ -1,0 +1,15 @@
+Návrhový model tříd II.
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+2. května 2011
+PV167 Projekt z obj. návrhu IS Návrhový model tříd II. 2. května 2011 1 / 2
+Doplnění implementačních tříd
+Uvažujte nad implementačními třídami pro realizaci:
+• Uživatelského rozhraní (UI, GUI)
+• Zvolené technologie (CORBA, EJB)
+• Spolupráce s databází
+• Komunikačních protokolů
+• Autentizačních prvků
+• Flexibilní spolupráce tříd (Interfaces)
+Pozn.: Inspiraci vám mohou poskytnout návrhové vzory.
+PV167 Projekt z obj. návrhu IS Návrhový model tříd II. 2. května 2011 2 / 2

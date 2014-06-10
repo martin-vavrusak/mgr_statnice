@@ -1,0 +1,59 @@
+Stavový diagram
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+21. března 2010
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 1 / 6
+Stavové diagramy
+Stavový diagram modeluje dynamické chování reaktivního
+objektu.
+Reaktivní objekt je objekt (v širším slova smyslu), který reaguje
+na vnější události a má zajímavé chování (třída, případ užití,
+podsystém).
+Základními prvky stavového diagramu jsou:
+• Stavy (s odlišením počátečního a koncového stavu)
+• Přechody
+• Události
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 2 / 6
+Vlastnosti základních prvků (1)
+Stavy:
+• Stav je pro objekt určen hodnotami atributů, relacemi s
+dalšími objekty a aktuální vykonávanou aktivitou.
+• Stavy mohou být složené (obsahovat vnořené stavové
+automaty se sekvenčním i paralelním během, modelováním
+synchronizace, komunikace a historie).
+Stav může obsahovat:
+• Vstupní/výstupní akce (automatické při vstupu/opuštení
+stavu)
+• Interní přechody
+• Pozdržené události
+• Interní aktivity
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 3 / 6
+Vlastnosti základních prvků (2)
+Přechody:
+• Syntaxe: událost[podmínka]/akce
+• Sémantika: Při výskytu události, je-li podmínka pravdivá,
+vykonej akci a přejdi do následujícího stavu.
+Události:
+• Rozlišujeme události volání, signální události, události změny a
+časové události.
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 4 / 6
+Modelování stavového diagramu
+Nezapomínejte, že:
+• Objekty mění stav jako následek přijaté události.
+• Rozlišujte pouze stavy, jejichž rozlišení má pro modelování
+chování objektu význam (je mezi nimi sémanticky významný
+rozdíl).
+• Stavový diagram modeluje chování (změny stavu reaktivního
+objektu) napříč případy užití.
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 5 / 6
+Souvislost stavových diagramů s diagramy aktivit
+V čem jsou společné:
+• Velice podobná syntaxe – zakulacené obdélníky spojené
+šipkami.
+Čím se liší:
+• Diagramy aktivit jsou používány k modelování obchodních
+procesů, jichž se účastní několik objektů. Šipky propojují
+jednotlivé aktivity. Stavové diagramy se naopak používají k
+modelování životního cyklu jednoho reaktivního objektu. Šipky
+tu propojují statické stavy.
+PV167 Projekt z obj. návrhu IS Stavový diagram 21. března 2010 6 / 6

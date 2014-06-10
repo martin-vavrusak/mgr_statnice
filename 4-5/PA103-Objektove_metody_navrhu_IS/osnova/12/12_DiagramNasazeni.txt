@@ -1,0 +1,32 @@
+Diagram nasazení a diagram komponent
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+9. května 2011
+PV167 Projekt z obj. návrhu IS Diagram nasazení a diagram komponent 9. května 2011 1 / 3
+Diagram komponent
+Diagram komponent (Component diagram) zobrazuje způsob
+(hierarchického) rozdělení systému na samostatné části a
+komunikační vazby mezi nimi, čímž deﬁnuje architekturu systému.
+Diagram obsahuje:
+• Komponenty – softwarové komponenty (fyzicky samostatné
+části systému), vnitřně soudržné, navenek komunikující jen
+přes deﬁnovaná rozhraní
+• Rozhraní – rozhraní pro komunikaci mezi komponentami
+(oddělení speciﬁkace od implementace)
+– provided rozhraní deﬁnují nabízenou funkcionalitu (služby/metody)
+– required rozhraní deﬁnují požadovanou funkcionalitu (služby/metody)
+• Vazby mezi rozhraními – napojení required rozhraní na
+provided rozhraní
+PV167 Projekt z obj. návrhu IS Diagram nasazení a diagram komponent 9. května 2011 2 / 3
+Diagram nasazení
+Diagram nasazení (Deployment diagram) zobrazuje způsob,
+jakým bude rozmístěna architektura software na architekturu
+hardware.
+Diagram ukazuje:
+• Uzly – hardwarové uzly, na kterých bude system spouštěn
+• Komponenty – softwarové komponenty (fyzicky samostatné
+části systému)
+• Rozhraní – rozhraní pro komunikaci s komponentami
+(oddělení speciﬁkace od implementace)
+• Relace – spojení mezi uzly a závislosti mezi komponentami
+PV167 Projekt z obj. návrhu IS Diagram nasazení a diagram komponent 9. května 2011 3 / 3

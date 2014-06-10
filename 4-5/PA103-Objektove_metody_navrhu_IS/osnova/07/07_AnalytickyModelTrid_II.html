@@ -1,0 +1,53 @@
+<HTML><HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-2">
+<META NAME="generator" CONTENT="text to html for is.muni.cz">
+</HEAD>
+<BODY><PRE>Analytický model tříd - 2. část
+PV167 Projekt z obj. návrhu IS
+B. Bühnová
+4. dubna 2011
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 2. část 4. dubna 2011 1 / 5
+Analytický model tříd - opakování
+Možný postup tvorby:
+1 Nalezení tříd, základních atributů, operací a spolupracovníků
+2 Určení dědičnosti mezi třídami
+3 Zachycení vztahů pomocí asociací
+4 Pojmenování asociací nebo rolí na nich
+5 Určení násobností relací
+6 Zachycení závislostí
+7 Doplnění dalších atributů a operací, které mají analytický
+charakter
+Pozn.: Dnes se zaměříme na kroky 5-7.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 2. část 4. dubna 2011 2 / 5
+Relace mezi třídami (1)
+Relace mezi třídami nám umožňují modelovat vzájemnou
+spolupráci a závislost tříd.
+Základními typy jsou:
+• Generalizace (dědičnost)
+• Asociace
+• Závislosti
+Generalizace pomáhají určit hierarchii dědičnosti. Často se
+používají abstraktní třídy a metody.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 2. část 4. dubna 2011 3 / 5
+Relace mezi třídami (2)
+Asociace vyjadřují sémantickou vazbu mezi třídami.
+Vlastnosti asociací:
+• Název asociace - vyjádřen slovesnou frází
+• Názvy rolí na jejích koncích
+• Násobnosti - omezení na počet spolupracujících objektů
+• Řiditelnost - vyjadřuje, zda jde o jednosměrnou nebo
+obousměrnou relaci
+Pozn.: Pokud se v analytickém modelu vyskytne vazba M:N,
+nerozkládejte ji, pokud nepotřebujete zachytit atributy této vazby.
+Pokud atributy potřebujete zachytit, vyjádřete vazbu pomocí
+asociační třídy nebo samostatné třídy.
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 2. část 4. dubna 2011 4 / 5
+Relace mezi třídami (3)
+Závislosti jsou slabší formou sémantické vazby mezi klientskou a
+dodavatelskou třídou, kdy je třeba vyznačit závislost způsobující,
+že se změna v dodavateli projeví i v klientovi.
+Nejčastěji se používá k vyjádření, že objekt klientské třídy používá
+objekt dodavatelské třídy v některé ze svých metod (v kódu, jako
+argument, návratovou hodnotu).
+PV167 Projekt z obj. návrhu IS Analytický model tříd - 2. část 4. dubna 2011 5 / 5</PRE></BODY>
+</HTML>

@@ -1,0 +1,1852 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html class="js-on" xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="cs"><head>
+	<meta http-equiv="Content-language" content="cs">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Architektury vyrovnávacích pamětí - Root.cz</title>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<link rel="stylesheet" type="text/css" media="screen,projection" href="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/cssloader-81b021eb21de.css">
+
+	<link rel="stylesheet" type="text/css" media="print" href="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/cssloader-d74e21a00563.css">
+
+  	<meta name="description" content="V dnešní části našeho seriálu o mikropočítačích a jejich funkcích si vysvětlíme, jakým způsobem pracují některé nejtypičtější konfigurace vyrovnávacích pamětí (cache memory). Zejména si popíšeme a rozebereme vliv asociativity vyrovnávacích pamětí a strategie přidělování bloků na celkový výkon počítače.">
+	<meta http-equiv="x-xrds-location" content="http://www.root.cz/xrds.xml">
+	<meta name="copyright" content="Copyright">
+	<meta name="author" content="HTML code: Ivan Pik; e-mail: pik@iinfo.cz">
+	<meta name="robots" content="index, follow">
+	<meta name="DC.Identifier" content="(SCHEME=ISSN) 12128309">
+
+	<meta property="og:image" content="http://i.iinfo.cz/images/urs/pc_08_logo-120836240290931.png">
+	<meta property="fb:app_id" content="160071904046461">
+	<meta property="og:site_name" content="Root.cz">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/">
+	<meta property="og:title" content="Architektury vyrovnávacích pamětí - Root.cz">
+	<meta property="og:description" content="V dnešní části našeho seriálu o mikropočítačích a jejich funkcích si vysvětlíme, jakým způsobem pracují některé nejtypičtější konfigurace vyrovnávacích pamětí (cache memory). Zejména si popíšeme a rozebereme vliv asociativity vyrovnávacích pamětí a strategie přidělování bloků na celkový výkon počítače.">
+	<link rel="SHORTCUT ICON" href="http://ii.iinfo.cz/r/favicon.ico" type="image/x-icon">
+		<link rel="alternate" title="Root.cz - články" href="http://www.root.cz/rss/clanky/" type="application/rss+xml">
+	<link rel="alternate" title="Root.cz - zprávičky" href="http://www.root.cz/rss/zpravicky/" type="application/rss+xml">
+	<link rel="alternate" title="Root.cz - diskuse" href="http://forum.root.cz/index.php?action=.xml;type=rss2;limit=30;sa=news" type="application/rss+xml">
+	<link rel="alternate" title="Root.cz - knihy" href="http://www.root.cz/rss/knihy/" type="application/rss+xml">
+	
+	
+	
+	
+	<script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/ascode.js" id="nvc-async" async="" type="text/javascript"></script><script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/analytics.js" async="" type="text/javascript"></script><script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/xgemius.js" defer="defer" async="async"></script><script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/gtm.js" async=""></script><script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/jsloader-3ce4740b89bd.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/cssloader-97e540afb3db.css">
+
+	<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/jsloader-e9f36d210c15.js"></script>
+
+
+
+	<!-- kody umisteni -->
+	<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/ado.js"></script>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009 */
+		if (typeof ado !== "object") { ado={};ado.config=ado.preview=ado.placement=ado.master=ado.slave=function(){};
+ 									var mabImg; if (typeof mabImg === 'undefined') { mabImg = new Image(); mabImg.src = "/shared/img/m/mab.gif"; }
+		} else {
+			var madImg; if (typeof madImg === 'undefined') { madImg = new Image(); madImg.src = "/shared/img/m/mad.gif"; }
+		}
+		ado.config({ mode: "old", xml: false, characterEncoding: true });
+		ado.preview({ enabled: true, emiter: "cz.adocean.pl", id: "qyqsIrcWTUOUVS3gvrLS7VfVQXyYVocouDa6TTtO.Yb.t7" });
+	</script><script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/ad_002.js"></script><script id="script_zdficngruz" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_002.js" language="javascript"></script>
+    <noscript><img src="/shared/img/m/mnj.gif" width="1" height="1" border="0" style="display:none"></noscript>
+
+	<!-- start master -->
+	<script type="text/javascript">
+		/* (c)AdOcean 2003-2009, MASTER: iinfo_cz.Root.cz.Vše kromě titulky */
+		ado.master({ id: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7", server: 'cz.adocean.pl' });
+	</script><script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/ad.js"></script>
+	<!--  end master  -->
+
+
+
+</head>
+
+<body id="root" class="p-text adp-leaderboard adp-sticky-skyscraper-vpravo adp-side-200x200 adp-side-200x200-3 adp-big-rectangle"><script src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/partnerJsApi"></script>
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KCL7KM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',"GTM-KCL7KM");</script>
+<!-- End Google Tag Manager -->
+
+
+		<div id="fb-root"></div>
+
+
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/jsloader-52eb61699c12-iinfobar.js"></script>
+
+<div id="sefa" class="iinfoBar wide">
+  	<div class="sub">
+	  	<a href="http://iinfo.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" id="logo">Internet Info</a>
+
+	  	<ul id="iinfoBarItems">
+
+	  		<li class="server-lupa normalItem">
+	  			<a href="http://www.lupa.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Lupa: server o českém Internetu">Lupa</a>
+	  		</li>
+
+			<li class="server-mesec normalItem">
+				<a href="http://www.mesec.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Měšec: server o osobních financích">Měšec</a>
+			</li>
+
+			<li class="server-podnikatel normalItem">
+				<a href="http://www.podnikatel.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Podnikatel: informace pro váš business a podnikání">Podnikatel</a>
+			</li>
+
+			<li class="server-root normalItem">
+				<a href="http://www.root.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Root: informace nejen ze světa Linuxu">Root</a>
+			</li>
+
+			<li class="server-digizone normalItem">
+				<a href="http://www.digizone.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="DigiZone: vše o digitálním vysílání">DigiZone</a>
+			</li>
+
+			<li class="server-slunecnice normalItem">
+				<a href="http://www.slunecnice.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Slunečnice: server freeware a shareware">Slunečnice</a>
+			</li>
+
+			<li class="server-vitalia normalItem">
+				<a href="http://www.vitalia.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Vitalia: váš průvodce zdravým životem">Vitalia</a>
+			</li>
+
+			<li class="server-topdrive normalItem">
+				<a href="http://www.topdrive.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="TopDrive: server o luxusních vozech">TopDrive</a>
+			</li>
+
+			<li class="server-tuesday normalItem">
+				<a href="http://www.tuesday.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Tuesday Business Network: Jsme sociální síť v reálném světě">Tuesday</a>
+			</li>
+
+			<li class="server-navrcholu normalItem">
+				<a href="http://navrcholu.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Navrcholu: měření a vyhodnocování návštěvnosti www stránek">Navrcholu</a>
+			</li>
+
+			<li class="server-dobryweb normalItem">
+				<a href="http://www.dobryweb.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Dobrý web: Váš pomocník pro úspěch na Internetu">Dobrý web</a>
+			</li>
+
+			<li class="server-zdrojak normalItem">
+				<a href="http://www.zdrojak.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Zdroják: tvorba webových stránek a aplikací">Zdroják</a>
+			</li>
+
+			<li class="server-weblogy normalItem">
+				<a href="http://www.weblogy.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Weblogy: to nejlepší z českých blogů">Weblogy</a>
+			</li>
+
+			<li class="server-woko normalItem">
+				<a href="http://www.woko.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Woko: pamatuje si za vás">Woko</a>
+			</li>
+
+			<li class="server-jagg normalItem">
+				<a href="http://www.jagg.cz/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="Jagg: ukládejte a sdílete své oblíbené odkazy">Jagg</a>
+			</li>
+
+			<li class="server-mojelinky normalItem">
+				<a href="http://www.mojelinky.sk/#utm_medium=textlink&amp;utm_source=ii-lista&amp;utm_campaign=brand" title="MojeLinky: uchovávajte a zdieľajtě svoje obľubné odkazy">MojeLinky</a>
+			</li>
+
+		</ul>
+	<div style="display: none;" id="nextItemsButton">další<ul style="display: none;" id="otherItems"></ul></div></div>
+</div>
+
+
+<div id="interstitial">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczpdkohmdjot2"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Interstitial */
+	ado.slave("adoceanczpdkohmdjot", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "interstitial";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczpdkohmdjot=='function'){adoceanczpdkohmdjot();}</script><script id="script_lllqkvdigh" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_004.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+<div class="ad-skyscraper-sticky-holder">
+
+
+
+<div class="adLeaderboard">
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczxcdrislolf3"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Leaderboard */
+	ado.slave("adoceanczxcdrislolf", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "leaderboard";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczxcdrislolf=='function'){adoceanczxcdrislolf();}</script><div class="ad">
+<h4 class="admarker">reklama</h4>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6737213819139212";
+/* Root 728x90 */
+google_ad_slot = "8674096919";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="90" width="728"></iframe></ins></ins>
+</div>
+<script id="script_qndqbqhhus" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_013.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczmofnqmpika4"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Sticky rámeček */
+	ado.slave("adoceanczmofnqmpika", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "sticky-ramecek";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczmofnqmpika=='function'){adoceanczmofnqmpika();}</script><script id="script_lcofoplfsf" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_010.js" language="javascript"></script>
+	<!--  end slave  -->
+
+
+<!--[if IE]>
+<script type="text/javascript">
+	$(".ad-skyscraper-sticky-holder>object,.ad-skyscraper-sticky-holder>a")
+		.first().appendTo(".ad-skyscraper-sticky-right .skyscraper-sticky .ad");
+	$(".ad-skyscraper-sticky-holder>object,.ad-skyscraper-sticky-holder>a")
+		.first().appendTo(".ad-skyscraper-sticky-left .skyscraper-sticky .ad");
+</script>
+<![endif]-->
+
+
+<div class="ad-skyscraper-sticky-left">
+	<div style="left: 329.5px;" class="skyscraper-sticky">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczspgjdpofas5"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Sticky skyscraper vlevo */
+	ado.slave("adoceanczspgjdpofas", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "sticky-skyscraper-vlevo";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczspgjdpofas=='function'){adoceanczspgjdpofas();}</script><script id="script_pohkiklkar" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_012.js" language="javascript"></script>
+	<!--  end slave  -->
+
+	</div>
+</div>
+
+<div class="ad-skyscraper-sticky-right">
+	<div style="left: 1329.5px;" class="skyscraper-sticky">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczudkhmpftga6"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Sticky skyscraper vpravo */
+	ado.slave("adoceanczudkhmpftga", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "sticky-skyscraper-vpravo";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczudkhmpftga=='function'){adoceanczudkhmpftga();}</script><div class="ad">
+<h4 class="admarker">reklama</h4>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6737213819139212";
+/* Root 120x600 B */
+google_ad_slot = "8771181710";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="600" width="120"></iframe></ins></ins>
+</div>
+<script id="script_lnfsjidsab" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_003.js" language="javascript"></script>
+	<!--  end slave  -->
+
+	</div>
+</div>
+
+		<!--[if IE 7]>
+		<script type="text/javascript">
+			stickyHandler();
+		</script>
+	<![endif]-->
+</div><script id="" type="text/javascript">function jsWebstats(){"undefined"!==typeof window.js_gemius_identifier&&pp_gemius_hit(js_gemius_identifier);dataLayer.push({event:"virtualPageview"});var a=document.getElementById("nvc-async");a.parentNode.removeChild(a);var b=document.createElement("script");b.type=a.type;b.src=a.src;b.id=a.id;document.head.appendChild(b)};</script>
+<script id="" type="text/javascript">var js_gemius_identifier=pp_gemius_identifier="d1zrQktRrA.1DMJeqrR6CpchXkFId4eUZ8HsOjyaf07.v7";function gemius_pending(a){window[a]=window[a]||function(){var b=window[a+"_pdata"]=window[a+"_pdata"]||[];b[b.length]=arguments}}gemius_pending("gemius_hit");gemius_pending("gemius_event");gemius_pending("pp_gemius_hit");gemius_pending("pp_gemius_event");
+(function(a,b){try{var c=a.createElement(b),d=a.getElementsByTagName(b)[0];c.setAttribute("async","async");c.setAttribute("defer","defer");c.src="//spir.hit.gemius.pl/xgemius.js";d.parentNode.insertBefore(c,d)}catch(e){}})(document,"script");</script><iframe src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/lsget.htm" style="display: none; visibility: hidden;" scrolling="no" name="lsgetframe" id="gemius_hcconn_1402308804302_41788450" height="0" width="0"></iframe><iframe src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/lsget_002.htm" style="display: none; visibility: hidden;" scrolling="no" name="lsgetframe" id="gemius_hcconn_1402308804351_90240664" height="0" width="0"></iframe><iframe src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/lscpy.htm" style="display: none; visibility: hidden;" scrolling="no" name="lscpyframe" id="gemius_hcconn_1402308804373_72532445" height="0" width="0"></iframe>
+
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczuijkjkmfyy7"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Behaviorální cílení */
+	ado.slave("adoceanczuijkjkmfyy", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "behavioralni-cileni";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczuijkjkmfyy=='function'){adoceanczuijkjkmfyy();}</script><script id="script_xeqndujpsl" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_006.js" language="javascript"></script>
+	<!--  end slave  -->
+
+	<div id="page">
+
+            <div id="header">
+			<h2 class="logo">
+				<a href="http://www.root.cz/" title="Návrat na titulní stránku serveru">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/logo-m.gif" alt="Root.cz">
+				</a>
+			</h2>
+
+			<div class="topHeader">
+
+<div id="login">
+
+	 <span id="newsletterOrderLink">
+		<a href="http://www.root.cz/do-mailu/">Root.cz do mailu</a>
+	</span>
+
+	<a class="connect" href="http://www.root.cz/prihlasit/?refUrl=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" title="Přihlášení k uživatelskému systému Root.cz">Přihlásit</a>
+		<a href="http://www.root.cz/registrace/?refUrl=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" title="Zaregistrujte se a získejte přístup k řadě dalších funkcí a vylepšení" class="register">Registrace</a>
+
+</div>
+
+
+<a href="http://www.root.cz/styl/dark/?refUrl=http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/" id="StyleSwitch">
+<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/ss.gif" alt="Styl vzhledu" title="Změna stylu vzhledu"></a>
+			</div>
+		</div> <!-- /#header -->
+
+
+<div class="strip-2">
+		<h4>Hlavní navigace</h4>
+		<ul id="mainmenu" class="clear">
+			<li><a href="http://www.root.cz/clanky/">Články</a></li>
+			<li><a href="http://www.root.cz/zpravicky/">Zprávičky</a></li>
+			<li><a href="http://www.root.cz/specialy/">Speciály</a></li>
+			<li><a href="http://forum.root.cz/">Fórum</a></li>
+			<li><a href="http://blog.root.cz/">Blogy</a></li>
+			<li><a style="color:#74A46B" href="http://www.zdrojak.cz/">Zdroják</a></li>
+			<li><a href="http://www.root.cz/knihy/">Knihy</a></li>
+			<li><a href="http://www.root.cz/man/">Manuály</a></li>
+			<li><a href="http://www.root.cz/specialy/licence/">Licence</a></li>
+			<li><a href="http://www.root.cz/texty/zaklady-linuxu/">Jak na Linux</a></li>
+			<li class="skoleni"><a href="http://www.root.cz/skoleni/">Školení</a></li>
+			<li><a href="http://www.root.cz/specialy/jabber/">Jabber server</a></li>
+			<li><a href="http://www.root.cz/texty/butik/">Butik</a></li>
+			<li><a href="http://www.root.cz/prace-v-it/">Práce v IT</a></li>
+		</ul>
+</div>
+
+<div id="ad-468x60">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczkcmkfvrjbk8"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Fullbanner */
+	ado.slave("adoceanczkcmkfvrjbk", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "fullbanner";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczkcmkfvrjbk=='function'){adoceanczkcmkfvrjbk();}</script><script id="script_tednplftej" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_011.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+		<div id="promo-headerPromo" class="clear">
+	<div class="item">
+
+		<strong id="rubricName">Databáze</strong>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=272&amp;do=headerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=272&amp;do=headerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/slon-thumb.jpg" alt="" height="50" width="50">
+	    </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=272&amp;do=headerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=272&amp;do=headerPromo-click">PostgreSQL 9.4: transakční SQL JSON databáze</a></h3>
+    </div>
+	<div class="item">
+
+		<strong id="rubricName">Linux</strong>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=271&amp;do=headerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=271&amp;do=headerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/q4os-1-thumb.png" alt="" height="50" width="50">
+	    </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=271&amp;do=headerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=271&amp;do=headerPromo-click">Q4OS: Linux maskovaný za Windows</a></h3>
+    </div>
+	<div class="item">
+
+		<strong id="rubricName">PC a notebooky</strong>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=273&amp;do=headerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=273&amp;do=headerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/asus-vivo-pc-1-thumb.png" alt="" height="50" width="50">
+	    </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=273&amp;do=headerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=273&amp;do=headerPromo-click">Asus Vivo PC je sexy počítač pro Linux</a></h3>
+    </div>
+	<div class="item last">
+
+		<strong id="rubricName">Bezpečnost</strong>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=270&amp;do=headerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=270&amp;do=headerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/router-kladivo-thumb.jpg" alt="" height="50" width="50">
+	    </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=270&amp;do=headerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?headerPromo-id=270&amp;do=headerPromo-click">Zranitelnost „rom-0“ ohrožuje domácí routery</a></h3>
+    </div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#promo-' + "headerPromo" + ' a[rel]').each(function(e) {
+				var $this = $(this);
+				// replace href attribute
+				$this.attr('href', $this.attr('rel'));
+			});
+		});
+	</script>
+</div>
+
+
+
+
+
+<div id="main" class="columns clear">
+	<div class="path">
+
+<div class="breadcrumb clear">
+			
+			<a class="first" href="http://www.root.cz/" title="Návrat na titulní stránku">Root.cz</a>
+			<span class="separator">&nbsp;»&nbsp;</span>
+			<a href="http://www.root.cz/periferie/">Periferie</a>
+				<span class="separator">&nbsp;»&nbsp;</span>
+				<strong>Architektury vyrovnávacích pamětí</strong>
+</div>
+	</div>
+<div itemscope="" itemtype="http://schema.org/Article">
+	<!-- google_ad_section_start -->
+	<!-- Sklik-kontext-start -->
+	<h1><span itemprop="name">Architektury vyrovnávacích pamětí</span></h1>
+	<!-- Sklik-kontext-stop -->
+
+
+	<!-- Sklik-kontext-start -->
+
+
+<p class="perex clear">
+	<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/pc_08_logo-120836240290931.png" alt="" height="80" width="80">
+	<meta itemprop="image" content="http://i.iinfo.cz/images/urs/pc_08_logo-120836240290931.png">
+	<span itemprop="description">V dnešní části našeho seriálu o 
+mikropočítačích a jejich funkcích si vysvětlíme, jakým způsobem pracují 
+některé nejtypičtější konfigurace vyrovnávacích pamětí (cache memory). 
+Zejména si popíšeme a rozebereme vliv asociativity vyrovnávacích pamětí a
+ strategie přidělování bloků na celkový výkon počítače.</span>
+</p>
+	<!-- Sklik-kontext-stop -->
+
+	<div class="article-info">
+		<span itemprop="datePublished" content="2008-07-10T00:00:00+02:00" class="date">10.&nbsp;7.&nbsp;2008 0:00</span>
+
+	<a class="author" href="http://www.root.cz/autori/pavel-tisnovsky/" itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Pavel Tišnovský</span></a>
+	</div>
+
+
+
+
+<div class="socialShare customButtons clear">
+	<a href="https://www.facebook.com/share.php?u=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" target="_blank" class="btn facebook">Sdílet na Facebooku</a>
+	<a href="https://twitter.com/share?url=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F&amp;text=Architektury%20vyrovn%C3%A1vac%C3%ADch%20pam%C4%9Bt%C3%AD&amp;via=rootcz" target="_blank" class="btn twitter">Odeslat na Twitter</a>
+	<a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" target="_blank" class="btn googlePlus">Sdílet na Google+</a>
+</div>
+
+<script type="text/javascript">
+	if (typeof socialEventsDone === 'undefined') {
+		window.socialEventsDone = true;
+		$(function() {
+			$('.socialShare.customButtons .facebook').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'facebook', 'like', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'facebook',
+					              'socialAction': 'share',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+			$('.socialShare.customButtons .twitter').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'twitter', 'tweet', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'twitter',
+					              'socialAction': 'tweet',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+			$('.socialShare.customButtons .googlePlus').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'Google', '+1', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'Google',
+					              'socialAction': '+1',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+		});
+	}
+</script>
+
+		
+<div id="ad-supersquare">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczvhnhnrgkjj9"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Square banner */
+	ado.slave("adoceanczvhnhnrgkjj", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "square-banner";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczvhnhnrgkjj=='function'){adoceanczvhnhnrgkjj();}</script><script id="script_lpometipnt" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_007.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+
+
+<div class="serial">
+	<h2>
+		Seriál <a href="http://www.root.cz/serialy/co-se-deje-v-pocitaci/#ic=serial-box&amp;icc=title">Co se děje v počítači</a>
+		<a href="http://www.root.cz/rss/serialy/co-se-deje-v-pocitaci/" class="rss_serial">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/feed-icon-14x14.png" alt="">
+			<span>RSS</span>
+		</a>
+	</h2>
+	<ul>
+
+			<li><a href="http://www.root.cz/clanky/trvale-a-prechodne-chyby-pameti-dram/#ic=serial-box&amp;icc=text-title">Trvalé a přechodné chyby pamětí DRAM</a></li>
+
+			<li><a href="http://www.root.cz/clanky/vyrovnavaci-pameti-cache/#ic=serial-box&amp;icc=text-title">Vyrovnávací paměti (cache)</a></li>
+			<li class="actual"><strong>Architektury vyrovnávacích pamětí</strong></li>
+
+			<li><a href="http://www.root.cz/clanky/vyrovnavaci-pameti-a-optimalizace-programu/#ic=serial-box&amp;icc=text-title">Vyrovnávací paměti a optimalizace programů</a></li>
+
+			<li><a href="http://www.root.cz/clanky/magneticke-pameti-pro-trvaly-zaznam-dat/#ic=serial-box&amp;icc=text-title">Magnetické paměti pro trvalý záznam dat</a></li>
+		</ul>
+			<span class="link-more">
+<a href="http://www.root.cz/serialy/co-se-deje-v-pocitaci/#ic=serial-box&amp;icc=more">Všechny díly seriálu</a>
+</span>
+
+</div>
+
+
+
+	<!-- Sklik-kontext-start -->
+	<div class="urs clear" itemprop="articleBody">
+
+<h2>Obsah</h2>
+
+<p><a href="#k01">1.&nbsp;Podmínka účinnosti vyrovnávací paměti: lokalita dat či programového kódu</a><br>
+<a href="#k02">2.&nbsp;Struktura údajů uložených ve vyrovnávací paměti</a><br>
+<a href="#k03">3.&nbsp;Asociativita vyrovnávací paměti</a><br>
+<a href="#k04">4.&nbsp;Přímo mapovaná vyrovnávací paměť</a><br>
+<a href="#k05">5.&nbsp;Plně asociativní vyrovnávací paměť</a><br>
+<a href="#k06">6.&nbsp;Dvoucestná či čtyřcestná asociativní vyrovnávací paměť</a><br>
+<a href="#k07">7.&nbsp;Strategie přidělování bloků</a><br>
+<a href="#k08">8.&nbsp;Literatura a odkazy na Internetu</a><br>
+<a href="#k09">9.&nbsp;Obsah dalšího pokračování seriálu</a><br>
+</p>
+
+<p><span id="k01"></span></p>
+
+<h2>1.&nbsp;Podmínka účinnosti vyrovnávací paměti: lokalita dat či programového&nbsp;kódu</h2>
+
+<p>V&nbsp;předchozí části tohoto seriálu jsme si popsali hierarchii 
+paměti (pyramidovou strukturu) i&nbsp;základní způsob zapojení 
+vyrovnávacích pamětí první a druhé úrovně (<i>L1 cache, L2 cache</i>) do
+ paměťového subsystému počítačů. Vyrovnávací paměti jsou obecně velmi 
+rychlé, ovšem jejich kapacita je poměrně malá, typicky dosahuje pouhého 
+jednoho promile až jednoho procenta kapacity operační paměti (ta je 
+založena na relativně pomalé, ovšem levné DRAM, která se 
+mj.&nbsp;vyznačuje velkou integrací). Cena, přesněji řečeno časové 
+zpoždění, které zaplatíme za operaci čtení či zápisu z&nbsp;adresy, jež 
+se nenachází ve vyrovnávací paměti (<i>cache miss</i>) může být docela 
+vysoká, proto se tvůrci architektury vyrovnávacích pamětí snaží, aby 
+byla vyrovnávací paměť i&nbsp;přes svoji malou kapacitu použita pro co 
+největší množství čtecích i&nbsp;zápisových operací, tj.&nbsp;aby se 
+minimalizoval počet „výpadků “ (<i>cache miss</i>) a naopak maximalizoval počet <i>cache hits</i>, tj.&nbsp;situací, kdy se požadovaná data nachází ve vyrovnávací paměti.</p>
+
+<p>Nejlépe si tuto snahu vysvětlíme na údajích z&nbsp;praxe. Například u&nbsp;typické konfigurace počítače založeného na procesoru <i>Intel Pentium M</i> (používaného v&nbsp;noteboocích) či <i>Celeron</i> se uvádí následující údaje; vše v&nbsp;počtu taktů (cyklů procesoru):</p>
+
+<div class="urs-tab">
+	<table>
+		<tbody><tr>
+			<th>Čtení či zápis z/do</th>
+
+			<th>Počet cyklů</th>
+		</tr>
+
+		<tr>
+			<td>Pracovní registr</td>
+
+			<td>1&nbsp;či méně v&nbsp;případě úspěšného zřetězení instrukcí</td>
+		</tr>
+
+		<tr>
+			<td>Vyrovnávací paměť první úrovně</td>
+
+			<td>cca 3</td>
+		</tr>
+
+		<tr>
+			<td>Vyrovnávací paměť druhé úrovně</td>
+
+			<td>cca 14</td>
+		</tr>
+
+		<tr>
+			<td>Operační paměť</td>
+
+			<td>cca 240</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<p>Pokud nějaký program má na této konfiguraci přečíst 
+1000000&nbsp;adres (a něco s&nbsp;jejich obsahem udělat, například 
+provést jejich součet s&nbsp;uložením výsledku do pracovního registru) a
+ efektivita vyrovnávací paměti je rovna 95&nbsp;procentům, stráví 
+mikroprocesor čtením adres celkem:</p>
+
+<p>1000000×0,95×­3=<strong>2850000</strong> taktů při čtení z&nbsp;L1 cache a<br>
+1000000×(1–0,95)×240=<strong>120­00000</strong> taktů při čtení z&nbsp;operační paměti,<br>
+celkem tedy: <strong>14850000</strong>&nbsp;taktů (příklad je velmi 
+zjednodušený, nepočítá například s&nbsp;vyrovnávací pamětí druhé úrovně,
+ blokovým čtením s&nbsp;DRAM apod., omezené kapacitě vyrovnávací 
+paměti&nbsp;atd.).</p>
+
+<p>Vliv efektivity vyrovnávací paměti (poměru <i>cache hit</i> vůči všem operacím), je patrný i&nbsp;z&nbsp;následující tabulky, opět platné pro předchozí konfiguraci:</p>
+
+<div class="urs-tab">
+	<table>
+		<tbody><tr>
+			<th>Efektivita</th>
+
+			<th>L1 cache (taktů)</th>
+
+			<th>DRAM (taktů)</th>
+
+			<th>Celkem</th>
+		</tr>
+
+		<tr>
+			<td>0%</td>
+
+			<td>0</td>
+
+			<td>240000000</td>
+
+			<td>240000000</td>
+		</tr>
+
+		<tr>
+			<td>5%</td>
+
+			<td>150000</td>
+
+			<td>228000000</td>
+
+			<td>228150000</td>
+		</tr>
+
+		<tr>
+			<td>10%</td>
+
+			<td>300000</td>
+
+			<td>216000000</td>
+
+			<td>216300000</td>
+		</tr>
+
+		<tr>
+			<td>15%</td>
+
+			<td>450000</td>
+
+			<td>204000000</td>
+
+			<td>204450000</td>
+		</tr>
+
+		<tr>
+			<td>20%</td>
+
+			<td>600000</td>
+
+			<td>192000000</td>
+
+			<td>192600000</td>
+		</tr>
+
+		<tr>
+			<td>25%</td>
+
+			<td>750000</td>
+
+			<td>180000000</td>
+
+			<td>180750000</td>
+		</tr>
+
+		<tr>
+			<td>30%</td>
+
+			<td>900000</td>
+
+			<td>168000000</td>
+
+			<td>168900000</td>
+		</tr>
+
+		<tr>
+			<td>35%</td>
+
+			<td>1050000</td>
+
+			<td>156000000</td>
+
+			<td>157050000</td>
+		</tr>
+
+		<tr>
+			<td>40%</td>
+
+			<td>1200000</td>
+
+			<td>144000000</td>
+
+			<td>145200000</td>
+		</tr>
+
+		<tr>
+			<td>45%</td>
+
+			<td>1350000</td>
+
+			<td>132000000</td>
+
+			<td>133350000</td>
+		</tr>
+
+		<tr>
+			<td>50%</td>
+
+			<td>1500000</td>
+
+			<td>120000000</td>
+
+			<td>121500000</td>
+		</tr>
+
+		<tr>
+			<td>55%</td>
+
+			<td>1650000</td>
+
+			<td>108000000</td>
+
+			<td>109650000</td>
+		</tr>
+
+		<tr>
+			<td>60%</td>
+
+			<td>1800000</td>
+
+			<td>96000000</td>
+
+			<td>97800000</td>
+		</tr>
+
+		<tr>
+			<td>65%</td>
+
+			<td>1950000</td>
+
+			<td>84000000</td>
+
+			<td>85950000</td>
+		</tr>
+
+		<tr>
+			<td>70%</td>
+
+			<td>2100000</td>
+
+			<td>72000000</td>
+
+			<td>74100000</td>
+		</tr>
+
+		<tr>
+			<td>75%</td>
+
+			<td>2250000</td>
+
+			<td>60000000</td>
+
+			<td>62250000</td>
+		</tr>
+
+		<tr>
+			<td>80%</td>
+
+			<td>2400000</td>
+
+			<td>48000000</td>
+
+			<td>50400000</td>
+		</tr>
+
+		<tr>
+			<td>85%</td>
+
+			<td>2550000</td>
+
+			<td>36000000</td>
+
+			<td>38550000</td>
+		</tr>
+
+		<tr>
+			<td>90%</td>
+
+			<td>2700000</td>
+
+			<td>24000000</td>
+
+			<td>26700000</td>
+		</tr>
+
+		<tr>
+			<td>95%</td>
+
+			<td>2850000</td>
+
+			<td>12000000</td>
+
+			<td>14850000</td>
+		</tr>
+
+		<tr>
+			<td>100%</td>
+
+			<td>3000000</td>
+
+			<td>0</td>
+
+			<td>3000000</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<div class="rs-img-center"><a href="http://i.iinfo.cz/urs/19_01-121561800959695.png"><img alt="pc1901" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/19_01-preview-121561800959695.png" height="375" width="450"></a></div>
+
+<p class="rs-center"><i>Závislost celkového počtu taktů nutných pro 
+přečtení jednoho milionu adres na efektivitě vyrovnávací paměti první 
+úrovně (zjednodušený příklad)</i></p>
+
+<p>Jednou z&nbsp;podmínek pro dosažení co největší efektivity vyrovnávacích pamětí je <i>lokalita dat</i> (pro datové cache) či <i>lokalita programového kódu</i>
+ (pro instrukční cache). Této žádoucí vlastnosti lze dosáhnout vhodným 
+naprogramováním aplikace, většinou však vyplývá už ze samotné podstaty 
+řešeného problému&nbsp;– programy obsahují vložené (někdy ne explicitně 
+zapsané) programové smyčky, které po překladu přímo vedou 
+k&nbsp;lokalitě programového kódu a ve velkém množství případů se 
+zpracovávají neustále ta stejná data, která se v&nbsp;ideálním případě 
+mohou celá vložit do datové vyrovnávací paměti a tím značným způsobem 
+urychlit běh programu díky sníženému množství přenosů z&nbsp;operační 
+paměti do vyrovnávací paměti a zpět. Vlastnost lokality se 
+v&nbsp;literatuře označuje jako <i>pravidlo 80–20</i>, popř.&nbsp;<i>pravidlo 90–10</i>, které lze vyjádřit i&nbsp;slovně: <i>80&nbsp;% času stráví program pouze ve 20&nbsp;% kódu</i>.
+ Pokud by tato pravidla nebyla platná (například by byly jednotlivé 
+instrukce programu v&nbsp;operační paměti „rozházeny“ zcela náhodně), 
+ztrácelo by použití vyrovnávacích pamětí svůj význam.</p>
+
+<p><span id="k02"></span></p>
+
+<h2>2.&nbsp;Struktura údajů uložených ve vyrovnávací paměti</h2>
+
+<p>Již minule jsme si řekli, že data jsou ve vyrovnávací paměti uložena po blocích pevné délky. Tyto bloky se nazývají <i>lines</i>, popř.&nbsp;<i>cache lines</i>.
+ Každý blok má kapacitu dosahující většinou 32&nbsp;nebo 64&nbsp;bytů 
+(tj.&nbsp;256 nebo 512&nbsp;bitů). Například vyrovnávací paměť 
+o&nbsp;kapacitě 512&nbsp;kB a velikosti bloku 32&nbsp;bytů obsahuje 
+celkem 16384&nbsp;bloků. Ke každému bloku je přidána další informační 
+struktura (tj.&nbsp;paměťové buňky) obsahující index tohoto bloku 
+v&nbsp;hlavní paměti (jedná se o&nbsp;adresu bez nižších <i>n</i> bitů, kde <i>n</i>
+ odpovídá velikosti bloku a šířce zpracovávaného slova), popř. 
+i&nbsp;další informace, například o&nbsp;tom, kolikrát byl tento blok 
+použit při čtení či zápisu dat, zda se jedná o „špinavý“ (<i>dirty</i>) blok, jehož obsah musí být v&nbsp;budoucnu uložen do hlavní paměti atd. Tyto doplňující informace se označují jako <i>tag</i>
+ a jejich délka je různá podle konkrétní architektury vyrovnávací paměti
+ (typicky se jedná o&nbsp;hodnotu 32&nbsp;bitů, ale může být 
+i&nbsp;odlišná).</p>
+
+<p>Nutnost uložení doplňujících informací ke každému bloku ve 
+vyrovnávací paměti je jeden z&nbsp;hlavních důvodů, proč se ve 
+vyrovnávacích pamětech používají bloky o&nbsp;kapacitě větší než jedno 
+adresovatelné slovo&nbsp;– i&nbsp;pro samotný <i>tag</i> je totiž nutné vyhradit část kapacity vyrovnávací paměti a kdyby byly bloky příliš malé, zabraly by jejich <i>tagy</i>
+ zbytečně mnoho drahého místa v&nbsp;paměťových buňkách, nehledě na to, 
+že spolu se snižující se velikostí bloků stoupá počet bitů nutných pro 
+uložení jeho indexu (adresy) v&nbsp;operační paměti (tím se zvětšuje 
+počet bitů nutných pro uložení každého tagu). Současné paměti DDR a DDR2
+ navíc obsahují ve svém přenosovém protokolu příkazy, kterými je možné 
+provést blokový přesun (<i>burst read, burst write</i>), jehož délka 
+v&nbsp;ideálním případě odpovídá právě velikosti bloku vyrovnávací 
+paměti. Při tomto přesunu se zdrojová či cílová adresa přenáší pouze 
+jedenkrát, což samozřejmě celý přenos urychluje. Pokud je šířka datové 
+sběrnice 64&nbsp;bitů (DDR), je pro přesun celého bloku o&nbsp;délce 
+64&nbsp;bytů zapotřebí vykonat 64×8/64=8 čtecích či zápisových operací.</p>
+
+<p><span id="k03"></span></p>
+
+<h2>3.&nbsp;Asociativita vyrovnávací paměti</h2>
+
+<p><i>Asociativita vyrovnávací paměti</i> zjednodušeně řečeno určuje, 
+jakým způsobem mohou být mapovány bloky z&nbsp;operační paměti do bloků 
+v&nbsp;paměti vyrovnávací. Obecně totiž <strong>ne</strong>platí, že 
+jakýkoli blok z&nbsp;operační paměti může být uložen kdekoli 
+v&nbsp;paměti vyrovnávací&nbsp;– tuto na první pohled užitečnou 
+vlastnost je sice možné zaručit, ovšem za cenu zpomalení práce 
+vyrovnávací paměti a zvýšené složitosti logických obvodů, které práci 
+vyrovnávacích pamětí řídí. Již minule jsme si uváděli jednoduchý příklad
+ konfigurace počítače s&nbsp;64 MB operační paměti, 512&nbsp;kB 
+vyrovnávací paměti a velikosti bloku 32&nbsp;bytů: vyrovnávací paměť 
+může pojmout 16384&nbsp;bloků (<i>512×2<sup>10</sup>/32</i>), operační paměť je rozdělena do 2097152&nbsp;bloků (<i>64×2<sup>20</sup>/32</i>). Pro rozlišení oněch 2097152&nbsp;bloků je zapotřebí 21&nbsp;bitů, protože platí <i>2<sup>21</sup>=2097152</i> (nebo také se znalostí výpočtu logaritmu o&nbsp;libovolném základu <i>log(2097152)/­log(2)=ln(2097152)/ln(2)­=21</i>), což je také minimální teoretická šířka <i>tagu</i>
+ každého bloku (pro jednoduchost předpokládejme, že tagy jsou uloženy 
+mimo oněch 512&nbsp;kB vyrovnávací paměti, což je mnohdy pravda.</p>
+
+<p>Existují různé míry asociativity vyrovnávací paměti, z&nbsp;nichž ty nejtypičtější jsou popsány v&nbsp;následujících kapitolách.</p>
+
+<p><span id="k04"></span></p>
+
+<h2>4.&nbsp;Přímo mapovaná vyrovnávací paměť</h2>
+
+<p>V&nbsp;případě <strong>přímo mapované vyrovnávací paměti</strong> (<i>direct mapped cache</i>)
+ se jedná o&nbsp;implementačně nejjednodušší strukturu vyrovnávacích 
+pamětí, ve které se již přímo z&nbsp;indexu bloku (tj.&nbsp;nejvyšších 
+bitů adresy) určuje, ve kterém místě se blok může nacházet ve 
+vyrovnávací paměti&nbsp;– konkrétně se jedná o&nbsp;jedno jediné místo 
+vypočtené pomocí vztahu <i>index modulo n</i>, kde <i>n</i> je celkový 
+počet bloků, které vyrovnávací paměť obsahuje. Výše uvedený vztah se 
+samozřejmě v&nbsp;praxi nemusí počítat, protože počet bloků ve 
+vyrovnávací paměti je roven celočíselné mocnině dvou, takže nejnižších <i>x</i> bitů indexu bloku v&nbsp;operační paměti přímo určuje umístění bloku v&nbsp;paměti vyrovnávací (samozřejmě platí <i>2<sup>x</sup>=n</i>).
+ Takto zkonstruovaná vyrovnávací paměť je při výběru bloků velmi rychlá,
+ ovšem omezení daná způsobem mapování bloků jsou největší: dva bloky, 
+jejichž indexy se liší o&nbsp;celočíselný násobek <i>n</i> nemohou být současně ve vyrovnávací paměti umístěny, což může vést k&nbsp;relativně vysoké míře <i>cache miss</i> a tím pádem i&nbsp;k&nbsp;nižší celkové efektivitě.</p>
+
+<p><span id="k05"></span></p>
+
+<h2>5.&nbsp;Plně asociativní vyrovnávací paměť</h2>
+
+<p><strong>Plně asociativní vyrovnávací paměť</strong> (<i>fully associative cache </i>)
+ je ve své podstatě pravým opakem přímo mapované vyrovnávací paměti. 
+Zatímco u&nbsp;předchozí konstrukce byla pozice bloku pevně dána jeho 
+indexem, u&nbsp;plně asociativní paměti prakticky neexistuje žádné 
+omezení, co se týče mapování bloků (jediným omezením je, aby se blok ve 
+vyrovnávací paměti nacházel pouze v&nbsp;jedné kopii, což je logické jak
+ kvůli koherenci dat, tak i&nbsp;z&nbsp;hlediska co nejlepšího využití 
+kapacity této paměti). Vzhledem k&nbsp;minimálnímu omezení mapování 
+bloků (a tím i&nbsp;největším možnostem, které má <i>alokátor</i> bloků) se u&nbsp;tohoto typu konstrukce vyrovnávací paměti dosahuje nejnižší míry <i>cache miss</i>,
+ takže by se zdálo, že se tato konstrukce používá nejčastěji. Ve 
+skutečnosti tomu tak vždy není, protože v&nbsp;takto vytvořené 
+vyrovnávací paměti je nutné implementovat rychlý mechanismus mapování a 
+hledání bloků, což většinou vede na nutnost použití nějakého typu <i>CAM (Content Addressable Memory)</i>,
+ tj.&nbsp;paměti adresované obsahem (zde je obsahem myšlen index bloku).
+ Tyto obvody jsou drahé a také relativně pomalé, proto plně asociativní 
+vyrovnávací paměť není obecně tak rychlá, jako přímo 
+mapovaná&nbsp;paměť.</p>
+
+<p><span id="k06"></span></p>
+
+<h2>6.&nbsp;Dvoucestná či čtyřcestná asociativní vyrovnávací&nbsp;paměť</h2>
+
+<p>Tak, jak je už v&nbsp;IT i&nbsp;jiných disciplínách skoro pravidlem, 
+je v&nbsp;praxi výhodnější nepoužívat žádnou z&nbsp;výše uvedených 
+limitních případů asociativity (přímé mapování, tj.&nbsp;nultá míra 
+asociativity versus plná asociativita), ale spíše nějaký vhodně navržený
+ kompromis. Ten je představován <strong>dvoucestnou asociativní vyrovnávací pamětí</strong> (<i>2-way set associative cache</i>) popř. <strong>čtyřcestnou asociativní vyrovnávací pamětí</strong> (<i>4-way set associative cache</i>).
+ Název těchto konstrukcí již naznačuje jejich základní vlastnosti. 
+U&nbsp;dvoucestné asociativní vyrovnávací paměti je možné každý blok 
+z&nbsp;operační paměti mapovat do dvou míst v&nbsp;paměti vyrovnávací; 
+čtyřcestná asociativní vyrovnávací paměť naproti tomu umožňuje jeden 
+blok mapovat do čtyř míst (samozřejmě ne do všech současně, alokátor si 
+musí vybrat na základě zvolené strategie). Na první pohled je výběr 
+pouhých dvou či čtyř míst oproti místu jednomu (jak tomu bylo 
+v&nbsp;případě přímo mapované paměti) bezvýznamný, v&nbsp;praxi se však 
+ukazuje, že se výrazně snižuje míra <i>cache miss</i>. Ani konstrukce 
+těchto pamětí není složitá (původní CAM se redukuje na relativně 
+jednoduchý rozhodovací obvod), proto se tyto paměti používají 
+poměrně&nbsp;často.</p>
+<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/Cacheassociative-fill-both.png"><br>
+
+<p class="rs-center"><i>Přímo mapovaná a dvoucestná vyrovnávací paměť</i></p>
+
+<p><span id="k07"></span></p>
+
+<h2>7.&nbsp;Strategie přidělování bloků</h2>
+
+<p>Ve chvíli, kdy mikroprocesor potřebuje provést čtení či zápis dat do bloku <strong>X</strong>, který se nenachází ve vyrovnávací paměti (jinými slovy nastane <i>cache miss</i>), použije se takzvaný <i>alokátor bloků</i>, což je logický obvod, který na základě několika kritérií rozhodne, jakým způsobem se požadovaný blok <strong>X</strong>
+ do vyrovnávací paměti dostane. Nejjednodušší práci má alokátor 
+v&nbsp;případě, že vyrovnávací paměť je přímo mapovaná&nbsp;– index 
+bloku <strong>X</strong> v&nbsp;tomto případě přímo určuje, na které místo ve vyrovnávací paměti se blok <strong>X</strong> má načíst. Původní blok <strong>Y</strong> je (v&nbsp;případě, že byl změněn, tj.&nbsp;byl u&nbsp;něj nastaven příznakový bit <i>dirty</i>) uložen zpět do operační paměti (provádí se <i>burst write</i> neboli blokový zápis do operační paměti) a poté je do stejného místa vyrovnávací paměti načten požadovaný blok <strong>X</strong> (provádí se <i>burst read</i>
+ neboli blokové čtení z&nbsp;operační paměti). Toto řešení je 
+nejrychlejší z&nbsp;hlediska práce alokátoru, ovšem počet blokových 
+přenosů z&nbsp;a do operační paměti je poměrně velký&nbsp;– viz <a href="#k04">čtvrtá kapitola</a>.</p>
+
+<p>Poněkud více práce čeká na <i>alokátor bloků</i> v&nbsp;případě, že 
+je použita dvoucestná, čtyřcestná či dokonce plně asociativní 
+vyrovnávací paměť. Celou činnost si vysvětlíme na dvoucestné asociativní
+ vyrovnávací paměti, problém je však stejný i&nbsp;v&nbsp;ostatních 
+případech. U&nbsp;dvoucestné paměti musí alokátor rozhodnout, který 
+z&nbsp;bloků <strong>Y<sub>1</sub></strong> či <strong>Y<sub>2</sub></strong> bude uložen zpět do operační paměti, aby na stejné místo mohl být načten požadovaný blok <strong>X</strong>. Rozhodnutí mezi blokem <strong>Y<sub>1</sub></strong> a <strong>Y<sub>2</sub></strong>
+ je provedeno na základě strategie přidělování bloků, která dosti 
+podstatným způsobem ovlivňuje efektivitu vyrovnávací paměti (nejvíce je 
+to patrné u&nbsp;plně asociativní paměti). Pravděpodobně nejvíce známá 
+je strategie, při které je „zahozen“ ten blok <strong>Y<sub>n</sub></strong>,
+ který byl používán méně často, než ostatní kandidáti na „zahození“ 
+(„zahození“ v&nbsp;tomto případě může znamenat i&nbsp;uložení do 
+operační paměti v&nbsp;případě, že byl obsah bloku změněn). Tato 
+strategie se označuje zkratkou <i>LRU (Least Recently Used)</i> a 
+vyžaduje, aby se u&nbsp;každého bloku uloženého ve vyrovnávací paměti 
+udržovaly i&nbsp;informace o&nbsp;posledním použití tohoto bloku (jedná 
+se o&nbsp;celé číslo).</p>
+
+<p>Podobnou strategií je strategie nazvaná <i>LFU (Least Frequently Used)</i>,
+ u&nbsp;níž se ke každému bloku pamatuje informace o&nbsp;tom, jak často
+ byl blok požadován. Možné jsou i&nbsp;kombinace, například u&nbsp;<i>Adaptive Replacement Cache (ARC)</i>, ve které se vhodným způsobem kombinuje strategie <i>LRU</i> a <i>LFU</i>
+ s&nbsp;tím cílem, aby se efektivita využití vyrovnávací paměti co 
+nejvíce zvýšila i&nbsp;v&nbsp;případě dat, u&nbsp;nichž jednotlivé 
+predikce nepracují optimálně (LRU i&nbsp;LFU jsou totiž ve skutečnosti 
+jednoduché prediktory, které se snaží odhadnout, které bloky budou 
+v&nbsp;budoucnost použity méně častěji a které častěji).</p>
+
+<p><span id="k08"></span></p><div class="promo-in-article clear"><div style="width: 580px" class="rs-img-center"><a href="http://www.tuesday.cz/akce/bitcoiny/?utm_source=Root.cz&amp;utm_medium=Tip_do_clanku_2&amp;utm_campaign=Bitcoin_14"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/bitcoin-tip-2-1.png" alt="bitcoin_tip_2"></a></div><span class="corner top-left">&nbsp;</span>
+<span class="corner top-right">&nbsp;</span>
+<span class="corner bottom-left">&nbsp;</span>
+<span class="corner bottom-right">&nbsp;</span>
+</div>
+
+
+<h2>8.&nbsp;Literatura a odkazy na Internetu</h2>
+
+<ol class="urs-decimal">
+	<li>Pavel Valášek, Roman Loskot: <i>Polovodičové paměti</i>,<br>
+	BEN&nbsp;– Technická literatura, Praha 1998, ISBN-80–86056–18-X</li>
+
+	<li>Budínský J.: <i>Polovodičové paměti a jejich použití</i>,<br>
+	SNTL, Praha&nbsp;1977</li>
+
+	<li>Budínský J.: <i>Polovodičové paměti&nbsp;– Názvosloví a definice</i>,<br>
+	TESLA VÚST, Praha&nbsp;1980</li>
+
+	<li>Janů K.: <i>Paměti a řadiče&nbsp;– část I.</i>,<br>
+	ČSVTS, Knižnice mikroprocesorová technika, Praha&nbsp;1982</li>
+
+	<li><i>Great Microprocessors of the Past and Present (V&nbsp;13.0.0)</i></li>
+
+	<li><a href="http://www.pcguide.com/ref/mbsys/cache/funcMapping-c.html">Cache Mapping and Associativity</a> (http://www.pcgu­ide.com/ref/mbs­ys/cache/funcMap­ping-c.html)</li>
+
+	<li><a href="http://en.wikipedia.org/wiki/Cache">Wikipedia: Cache</a> (http://en.wi­kipedia.org/wi­ki/Cache)</li>
+
+	<li><a href="http://en.wikipedia.org/wiki/CPU_cache">Wikipedia: CPU cache</a> (http://en.wi­kipedia.org/wi­ki/CPU_cache)</li>
+
+	<li><a href="http://en.wikipedia.org/wiki/Cache_algorithms">Wikipedia: Cache algorithms</a> (http://en.wi­kipedia.org/wi­ki/Cache_algo­rithms)</li>
+
+	<li><a href="http://lwn.net/Articles/252125/">Memory part 2: CPU caches</a> (http://lwn.net/Ar­ticles/252125/)</li>
+
+	<li><a href="http://www.cs.wisc.edu/multifacet/misc/spec2000cache-data/">Cache Performance for SPEC CPU2000 Benchmarks</a> (http://www.cs­.wisc.edu/mul­tifacet/misc/spec2000ca­che-data/)</li>
+
+	<li><a href="http://www.cs.umd.edu/class/spring2003/cmsc311/Notes/Memory/fully.html">Fully Associative Cache</a> (http://www.cs­.umd.edu/clas­s/spring2003/cmsc31­1/Notes/Memory/fu­lly.html)</li>
+</ol>
+
+<p><span id="k09"></span></p>
+
+<h2>9.&nbsp;Obsah dalšího pokračování seriálu</h2>
+
+<p>V&nbsp;následující části tohoto seriálu si popíšeme práci 
+vyrovnávacích pamětí v&nbsp;systémech, které obsahují více relativně 
+samostatně pracujících procesorových jednotek nebo větší množství 
+procesorových jader (<i>dual core, quad core</i>). Na těchto systémech 
+je použití vyrovnávacích pamětí takřka nezbytné, protože jinak by byl 
+celý výpočetní výkon ztracen při přístupu do operační paměti. Také se 
+budeme zabývat tím, jakým způsobem se vyrovnávací paměti a fronty 
+instrukcí musí zkonstruovat v&nbsp;případě, že je povolena modifikace 
+spustitelného kódu (<i>self-modyfying code, code morphing</i>), 
+tj.&nbsp;programový zásah do sekvence operačních kódů. Jedná se 
+o&nbsp;poměrně aktuální téma, zejména při použití dnes velmi často 
+používaných programovacích jazyků, jejichž virtuální stroje obsahují <i>JIT (Just in Time)</i> překladač. Jedná se jak o&nbsp;Javu či platformu .NET, tak i&nbsp;o&nbsp;některé implementace&nbsp;Lispu.</p>	</div>
+	<!-- Sklik-kontext-stop -->
+
+
+	<div class="author box clear">
+		<h3><a href="http://www.root.cz/autori/pavel-tisnovsky/">Pavel Tišnovský</a></h3>
+	</div>
+
+
+<div class="sklik-box" id="as-clanek">
+
+
+<!-- Kontextová reklama Sklik -->
+<div id="sklikReklama_11282"><iframe style="display: block;" scrolling="no" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/context.htm" frameborder="0" height="190" width="600"></iframe></div>
+<script type="text/javascript">
+    var sklikData = { elm: "sklikReklama_11282", zoneId: 11282, w: 600, h: 190 };
+</script>
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/script.js"></script>
+
+</div>
+
+
+<div id="classification">
+
+<div id="classification-sub" class="clear">
+<div id="classification-data">
+		Ohodnoťte jako ve škole:
+		<script type="text/javascript">
+			$(function() {
+				var classification = new Classification();
+				classification.addGrade("1","\/clanky\/architektury-vyrovnavacich-pameti\/?classification-mark=1&do=classification-Vote");
+				classification.addGrade("2","\/clanky\/architektury-vyrovnavacich-pameti\/?classification-mark=2&do=classification-Vote");
+				classification.addGrade("3","\/clanky\/architektury-vyrovnavacich-pameti\/?classification-mark=3&do=classification-Vote");
+				classification.addGrade("4","\/clanky\/architektury-vyrovnavacich-pameti\/?classification-mark=4&do=classification-Vote");
+				classification.addGrade("5","\/clanky\/architektury-vyrovnavacich-pameti\/?classification-mark=5&do=classification-Vote");
+
+				classification.buildGrades();
+			});
+		</script>
+	<a id="testcls1" title="Ohodnoť známkou 1" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?classification-mark=1&amp;do=classification-Vote">1</a><a id="testcls2" title="Ohodnoť známkou 2" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?classification-mark=2&amp;do=classification-Vote">2</a><a id="testcls3" title="Ohodnoť známkou 3" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?classification-mark=3&amp;do=classification-Vote">3</a><a id="testcls4" title="Ohodnoť známkou 4" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?classification-mark=4&amp;do=classification-Vote">4</a><a id="testcls5" title="Ohodnoť známkou 5" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?classification-mark=5&amp;do=classification-Vote">5</a></div>
+	<div id="classification-average">Průměrná známka 2,88</div>
+	<div id="classification-top"><a href="http://www.root.cz/clanky/top/">Top 20</a></div>
+</div>
+</div>
+
+
+<div class="socialShare customButtons clear">
+	<a href="https://www.facebook.com/share.php?u=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" target="_blank" class="btn facebook">Sdílet na Facebooku</a>
+	<a href="https://twitter.com/share?url=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F&amp;text=Architektury%20vyrovn%C3%A1vac%C3%ADch%20pam%C4%9Bt%C3%AD&amp;via=rootcz" target="_blank" class="btn twitter">Odeslat na Twitter</a>
+	<a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.root.cz%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F" target="_blank" class="btn googlePlus">Sdílet na Google+</a>
+</div>
+
+<script type="text/javascript">
+	if (typeof socialEventsDone === 'undefined') {
+		window.socialEventsDone = true;
+		$(function() {
+			$('.socialShare.customButtons .facebook').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'facebook', 'like', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'facebook',
+					              'socialAction': 'share',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+			$('.socialShare.customButtons .twitter').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'twitter', 'tweet', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'twitter',
+					              'socialAction': 'tweet',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+			$('.socialShare.customButtons .googlePlus').click(function() {
+				if (typeof window._gaq !== 'undefined') {
+					_gaq.push(['_trackSocial', 'Google', '+1', "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"]);
+				} else if (typeof window.dataLayer !== 'undefined') {
+					dataLayer.push({
+					              'event': 'socialInt',
+					              'socialNetwork': 'Google',
+					              'socialAction': '+1',
+					              'socialTarget': "http:\/\/www.root.cz\/clanky\/architektury-vyrovnavacich-pameti\/"
+					          });
+				}
+			});
+		});
+	}
+</script>
+
+
+
+	
+
+	<!-- google_ad_section_end -->
+
+<div id="promo-box">
+	<h3><a href="http://www.dobryweb.cz/skoleni-google-analytics-pro-pokrocile#utm_medium=iinfobox&amp;utm_source=root&amp;utm_campaign=skoleni_skoleni+google+analytics+pokrocile" title="Školení Google Analytics pro pokročilé">Školení Google Analytics pro pokročilé</a></h3>
+	<ul><li><div style="width: 269px" class="rs-img-right"><a href="http://www.dobryweb.cz/skoleni#utm_medium=iinfobox&amp;utm_source=root&amp;utm_campaign=skoleni_logo"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/logo-dw-boxy-root-2-1.png" class="image-142692" alt="&nbsp;" height="55" width="269"></a></div>Jak <strong>využít nové funkce Google Analytics</strong></li><li>Vyhodnocování kampaní díky používání <strong>Multichannel funnels</strong></li><li>Kde návštěvníci vašeho webu utíkají z&nbsp;objednávacího procesu.</li></ul><p><a href="http://www.dobryweb.cz/skoleni-google-analytics-pro-pokrocile#utm_medium=iinfobox&amp;utm_source=root&amp;utm_campaign=skoleni_skoleni+google+analytics+pokrocile"><strong>Detailní informace o školení Google Analytics pro pokročilé »</strong></a></p>
+	<span class="corner top-left">&nbsp;</span>
+	<span class="corner top-right">&nbsp;</span>
+	<span class="corner bottom-left">&nbsp;</span>
+	<span class="corner bottom-right">&nbsp;</span>
+</div>
+
+
+
+<div class="opinionsSummary none">
+	
+	<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/nazory/pridat/">
+		<span class="count">
+			žádné názory
+		</span>
+		<span class="enter">
+				Vložit nový názor
+		</span>
+	</a>
+
+</div>
+
+<p class="msg info">
+	Tento text je již více než dva měsíce starý. Chcete-li na něj reagovat v diskusi,
+	pravděpodobně vám již nikdo neodpoví.
+	Pro řešení aktuálních problémů doporučujeme využít naše <a href="http://forum.root.cz/">diskusní fórum</a>.
+</p>
+
+
+
+
+<div class="monitoringComponentArticle" id="sledovaniNazoru">
+	<a href="http://www.root.cz/prihlasit/?refUrl=%2Fclanky%2Farchitektury-vyrovnavacich-pameti%2F%3FopinionsMonitor-mode%3D1%26do%3DopinionsMonitor-monitor#sledovaniNazoru" title="Zasílání upozornění na nové příspěvky je dostupné jen registrovaným uživatelům. Proto budete před aktivací zasílání názorů
+	přesměrováni na přihlašovací stránku, ze které se můžete případně také zaregistrovat." class="opinionsMonitor"><span class="ico"></span>Zasílat nově přidané příspěvky e-mailem</a>
+	<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/jsloader-ff37afbf206a-jquery.js"></script>
+
+	<script type="text/javascript">
+		<!--
+		$('.opinionsMonitor').qtip({show: 'mouseover', hide: 'mouseout', style: { name: 'light', tip: true}});
+		//-->
+	</script>
+</div>
+
+
+<div class="relatedTexts">
+	<h3><span>Čtěte dále</span></h3>
+
+</div>
+
+	<div id="ad-textips" class="clear">
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	if (typeof(SyntaxHighlighter) != 'undefined') {
+		SyntaxHighlighter.config.clipboardSwf = '/shared/js/syntaxhl/clipboard.swf';
+		SyntaxHighlighter.all();
+	}
+</script>
+</div>  <!-- /#main -->
+
+<div id="sidebar">
+
+<form novalidate="" id="cse-search-box" action="/vyhledavani/" method="get">
+	<fieldset>
+			<span class="search-text">
+				<input name="qs" size="25" id="search-input" class="text-field ac_input" type="text">
+			</span>
+
+			<span class="search-submit">
+				<input name="sa" value="Hledat" type="submit">
+			</span>
+	</fieldset>
+	
+</form>
+
+<div id="ad-200x200">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczrernpmphpz10"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Side 200x200 */
+	ado.slave("adoceanczrernpmphpz", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "side-200x200";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczrernpmphpz=='function'){adoceanczrernpmphpz();}</script><!--
+spir.czMonS[273_32324_44684_2_139839]
+-->
+<div class="ad">
+    <h4 class="admarker">reklama</h4>
+    <div class="ad-textbox">
+        <a href="http://adcz.hit.gemius.pl/hitredir/id=ByA1XSeJAZavdEqbshvwOvU3nO6pw9hVtaa9KHO2wdX.I7/stparam=zoptkpdlbl/fastid=ljtklbzlgibejjkfkiheyvolhajv/sarg=NC/url=http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&amp;c=20&amp;mc=click&amp;pli=10061659&amp;PluID=0&amp;ord=[timestamp]"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/airbank_logo80x60_black1.gif" height="60" width="80"></a>
+        <p>
+            </p><center><p><a href="http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&amp;c=20&amp;mc=click&amp;pli=10061659&amp;PluID=0&amp;ord=[timestamp]">Až 5 půjček do 1 výhodné</a></p><p>Převeďte si půjčky k nám a získejte úrokovou sazbu 9,9 %.</p><a href="http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&amp;c=20&amp;mc=click&amp;pli=10061659&amp;PluID=0&amp;ord=[timestamp]">Více o výhodách převodu půjček</a><p></p></center>
+        <p></p>
+        <img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/adServer.gif" alt="" height="1" width="1">
+     </div>
+</div>
+<script id="script_moinhsjgcq" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_014.js" language="javascript"></script><!--
+spir.czMonE
+-->
+
+	<!--  end slave  -->
+
+</div>
+
+<div id="ad-200x200-2">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczofiedkjmgu11"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Side 200x200 2 */
+	ado.slave("adoceanczofiedkjmgu", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "side-200x200-2";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczofiedkjmgu=='function'){adoceanczofiedkjmgu();}</script><script id="script_ljqkbkdtuz" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_008.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+
+
+<div id="jobs">
+	<div class="jobs-ad-box">
+		<div class="jobs-ad-header"><a href="http://it.jobs.cz/" class="jobs-ad-title" title="Jobs.cz - aktuální nabídka práce nejen v informačních technologiích">Práce v IT</a>
+		<div class="jobs-ad-logo">
+			<a href="http://www.jobs.cz/" class="jobs-ad-logo" title="Jobs.cz - aktuální nabídka práce"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/jobs.png" alt="Jobs.cz - Inspirujeme k úspěchu - nabídka práce" height="25" width="58"></a>
+		</div>
+        <div class="jobs-ad-cb"></div>
+	</div>
+		<div id="jobs-in">
+			<ul id="jobs-lst">
+				<li><a href="http://www.jobs.cz/pd/757928133/?rps=74">SENIOR PRODUCT MANAGER pro rozvoj JOBS.cz</a></li>
+				<li><a href="http://www.jobs.cz/pd/793362467/?rps=74">Vývojář C#/SQL</a></li>
+				<li><a href="http://www.jobs.cz/pd/826121360/?rps=74">UX Designer for Prace.cz</a></li>
+				<li><a href="http://www.jobs.cz/pd/662381700/?rps=74">Java Portal Developer</a></li>
+				<li><a href="http://www.jobs.cz/pd/835150709/?rps=74">Kodér/ka ve vývojovém týmu</a></li>
+				<li><a href="http://www.jobs.cz/pd/837352054/?rps=74">IT Administrator</a></li>
+			</ul>
+			<a class="jobs-ad-more" href="http://it.jobs.cz/" title="Zobrazit další nabídky práce na serveru Jobs.cz nejen z IT">více nabídek práce »</a>
+			<div class="jobs-ad-cb"></div>
+		</div>
+	</div>
+	<div class="tipLink">
+		Tip: <a href="http://www.jobs.cz/vysoke-skoly/">Vysoké školy »</a>
+	</div>
+
+</div>
+
+		<div class="articlesInRubric">
+<div class="container smallList">
+	<h2 class="heading  rubric">
+		<a href="http://www.root.cz/periferie/clanky/#ic=articles-in-rubric&amp;icc=title">Články v rubrice Periferie</a>
+		<span class="top">&nbsp;</span>
+		<span class="corner top-left">&nbsp;</span>
+		<span class="corner top-right">&nbsp;</span>
+		<span class="corner bottom-left">&nbsp;</span>
+		<span class="corner bottom-right">&nbsp;</span>
+	</h2>
+
+	<ol class="sidebar-list SmallList">
+		<li class="clear">
+				<a class="perexImg" href="http://www.root.cz/clanky/tronsmart-t1000-z-tabletu-ci-mobilu-na-televizni-obrazovku/#ic=articles-in-rubric&amp;icc=tronsmart-t1000-z-tabletu-ci-mobilu-na-televizni-obrazovku"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/tronsmart-t1000-1-thumb.png" height="100" width="100"></a>
+			<a href="http://www.root.cz/clanky/tronsmart-t1000-z-tabletu-ci-mobilu-na-televizni-obrazovku/#ic=articles-in-rubric&amp;icc=tronsmart-t1000-z-tabletu-ci-mobilu-na-televizni-obrazovku">Tronsmart T1000: z&nbsp;tabletu či mobilu na televizní obrazovku</a>
+
+			<span class="date">7.&nbsp;5.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+				<a class="perexImg" href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-rizeni-toku-a-konfigurace/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-rizeni-toku-a-konfigurace"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/dalnopisy-1-thumb.png" height="100" width="100"></a>
+			<a href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-rizeni-toku-a-konfigurace/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-rizeni-toku-a-konfigurace">Terminály tajemství zbavené: řízení toku a&nbsp;konfigurace</a>
+
+			<span class="date">24.&nbsp;4.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+				<a class="perexImg" href="http://www.root.cz/clanky/lepsi-nez-chromecast-measy-a2w-se-predstavuje/#ic=articles-in-rubric&amp;icc=lepsi-nez-chromecast-measy-a2w-se-predstavuje"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/measy-a2w-1-thumb.png" height="100" width="100"></a>
+			<a href="http://www.root.cz/clanky/lepsi-nez-chromecast-measy-a2w-se-predstavuje/#ic=articles-in-rubric&amp;icc=lepsi-nez-chromecast-measy-a2w-se-predstavuje">Lepší než Chromecast? Measy A2W se představuje</a>
+
+			<span class="date">23.&nbsp;4.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+				<a class="perexImg" href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-procesy-a-signaly/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-procesy-a-signaly"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/dalnopisy-1-thumb.png" height="100" width="100"></a>
+			<a href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-procesy-a-signaly/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-procesy-a-signaly">Terminály tajemství zbavené: procesy a&nbsp;signály</a>
+
+			<span class="date">17.&nbsp;4.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+				<a class="perexImg" href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-historie-a-soucasnost/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-historie-a-soucasnost"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/dalnopisy-1-thumb.png" height="100" width="100"></a>
+			<a href="http://www.root.cz/clanky/terminaly-tajemstvi-zbavene-historie-a-soucasnost/#ic=articles-in-rubric&amp;icc=terminaly-tajemstvi-zbavene-historie-a-soucasnost">Terminály tajemství zbavené: historie a&nbsp;současnost</a>
+
+			<span class="date">10.&nbsp;4.&nbsp;2014 0:00</span>
+			
+		</li>
+	</ol>
+	<span class="link-more border clear">
+		<a href="http://www.root.cz/periferie/clanky/#ic=articles-in-rubric&amp;icc=title">Články v rubrice Periferie</a>
+		<span class="corner top-left">&nbsp;</span>
+		<span class="corner top-right">&nbsp;</span>
+		<span class="corner bottom-left">&nbsp;</span>
+		<span class="corner bottom-right">&nbsp;</span>
+	</span>
+</div>
+
+</div>
+
+<div id="ad-200x200-3">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczlgpkgxsqup12"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Side 200x200 3 */
+	ado.slave("adoceanczlgpkgxsqup", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "side-200x200-3";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczlgpkgxsqup=='function'){adoceanczlgpkgxsqup();}</script><div class="ad">
+<h4 class="admarker">reklama</h4>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6737213819139212";
+/* Root 200x200 B */
+google_ad_slot = "3695180510";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:200px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:200px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="200" width="200"></iframe></ins></ins>
+</div>
+<script id="script_koptgthpuk" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_005.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+<div class="trainingListing">
+    <h2><a href="http://www.root.cz/skoleni/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI">Aktuální školení Root.cz</a></h2>
+	<ul>
+		<li>
+			<a href="http://www.root.cz/skoleni/termin/programovani-v-php-5-187/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI"><strong>Programování v PHP 5</strong>
+			<span class="date">10.&nbsp;6.&nbsp;2014</span>
+		</a>
+		</li>
+		<li>
+			<a href="http://www.root.cz/skoleni/termin/adobe-photoshop-cs6-pokrocili-dvoudenni-4/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI"><strong>Adobe Photoshop CS6 – pokročilí</strong>
+			<span class="date">16.&nbsp;6.&nbsp;2014</span>
+		</a>
+		</li>
+		<li>
+			<a href="http://www.root.cz/skoleni/termin/dns-a-dnssec/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI"><strong>DNS a DNSsec</strong>
+			<span class="date">9.&nbsp;7.&nbsp;2014</span>
+		</a>
+		</li>
+		<li>
+			<a href="http://www.root.cz/skoleni/termin/linux-zalohovani-vysoka-dostupnost-snmp-dohled-tridenni-1/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI"><strong>Linux – Zálohování, Vysoká dostupnost, SNMP dohled (třídenní)</strong>
+			<span class="date">28.&nbsp;7.&nbsp;2014</span>
+		</a>
+		</li>
+		<li>
+			<a href="http://www.root.cz/skoleni/termin/linux-firemni-server-tridenni-3/?utm_source=ROOT&amp;utm_medium=BOXCL&amp;utm_campaign=SKOLENI"><strong>Linux – Firemní server (třídenní)</strong>
+			<span class="date">11.&nbsp;8.&nbsp;2014</span>
+		</a>
+		</li>
+	</ul>
+</div>
+
+
+<div id="ad-200x200-4">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceanczyggrjumfoo13"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Side 200x200 4 */
+	ado.slave("adoceanczyggrjumfoo", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "side-200x200-4";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceanczyggrjumfoo=='function'){adoceanczyggrjumfoo();}</script><script id="script_xlctgormtj" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC_009.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+<div class="container smallList">
+	<h2 class="heading  rubric">
+		Aktuální články
+		<span class="top">&nbsp;</span>
+		<span class="corner top-left">&nbsp;</span>
+		<span class="corner top-right">&nbsp;</span>
+		<span class="corner bottom-left">&nbsp;</span>
+		<span class="corner bottom-right">&nbsp;</span>
+	</h2>
+
+	<ol class="sidebar-list SmallList">
+		<li class="clear">
+			<a href="http://www.root.cz/clanky/ipv4-jako-sluzba-aneb-jak-sit-zbavit-dual-stacku/">IPv4 jako služba aneb jak síť zbavit dual-stacku</a>
+
+			<span class="date">Dnes 0:00</span>
+			
+		</li>
+		<li class="clear">
+			<a href="http://www.root.cz/clanky/postrehy-z-bezpecnosti-po-heartbleedu-prichazi-cupid-utok/">Postřehy z&nbsp;bezpečnosti: po Heartbleedu přichází Cupid&nbsp;útok</a>
+
+			<span class="date">Dnes 0:00</span>
+			
+		</li>
+		<li class="clear">
+			<a href="http://www.root.cz/clanky/komiks-flexibilni-vyvoj/">Komiks: flexibilní vývoj</a>
+
+			<span class="date">7.&nbsp;6.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+			<a href="http://www.root.cz/clanky/linux-mint-17-cesta-smerem-ke-stabilite/">Linux Mint 17: cesta směrem ke stabilitě</a>
+
+			<span class="date">6.&nbsp;6.&nbsp;2014 0:00</span>
+			
+		</li>
+		<li class="clear">
+			<a href="http://www.root.cz/clanky/symphony-osvobodte-svou-hudbu/">Symphony: osvoboďte svou hudbu</a>
+
+			<span class="date">6.&nbsp;6.&nbsp;2014 0:00</span>
+			
+		</li>
+	</ol>
+</div>
+
+
+	<div class="container" id="lastBookPromo">
+		<h2 class="heading rubric">
+			<a href="http://www.root.cz/knihy/" title="Elektronická knihovna">Kniha týdne</a>
+			<span class="top">&nbsp;</span>
+			<span class="corner top-left">&nbsp;</span>
+			<span class="corner top-right">&nbsp;</span>
+			<span class="corner bottom-left">&nbsp;</span>
+			<span class="corner bottom-right">&nbsp;</span>
+		</h2>
+		<a href="http://www.root.cz/knihy/linux-from-scratch-7-4/" title="Linux From Scratch 7.4">
+			<img id="BookCover" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/linux-from-scratch-7-4.png" alt="Přebal knihy Linux From Scratch 7.4" height="264" width="187">
+		</a>
+		<h3>
+			<a href="http://www.root.cz/knihy/linux-from-scratch-7-4/">Linux From Scratch 7.4</a>
+		</h3>
+		<p>
+			<strong>Autor:</strong> Gerard Beekmans
+		</p>
+		<div class="a-buttons">
+			<a href="http://www.root.cz/knihy/linux-from-scratch-7-4/">Stáhněte zdarma</a>
+		</div>
+
+	</div>
+
+<div class="container">
+	<h2 class="heading">Vyzkoušejte na Root.cz</h2>
+		<ul class="sidebar-list bullets">
+			<li>
+				<a href="http://www.root.cz/uzivatel/nastaveni/">Uživatelský profil</a>
+			</li>
+			<li>
+				<a href="http://forum.root.cz/">Diskusní fóra</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/r/">Rubriky</a>,
+				<a href="http://www.root.cz/n/">Nálepky</a>,
+				<a href="http://www.root.cz/serialy/">Seriály</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/slovnicek/">Slovníček pojmů</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/specialy/">Speciály</a>, <a href="http://knihy.root.cz/">Knihy</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/texty/kalendar-akci/">Kalendář akcí</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/uzivatel/nastaveni/newsletter/">Novinky e-mailem (Newsletter)</a>
+			</li>
+			<li>
+				<a href="http://www.root.cz/texty/butik/">Butik &amp;ndash; trička, mikiny, tanga</a>
+			</li>
+			<li>
+				<a href="http://www.iinfo.cz/projekty/root/reklama-root/">Reklama na Root.cz</a>
+			</li>
+		</ul>
+</div>
+
+<div class="sklik-box" id="as-sidebar">
+
+<!-- Kontextová reklama Sklik -->
+<div id="sklikReklama_11281"><div class="sklik-ads"><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://www.lcd-display.cz/&amp;c=2V3WDEC28MDFH6FFW5B3DJU2VZFDAKZIFDYFDEK69AB9KR67B5GUIXBZN2Y7XC3SW5MAFTS8P4M9HSHZXKGCSZ7V8XTBIIZBBEABWPXDAU7N9SDDF8MF88AVEVBZ2RFK5744VPMYQZABYCU6MDMUN56PRXIXIRVQTPP5RGTBQ7V5X9AZIFPIBTTCISP9CPNPICP8R6NJ63NUY3K8VX4W78USXDCTJS5QQSMA3SPUH4AKQ3G39ATZMYP6WSCY2IEPJJW5C8NXC4RDEJXT3845EQ67YE9Y7VJMDY5RDZD5TDJI45MIXZCPAPK3AH3AIYBQQJJTSIQ7XC4KXUGMIGFGVHFPVJ9R2BRA3NWSR6S6G4XUBWVCFCE835MQESW3A3HTVIS8Y4RSTYYEVZ2XHNFF3USEFG8HKE6EEYJKG8Q7ZFPTWTT4MXFYCRY42ZJIBEZX8ESZ2"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a_006.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://www.lcd-display.cz/&amp;c=2V3WDEC28MDFH6FFW5B3DJU2VZFDAKZIFDYFDEK69AB9KR67B5GUIXBZN2Y7XC3SW5MAFTS8P4M9HSHZXKGCSZ7V8XTBIIZBBEABWPXDAU7N9SDDF8MF88AVEVBZ2RFK5744VPMYQZABYCU6MDMUN56PRXIXIRVQTPP5RGTBQ7V5X9AZIFPIBTTCISP9CPNPICP8R6NJ63NUY3K8VX4W78USXDCTJS5QQSMA3SPUH4AKQ3G39ATZMYP6WSCY2IEPJJW5C8NXC4RDEJXT3845EQ67YE9Y7VJMDY5RDZD5TDJI45MIXZCPAPK3AH3AIYBQQJJTSIQ7XC4KXUGMIGFGVHFPVJ9R2BRA3NWSR6S6G4XUBWVCFCE835MQESW3A3HTVIS8Y4RSTYYEVZ2XHNFF3USEFG8HKE6EEYJKG8Q7ZFPTWTT4MXFYCRY42ZJIBEZX8ESZ2">Displeje do Laptopů</a></h2><span class="sklik-descr1">3000Kč za displej + 150kč kuryr GLS </span><span class="sklik-descr2">Dodání k Vám domů do 24hod </span><a href="http://c.imedia.cz/click?adurl=http://www.lcd-display.cz/&amp;c=2V3WDEC28MDFH6FFW5B3DJU2VZFDAKZIFDYFDEK69AB9KR67B5GUIXBZN2Y7XC3SW5MAFTS8P4M9HSHZXKGCSZ7V8XTBIIZBBEABWPXDAU7N9SDDF8MF88AVEVBZ2RFK5744VPMYQZABYCU6MDMUN56PRXIXIRVQTPP5RGTBQ7V5X9AZIFPIBTTCISP9CPNPICP8R6NJ63NUY3K8VX4W78USXDCTJS5QQSMA3SPUH4AKQ3G39ATZMYP6WSCY2IEPJJW5C8NXC4RDEJXT3845EQ67YE9Y7VJMDY5RDZD5TDJI45MIXZCPAPK3AH3AIYBQQJJTSIQ7XC4KXUGMIGFGVHFPVJ9R2BRA3NWSR6S6G4XUBWVCFCE835MQESW3A3HTVIS8Y4RSTYYEVZ2XHNFF3USEFG8HKE6EEYJKG8Q7ZFPTWTT4MXFYCRY42ZJIBEZX8ESZ2" class="sklik-url">www.lcd-display.cz</a></div><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://rozjezdyroku.cz/hlasovani/%3Futm_medium%3Dcpc%26utm_source%3Dsklik%26utm_campaign%3DRozjezdy%26utm_content%3DHlasovani&amp;c=PII7QPVKDXISS3PI9RGAJFP69WEJ2QT3A5ZQTHDQBIYZ9G2P25ZIPXCUKUKEHWJMCW7X5YHPAZ9WJH8DB6IEGCKHX8PFREDHGP279TQB2KFQ6RYP6WSVRJBA7YQGUIXRZHM8K7ZPADYUFU49VTITRM8395VDH7NM9SGAKRFBAP7BXGGKMY4RZD9IFVIEIW4FMKUIHQZ7J5WMZ8F55FWXKRMATH9BAKY7ZKENCCM3EXNAGDGF3XAMM2MJ6PE5G433QY72MH8UZWI4Z29UDMYDCKA4AC9C7BDTH2CY2QCNKBHDR9MKQSPDVPVXD7J68MKMIHA9T2BUU9QCC4TPYTTGMQE75EI4HA5DGHBZMNGKJNUD2RMXTX5DI2P2TPQWG7H864J7QFWB4P5DXH7WK9TR5CYUPM9S8NW84RS2KVA47ZQCXNS6IGNZTCRHHUTGHBXSVEECUBA"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a_004.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://rozjezdyroku.cz/hlasovani/%3Futm_medium%3Dcpc%26utm_source%3Dsklik%26utm_campaign%3DRozjezdy%26utm_content%3DHlasovani&amp;c=PII7QPVKDXISS3PI9RGAJFP69WEJ2QT3A5ZQTHDQBIYZ9G2P25ZIPXCUKUKEHWJMCW7X5YHPAZ9WJH8DB6IEGCKHX8PFREDHGP279TQB2KFQ6RYP6WSVRJBA7YQGUIXRZHM8K7ZPADYUFU49VTITRM8395VDH7NM9SGAKRFBAP7BXGGKMY4RZD9IFVIEIW4FMKUIHQZ7J5WMZ8F55FWXKRMATH9BAKY7ZKENCCM3EXNAGDGF3XAMM2MJ6PE5G433QY72MH8UZWI4Z29UDMYDCKA4AC9C7BDTH2CY2QCNKBHDR9MKQSPDVPVXD7J68MKMIHA9T2BUU9QCC4TPYTTGMQE75EI4HA5DGHBZMNGKJNUD2RMXTX5DI2P2TPQWG7H864J7QFWB4P5DXH7WK9TR5CYUPM9S8NW84RS2KVA47ZQCXNS6IGNZTCRHHUTGHBXSVEECUBA">Dejte hlas tomu</a></h2><span class="sklik-descr1">nejlepšímu v Rozjezdech roku 2014. </span><span class="sklik-descr2">Podpořte začínající podnikatele. </span><a href="http://c.imedia.cz/click?adurl=http://rozjezdyroku.cz/hlasovani/%3Futm_medium%3Dcpc%26utm_source%3Dsklik%26utm_campaign%3DRozjezdy%26utm_content%3DHlasovani&amp;c=PII7QPVKDXISS3PI9RGAJFP69WEJ2QT3A5ZQTHDQBIYZ9G2P25ZIPXCUKUKEHWJMCW7X5YHPAZ9WJH8DB6IEGCKHX8PFREDHGP279TQB2KFQ6RYP6WSVRJBA7YQGUIXRZHM8K7ZPADYUFU49VTITRM8395VDH7NM9SGAKRFBAP7BXGGKMY4RZD9IFVIEIW4FMKUIHQZ7J5WMZ8F55FWXKRMATH9BAKY7ZKENCCM3EXNAGDGF3XAMM2MJ6PE5G433QY72MH8UZWI4Z29UDMYDCKA4AC9C7BDTH2CY2QCNKBHDR9MKQSPDVPVXD7J68MKMIHA9T2BUU9QCC4TPYTTGMQE75EI4HA5DGHBZMNGKJNUD2RMXTX5DI2P2TPQWG7H864J7QFWB4P5DXH7WK9TR5CYUPM9S8NW84RS2KVA47ZQCXNS6IGNZTCRHHUTGHBXSVEECUBA" class="sklik-url">Rozjezdyroku.cz/hlasovani</a></div><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://superlevnapc.cz/index.php%3Fkat_id%3D10&amp;c=FHDXTFY9X3KI3QPI3AZEQD4T8UJIAD4B3PD2EGQKQC6QQYCZHQ9TKGW363WNGEQM9Y3IQ7W36QR43NZ4NVCR8M8XRHTEIXMSFXQA9M7YNFCKMU3B2R72VRDS5SRK7N25AP4RBYMFRPCYUQBUPQTT24W8B27ZQGR2FNRYKIV27AX7WA4C2IUUZ2967YJDTTSX83QVIYBJCSVVW2BFTFFCTHZB7IXJ4N6T6CX67T9RIUBFB86UPW3DSGIWE9RKITC3NNT8RVG3HTVRRIJQZVUB8PPD42FHRTW4VC5R7Q5VRJW56Q9DWWMQQKU7U5E37PMS4X82AKW7G6FGUQTVZK9B4Z5DJT5WREANBF9UTUB7I2TVYCE3VJRVTANCQ65YKVV8NNGS568AFU9NYM9EJNN49S7XGDXA4KTBHE5RVS5FK5GV6YI395IJDVTJ7N9DCQ6MWKRAU"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a_002.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://superlevnapc.cz/index.php%3Fkat_id%3D10&amp;c=FHDXTFY9X3KI3QPI3AZEQD4T8UJIAD4B3PD2EGQKQC6QQYCZHQ9TKGW363WNGEQM9Y3IQ7W36QR43NZ4NVCR8M8XRHTEIXMSFXQA9M7YNFCKMU3B2R72VRDS5SRK7N25AP4RBYMFRPCYUQBUPQTT24W8B27ZQGR2FNRYKIV27AX7WA4C2IUUZ2967YJDTTSX83QVIYBJCSVVW2BFTFFCTHZB7IXJ4N6T6CX67T9RIUBFB86UPW3DSGIWE9RKITC3NNT8RVG3HTVRRIJQZVUB8PPD42FHRTW4VC5R7Q5VRJW56Q9DWWMQQKU7U5E37PMS4X82AKW7G6FGUQTVZK9B4Z5DJT5WREANBF9UTUB7I2TVYCE3VJRVTANCQ65YKVV8NNGS568AFU9NYM9EJNN49S7XGDXA4KTBHE5RVS5FK5GV6YI395IJDVTJ7N9DCQ6MWKRAU">Repasované notebooky</a></h2><span class="sklik-descr1">On-line prodej repasovaných </span><span class="sklik-descr2">notebooků! Profesionální servis. </span><a href="http://c.imedia.cz/click?adurl=http://superlevnapc.cz/index.php%3Fkat_id%3D10&amp;c=FHDXTFY9X3KI3QPI3AZEQD4T8UJIAD4B3PD2EGQKQC6QQYCZHQ9TKGW363WNGEQM9Y3IQ7W36QR43NZ4NVCR8M8XRHTEIXMSFXQA9M7YNFCKMU3B2R72VRDS5SRK7N25AP4RBYMFRPCYUQBUPQTT24W8B27ZQGR2FNRYKIV27AX7WA4C2IUUZ2967YJDTTSX83QVIYBJCSVVW2BFTFFCTHZB7IXJ4N6T6CX67T9RIUBFB86UPW3DSGIWE9RKITC3NNT8RVG3HTVRRIJQZVUB8PPD42FHRTW4VC5R7Q5VRJW56Q9DWWMQQKU7U5E37PMS4X82AKW7G6FGUQTVZK9B4Z5DJT5WREANBF9UTUB7I2TVYCE3VJRVTANCQ65YKVV8NNGS568AFU9NYM9EJNN49S7XGDXA4KTBHE5RVS5FK5GV6YI395IJDVTJ7N9DCQ6MWKRAU" class="sklik-url">SuperLevnaPc.cz</a></div><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://www.zonercloud.cz/%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3Dtext%2Bobsah%26utm_campaign%3Dcloud&amp;c=X2HBRW4VVKFEESP342G3BC4V7CJH9A4W2HHTS6G4XD6BWDWD5GED8Y3KH7Q4WS34Q3PVSN3EX5WQZ32F5E5XSUEWYZV2URJVZGFWA5VXA7VHXQITICG3PTFPNXD4AVMUCHG3UNZJMSKYPU9UMZGVVMG7VVP6JGIBVJI8MM69ATCBRCDVB532GPKFYE7UJPGT8U6BX8FMH7X3CG4WZZZY7ZHU525NYPHQWABHPQKYWGWR3RWMBAZT7JZRU5WSEFE4I753VVX6FU63ZXZ6M5NFSHQ2MNP2NJ6V4BTWEGRBMCVW6GE2QNW8H37W39XS5HD737PNAB3972CD4CK6Y4CMJVHIQNQZN4I3WBAH855A8ZYZWUFBNDNNEYXCJBCUKT3A64TDH7DQE6M3F9SWDIP8QEF943TS5PR8M8UZNNJCC7I949HTURAZQYGR88X4JT7S9ZFJ2EWQ"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a_003.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://www.zonercloud.cz/%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3Dtext%2Bobsah%26utm_campaign%3Dcloud&amp;c=X2HBRW4VVKFEESP342G3BC4V7CJH9A4W2HHTS6G4XD6BWDWD5GED8Y3KH7Q4WS34Q3PVSN3EX5WQZ32F5E5XSUEWYZV2URJVZGFWA5VXA7VHXQITICG3PTFPNXD4AVMUCHG3UNZJMSKYPU9UMZGVVMG7VVP6JGIBVJI8MM69ATCBRCDVB532GPKFYE7UJPGT8U6BX8FMH7X3CG4WZZZY7ZHU525NYPHQWABHPQKYWGWR3RWMBAZT7JZRU5WSEFE4I753VVX6FU63ZXZ6M5NFSHQ2MNP2NJ6V4BTWEGRBMCVW6GE2QNW8H37W39XS5HD737PNAB3972CD4CK6Y4CMJVHIQNQZN4I3WBAH855A8ZYZWUFBNDNNEYXCJBCUKT3A64TDH7DQE6M3F9SWDIP8QEF943TS5PR8M8UZNNJCC7I949HTURAZQYGR88X4JT7S9ZFJ2EWQ">Výkonné a levné virtuální</a></h2><span class="sklik-descr1">cloud servery do 55 sekund. </span><span class="sklik-descr2">Linux nebo Win server bez čekání. </span><a href="http://c.imedia.cz/click?adurl=http://www.zonercloud.cz/%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3Dtext%2Bobsah%26utm_campaign%3Dcloud&amp;c=X2HBRW4VVKFEESP342G3BC4V7CJH9A4W2HHTS6G4XD6BWDWD5GED8Y3KH7Q4WS34Q3PVSN3EX5WQZ32F5E5XSUEWYZV2URJVZGFWA5VXA7VHXQITICG3PTFPNXD4AVMUCHG3UNZJMSKYPU9UMZGVVMG7VVP6JGIBVJI8MM69ATCBRCDVB532GPKFYE7UJPGT8U6BX8FMH7X3CG4WZZZY7ZHU525NYPHQWABHPQKYWGWR3RWMBAZT7JZRU5WSEFE4I753VVX6FU63ZXZ6M5NFSHQ2MNP2NJ6V4BTWEGRBMCVW6GE2QNW8H37W39XS5HD737PNAB3972CD4CK6Y4CMJVHIQNQZN4I3WBAH855A8ZYZWUFBNDNNEYXCJBCUKT3A64TDH7DQE6M3F9SWDIP8QEF943TS5PR8M8UZNNJCC7I949HTURAZQYGR88X4JT7S9ZFJ2EWQ" class="sklik-url">www.ZonerCloud.cz</a></div><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://www.vedaprozivot.cz/index.html%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3DUmisteni%26utm_campaign%3DAKAD-1403-0101-PABA&amp;c=KETAUHM3D4TYPR6JCK554SNJNYRAVDKZC8PZB8SPNDEQT983QMCD4IH6WTNRY754RSDRJI9T665U55T67G8YUG2MX42DTJT9DFV2BRCMZ6H5F5F4V289Z9GBIHBN4ESGE6ZUUDVKQW8WS3S53D8KG64I3TUSPTA6Y8KMR2K8X5ZMWGDK4HXGNSNMWMEEQDTCCHKY2Y2U7PRTFT8N78WZP2N28MMSRMZRG5WFCA5E2J65472C8HFRAAEZ9QI7YN7RSEXKHRMIF6IYXPQIJK8H4YSU5HU37SXZYPJTT3PA2DR6QKFSZMVDG2RHN4DMYAQPKPCXSME9KIRN8H9NCIGYIAHV93DNM6VJKTXREK6R3HTAPBNBUN3CXKH98R35XZTZA6FEM2BZHNIQJIGA98BXW7U2F6JXHU6D64VGHEH9JEPIMZAQYMRZPNP6CADATFUDTK2C4GDD"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://www.vedaprozivot.cz/index.html%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3DUmisteni%26utm_campaign%3DAKAD-1403-0101-PABA&amp;c=KETAUHM3D4TYPR6JCK554SNJNYRAVDKZC8PZB8SPNDEQT983QMCD4IH6WTNRY754RSDRJI9T665U55T67G8YUG2MX42DTJT9DFV2BRCMZ6H5F5F4V289Z9GBIHBN4ESGE6ZUUDVKQW8WS3S53D8KG64I3TUSPTA6Y8KMR2K8X5ZMWGDK4HXGNSNMWMEEQDTCCHKY2Y2U7PRTFT8N78WZP2N28MMSRMZRG5WFCA5E2J65472C8HFRAAEZ9QI7YN7RSEXKHRMIF6IYXPQIJK8H4YSU5HU37SXZYPJTT3PA2DR6QKFSZMVDG2RHN4DMYAQPKPCXSME9KIRN8H9NCIGYIAHV93DNM6VJKTXREK6R3HTAPBNBUN3CXKH98R35XZTZA6FEM2BZHNIQJIGA98BXW7U2F6JXHU6D64VGHEH9JEPIMZAQYMRZPNP6CADATFUDTK2C4GDD">Novinky ze světa vědy</a></h2><span class="sklik-descr1">Aktuality ze světa vědy včetně </span><span class="sklik-descr2">zajímavých akcí. Vše na 1 místě! </span><a href="http://c.imedia.cz/click?adurl=http://www.vedaprozivot.cz/index.html%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_content%3DUmisteni%26utm_campaign%3DAKAD-1403-0101-PABA&amp;c=KETAUHM3D4TYPR6JCK554SNJNYRAVDKZC8PZB8SPNDEQT983QMCD4IH6WTNRY754RSDRJI9T665U55T67G8YUG2MX42DTJT9DFV2BRCMZ6H5F5F4V289Z9GBIHBN4ESGE6ZUUDVKQW8WS3S53D8KG64I3TUSPTA6Y8KMR2K8X5ZMWGDK4HXGNSNMWMEEQDTCCHKY2Y2U7PRTFT8N78WZP2N28MMSRMZRG5WFCA5E2J65472C8HFRAAEZ9QI7YN7RSEXKHRMIF6IYXPQIJK8H4YSU5HU37SXZYPJTT3PA2DR6QKFSZMVDG2RHN4DMYAQPKPCXSME9KIRN8H9NCIGYIAHV93DNM6VJKTXREK6R3HTAPBNBUN3CXKH98R35XZTZA6FEM2BZHNIQJIGA98BXW7U2F6JXHU6D64VGHEH9JEPIMZAQYMRZPNP6CADATFUDTK2C4GDD" class="sklik-url">VedaProZivot.cz</a></div><div class="sklik-ad"><a href="http://c.imedia.cz/click?adurl=http://www.alfacomp.cz/php/index.php%3Feid%3D106140%26Search%3Dhp%2B250%2Bnotebook%26SearchType%3D1%26SearchSubmit%3D1&amp;c=4BWEFJ5KCBNTFN2RXPPAJ95IKPRJZUA4KTYFCMEFFS4HRXF9EBV7UPCT8ATU8VN8B5K4JTKNBFUY9MEAFIEQHJ7NJFJG5QJ93G7226H3ISXR2J58DGZMUZIQZQPMUCTVDXXASQ3UXRJFZBWATCFF5K7DJYEAP95VH9TT6IWUQ92FRU8K98U9HC3NEVVJQZPDYRHU4BBGQCPSE32F2QVZE6DZ6CR758ZGVKJZXEQAB6G69DIUNV2H2DV6KWCGJXFC59XDEY3ZJIHD7IFEE8R3ZK85H67DRSDZDKTYTT35ZCUFGRSFDI9UWVS8F9VZTCSJAJUIFXKH24NNPQFZ9DB52G7ERN5CUJVXQEI98N8VCCA743U655NQQNTABUN4P4G3MCNEI469B5YT8CJGHAF4GF94W8B2QHV2NNZPEBSGCFJT6VJ3XZ7DNSSTR8KZBKUN29MS"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/a_005.gif"></a><h2 class="sklik-title"><a href="http://c.imedia.cz/click?adurl=http://www.alfacomp.cz/php/index.php%3Feid%3D106140%26Search%3Dhp%2B250%2Bnotebook%26SearchType%3D1%26SearchSubmit%3D1&amp;c=4BWEFJ5KCBNTFN2RXPPAJ95IKPRJZUA4KTYFCMEFFS4HRXF9EBV7UPCT8ATU8VN8B5K4JTKNBFUY9MEAFIEQHJ7NJFJG5QJ93G7226H3ISXR2J58DGZMUZIQZQPMUCTVDXXASQ3UXRJFZBWATCFF5K7DJYEAP95VH9TT6IWUQ92FRU8K98U9HC3NEVVJQZPDYRHU4BBGQCPSE32F2QVZE6DZ6CR758ZGVKJZXEQAB6G69DIUNV2H2DV6KWCGJXFC59XDEY3ZJIHD7IFEE8R3ZK85H67DRSDZDKTYTT35ZCUFGRSFDI9UWVS8F9VZTCSJAJUIFXKH24NNPQFZ9DB52G7ERN5CUJVXQEI98N8VCCA743U655NQQNTABUN4P4G3MCNEI469B5YT8CJGHAF4GF94W8B2QHV2NNZPEBSGCFJT6VJ3XZ7DNSSTR8KZBKUN29MS">Alfa.cz notebooky HP 250</a></h2><span class="sklik-descr1">Váš oblíbený obchod s počítači a </span><span class="sklik-descr2">elektronikou. Nakupujte výhodně. </span><a href="http://c.imedia.cz/click?adurl=http://www.alfacomp.cz/php/index.php%3Feid%3D106140%26Search%3Dhp%2B250%2Bnotebook%26SearchType%3D1%26SearchSubmit%3D1&amp;c=4BWEFJ5KCBNTFN2RXPPAJ95IKPRJZUA4KTYFCMEFFS4HRXF9EBV7UPCT8ATU8VN8B5K4JTKNBFUY9MEAFIEQHJ7NJFJG5QJ93G7226H3ISXR2J58DGZMUZIQZQPMUCTVDXXASQ3UXRJFZBWATCFF5K7DJYEAP95VH9TT6IWUQ92FRU8K98U9HC3NEVVJQZPDYRHU4BBGQCPSE32F2QVZE6DZ6CR758ZGVKJZXEQAB6G69DIUNV2H2DV6KWCGJXFC59XDEY3ZJIHD7IFEE8R3ZK85H67DRSDZDKTYTT35ZCUFGRSFDI9UWVS8F9VZTCSJAJUIFXKH24NNPQFZ9DB52G7ERN5CUJVXQEI98N8VCCA743U655NQQNTABUN4P4G3MCNEI469B5YT8CJGHAF4GF94W8B2QHV2NNZPEBSGCFJT6VJ3XZ7DNSSTR8KZBKUN29MS" class="sklik-url">www.alfa.cz</a></div><div class="sklik-mark">Reklama Sklik</div></div></div>
+<script type="text/javascript">
+var sklikData = { id: "sklikReklama_11281", zHash: "YGUHTPGJ9E2GE5P6S7PH8729NN763JH62P3KEA2IP8SWU", screenshot: true };
+</script>
+<script type="text/javascript" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/partnerapi.js"></script>
+
+</div>
+</div>
+	<div class="clear"></div>
+
+
+<div id="ad-megaboard">
+
+
+	<!-- start slave -->
+	<div style="display: none;" id="adoceancztbgiloskcx14"></div>
+	<script type="text/javascript">
+	/* (c)AdOcean 2003-2009, iinfo_cz.Root.cz.Big rectangle */
+	ado.slave("adoceancztbgiloskcx", {
+		myMaster: "IZecJ67p7Rm6uq6AWXUsUKn1j6VbJA_.4JgRo9zcLPH.F7",
+		onServerEmission: function() {
+			var body = document.getElementsByTagName("BODY");
+			if (body.length > 0) {
+				body[0].className += ' adp-' + "big-rectangle";
+			}
+		}
+	});
+	</script><script type="text/javascript">if(typeof adoceancztbgiloskcx=='function'){adoceancztbgiloskcx();}</script><div class="ad">
+<h4 class="admarker">reklama</h4>
+<div style="width:970px;background-color:#ddd;padding:10px 0">
+
+<script async="" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/adsbygoogle.js"></script>
+<!-- Root 300x250 (bigrectangle) B -->
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6737213819139212" data-ad-slot="7559656917"><ins style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" frameborder="0" height="250" width="300"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</div>
+<script id="script_mndmhwgrhu" src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/sargNC.js" language="javascript"></script>
+	<!--  end slave  -->
+
+</div>
+
+</div>  <!-- /#page -->
+
+
+<div id="footer" class="clear">
+<div id="promo-footerPromo" class="servers-promo clear">
+	<div class="item">
+		<div class="server">
+			<a href="http://www.digizone.cz/" target="_top">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/fpl-digizone.png" alt="DigiZone.cz" height="40" width="180">
+			</a>
+		</div>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9222&amp;do=footerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9222&amp;do=footerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/inhome001-budik-perex-1-prev.jpg" alt="" style="position: relative; top: -1px" height="101" width="180">
+        </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9222&amp;do=footerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9222&amp;do=footerPromo-click">Ovládání domácnosti podle posledních trendů. A je nádherné!</a></h3>
+    </div>
+	<div class="item">
+		<div class="server">
+			<a href="http://www.podnikatel.cz/" target="_top">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/fpl-podnikatel.png" alt="Podnikatel.cz" height="40" width="180">
+			</a>
+		</div>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9304&amp;do=footerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9304&amp;do=footerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/isifa-student-mladistvi-podnikatel-telefon-1-prev.jpg" alt="" style="position: relative; top: -2px" height="103" width="180">
+        </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9304&amp;do=footerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9304&amp;do=footerPromo-click">Puberťák byznysmenem, i to je možné</a></h3>
+    </div>
+	<div class="item">
+		<div class="server">
+			<a href="http://www.mesec.cz/" target="_top">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/fpl-mesec.png" alt="Měšec.cz" height="40" width="180">
+			</a>
+		</div>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9239&amp;do=footerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9239&amp;do=footerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/kufr-cestovko-1.png" alt="" style="position: relative; top: 0px" height="100" width="180">
+        </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9239&amp;do=footerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9239&amp;do=footerPromo-click">Nezapomeňte cestovní pojištění</a></h3>
+    </div>
+	<div class="item">
+		<div class="server">
+			<a href="http://www.lupa.cz/" target="_top">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/fpl-lupa.png" alt="Lupa.cz" height="40" width="180">
+			</a>
+		</div>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9307&amp;do=footerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9307&amp;do=footerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/servery-big-data-1-prev.jpg" alt="" style="position: relative; top: -1px" height="101" width="180">
+        </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9307&amp;do=footerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9307&amp;do=footerPromo-click">Stroj imitoval chlapce, porazil Turingův test</a></h3>
+    </div>
+	<div class="item">
+		<div class="server">
+			<a href="http://www.vitalia.cz/" target="_top">
+				<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/fpl-vitalia.png" alt="Vitalia.cz" height="40" width="180">
+			</a>
+		</div>
+		<a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9301&amp;do=footerPromo-click" target="_top" class="link-img click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9301&amp;do=footerPromo-click">
+			<img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/opalovani-1-thumb.jpg" alt="" style="position: relative; top: -3px" height="105" width="180">
+        </a>
+        <h3><a href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9301&amp;do=footerPromo-click" target="_top" class="click" rel="/clanky/architektury-vyrovnavacich-pameti/?footerPromo-id=9301&amp;do=footerPromo-click">20&nbsp;% lidí má problémy se sluncem</a></h3>
+    </div>
+	<div class="servers-promo-clear"></div>
+	<span class="corner top-left"></span>
+	<span class="corner top-right"></span>
+	<span class="corner bottom-left"></span>
+	<span class="corner bottom-right"></span>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#promo-' + "footerPromo" + ' a[rel]').each(function(e) {
+				var $this = $(this);
+				// replace href attribute
+				$this.attr('href', $this.attr('rel'));
+			});
+		});
+	</script>
+</div><!-- /.servers-promo -->
+
+	<div id="projectInfo">
+	<a class="logo-iinfo" href="http://www.iinfo.cz/"><img src="Architektury%20vyrovnavacich%20pameti%20-%20Root.cz_soubory/logo-iinfo.png" alt="Internet Info" title="Internet Info - provozovatel" height="49" width="171"></a>
+		<div class="text-info">
+			<p><strong>Root.cz</strong> (www.root.cz), informace nejen ze světa Linuxu. ISSN 1212-8309</p>
+			<p>
+Copyright © 1998 – 2014 <a href="http://www.iinfo.cz/">Internet Info, s.r.o.</a> Všechna práva vyhrazena. Powered by <a href="http://www.root.cz/">Linux</a>.</p>
+			<ul class="clear">
+				<li><a class="typeSwitch" rel="nofollow" href="http://www.root.cz/clanky/architektury-vyrovnavacich-pameti/?do=typeSwitch-redirect">Přepnout na mobilní verzi <span class="icon next"></span></a>
+</li>
+				<li><a href="http://www.root.cz/kontakt/" title="Kontakty na provozovatele">Kontakt</a>|</li>
+				<li><a href="http://www.iinfo.cz/projekty/root/reklama-root/" title="Reklamní možnosti serveru, ceník reklamy">Reklama</a>|</li>
+				<li><a href="http://www.root.cz/redakce/podminky-uzivani/" title="Podmínky užívání serveru  autorská práva atd.">Podmínky užívání</a>|</li>
+				<li><a href="http://www.root.cz/redakce/podpora/" title="Líbí se vám server Root.cz? Vyjádřete mu svou podporu umístěním ikonky na své stránky.">Podpořte Root.cz</a>|</li>
+				<li><a href="http://www.root.cz/redakce/windows-8-aplikace/" title="Aplikace pro Windows 8 a Windows Phone">Win8 app</a>|</li>
+				<li><a href="http://www.root.cz/redakce/exporty/" title="Exporty syndikovaného obsahu">RSS exporty</a></li>
+			</ul>
+		</div>
+	</div>
+</div>  <!-- /#footer -->
+
+
+
+
+<script type="text/javascript">
+		if (typeof mabImg !== "undefined") {
+		document.write('<div class="adBlockMessage"><p>Tuto lištu vidíte, protože máte pravděpodobně blokovanou reklamu. <a href="/redakce/proc-neblokovat-reklamu-na-root-cz/">Dozvědět se více</a></p></div>');
+	}
+</script>
+<noscript>
+	<div class="adBlockMessage"><p>Tuto lištu vidíte, protože máte pravděpodobně blokovanou reklamu. <a href="/redakce/proc-neblokovat-reklamu-na-root-cz/">Dozvědět se více</a></p></div>
+</noscript>
+
+
+
+
+<div id="webstats">
+	<div id="nvc">
+		<!-- NAVRCHOLU.cz -->
+		<script type="text/javascript">
+		(function() {
+			var _nvID = 14;
+			var _nvs = document.createElement('script');
+			_nvs.type = 'text/javascript';
+			_nvs.async = true;
+			_nvs.id = 'nvc-async';
+			_nvs.src = ('https:' == document.location.protocol ? 'https://s1' : 'http://c1') + '.navrcholu.cz/ascode.js?site=' + _nvID;
+			var _s = document.getElementsByTagName('script')[0];
+			_s.parentNode.insertBefore(_nvs, _s);
+		})();
+		</script><noscript><div><img src="http://c1.navrcholu.cz/hit?site=14;t=t1x1;ref=;jss=0" width="1" height="1" alt=""></div></noscript>
+		<!-- NAVRCHOLU.cz - konec -->
+	</div>
+</div>
+
+
+
+
+
+<script id="" type="text/javascript">"undefined"!==typeof FB&&FB.Event.subscribe("edge.remove",function(a){dataLayer.push({event:"socialInt",socialNetwork:"facebook",socialAction:"unlike",socialTarget:a})});</script><script id="" type="text/javascript">"undefined"!==typeof window.$&&$(function(){"undefined"!==typeof window.twttr&&twttr.ready(function(c){c.events.bind("tweet",function(a){if(a){var b;a.target&&"IFRAME"==a.target.nodeName&&(b=extractParamFromUri(a.target.src,"url"));dataLayer.push({event:"socialInt",socialNetwork:"twitter",socialAction:"tweet",socialTarget:b})}})})});</script><script id="" type="text/javascript">"undefined"!==typeof FB&&FB.Event.subscribe("edge.create",function(a){dataLayer.push({event:"socialInt",socialNetwork:"facebook",socialAction:"like",socialTarget:a})});</script><script id="" type="text/javascript">"undefined"!==typeof FB&&FB.Event.subscribe("message.send",function(a){dataLayer.push({event:"socialInt",socialNetwork:"facebook",socialAction:"send",socialTarget:a})});</script><div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

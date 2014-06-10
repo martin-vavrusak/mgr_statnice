@@ -1,0 +1,76 @@
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <table border="0" id="maintable">
+      <tr id="NKIopqiEm.xksCF4">
+        <td id="generallabel_476_1191401768196" width="109">
+          <b>Use Case ID</b>
+        </td>
+        <td id="generalvalue_476_1191401768196" width="491">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCF3">
+        <td id="generallabel_475_1191401768196" width="109">
+          <b>Brief Description</b>
+        </td>
+        <td id="generalvalue_475_1191401768196" width="491">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCF2">
+        <td id="generallabel_474_1191401768196" width="200">
+          <b>Primary Actors</b>
+        </td>
+        <td id="generalvalue_474_1191401768196" width="400">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCF1">
+        <td id="generallabel_473_1191401768196" width="200">
+          <b>Secondary Actors</b>
+        </td>
+        <td id="generalvalue_473_1191401768196" width="400">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCF0">
+        <td id="generallabel_472_1191401768196" width="109">
+          <b>Preconditions</b>
+        </td>
+        <td id="generalvalue_472_1191401768196" width="491">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCFz">
+        <td id="generallabel_471_1191401768196" width="200">
+          <b>Main Flow of Events</b>
+        </td>
+        <td id="generalvalue_471_1191401768196" width="400">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCFx">
+        <td id="generallabel_469_1191401768196" width="200">
+          <b>Alternative Flows</b>
+        </td>
+        <td id="generalvalue_469_1191401768196" width="400">
+          
+        </td>
+      </tr>
+      <tr id="NKIopqiEm.xksCFy">
+        <td id="generallabel_470_1191401768196" width="109">
+          <b>Post-conditions</b>
+        </td>
+        <td id="generalvalue_470_1191401768196" width="491">
+          
+        </td>
+      </tr>
+    </table>
+    <p>
+      &#160;
+    </p>
+  </body>
+</html>
