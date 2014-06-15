@@ -1,0 +1,1075 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="cs-CZ">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
+<title>
+
+Binární a BCD kódy 
+</title>
+<link rel="shortcut icon" href="http://mikrokontrolery-pic.cz/wp-content/themes/pic/favicon.ico" />
+<!-- <script type="text/javascript" src="http://mikrokontrolery-pic.cz/wp-content/themes/pic/script.js"></script> -->
+<link rel="stylesheet" href="http://mikrokontrolery-pic.cz/wp-content/themes/pic/style.css?v=1.0" type="text/css" media="screen" />
+<!--[if IE 6]><link rel="stylesheet" href="http://mikrokontrolery-pic.cz/wp-content/themes/pic/style.ie6.css" type="text/css" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="http://mikrokontrolery-pic.cz/wp-content/themes/pic/style.ie7.css" type="text/css" media="screen" /><![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Mikrokontroléry PIC RSS Feed" href="http://mikrokontrolery-pic.cz/feed/" />
+<link rel="alternate" type="application/atom+xml" title="Mikrokontroléry PIC Atom Feed" href="http://mikrokontrolery-pic.cz/feed/atom/" /> 
+<link rel="pingback" href="http://mikrokontrolery-pic.cz/xmlrpc.php" />
+<meta name="description" content="Seznámení s binárními a BCD kódy používanými v číslicové technice – použití, výhody, nevýhody. Sčítání a odčítání v kódu BCD. Grayův kód, generování Grayova kódu a..." />
+<link rel="alternate" type="application/rss+xml" title="Mikrokontroléry PIC &raquo; Binární a BCD kódy RSS komentářů" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/binarni-bcd-kody/feed/" />
+<meta name="keywords" content="kód, kódování, binární, BCD 8421, BCD 2421, BCD+3, Grayův kód, Excess-3" />
+<meta name="robots" content="index,follow,noodp,noydir" />
+<link rel="canonical" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/binarni-bcd-kody/" />
+<link rel='stylesheet' id='gsc_style-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/google-custom-search/css/smoothness/jquery-ui-1.7.3.custom.css?ver=3.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='gsc_style_search_bar-css'  href='http://www.google.com/cse/style/look/minimalist.css?ver=3.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='gsc_style_search_bar_more-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/google-custom-search/css/gsc.css?ver=3.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/jquery-collapse-o-matic/style.css?ver=1.5.1' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/contact-form-7/styles.css?ver=3.1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='toc_css-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/seo-friendly-table-of-contents/style.css?ver=3.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='dynamic-to-top-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/dynamic-to-top/css/dynamic-to-top-css.php?ver=3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='ExcTip-css'  href='http://mikrokontrolery-pic.cz/wp-content/plugins/html-excerpt-sitemap/dom_tooltip.css?ver=3.3.1' type='text/css' media='all' />
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/jquery.js?ver=1.7.1'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/google-custom-search/js/gsc.js?ver=3.3.1'></script>
+<script type='text/javascript' src='http://www.google.com/jsapi?ver=3.3.1'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/jquery-collapse-o-matic/collapse.js?ver=1.3.4'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/html-excerpt-sitemap/dom_tooltip.js?ver=3.9.0'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://mikrokontrolery-pic.cz/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://mikrokontrolery-pic.cz/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.3.1" />
+</head>
+<body>
+<div id="art-main">
+<div id="art-Header-bgl"></div>
+<div id="art-Header-bgr"></div>
+<div class="art-Sheet">
+    <div class="art-Sheet-tl"></div>
+    <div class="art-Sheet-tr"></div>
+    <div class="art-Sheet-bl"></div>
+    <div class="art-Sheet-br"></div>
+    <div class="art-Sheet-tc"></div>
+    <div class="art-Sheet-bc"></div>
+    <div class="art-Sheet-cl"></div>
+    <div class="art-Sheet-cr"></div>
+    <div class="art-Sheet-cc"></div>
+    <div class="art-Sheet-body">
+<div class="art-Header">
+    <div class="art-Header-jpeg"></div>
+
+			<div class="art-Header-img">
+			<a href="http://mikrokontrolery-pic.cz/" title="Mikrokontroléry PIC">Mikrokontroléry PIC</a>
+		</div>
+		
+	<div class="art-Logo">
+		<h1 id="name-text" class="art-Logo-name">
+			<a href="http://mikrokontrolery-pic.cz/">Mikrokontroléry PIC</a></h1>
+		<div id="slogan-text" class="art-Logo-text">
+			Web o číslicové technice a mikrokontrolérech PIC</div>
+	</div>
+</div>
+<div id="art-sheetcontent">
+<div class="breadcrumbs">
+	<!-- Breadcrumb NavXT 4.0.2 -->
+<a title="Zobrazit úvodní stranu" href="http://mikrokontrolery-pic.cz">Home</a> &gt; <a title="Zobrazit stránku Začínáme" href="http://mikrokontrolery-pic.cz/zaciname/">Začínáme</a> &gt; <a title="Zobrazit stránku Číslicová technika" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/">Číslicová technika</a> &gt; <a title="Zobrazit stránku Binární a BCD kódy" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/binarni-bcd-kody/">Binární a BCD kódy</a></div>
+	<div class="art-sheetcontent-top"></div>
+	<div class="art-sheetcontent-middle"></div>
+	<div class="art-sheetcontent-bottom"></div>
+
+<div class="art-contentLayout">
+
+<div class="art-sidebar1">
+<div id="page-tree" class="widget pagetree_widget"><div class="art-Block">
+    <div class="art-Block-tl"></div>
+    <div class="art-Block-tr"></div>
+    <div class="art-Block-bl"></div>
+    <div class="art-Block-br"></div>
+    <div class="art-Block-tc"></div>
+    <div class="art-Block-bc"></div>
+    <div class="art-Block-cl"></div>
+    <div class="art-Block-cr"></div>
+    <div class="art-Block-cc"></div>
+    <div class="art-Block-body">
+<div class="art-BlockHeader">
+    <div class="art-header-tag-icon">
+        <div class="t">Stránky</div>
+    </div>
+</div><div class="art-BlockContent">
+    <div class="art-BlockContent-tl"></div>
+    <div class="art-BlockContent-tr"></div>
+    <div class="art-BlockContent-bl"></div>
+    <div class="art-BlockContent-br"></div>
+    <div class="art-BlockContent-tc"></div>
+    <div class="art-BlockContent-bc"></div>
+    <div class="art-BlockContent-cl"></div>
+    <div class="art-BlockContent-cr"></div>
+    <div class="art-BlockContent-cc"></div>
+    <div class="art-BlockContent-body">
+
+	
+	<script type="text/javascript">
+	<!--
+	var alreadyrunflag=0 //flag to indicate whether target function has already been run
+	
+	if (document.addEventListener)
+		document.addEventListener("DOMContentLoaded", function(){alreadyrunflag=1; treestuff()}, false)
+	else if (document.all && !window.opera) {
+		document.write('<script type="text/javascript" id="contentloadtag" defer="defer" src="javascript:void(0)"><\/script>')
+		var contentloadtag=document.getElementById("contentloadtag")
+		contentloadtag.onreadystatechange=function(){
+		if (this.readyState=="complete"){
+			alreadyrunflag=1
+			treestuff()
+			}
+		}
+	}
+	
+	window.onload=function(){
+	  setTimeout("if (!alreadyrunflag) treestuff()", 0)
+	}
+
+
+	function treestuff() {
+		// Init this page tree, with #treecontrol and cookie memory
+		jQuery("#navigation").treeview({
+			control: "#treecontrol",
+			persist: "location",
+			animated: "fast", collapsed: "true"		
+		});
+
+	}
+	//-->
+	</script>
+	
+		<div id="page-tree-c">
+		<div id="treecontrol">
+		<a class="tree-button tree-button-collapse" title="Sbalit všechny položky menu" href="#">Sbalit vše</a>
+		<a class="tree-button tree-button-expand" title="Rozbalit všechny položky menu" href="#">Rozbalit vše</a>
+		<!-- <a class="tree-button" title="Toggle the tree below, opening closed branches, closing open branches" href="#">Toggle All</a> -->
+	</div>	
+		
+	<ul id="navigation">
+	
+	<li><a class="publish" href="http://mikrokontrolery-pic.cz/">Úvodní strana</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/blog/">BLOG</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/">Začínáme</a>
+<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/co-je-to-mikrokontroler/">Co je to mikrokontrolér?</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/mikroprocesor-mikropocitac-mikrokontroler/">Mikroprocesor, mikropočítač, mikrokontrolér, DSP a DSC</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/pamet/">Paměť</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/">Číslicová technika</a>
+	<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/ciselne-soustavy/">Číselné soustavy a převody mezi nimi</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/aritmeticke-operace-s-binarnimi-cisly/">Aritmetické operace s binárními čísly</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/binarni-bcd-kody/">Binární a BCD kódy</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/booleova-algebra-logicke-funkce/">Booleova algebra – logické funkce</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/logicke-obvody/">Logické obvody</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/hardwarova-realizace-logickych-obvodu/">Hardwarová realizace logických obvodů</a>
+		<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/hardwarova-realizace-logickych-obvodu/bipolarni-logicke-obvody-ttl/">Bipolární logické obvody TTL</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/hardwarova-realizace-logickych-obvodu/unipolarni-logicke-obvody-cmos/">Unipolární logické obvody CMOS</a></li>
+		</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/">Kombinační logické obvody</a>
+		<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/logicka-hradla/">Logická hradla</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/realizace-zakladnich-logickych-funkci-hradly-nand-a-nor/">Realizace základních logických funkcí hradly NAND a NOR</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/realizace-logicke-funkce-zadane-pravdivostni-tabulkou/">Realizace logické funkce zadané pravdivostní tabulkou</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/binarni-scitacka/">Binární sčítačka</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/binarni-dekoder/">Binární dekodér</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/koder-prioritni-koder/">Kodér, prioritní kodér</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/multiplexor/">Multiplexor</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/realizace-logicke-funkce-multiplexorem/">Realizace logické funkce multiplexorem</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/demultiplexor/">Demultiplexor</a></li>
+		</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/minimalizace-logickych-funkci-karnaughovy-mapy/">Minimalizace logických funkcí, Karnaughovy mapy</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/">Sekvenční logické obvody</a>
+		<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/hazardy/">Hazardy, synchronní a asynchronní sekvenční obvody</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/navrh-sekvencniho-obvodu/">Návrh sekvenčního obvodu</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-rs/">Klopný obvod R-S</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-d-rizeny-urovni/">Klopný obvod D řízený úrovní</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/stradac-klopne-obvody-d-rizene-urovni/">Střadač (klopné obvody D řízené úrovní)</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-d-rizeny-hranou/">Klopný obvod D řízený hranou</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/integrovane-klopne-obvody-d-rizene-hranou/">Integrované klopné obvody D řízené hranou</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-jk/">Klopný obvod J-K</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/integrovane-klopne-obvody-jk/">Integrované klopné obvody J-K</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/">Katalog</a>
+<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/">8bitové mikrokontroléry PIC</a>
+	<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/baseline/">Baseline</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/mid-range/">Mid-Range</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/enhanced-mid-range/">Enhanced Mid-Range</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/pic18/">PIC18</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/pic10/">PIC10</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/pic12/">PIC12</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/8bitove-mikrokontrolery-pic/pic16/">PIC16</a></li>
+	</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/16bitove-mikrokontrolery-pic/">16bitové mikrokontroléry PIC</a>
+	<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/16bitove-mikrokontrolery-pic/pic24f/">PIC24F</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/16bitove-mikrokontrolery-pic/pic24h/">PIC24H</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/16bitove-mikrokontrolery-pic/dspic30f/">dsPIC30F</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/16bitove-mikrokontrolery-pic/dspic33f/">dsPIC33F</a></li>
+	</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/katalog/32bitove-mikrokontrolery-pic/">32bitové mikrokontroléry PIC</a></li>
+</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/">Nástroje</a>
+<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/prevodnik-cisel-mezi-ciselnymi-soustavami/">Převodník čísel mezi číselnými soustavami</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/nastaveni-registru/">Nastavení registrů</a>
+	<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/nastaveni-registru/option_reg/">Registr OPTION_REG</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/nastaveni-registru/t1con/">Konfigurace časovače Timer1 (registr T1CON)</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/nastroje/nastaveni-registru/t2con/">Konfigurace časovače Timer2 (registr T2CON)</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/info/">Info</a>
+<ul class='children'>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/info/kontakt/">Kontakt</a></li>
+<li><a class="publish" href="http://mikrokontrolery-pic.cz/info/mapa-stranek/">Mapa stránek</a></li>
+</ul>
+</li>
+	</ul>
+	</div>
+	
+	
+    </div>
+</div>
+
+    </div>
+</div>
+</div></div>
+<div class="art-content">
+
+ 
+<div class="art-Post">
+    <div class="art-Post-tl"></div>
+    <div class="art-Post-tr"></div>
+    <div class="art-Post-bl"></div>
+    <div class="art-Post-br"></div>
+    <div class="art-Post-tc"></div>
+    <div class="art-Post-bc"></div>
+    <div class="art-Post-cl"></div>
+    <div class="art-Post-cr"></div>
+    <div class="art-Post-cc"></div>
+    <div class="art-Post-body">
+<div class="art-Post-inner art-article">
+<h2 class="art-PostHeaderIcon-wrapper">
+<span class="art-PostHeader"><a href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/binarni-bcd-kody/" rel="bookmark" title="Odkaz na Binární a BCD kódy">
+Binární a BCD kódy</a></span>
+</h2>
+
+<span class="art-Post-secTitle">
+Seznámení s binárními a BCD kódy používanými v číslicové technice. Sčítání a odčítání v kódu BCD. Grayův kód, generování Grayova kódu a převod mezi binárním a Grayovým kódem.</span>
+
+<div class="art-PostContent">
+<div id='toc' class='post-957'><div id='toc_title'>Přehled kapitol</div>
+<ul><li><a href="#Kod-BCD">Kód BCD</a>
+<ul><li><a href="#Aritmeticke-operace-v-kodu-BCD">Aritmetické operace v kódu BCD</a>
+<ul><li><a href="#Scitani-v-kodu-BCD">Sčítání v kódu BCD</a></li>
+<li><a href="#Odcitani-v-kodu-BCD">Odčítání v kódu BCD</a></li></ul></li>
+</ul></li>
+<li><a href="#Kod-BCD3">Kód BCD+3</a></li>
+<li><a href="#Kod-BCD-2421">Kód BCD 2421</a></li>
+<li><a href="#Grayuv-kod">Grayův kód</a>
+<ul><li><a href="#Generovani-nbitoveho-Grayova-kodu">Generování n-bitového Grayova kódu</a></li>
+<li><a href="#Prevod-mezi-binarnim-kodem-a-Grayovym-kodem">Převod mezi binárním kódem a Grayovým kódem</a></li>
+</ul></li></ul>
+</div>
+<p>Jak již víme, mikrokontroléry a číslicové (digitální) obvody obecně rozeznávají pouze dva stavy – 0 a 1, resp. úroveň L (nízkou úroveň elektrického signálu) a úroveň H (vysokou úroveň elektrického signálu). Veškerá čísla tak musí být reprezentována pouze těmito dvěma stavy, tedy „nulami a jedničkami“. <a title="Číselné soustavy a převody mezi nimi" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/ciselne-soustavy/">Číselnou soustavu</a>, která pro reprezentaci čísel využívá pouze dvou číslic, nazýváme soustavou dvojkovou nebo binární. Tab. 1 zobrazuje vybrané číselné hodnoty v soustavě desítkové a binární. <em> </em></p>
+<p><em>Pozn.: Pro převod čísel mezi číselnými soustavami můžete využít <a title="Převodník čísel mezi číselnými soustavami" href="http://mikrokontrolery-pic.cz/nastroje/prevodnik-cisel-mezi-ciselnymi-soustavami/">online převodník</a>.</em></p>
+<p>&nbsp;</p>
+<table>
+<thead>
+<tr>
+<th style="width: 150px;">Desítková (dekadická) soustava</th>
+<th style="width: 150px;">Dvojková (binární) soustava</th>
+</tr>
+</thead>
+<tbody style="font-family: 'Courier New', Courier, monospace;">
+<tr>
+<td>0</td>
+<td>0000 0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0000 0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0000 0010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0000 0011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0000 0100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0000 0111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0000 1000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0000 1001</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0000 1010</td>
+</tr>
+<tr>
+<td>11</td>
+<td>0000 1011</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0000 1100</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0000 1101</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0000 1110</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0000 1111</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0001 0000</td>
+</tr>
+<tr>
+<td>17</td>
+<td>0001 0001</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>255</td>
+<td>1111 1111</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><em>Tab. 1. Vyjádření vybraných číselných hodnot v desítkové a dvojkové číselné soustavě</em></p>
+<p>&nbsp;</p>
+<p>V jakýchkoliv číslicových systémech, ať už jsou to počítače, mikroprocesory, mikrokontroléry nebo jiné logické obvody, musí být tedy veškerá data vyjádřena v binárním kódu. Binární kód představuje způsob reprezentace informace a lze jej definovat jako konečný počet bitů. (Bit je základní jednotkou informace a může nabývat právě jedné ze dvou hodnot – 0 nebo 1. Pomocí bitů je tak možno reprezentovat čísla vyjádřená v binární číselné soustavě.) V mnoha aplikacích, ve kterých pracujeme s číselnými hodnotami, stačí číselná data převést do binárního tvaru a v této podobě uložit nebo dále zpracovávat. V mnohých jiných případech (např. potřebujeme-li zobrazovat číselný údaj na displeji, při přenosu dat apod.) však nemusí být reprezentace čísel ve standardním binárním kódu nejoptimálnějším řešením. Samostatnou kapitolou je pak reprezentace nečíselných hodnot (např. znaků) v binárním kódu (např. ASCII nebo UTF8 kódy pro kódování textu, kterými se v tomto článku zabývat nebudeme). Binárních kódů existuje velké množství. Jednotlivé kódy mají různé vlastnosti a používají se v různých situacích. Některé binární kódy jsou např. schopny detekovat nebo i opravit jednu (příp. i více) chyb a v takových případech je možné příslušná data správně dekódovat i v případech, že je přenos zatížen jistým rušením nebo se vyskytne chyba na záznamovém médiu a některé bity tak mají špatnou hodnotu. V tomto článku se nebudeme zabývat detekčními ani samoopravnými kódy ani relativně složitou teorií kódování. Seznámíme se místo toho s některými základními kódy, které se používají v číslicové technice jako alternativa k standardnímu binárnímu kódu.</p>
+<p>&nbsp;</p>
+<h2 id='Kod-BCD'>Kód BCD</h2>
+<p><strong>Kód BCD</strong> (binary-coded decimal – binárně kódované dekadické číslo) je v číslicové technice jeden z často používaných binárních kódů. Kód BCD se používá pro kódování desítkových číslic 0 až 9, přičemž každá z těchto číslic je kódována určitým (pevně daným) počtem bitů – typicky čtyřmi (minimum, do jednoho bajtu je pak možno uložit dvě čísla v kódu BCD), příp. osmi (máme-li dostatek volné paměti a je-li pro nás snazší pracovat s celými bajty). Hlavní výhodou kódu BCD je snadnost převodu čísla, které je vyjádřeno v kódu BCD, do formátu čitelného pro člověka (tj. např. na číselné znaky, které se zobrazí na LED/LCD displeji apod.). Budete-li si chtít tedy s využitím mikrokontroléru (nebo logických obvodů) sestavit např. hodiny, čítač nebo časovač, pravděpodobně pro vnitřní reprezentaci čísel použijete právě kód BCD. Další výhodou BCD kódu je reprezentace dekadických čísel beze ztráty přesnosti. Při převodu desetinného dekadického čísla do binárního tvaru se totiž může stát, že bude číslo v binární soustavě periodické a vzhledem ke konečnému počtu bitů, který pro reprezentaci daného čísla používáme, bude muset být číslo zaokrouhleno. Při zpětném převodu do dekadického tvaru pak nemusíme získat úplně stejné číslo. (Např. dekadické číslo 0,2 je v binární soustavě periodické číslo 0,<span class="inverted">0011</span>. V kódu BCD je toto číslo neperiodické: 0,0010). Nevýhodou kódu BCD ve srovnání s běžnými binárními kódy je pak menší efektivita při využití paměti (do jednoho bajtu lze uložit pouze 100 různých čísel v kódu BCD, zatímco ve standardním binárním kódu je to 256 hodnot) a složitější implementace základních aritmeticko-logických operací.</p>
+<p>Tabulka 2 ukazuje reprezentaci vybraných číselných hodnot ve standardním binárním kódu a v kódu BCD.</p>
+<p>&nbsp;</p>
+<table>
+<thead>
+<tr>
+<th style="width: 100px;">Dekadické číslo</th>
+<th style="width: 100px;">Binární kód</th>
+<th style="width: 100px;">Kód BCD</th>
+</tr>
+</thead>
+<tbody style="font-family: 'Courier New', Courier, monospace;">
+<tr>
+<td>0</td>
+<td>0000 0000</td>
+<td>0000 0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0000 0001</td>
+<td>0000 0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0000 0010</td>
+<td>0000 0010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0000 0011</td>
+<td>0000 0011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0000 0100</td>
+<td>0000 0100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0000 0101</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0000 0111</td>
+<td>0000 0111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0000 1000</td>
+<td>0000 1000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0000 1001</td>
+<td>0000 1001</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0000 1010</td>
+<td>0001 0000</td>
+</tr>
+<tr>
+<td>11</td>
+<td>0000 1011</td>
+<td>0001 0001</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0000 1100</td>
+<td>0001 0010</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0000 1101</td>
+<td>0001 0011</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0000 1110</td>
+<td>0001 0100</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0000 1111</td>
+<td>0001 0101</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0001 0000</td>
+<td>0001 0110</td>
+</tr>
+<tr>
+<td>17</td>
+<td>0001 0001</td>
+<td>0001 0111</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>255</td>
+<td>1111 1111</td>
+<td>0010 0101 0101</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><em>Tab. 2. Vybrané číselné hodnoty vyjádřené ve standardním binárním kódu a v kódu BCD<br />
+</em></p>
+<p>&nbsp;</p>
+<p>V tab. 2 je každá desítková číslice vyjádřena v kódu BCD čtyřmi bity. <em>(Pozn.: Čtveřice bitů je někdy označována jako jeden <strong>nibble</strong>.)</em> Pokud bychom chtěli reprezentovat jednu číslici osmi bity (tj. jedním bajtem), vyšší čtyři bity budou vždy nulové (příp. mohou mít jinou konstantní hodnotu, např. 0011 – v tomto případě by byla osmibitová čísla kompatibilní s kódem ASCII):</p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 1:</strong></p>
+<ul>
+<li>Dekadicky: <code>87</code></li>
+<li>BCD (4 bity): <code>1000 0111</code></li>
+<li>BCD (8 bitů): <code>00001000 00000111</code></li>
+<li>Binárně: <code>01010111</code></li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<p>Osmibitový formát je zjevně velmi neefektivní co se paměti týče, ale v některých případech nám může usnadnit manipulaci s čísly vyjádřenými v kódu BCD.</p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 2:</strong></p>
+<ul>
+<li>Dekadicky: <code>123456</code></li>
+<li>BCD: <code>0001 0010 0011 0100 0101 0110</code></li>
+<li>Binárně: <code>11110001001000000</code></li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<p>Z výše uvedených příkladů je patrné, že převod mezi dekadickým číslem a číslem vyjádřeným v kódu BCD je triviální.</p>
+<p>Uvedený kód BCD se označuje rovněž jako kód <strong>BCD 8421</strong>, kde čísla 8421 vyjadřují váhy jednotlivých bitů. Bity kódu BCD 8421 mají stejnou váhu jako u standardního binárního kódu, proto jsou také dekadická čísla 0 až 9 vyjádřená ve standardním binárním kódu a v kódu BCD 8421 shodná. Váhy jednotlivých bitů vyjadřují, že dekadické číslo získáme v tomto případě jako:</p>
+<ul>
+<li>b<sub>3</sub>·8 + b<sub>2</sub>·4 + b<sub>1</sub>·2 + b<sub>0</sub>·1,</li>
+</ul>
+<p>tj. například číslo 0101 v kódu BCD 8421 představuje číslo:</p>
+<ul>
+<li>0·8 + 1·4 + 0·2 + 1·1 = 4 + 1 = 5<sub>d</sub>.</li>
+</ul>
+<p>Kromě kódu BCD 8421 existují různé alternativy pro binární kódování dekadických čísel, o kterých se stručně zmíníme dále.</p>
+<p>&nbsp;</p>
+<h3 id='Aritmeticke-operace-v-kodu-BCD'>Aritmetické operace v kódu BCD</h3>
+<h4 id='Scitani-v-kodu-BCD'>Sčítání v kódu BCD</h4>
+<p>Dvě jednociferná dekadická čísla (tj. čísla v rozsahu 0 až 9) vyjádřená v kódu BCD je možné sečíst standardním způsobem jako binární čísla a výsledek následně konvertovat na kód BCD. Je-li výsledkem <a title="Aritmetické operace s binárními čísly" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/aritmeticke-operace-s-binarnimi-cisly/">binárního součtu</a> číslo větší než 9 (1001<sub>b</sub>), nejedná se o kód BCD, a proto je nutno jej na kód BCD převést přičtením čísla 6 (0110<sub>b</sub>). Tímto způsobem se rovněž automaticky správně přičte jednička ve vyšším řádu.</p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 1:</strong></p>
+<p>Dekadicky:</p>
+<ul>
+<li>8 + 7 = 15</li>
+</ul>
+<p>V kódu BCD s využitím binárního sčítání:</p>
+<ul>
+<li><strong>1000</strong> (BCD, 8<sub>d</sub>) + <strong>0111</strong> (BCD, 7<sub>d</sub>) = 1111 (není BCD, 15<sub>d</sub>, je větší než 1001 [9<sub>d</sub>] → nutno konvertovat na BCD přičtením 6, tj. 1111 + 0110) = <strong>0001 0101</strong> (BCD).</li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 2:</strong></p>
+<p>Dekadicky:</p>
+<ul>
+<li>8 + 9 = 17</li>
+</ul>
+<p>V kódu BCD s využitím binárního sčítání:</p>
+<ul>
+<li><strong>1000</strong> (BCD, 8<sub>d</sub>) + <strong>1001</strong> (BCD, 9<sub>d</sub>) = 10001 (není BCD, 17<sub>d</sub>, je větší než 1001 [9<sub>d</sub>] → nutno konvertovat na BCD přičtením 6, tj. 10001 + 0110) = <strong>0001 0111</strong> (BCD).</li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<p>Obdobným způsobem je možné sčítat i víceciferná dekadická čísla vyjádřená v kódu BCD, přičemž je nutno postupovat od nejnižšího řádu (tj. od nejméně významných čtyř bitů BCD čísla) postupně k řádům vyšším, ve kterých je nutno přičíst 1, byl-li výsledek součtu v nižším řádu větší než 9 (resp. 9·10<sup>n</sup>, kde <em>n</em> je řád).</p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 3:</strong></p>
+<p>Dekadicky:</p>
+<ul>
+<li>125 + 126 = 251</li>
+</ul>
+<p>V kódu BCD s využitím binárního sčítání:</p>
+<ul>
+<li>řád 10<sup>0</sup> (jednotky):
+<ul>
+<li><strong>0101</strong> (BCD, 5<sub>d</sub>) + <strong>0110</strong> (BCD, 6<sub>d</sub>) = 1011 (není BCD, 11<sub>d</sub>, je větší než 1001 [9<sub>d</sub>] → nutno konvertovat na BCD přičtením 6, tj. 1011 + 0110) = 0001 <strong>0001</strong>.<br />
+Výsledkem je 0001, přenos do vyššího řádu: +1.</li>
+</ul>
+</li>
+<li>řád 10<sup>1</sup> (desítky):
+<ul>
+<li><strong>0010</strong> (BCD, 2<sub>d</sub>) + <strong>0010</strong> (BCD, 2<sub>d</sub>) + <strong>0001</strong> (přenos z nižšího řádu) = <strong>0101</strong> (je BCD, 5<sub>d</sub>, je menší než 1001 [9<sub>d</sub>], není nutno provádět konverzi na BCD, žádný přenos do vyššího řádu)</li>
+</ul>
+</li>
+<li>řád 10<sup>2</sup> (stovky):
+<ul>
+<li><strong>0001</strong> (BCD, 1<sub>d</sub>) + <strong>0001</strong> (BCD, 1<sub>d</sub>) = <strong>0010</strong> (je BCD, 2<sub>d</sub>, je menší než 1001 [9<sub>d</sub>], není nutno provádět konverzi na BCD, žádný přenos do vyššího řádu)</li>
+</ul>
+</li>
+</ul>
+<p>Výsledek v BCD: <strong>0010 0101 0001</strong>.</p>
+</div>
+<p>&nbsp;</p>
+<h4 id='Odcitani-v-kodu-BCD'>Odčítání v kódu BCD</h4>
+<p>Odčítání čísel vyjádřených v kódu BCD je o něco komplikovanější a konkrétní implementace závisí rovněž na tom, jakým způsobem se rozhodneme reprezentovat záporná čísla.</p>
+<p>V nejjednodušším případě bychom mohli postupovat obdobným způsobem jako při sčítání čísel vyjádřených v kódu BCD. Opět bychom začali u nejnižšího řádu a pokračovali k řádu nejvyššímu a postupně od sebe binárně odečítali čtveřice bitů (předpokládáme, že je jeden dekadický řád reprezentovaný 4 bity v kódu BCD). Pokud by v rozdílu A−B bylo číslo B&gt;A, museli bychom od výsledku odečíst 6 a do vyššího řádu přenést −1.</p>
+<p>Při odčítání binárních čísel se v číslicové technice místo operace odčítání často odečítané číslo vyjádří ve tvaru tzv. <a title="Číselné soustavy a převody mezi nimi" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/ciselne-soustavy/">dvojkového doplňku</a> jako číslo záporné a následně se obě čísla jednoduše sečtou (viz článek <a title="Aritmetické operace s binárními čísly" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/aritmeticke-operace-s-binarnimi-cisly/">Aritmetické operace s binárními čísly</a>). Dvojkový doplněk vytvoříme z binárního čísla tak, že nejprve provedeme inverzi všech bitů a následně přičteme jedničku.</p>
+<p>Obdobným způsobem můžeme odčítat i čísla vyjádřená v kódu BCD, v tomto případě však musíme použít doplněk desítkový. <strong>Desítkový doplněk</strong> vytvoříme tak, že číslo v každém řádu odečteme od čísla 9 a k výsledku přičteme 1. Desítkovým doplňkem čísla 126 by tak bylo číslo 999−126+1 = 874.</p>
+<p><em>Pozn.: Povšimněte si, že u binárního čísla se tvoří doplněk stejným způsobem. Ve čtyřbitové reprezentaci je např. dvojkovým doplňkem čísla 0101 číslo: 1111−0101+0001 = 1011 – viz <a title="Způsob vytvoření dvojkového doplňku" href="http://mikrokontrolery-pic.cz/wp-content/uploads/dvojkovy-doplnek2.gif">tento obrázek</a>, který byl uveden v článku o <a title="Číselné soustavy a převody mezi nimi" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/ciselne-soustavy/">číselných soustavách</a>.</em></p>
+<p>Podobně jako u čísel vyjádřených v binárním kódu záleží i u čísel vyjádřených v kódu BCD při vytváření doplňku na počtu bitů, kterými čísla reprezentujeme. Používáme-li např. k reprezentaci čísel 32 bitů, do kterých můžeme v kódu BCD uložit osm dekadických řádů, desítkový doplněk čísla 00000126 by byl 99999874.</p>
+<p>Po vytvoření desítkového doplňku z čísla, které chceme odečítat (menšitel), již můžeme obě čísla sečíst způsobem, který byl popsán v předchozí kapitole <em>Sčítání v kódu BCD</em>. Můžeme tedy využít standardní binární sčítání s následnou konverzí na kód BCD u čtveřic bitů, které jsou větší než 1001<sub>b</sub>.<strong> </strong></p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad 4:</strong></p>
+<p>Proveďte rozdíl 251−126, jsou-li čísla uložena v kódu BCD a pro reprezentaci čísel využíváme 16 bitů.</p>
+<p><strong>Řešení:</strong></p>
+<ul>
+<li>0251<sub>d</sub> = <strong>0000 0010 0101 0001</strong> (BCD)</li>
+<li>0126<sub>d</sub> = <strong>0000 0001 0010 0110</strong> (BCD)</li>
+<li>Desítkovým doplňkem čísla 0126<sub>d</sub> je číslo 9999−0126+0001 = 9874<sub>d</sub> = <strong>1001 1000 0111 0100</strong> (BCD).</li>
+</ul>
+<p>Rozdíl tedy provedeme jako součet čísel 0251<sub>d</sub> a 9874<sub>d</sub>:</p>
+<ul>
+<li>0000 0010 0101 0001 (BCD) + 1001 1000 0111 0100 (BCD) = 1001 1010 1100 0101 (není BCD, nutno konvertovat; odpovídá číslům 9 10 12 5).</li>
+</ul>
+<p>Číslice na pozici desítek a stovek nejsou v kódu BCD, musíme je tedy na kód BCD převést přičtením čísla 6:</p>
+<ul>
+<li>řád 10<sup>0</sup> (jednotky):  0101 (5<sub>d</sub>). Výsledkem sčítání na pozici jednotek je číslo menší než 1001<sub>b</sub>, není tedy potřeba provádět konverzi na kód BCD.</li>
+<li>řád 10<sup>1</sup> (desítky): 1100 (12<sub>d</sub>) + 0110 (6<sub>d</sub>) = 1 0010. Výsledkem je tedy 0010 (2<sub>d</sub>) a do vyššího řádu musíme přenést +1.</li>
+<li>řád 10<sup>2</sup> (stovky): 1010 (10<sub>d</sub>) + 0110 (6<sub>d</sub>) + 0001 (přenos) = 1 0001. Výsledkem je tedy 0001 (1<sub>d</sub>) a do vyššího řádu musíme přenést +1.</li>
+<li>řád 10<sup>3</sup> (tisíce): 1001 (9<sub>d</sub>) + 0001 (přenos) = 1 0000. Výsledkem je tedy 0000 (0<sub>d</sub>). Rovněž došlo při sčítání k přetečení, ale žádné vyšší bity již nemáme.</li>
+</ul>
+<p>Výsledkem je tedy číslo: <strong>0000 0001 0010 0101</strong> (BCD) = 125<sub>d</sub>.</p>
+</div>
+<p>&nbsp;</p>
+<p>Povšimněte si, že u nejvyššího řádu došlo při sčítání k přetečení, protože jsme však používali pro reprezentaci čísel právě 16 bitů, na výsledku to nic nemění. Právě díky reprezentaci čísel fixním počtem bitů je v číslicové technice možné použít při odčítání dvou čísel metodu doplňků (ať již je to doplněk dvojkový při odčítání v binárním kódu nebo desítkový při odčítání v kódu BCD).</p>
+<p>&nbsp;</p>
+<h2 id='Kod-BCD3'>Kód BCD+3</h2>
+<p><strong>Kód BCD+3</strong> (též známý pod označením Excess-3, XS-3 nebo Stibitzův kód) slouží rovněž k binárnímu kódování dekadických čísel a od kódu BCD 8421 se odlišuje tím, že nezačíná od čísla 0000, nýbrž od čísla 0011 (viz tab. 3). Dekadické číslo vyjádříme v kódu BCD+3 tak, že vezmeme jeho čtyřbitovou binární hodnotu a přičteme k němu 3. Kód BCD+3 se využíval u některých starších počítačů pro snazší realizaci dekadických operací. Hlavní výhodou kódu BCD+3 je snadné vytváření <a title="Číselné soustavy a převody mezi nimi" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/ciselne-soustavy/">doplňků</a> pouhou inverzí všech bitů.</p>
+<p>Aritmetické operace s čísly vyjádřenými v kódu BCD+3 probíhají trochu jiným způsobem než např. u čísel vyjádřených standardním kódem BCD. Při provedení standardního binárního součtu dvou čísel vyjádřených v kódu BCD+3 není nikdy výsledkem číslo v kódu BCD+3 (číslo bude o 3 větší). Např. při součtu 0+2 je výsledkem číslo 5 (převedeme-li s využitím tab. 3 výsledné číslo zpět do dekadického tvaru). Pro korekci tohoto problému je nutné od výsledného čísla odečíst 3<sub>d</sub>, je-li výsledkem číslo menší než 10<sub>d</sub>, nebo přičíst k výslednému číslu 3<sub>d</sub>, je-li výsledkem číslo větší nebo rovno 10<sub>d</sub>. Na druhou stranu je při použití standardní čtyřbitové binární sčítačky detekován přenos, je-li výsledkem součtu číslo větší nebo rovno 10<sub>d</sub>, což může usnadnit realizaci aritmetických operací s dekadickými čísly vyjádřenými v tomto kódu. (Výsledkem součtu je vždy číslo o 3 větší, takže má-li být výsledkem součtu dvou dekadických čísel např. číslo 10<sub>d</sub>, při sčítání v kódu BCD+3 bude výsledkem binární číslo 0000<sub>b</sub> – viz tab. 3. Vždy tedy dojde k přenosu do dalšího řádu.).</p>
+<p>&nbsp;</p>
+<h2 id='Kod-BCD-2421'>Kód BCD 2421</h2>
+<p><strong>Kód BCD 2421</strong> představuje další alternativní binární kódování dekadických čísel (viz tab. 3). Až do čísla 4<sub>d</sub> je tento kód shodný s binárním nebo BCD kódem. Od čísla 5<sub>d</sub> odpovídá číslo v kódu BCD 2421 binárnímu číslu o šest většímu. Povšimněte si, že v kódu BCD 2421 je každý bit roven jedné přesně v pěti případech a ve zbývajících pěti případech je roven 0. Pokud by byl tedy výskyt čísel 0 až 9 rovnoměrný, bude každý bit v padesáti procentech případů roven nule a v padesáti procentech případů roven jedné. Stejnou vlastnost má i kód BCD+3. Podobně jako u kódu BCD+3 lze v tomto případě rovněž snadno vytvářet doplňky pouhou inverzí všech bitů.</p>
+<p>Váhy 2421 jednotlivých bitů vyjadřují, že dekadické číslo získáme v tomto případě jako:</p>
+<ul>
+<li>b<sub>3</sub>·2 + b<sub>2</sub>·4 + b<sub>1</sub>·2 + b<sub>0</sub>·1,</li>
+</ul>
+<p>tj. například číslo 1011 v kódu BCD 2421 představuje číslo:</p>
+<ul>
+<li>1·2 + 0·4 + 1·2 + 1·1 = 2 + 2 + 1 = 5<sub>d</sub>.</li>
+</ul>
+<p>&nbsp;</p>
+<table>
+<thead>
+<tr>
+<th style="width: 70px;">Dekadické<br />
+číslo</th>
+<th style="width: 70px;">BCD 8421</th>
+<th style="width: 70px;">BCD+3</th>
+<th style="width: 70px;">BCD 2421</th>
+<th style="width: 70px;">ASCII</th>
+</tr>
+</thead>
+<tbody style="font-family: 'Courier New', Courier, monospace;">
+<tr>
+<td>0</td>
+<td>0000</td>
+<td>0011</td>
+<td>0000</td>
+<td>0011 0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>0100</td>
+<td>0001</td>
+<td>0011 0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0010</td>
+<td>0101</td>
+<td>0010</td>
+<td>0011 0010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0011</td>
+<td>0110</td>
+<td>0011</td>
+<td>0011 0011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0100</td>
+<td>0111</td>
+<td>0100</td>
+<td>0011 0100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0101</td>
+<td>1000</td>
+<td>1011</td>
+<td>0011 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0110</td>
+<td>1001</td>
+<td>1100</td>
+<td>0011 0110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+<td>1010</td>
+<td>1101</td>
+<td>0011 0111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1000</td>
+<td>1011</td>
+<td>1110</td>
+<td>0011 1000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1001</td>
+<td>1100</td>
+<td>1111</td>
+<td>0011 1001</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><em>Tab. 3. Reprezentace dekadických čísel 0 až 9 v různých BCD kódech a v kódu ASCII</em></p>
+<p>&nbsp;</p>
+<h2 id='Grayuv-kod'>Grayův kód</h2>
+<div class="hide-caption">
+<div id="attachment_1004" class="wp-caption alignright" style="width: 202px"><a href="http://mikrokontrolery-pic.cz/wp-content/uploads/snimac-natoceni-s-kodovanim-v-grayove-kodu.png"><img class="size-medium wp-image-1004  " title="Snímač natočení s kódováním v Grayově kódu" src="http://mikrokontrolery-pic.cz/wp-content/uploads/snimac-natoceni-s-kodovanim-v-grayove-kodu-400x400.png" alt="Snímač natočení s kódováním v Grayově kódu" width="192" height="192" /></a><p class="wp-caption-text">Obr. 1. Snímač natočení s kódováním v Grayově kódu</p></div>
+</div>
+<p><strong>Grayův binární kód</strong> (původně nazvaný zrcadlový binární kód) je binární kód, u kterého se dvě po sobě jdoucí číselné hodnoty liší vždy pouze v jednom bitu. Grayův kód je spolu s kódem BCD+3 příkladem neváhového binárního kódu. Motivací pro vznik tohoto kódu bylo vyloučení výskytu chybné hodnoty při přechodu mezi dvěma po sobě jdoucími stavy. Původně se tento problém týkal elektromechanických přepínačů, stejný problém však může nastat např. u asynchronního čítače. U standardního binárního kódu (viz tab. 1) se při přechodu mezi některými po sobě jdoucími číselnými stavy mění hodnoty více než jednoho bitu. Například při přechodu mezi sedmičkou a osmičkou se mění hodnoty čtyř bitů současně. Vzhledem k tomu, že se vnitřní klopné obvody logického obvodu překlápí s konečnou rychlostí, nelze v reálném systému zaručit, aby se změnilo více logických úrovní na výstupu obvodu v přesně stejný okamžik. Pokud bychom např. připojili na výstupy klasického asynchronního binárního čítače synchronní obvod, který by vzorkoval své vstupy s dostatečně velkým kmitočtem, může se stát, že při přechodu mezi mezi stavy sedm a osm zachytí tento synchronní obvod teoreticky i několik neplatných mezistavů. Při použití Grayova kódu by se nám toto nestalo. Dnes se Grayův kód používá mimo jiné pro usnadnění opravy chyb v digitální komunikaci, kde se využívá v některých digitálních modulačních schématech (např. QAM). S Grayovým kódem se rovněž můžete setkat u některých snímačů polohy nebo natočení, kde se tímto způsobem eliminuje detekce chybné hodnoty při přechodu mezi dvěma sousedními polohami (viz obr. 1).</p>
+<p>&nbsp;</p>
+<table>
+<colgroup span="1"></colgroup>
+<tbody>
+<tr>
+<th>Dekadické číslo</th>
+<th style="width: 30px;">0</th>
+<th style="width: 30px;">1</th>
+<th style="width: 30px;">2</th>
+<th style="width: 30px;">3</th>
+<th style="width: 30px;">4</th>
+<th style="width: 30px;">5</th>
+<th style="width: 30px;">6</th>
+<th style="width: 30px;">7</th>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<th>2bit. Grayův kód</th>
+<td>00</td>
+<td>01</td>
+<td>11</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th>3bit. Grayův kód</th>
+<td>000</td>
+<td>001</td>
+<td>011</td>
+<td>010</td>
+<td>110</td>
+<td>111</td>
+<td>101</td>
+<td>100</td>
+</tr>
+<tr>
+<th>4bit. Grayův kód</th>
+<td>0000</td>
+<td>0001</td>
+<td>0011</td>
+<td>0010</td>
+<td>0110</td>
+<td>0111</td>
+<td>0101</td>
+<td>0100</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<th>Dekadické číslo</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<th>4bit. Grayův kód</th>
+<td>1100</td>
+<td>1101</td>
+<td>1111</td>
+<td>1110</td>
+<td>1010</td>
+<td>1011</td>
+<td>1001</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><em>Tab. 4. Vyjádření dekadických čísel ve 2bitovém, 3bitovém a 4 bitovém Grayově kódu</em></p>
+<p>&nbsp;</p>
+<h3 id='Generovani-nbitoveho-Grayova-kodu'>Generování n-bitového Grayova kódu</h3>
+<p>V tab. 4 jsou uvedeny hodnoty dekadických čísel vyjádřených ve 2bitovém, 3bitovém a 4bitovém Grayově kódu. Obecně <em>n</em>-bitový Grayův kód je možno generovat různými způsoby. Jednou z možností je generovat jej rekurzivně z (<em>n</em>-1)bitového Grayova kódu (viz obr. 2):</p>
+<ol>
+<li>Jako základ vezmeme hodnoty (<em>n</em>-1)bitového Grayova kódu (můžeme začít 1bitovým Grayovým kódem, který tvoří prvky 0 a 1).</li>
+<li>Provedeme zrcadlení prvků, tj. na konec seznamu kódů připojíme stejný seznam s opačným pořadím prvků.</li>
+<li>K prvkům z první poloviny seznamu<del></del> kódů (tj. k prvkům, které tvoří původní (<em>n</em>-1)bitový Grayův kód) přidáme na pozici nejvýznamnějšího bitu nulu, k prvkům z druhé poloviny seznamu kódů přidáme na pozici nejvýznamnějšího bitu jedničku.</li>
+</ol>
+<p>&nbsp;</p>
+<div id="attachment_1019" class="wp-caption aligncenter" style="width: 410px"><a href="http://mikrokontrolery-pic.cz/wp-content/uploads/generovani-grayova-kodu.png"><img class="size-medium wp-image-1019 " title="Rekurzivní generování n-bitového Grayova kódu" src="http://mikrokontrolery-pic.cz/wp-content/uploads/generovani-grayova-kodu-400x341.png" alt="Rekurzivní generování n-bitového Grayova kódu" width="400" height="341" /></a><p class="wp-caption-text">Obr. 2. Rekurzivní generování n-bitového Grayova kódu</p></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3 id='Prevod-mezi-binarnim-kodem-a-Grayovym-kodem'>Převod mezi binárním kódem a Grayovým kódem</h3>
+<p>Číslo vyjádřené v binárním kódu lze převést do Grayova kódu s využitím logických funkcí XOR, a to následujícím způsobem:</p>
+<ul>
+<li>Nejvýznamnější bit (<acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>) binárního kódu je shodný s nejvýznamnějším bitem Grayova kódu.</li>
+<li>Hodnotu druhého nejvýznamnějšího bitu (<acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>-1) Grayova kódu získáme jako výsledek logické funkce XOR prvního (<acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>) a druhého (<acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>-1) nejvýznamnějšího bitu binárního kódu.</li>
+<li>Podobně hodnotu bitu <acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>-<em>n</em> Grayova kódu získáme jako výsledek logické funkce XOR bitu <acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>-<em>n</em>+1 a bitu <acronym title="Nejvýznamnější bit (angl. Most Significant Bit). Bit, který má v binárním vyjádření čísla největší hodnotu. V typickém zápisu binárního čísla je MSB bit nejvíce vlevo, tj. např. u binárního čísla 100 (odpovídá dekadickému číslu 4) je nejvýznamnějším bitem jednička vlevo. Opakem MSB je nejméně významný bit – LSB.">MSB</acronym>-<em>n</em> binárního kódu.</li>
+</ul>
+<p>Připomeňme, že výsledkem <a title="Booleova algebra – logické funkce" href="http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/booleova-algebra-logicke-funkce/">logické funkce XOR</a> (⊕) je log. 1 pouze v případě, že obě vstupní proměnné nabývají rozdílných hodnot.</p>
+<p>&nbsp;</p>
+<div style="width: 430px; padding: 0pt 7px; margin: auto; border: 1px dotted #dddddd;">
+<p><strong>Příklad:</strong></p>
+<p>Převeďte číslo <strong>10110</strong> vyjádřené v binárním kódu (jedná se o dekadické číslo 22) do Grayova kódu.</p>
+<p><strong>Řešení:</strong></p>
+<table>
+<thead>
+<tr>
+<th>binární kód</th>
+<th>Grayův kód</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color: #ff99cc;">1</span></td>
+<td>= <strong><span style="color: #ff99cc;">1</span></strong></td>
+</tr>
+<tr>
+<td><span style="color: #ff6600;">0</span></td>
+<td>= <span style="color: #ff99cc;">1</span>⊕<span style="color: #ff6600;">0</span> = <strong>1</strong></td>
+</tr>
+<tr>
+<td><span style="color: #ffcc00;">1</span></td>
+<td>= <span style="color: #ff6600;">0</span>⊕<span style="color: #ffcc00;">1</span> = <strong>1</strong></td>
+</tr>
+<tr>
+<td><span style="color: #00ff00;">1</span></td>
+<td>= <span style="color: #ffcc00;">1</span>⊕<span style="color: #00ff00;">1</span> = <strong>0</strong></td>
+</tr>
+<tr>
+<td><span style="color: #00ccff;">0</span></td>
+<td>= <span style="color: #00ff00;">1</span>⊕<span style="color: #00ffff;">0</span> = <strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Binární číslo <strong>10110</strong> by tedy v Grayově kódu bylo reprezentováno kódem <strong>11101</strong>.</p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<div class="cleared"></div>
+
+</div>
+
+    </div>
+</div>
+
+
+</div>
+
+<div class="art-sidebar2">
+<div id="gsc-widget-3" class="widget google custom search"><div class="art-Block">
+    <div class="art-Block-tl"></div>
+    <div class="art-Block-tr"></div>
+    <div class="art-Block-bl"></div>
+    <div class="art-Block-br"></div>
+    <div class="art-Block-tc"></div>
+    <div class="art-Block-bc"></div>
+    <div class="art-Block-cl"></div>
+    <div class="art-Block-cr"></div>
+    <div class="art-Block-cc"></div>
+    <div class="art-Block-body">
+<div class="art-BlockContent">
+    <div class="art-BlockContent-tl"></div>
+    <div class="art-BlockContent-tr"></div>
+    <div class="art-BlockContent-bl"></div>
+    <div class="art-BlockContent-br"></div>
+    <div class="art-BlockContent-tc"></div>
+    <div class="art-BlockContent-bc"></div>
+    <div class="art-BlockContent-cl"></div>
+    <div class="art-BlockContent-cr"></div>
+    <div class="art-BlockContent-cc"></div>
+    <div class="art-BlockContent-body">
+	<div id="cse-search-form20" style="width: 100%;">Loading</div>
+	<script type="text/javascript">
+      google.load('search', '1', {language : 'cs_CZ'});
+      google.setOnLoadCallback(function() {
+        var customSearchControl = new google.search.CustomSearchControl('011838229327843362465:qdtx4qpj-gw');
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        //customSearchControl.enableAds('2496164227');
+				
+        var options = new google.search.DrawOptions();
+        options.setSearchFormRoot('cse-search-form20');
+        options.setAutoComplete(true);
+    
+        customSearchControl.draw('dialog', options);
+        customSearchControl.setSearchCompleteCallback(this, CallBackDisplayDialog);	
+      }, true);
+     
+      // establish a keep callback
+		function CallBackDisplayDialog(result) {
+			jQuery('#dialog').dialog('open');
+//			$('#dialog').dialog('open');
+		}
+    </script>
+<!-- open dialog. For debug purposes
+        <p><a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Dialog</a></p>
+-->
+        <!-- ui-dialog -->
+
+        <div id="dialog" title="Výsledky vyhledávání">
+            <p></p>
+        </div>
+    
+
+    </div>
+</div>
+
+    </div>
+</div>
+</div>				<div id="recently_updated_subpages-3" class="widget Recently_Updated_Subpages"><div class="art-Block">
+    <div class="art-Block-tl"></div>
+    <div class="art-Block-tr"></div>
+    <div class="art-Block-bl"></div>
+    <div class="art-Block-br"></div>
+    <div class="art-Block-tc"></div>
+    <div class="art-Block-bc"></div>
+    <div class="art-Block-cl"></div>
+    <div class="art-Block-cr"></div>
+    <div class="art-Block-cc"></div>
+    <div class="art-Block-body">
+<div class="art-BlockHeader">
+    <div class="art-header-tag-icon">
+        <div class="t">Nejnovější stránky v sekci &raquo; <strong>Začínáme</strong> &laquo;</div>
+    </div>
+</div><div class="art-BlockContent">
+    <div class="art-BlockContent-tl"></div>
+    <div class="art-BlockContent-tr"></div>
+    <div class="art-BlockContent-bl"></div>
+    <div class="art-BlockContent-br"></div>
+    <div class="art-BlockContent-tc"></div>
+    <div class="art-BlockContent-bc"></div>
+    <div class="art-BlockContent-cl"></div>
+    <div class="art-BlockContent-cr"></div>
+    <div class="art-BlockContent-cc"></div>
+    <div class="art-BlockContent-body">
+<ul><li class='page_item page-item-2162'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/integrovane-klopne-obvody-jk/' title='Integrované klopné obvody J-K'>Integrované klopné obvody J-K</a></li><li class='page_item page-item-2121'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-jk/' title='Klopný obvod J-K'>Klopný obvod J-K</a></li><li class='page_item page-item-2031'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/integrovane-klopne-obvody-d-rizene-hranou/' title='Integrované klopné obvody D řízené hranou'>Integrované klopné obvody D řízené hranou</a></li><li class='page_item page-item-1993'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-d-rizeny-hranou/' title='Klopný obvod D řízený hranou'>Klopný obvod D řízený hranou</a></li><li class='page_item page-item-1943'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/stradac-klopne-obvody-d-rizene-urovni/' title='Střadač (klopné obvody D řízené úrovní)'>Střadač (klopné obvody D řízené úrovní)</a></li></ul>
+    </div>
+</div>
+
+    </div>
+</div>
+</div></div></div>
+<div class="cleared"></div>
+
+</div>
+<div class="art-Footer">
+    <div class="art-Footer-inner">
+		<!--<a href="http://mikrokontrolery-pic.cz/feed/" class="art-rss-tag-icon" title="RSS"></a>-->
+		<div class="art-Footer-widgets">
+			
+
+			<div id="footer-widget-area">
+
+				<div id="first" class="widget-area">
+					<div id="recently_updated_pages-3" class="widget-container Recently_Updated_Pages"><h3 class="widget-title">Aktualizované stránky</h3><ul><li class='page_item page-item-915'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/kombinacni-logicke-obvody/koder-prioritni-koder/' title='Kodér, prioritní kodér'>Kodér, prioritní kodér</a></li><li class='page_item page-item-1291'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/' title='Sekvenční logické obvody'>Sekvenční logické obvody</a></li><li class='page_item page-item-2162'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/integrovane-klopne-obvody-jk/' title='Integrované klopné obvody J-K'>Integrované klopné obvody J-K</a></li><li class='page_item page-item-2235'><a href='http://mikrokontrolery-pic.cz/info/mapa-stranek/' title='Mapa stránek'>Mapa stránek</a></li><li class='page_item page-item-2121'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/sekvencni-logicke-obvody/klopny-obvod-jk/' title='Klopný obvod J-K'>Klopný obvod J-K</a></li><li class='page_item page-item-1284'><a href='http://mikrokontrolery-pic.cz/zaciname/cislicova-technika/logicke-obvody/' title='Logické obvody'>Logické obvody</a></li></ul></div>				</div><!-- #first .widget-area -->
+
+				<div id="second" class="widget-area">
+							<div id="recent-posts-3" class="widget-container widget_recent_entries">		<h3 class="widget-title">Nejnovější příspěvky v blogu</h3>		<ul>
+				<li><a href="http://mikrokontrolery-pic.cz/2012/03/aktualizace-stranek-mikrokontrolery-pic-cz/" title="Aktualizace stránek mikrokontroléry-pic.cz">Aktualizace stránek mikrokontroléry-pic.cz</a></li>
+				<li><a href="http://mikrokontrolery-pic.cz/2011/04/nove-webove-stranky-o-mikrokontrolerech-pic/" title="Nové webové stránky o mikrokontrolérech PIC">Nové webové stránky o mikrokontrolérech PIC</a></li>
+				</ul>
+		</div>				</div><!-- #second .widget-area -->
+
+
+				<div id="fourth" class="widget-area">
+					<div id="text-3" class="widget-container widget_text"><h3 class="widget-title">Info</h3>			<div class="textwidget"><ul>
+	<li><a title="Kontakt" href="http://mikrokontrolery-pic.cz/info/kontakt/">Kontakt</a></li>
+	<li><a title="Mapa stránek" href="http://mikrokontrolery-pic.cz/info/mapa-stranek/">Mapa stránek</a></li>
+</ul></div>
+		</div>				</div><!-- #fourth .widget-area -->
+
+<div class="cleared"></div>
+			</div><!-- #footer-widget-area -->
+		</div>
+		<div class="art-Footer-text">
+		<p>
+			Copyright © 2012 Mikrokontroléry PIC. All Rights Reserved.		</p>
+		</div>
+			</div>
+			<div class="art-Footer-background">
+			</div>
+		</div>
+
+    </div>
+</div>
+<div class="cleared"></div>
+<p class="art-page-footer"></p>
+</div>
+
+<!--  -->
+<div><script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/page-tree/lib/jquery.cookie.js?ver=1.0'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/page-tree/lib/jquery.treeview.js?ver=1.0'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.core.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.widget.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.mouse.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.resizable.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.draggable.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.button.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.position.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.dialog.min.js?ver=1.8.16'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/contact-form-7/jquery.form.js?ver=3.08'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/mikrokontrolery-pic.cz\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Odes\u00edl\u00e1n\u00ed ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/contact-form-7/scripts.js?ver=3.1.2'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/dynamic-to-top/js/libs/jquery.easing.js?ver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mv_dynamic_to_top = {"text":"To Top","version":"0","min":"800","speed":"1100","easing":"easeInExpo","margin":"20"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-content/plugins/dynamic-to-top/js/dynamic.to.top.dev.js?ver=3.2'></script>
+<script type='text/javascript' src='http://mikrokontrolery-pic.cz/wp-includes/js/jquery/ui/jquery.ui.tabs.min.js?ver=1.8.16'></script>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22496725-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

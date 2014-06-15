@@ -1,0 +1,19 @@
+-udìlat prezentaci bez znalosti dotazù a pøipomínek.
+-za posledním slidem udìlat další slidy pro podporu reakce na otázky a pøipomínky.
+
+- zminit OSGi jako jednu možnost budouciho vývoje. Jako jeden z možných budoucích smìrù vidím i možnost vzít tento projekt jako prototyp a pøepsat jej znovu tak aby plnì využíval výhod OSGi a umožnil pøípadnou modularitu. Èímž by bylo možné reagovat na zmìny v PrintEnginu iDempiere.
+
+1. Domníváte se, že by ERP systému iDempiere prospìla úplná zmìna technologie reportù - vzhledem k Vašim
+tvrzením o znaèné nekonzistenci chování. Pokud ano, jaké øešení byste doporuèil?
+
+V první øadì by byla potøená dùkladná analýza tøídy org.compiere.print.layout.LayoutEngine, org.compiere.print.PrintData a souvisejících tøíd. (momentálnì tuto tøídu tvoøí jeden obrovský monolitický kod, kterému je velmi tìžké porozumìt -> alespoÒ ho refaktorofat do více tøíd)
+Jejím výsledkem by mìlo být zdoumentování celého procesu vytváøení reportù a exportu.
+Na základì toho potm navrhnout nové øešení, tak aby plnì využívalo OSGi a umožnilo modularitu.
+Tz napøíklad aby existoval základní engine a exporty ( importy z ) do rùzných formátù by øešily jednotlivé pluginy.
+
+Taky by bylo vhodné provést analýzu uživatelských požadavkù.
+Hlavnì vytvoøit dokumentaci!!!! Až potom zaèít s refaktorizací
+Jakékoliv vìtší zmìny je ale nutné konzultovat s autory a stanovit alespoò budoucí CÍL (smìr) vývoje.
+Klidnì vnitønì používat JasperReports
+
+Na základì analýzy poromt zvážit jestli bude lepší pøepsat (vytvoøit nový) tiskový engine tøeba i pomocí Jasper reports. Nebo starý systém zrušit a sostøedit se èistì na podporu Jasper. Použití Jasper je univerzálnìjší a zabraòuje znovuvynalézání kola, ale zase vytváøí závislost na tøetí stranì (což vytváøí bìhové a v budoucnu možná i licenèní problémy). Vlastní øešení umožòuje plnou nezávislost, ovšem pøináší spoustu práce. V souèasné dobì tedy není jednoduché rozhodnout, který pøístup je lepší.
