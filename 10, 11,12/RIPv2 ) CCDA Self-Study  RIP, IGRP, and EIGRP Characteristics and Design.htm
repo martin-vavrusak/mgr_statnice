@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" xsl="http://www.w3.org/1999/XSL/Transform xmlns:fb="http://www.facebook.com/2008/fbml""><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" xsl="http://www.w3.org/1999/XSL/Transform xmlns:fb="http://www.facebook.com/2008/fbml""> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fb="http://www.facebook.com/2008/fbml"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js no-touch hashchange borderradius boxshadow fontface generatedcontent video flash localstorage" xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fb="http://www.facebook.com/2008/fbml"><!--<![endif]--><head><title>RIPv2 &gt; CCDA Self-Study: RIP, IGRP, and EIGRP Characteristics and Design</title><meta name="verify-v1" content="XntM1yUnBJE8QJXwDylqW9tjySpCZXIeRIwu8FlqJ28="><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="modified_dt" content=""><link href="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/common.css" rel="stylesheet" type="text/css"><link href="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/jquery-ui-custom.css" rel="stylesheet" type="text/css"><link href="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/style.css" rel="stylesheet" type="text/css"><link rel="shortcut icon" href="http://www.ciscopress.com/display/CiscoPress/images/objects/favicon.ico?v=20140513"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.ciscopress.com/display/CiscoPress/images/objects/touch_icons/apple-touch-icon-144x144-precomposed.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.ciscopress.com/display/CiscoPress/images/objects/touch_icons/apple-touch-icon-114x114-precomposed.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.ciscopress.com/display/CiscoPress/images/objects/touch_icons/apple-touch-icon-72x72-precomposed.png"><link rel="apple-touch-icon-precomposed" href="http://www.ciscopress.com/display/CiscoPress/images/objects/touch_icons/apple-touch-icon-precomposed.png"><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/modernizr.js"></script><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/jquery.js"></script><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/global.js"></script><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/jquery-ui-1.js"></script><!--[if lte IE 8]><script type="text/JavaScript" src="/display/common/javascript/respond.min.js"></script><![endif]--><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/swfobject.js"></script><script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/fastclick.js"></script><link rel="canonical" href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=4">
+			<link rel="prev" href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=3">
+			<link rel="next" href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=5">
+		
+				<meta name="pageType" content="Articles and Sample Chapters">
+			<meta name="publishedDate" content="Dec 12, 2003">
+				<meta name="description" content="This sample chapter reviews distance-vector routing protocols, covers both versions of the Routing Information Protocol, and discusses the Cisco Interior Gateway Routing Protocol and Enhanced Interior Gateway Routing Protocol &amp;mdash; important knowledge for the CCDA.">
+			
+			
+			
+		
+        <meta name="WT.si_n" content="Site_Funnel">
+<meta name="WT.si_p" content="Article">
+<meta name="DCSext.w_ptgarctlnm" content="CCDA Self-Study: RIP, IGRP, and EIGRP Characteristics and Design">
+<meta name="DCSext.w_ptgarctlpg" content="4_RIPv2">
+<meta name="WT.ad" content="Home &gt; Articles &gt; Cisco Certification &gt; CCDA &gt; CCDA Self-Study: RIP, IGRP, and EIGRP Characteristics and Design">
+
+      </head><body class=""><div class="wrapper"><div id="header"><div class="cranium"><div id="hLogo"><a href="http://www.cisco.com/" accesskey="0" title="Home" class="logo"><!--[if lte IE 8]><img src="/display/ciscopress/images/logos/cisco.png" alt="Cisco Systems" /><![endif]--></a></div><div id="headerLinks" class="clearfix">
+										    <div id="cartLink" class="headerLink c">
+        <span class="bighead ss-icon"></span>
+        <a href="https://memberservices.informit.com/cart/buy.aspx?partner=7">
+            <span class="bighead">View </span>Your Cart
+        </a>
+    </div>
+
+    <div class="hi">
+        <a href="https://memberservices.informit.com/my_account/login.aspx?partner=7">Account Sign In</a>
+    </div>
+
+									<form name="headersearchform" id="headersearchform" class="s" method="GET" action="/search/index.asp"><label for="headersearchform">Search</label><input onfocus="checkClear(this,'Search');" name="query" id="query" value="Search" type="text"><input id="searchbutton" class="ss-icon" value="🔎" type="submit"></form></div><div id="logo"><a href="http://www.ciscopress.com/" accesskey="0" title="Home" class="logo"><!--[if lte IE 8]><img src="/display/ciscopress/images/logos/ciscoPress.png" alt="Cisco Press" /><![endif]--></a></div></div></div><div id="siteNav"><div class="cranium clearfix"><ul id="nav"><li><a href="http://www.ciscopress.com/">Home</a></li><li><a href="http://www.ciscopress.com/store/">Store</a><ul><li><a href="http://www.ciscopress.com/store/browse/books">Books</a></li><li><a href="http://www.ciscopress.com/store/browse/ebooks">eBooks</a></li><li><a href="http://www.ciscopress.com/store/browse/practice-tests">Practice Tests</a></li><li><a href="http://www.ciscopress.com/search/support.asp">Product Support</a></li><li><a href="http://www.ciscopress.com/store/register.asp">Register a Product</a></li><li><a href="http://www.ciscopress.com/store/browse/software">Software</a></li><li><a href="http://www.ciscopress.com/store/browse/video">Video</a></li></ul></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44727">Certification Info</a><ul><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44701">CCENT</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44716">CCDA</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44751">CCDP</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44729">CCDE</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44711">CCNA</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=98139">CCNA Security</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=98140">CCNA Voice</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=98141">CCNA Wireless</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44734">CCNP Routing &amp; Switching</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44730">CCNP Security</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44706">CCNP Voice</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=87526">CCNP Wireless</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44745">CCIP</a></li><li><a href="http://www.ciscopress.com/markets/detail.asp?st=44718">CCIE</a></li></ul></li><li><a href="http://www.ciscopress.com/promotions/cisco-networking-academy-136536">Cisco Networking Academy</a></li><li><a href="http://my.safaribooksonline.com/?cid=my-201307-ciscopress-topnav&amp;portal=ciscopress">Safari Books Online</a></li><li><a href="http://www.ciscopress.com/authors/">Authors</a></li><li><a href="http://www.ciscopress.com/articles/">Chapters &amp; Articles</a></li><li><a href="http://www.ciscopress.com/explore/">Explore</a><ul class="lastul"><li><a href="http://www.ciscopress.com/about/">About</a></li><li><a href="http://www.ciscopress.com/affiliates/">Affiliates</a></li><li><a href="http://www.ciscopress.com/newsletters/">Newsletters</a></li><li><a href="http://www.ciscopress.com/press/">Press</a></li><li><a href="http://www.ciscopress.com/promotions/">Promotions</a></li><li><a href="http://www.ciscopress.com/store/sales.asp">Sales</a></li><li><a href="http://www.ciscopress.com/series/">Series</a></li><li><a href="http://www.ciscopress.com/user_groups/">User Groups</a></li></ul></li></ul></div></div><div id="contentAll">
+
+
+
+
+<div id="crumbTrail">
+    <p>
+        <span>
+                    <a href="http://www.ciscopress.com/">Home</a>
+                    &gt;
+                    <a href="http://www.ciscopress.com/articles/index.asp">Articles</a>
+                    &gt;
+                    <a href="http://www.ciscopress.com/articles/index.asp?st=42098">Cisco Certification</a>
+                    &gt;
+                    <a href="http://www.ciscopress.com/articles/index.asp?st=42066">CCDA</a>
+                    &gt;
+CCDA Self-Study: RIP, IGRP, and EIGRP Characteristics and Design        </span>
+    </p>
+</div>
+
+<script type="text/JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/articleinfo.js"></script>
+<div id="contentArticle">
+    <div id="firstCol">
+            <h1><a href="http://www.ciscopress.com/articles/article.asp?p=102174">CCDA Self-Study: RIP, IGRP, and EIGRP Characteristics and Design</a></h1>
+        <div id="prodInfo">
+            <ul>
+                    <li>
+                        By <a rel="author" href="http://www.ciscopress.com/authors/bio/14f00928-17ec-4e11-b5b9-e0afa892812a">Anthony Bruno</a>, <a rel="author" href="http://www.ciscopress.com/authors/bio/7bfc24a6-0896-44e5-97ca-2ea8a4a6fef7">Jacqueline Kim</a>.
+                    </li>
+                                    <li>
+                        Sample Chapter is provided courtesy of
+                            <a href="http://www.ciscopress.com/">Cisco Press</a>.
+                    </li>
+                <li>Date: Dec 12, 2003.</li>
+            </ul>
+        </div>
+        <div id="tools">
+            <p>
+                <img class="save" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/save_16.gif" alt="Save"><a href="javascript:;" onclick="openBrWindow('/my_account/addTo.asp?p=95531b7e-d8fe-41f5-9849-864ee0be83f6&amp;e=facc86ad-5742-438d-a8c9-f39ac2340a9c&amp;t=a','addMyAccount','scrollbars=no,resizable=yes,width=300,height=200')">Save</a><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/digg.gif" alt="Digg"><a href="http://digg.com/submit?phase=2&amp;url=http://www.ciscopress.com//articles/article.asp?p=102174&amp;title=CCDA+Self-Study%3a+RIP%2c+IGRP%2c+and+EIGRP+Characteristics+and+Design&amp;bodytext=This+sample+chapter+reviews+distance-vector+routing+protocols%2c+covers+both+versions+of+the+Routing+Information+Protocol%2c+and+discusses+the+Cisco+Interior+Gateway+Routing+Protocol+and+Enhanced+Interior+Gateway+Routing+Protocol+%26mdash%3b+important+knowledge+for+the+CCDA.">Digg</a><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/delicious.gif" alt="Del.icio.us"><a href="http://del.icio.us/post?v=4;url=http://www.ciscopress.com//articles/article.asp?p=102174&amp;title=CCDA+Self-Study%3a+RIP%2c+IGRP%2c+and+EIGRP+Characteristics+and+Design">Del.icio.us</a><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/print_16.gif"><a href="http://www.ciscopress.com/articles/printerfriendly/102174">Print</a><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/email_16.gif"><a href="http://www.ciscopress.com/articles/email_friend.asp?p=102174">Email</a>
+            </p>
+        </div>
+
+            <h2 id="toggleLink"><a href="javascript:;" onclick="swapArticleInfo('102174')">Chapter Information</a></h2>
+        <div style="visibility: visible; display: block;" id="articleInformation" class="box clearfix">
+                <div class="toc">
+                    <h3>Contents</h3>
+                    <ol>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174">"Do I Know This Already?" Quiz</a>
+                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=2">Foundation Topics</a>
+                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=3">RIPv1</a>
+                            </li>
+                            <li>
+RIPv2                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=5">IGRP</a>
+                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=6">EIGRP</a>
+                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=7">Foundation Summary</a>
+                            </li>
+                            <li>
+                                    <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=8">Q&amp;A</a>
+                            </li>
+                    </ol>
+                </div>
+                            <div id="intro">
+                    <h3>Chapter Description</h3>
+                    This sample chapter reviews distance-vector routing 
+protocols, covers both versions of the Routing Information Protocol 
+(RIP), and discusses the Cisco Interior Gateway Routing Protocol (IGRP) 
+and Enhanced Interior Gateway Routing Protocol (EIGRP) — important 
+knowledge for the CCDA.
+                </div>
+                            <div class="relatedBook">
+                    <h3>From the Book</h3>
+                        <a href="http://www.ciscopress.com/store/ccda-exam-certification-guide-ccda-self-study-640-861-9781587200762?w_ptgrevartcl=CCDA+Self-Study%3a+RIP%2c+IGRP%2c+and+EIGRP+Characteristics+and+Design_102174">
+                            <img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/ShowCover.jpg" alt="CCDA® Exam Certification Guide (CCDA Self-Study, 640-861)">
+                        </a>
+                        <p>
+                            <a href="http://www.ciscopress.com/store/ccda-exam-certification-guide-ccda-self-study-640-861-9781587200762?w_ptgrevartcl=CCDA+Self-Study%3a+RIP%2c+IGRP%2c+and+EIGRP+Characteristics+and+Design_102174">
+                                CCDA® Exam Certification Guide (CCDA Self-Study, 640-861), 2nd Edition
+                            </a>
+                        </p>
+                        <p>
+                            $54.95
+                        </p>
+                </div>
+            <div class="clear"></div>
+        </div>
+        <div id="article">
+            <div id="text">
+                <h2>RIPv2</h2>
+<p>RIPv2 was first described in RFC 1388 and RFC 1723 (1994); the current RFC is
+2453, written in November 1998. Although current environments use advanced
+routing protocols such as OSPF and EIGRP, there still are networks using RIP.
+The need to use VLSMs and other requirements prompted the definition of
+RIPv2.</p>
+<p>RIPv2 improves upon RIPv1 with the ability to use VLSM, with support for
+route authentication, and with multicasting of route updates. RIPv2 supports
+CIDR. It still sends updates every 30 seconds and retains the 15-hop limit; it
+also uses triggered updates. RIPv2 still uses UDP port 520; the RIP process is
+responsible for checking the version number. It retains the loop-prevention
+strategies of poison reverse and counting to infinity. On Cisco routers, RIPv2
+has the same administrative distance as RIPv1, which is 120. Finally, RIPv2 uses
+the IP address 224.0.0.9 when multicasting route updates to other RIP routers.
+As in RIPv1, RIPv2 will, by default, summarize IP networks at network
+boundaries. You can disable autosummarization if required.</p>
+<p>You can use RIPv2 in small networks where VLSM is required. It also works at
+the edge of larger networks. </p>
+<h3>Authentication</h3>
+<p>Authentication can prevent communication with any RIP routers that are not
+intended to be part of the network, such as UNIX stations running <b>routed</b>.
+Only RIP updates with the authentication password are accepted. RFC 1723 defines
+simple plain-text authentication for RIPv2.</p>
+<h4>MD5 Authentication</h4>
+<p>In addition to plain-text passwords, the Cisco implementation provides the
+ability to use Message Digest 5 (MD5) authentication, which is defined in RFC
+1321. Its algorithm takes as input a message of arbitrary length and produces as
+output a 128-bit fingerprint or message digest of the&nbsp;input, making it much
+more secure than plain-text passwords.</p>
+<h3>RIPv2 Forwarding Information Base</h3>
+<p>RIPv2 maintains a routing table database as in Version 1. The difference is
+that it also keeps the subnet mask information. The following list repeats the
+table information of RIPv1:</p>
+<ul>
+<li><p><b>IP address</b>—IP address of the destination host or network,
+with subnet mask</p></li>
+<li><p><b>Gateway</b>—The first gateway along the path to the
+destination</p></li>
+<li><p><b>Interface</b>—The physical network that must be used to reach the
+destination</p></li>
+<li><p><b>Metric</b>—A number indicating the number of hops to the
+destination</p></li>
+<li><p><b>Timer</b>—The amount of time since the route entry was last
+updated</p></li>
+</ul>
+<h3>RIPv2 Message Format</h3>
+<p>The RIPv2 message format takes advantage of the unused fields in the RIPv1 
+  message format by adding subnet masks and other information. <a href="javascript:popUp('/content/images/chap12_1587200767/elementLinks/fig03.gif')">Figure 
+  12-3</a> shows the RIPv2 message format.</p>
+<p><b><a href="javascript:popUp('/content/images/chap12_1587200767/elementLinks/fig03.gif')"><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/thfig03.gif" alt="Figure 3" align="left" border="0" height="75" hspace="5" width="100">Figure
+12-3</a> RIPv2 Message Format</b></p>
+ 
+<p></p>
+<p>The following is a description of each field:</p>
+<ul>
+<li><p><b>Command</b>—Indicates whether the packet is a request or a
+response message. The request message asks that a router send all or a part of
+its routing table. Response messages contain route entries. The router sends the
+response periodically or as a reply to a request. </p></li>
+<li><p><b>Version</b>—Specifies the RIP version used. It is set to 2 for
+RIPv2 and set to 1 for RIPv1.</p></li>
+<li><p><b>AFI</b>—Specifies the address family used. RIP is designed to
+carry routing information for several different protocols. Each entry has an AFI
+to indicate the type of address specified. The AFI for IP is 2. The AFI is set
+to 0xFFF for the first entry to indicate that the remainder of the entry
+contains authentication information. </p></li>
+<li><p><b>Route tag</b>—Provides a method for distinguishing between
+internal routes (learned by RIP) and external routes (learned from other
+protocols). You can add this optional attribute during the redistribution of
+routing protocols.</p></li>
+<li><p><b>IP address</b>—Specifies the IP address (network) of the
+destination.</p></li>
+<li><p><b>Subnet mask</b>—Contains the subnet mask for the destination. If
+this field is 0, no subnet mask has been specified for the entry.</p></li>
+<li><p><b>Next hop</b>—Indicates the IP address of the next hop where
+packets are sent to reach the destination.</p></li>
+<li><p><b>Metric</b>—Indicates how many router hops to reach the
+destination. The metric is between 1 and 15 for a valid route or 16 for an
+unreachable or infinite route.</p></li>
+</ul>
+<p>Again, as in Version 1, the router permits up to 25 occurrences of the last
+five 32-bit words (20 bytes) for up to 25 routes per RIP message. If the AFI
+specifies an authenticated message, the router can specify only 24 routing-table
+entries. The updates are sent to the multicast address of 224.0.0.9.</p>
+<h3>RIPv2 Timers</h3>
+<p>RIPv2 timers are the same as in Version 1. They send periodic updates every
+30 seconds. The default invalid timer is 180 seconds, the holddown timer is 180
+seconds, and the flush timer is 240 seconds. You can write this list as
+30/180/180/240 representing the U/I/H/F timers.</p>
+<h3>RIPv2 Design</h3>
+<p>Things to remember in designing a network with RIPv2 include that it supports
+VLSM within networks and CIDR for network summarization across adjacent
+networks. RIPv2 allows for the summarization of routes in a hierarchical
+network. RIPv2 is still limited to 16 hops; therefore, the network diameter
+cannot exceed this limit. RIPv2 multicasts its routing table every 30 seconds
+to&nbsp;the&nbsp;multicast IP address 224.0.0.9. RIPv2 is usually limited to
+accessing networks where it can interoperate with servers running <b>routed</b>
+or with non-Cisco routers. RIPv2 also appears at the edge of larger
+internetworks. RIPv2 further provides for route authentication.</p>
+<p>As shown in Figure <a href="javascript:popUp('/content/images/chap12_1587200767/elementLinks/fig04.gif')">12-4</a>, 
+  when you use RIPv2, all segments can have different subnet masks.</p>
+<p><b><a href="javascript:popUp('/content/images/chap12_1587200767/elementLinks/fig04.gif')"><img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/thfig04.gif" alt="Figure 4" align="left" border="0" height="75" hspace="5" width="100">Figure
+12-4</a> RIPv2 Design</b></p>
+ 
+<p></p>
+<h3>RIPv2 Summary</h3>
+<p>The characteristics of RIPv2 follow:</p>
+<ul>
+<li><p>Distance-vector protocol.</p></li>
+<li><p>Uses UDP port 520.</p></li>
+<li><p>Classless protocol (support for CIDR).</p></li>
+<li><p>Supports VLSMs.</p></li>
+<li><p>Metric is router hop count.</p></li>
+<li><p>Maximum hop count is 15; infinite (unreachable) routes have a metric of
+16.</p></li>
+<li><p>Periodic route updates sent every 30 seconds to multicast address
+224.0.0.9.</p></li>
+<li><p>25 routes per RIP message (24 if you use authentication).</p></li>
+<li><p>Supports authentication.</p></li>
+<li><p>Implements split horizon with poison reverse.</p></li>
+<li><p>Implements triggered updates.</p></li>
+<li><p>Subnet mask included in route entry.</p></li>
+<li><p>Administrative distance for RIPv2 is 120.</p></li>
+<li><p>Used in small, flat networks or at the edge of larger networks.</p></li>
+</ul>
+
+            </div>
+            <div id="paginate">
+                    <span class="next">5. IGRP | <a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=5">Next Section</a></span>
+                                    <span class="prev"><a href="http://www.ciscopress.com/articles/article.asp?p=102174&amp;seqNum=3">Previous Section</a></span>
+                <div style="clear: right;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="secondCol">
+        
+        <div class="skyArea">
+    <div class="relatedArticles prodlist">
+        <h3>You May Also Like</h3>
+        <div class="prodlist">
+            <ol>
+                <li>
+                        <strong><a href="http://www.ciscopress.com/articles/article.aspx?p=2213198">Introduction to 31 Days Before Your CCNA Routing and Switching Exam </a></strong>
+                        <ul>
+                            <li>
+                                By <a href="http://www.ciscopress.com/authors/bio/de991b08-4224-4a81-90fb-ccf0c28a0c08">Allan Johnson</a>
+                            </li>
+                            <li class="pubdate">
+                                May 19, 2014
+                            </li>
+                        </ul>
+                        <strong><a href="http://www.ciscopress.com/articles/article.aspx?p=2204385">CCNA Routing and Switching Practice and Study Guide: Link Aggregation </a></strong>
+                        <ul>
+                            <li>
+                                By <a href="http://www.ciscopress.com/authors/bio/de991b08-4224-4a81-90fb-ccf0c28a0c08">Allan Johnson</a>
+                            </li>
+                            <li class="pubdate">
+                                May 16, 2014
+                            </li>
+                        </ul>
+                        <strong><a href="http://www.ciscopress.com/articles/article.aspx?p=2204384">CCNA Routing and Switching Practice and Study Guide: LAN Redundancy </a></strong>
+                        <ul>
+                            <li>
+                                By <a href="http://www.ciscopress.com/authors/bio/de991b08-4224-4a81-90fb-ccf0c28a0c08">Allan Johnson</a>
+                            </li>
+                            <li class="pubdate">
+                                May 15, 2014
+                            </li>
+                        </ul>
+                </li>
+            </ol>
+            <p class="viewall">
+                <a href="http://www.ciscopress.com/articles/index.asp?st=42066">See All Related Articles</a>
+            </p>
+        </div>
+    </div>
+
+                <div class="relatedSafari prodlist">
+                    <h3>Search Related Safari Books</h3>
+                    <img src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/safari_sm_white.gif" alt="Safari Books">
+                        <form action="http://safari.peachpit.com/search">
+                            <input name="searchmode" value="simple" type="hidden">
+                            <input name="searchview" value="summary" type="hidden">
+                            <input name="order" value="asc" type="hidden">
+                            <p>
+                                <label for="searchSafari">Search electronic versions of over 1500 technical books:</label>
+                            </p>
+                            <p>
+                                <input id="searchtextbox" name="searchtextbox" type="text">
+                            </p>
+                            <p>
+                                <input class="button" value="Search" type="submit">
+                            </p>
+                        </form>
+                </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<script type="text/Javascript">
+    setArticleInfoVisibility(102174);
+</script><div id="footer"><ul class="links clearfix"><li><a href="http://www.ciscopress.com/about/">About</a></li><li><a href="http://www.ciscopress.com/affiliates/">Affiliates</a></li><li><a href="http://www.cisco.com/">Cisco Systems, Inc.</a></li><li><a href="http://www.ciscopress.com/about/contact_us/">Contact Us</a></li><li><a href="http://www.ciscopress.com/about/faq.asp">FAQ</a></li><li><a href="http://www.ciscopress.com/about/jobs.asp">Jobs</a></li><li><a href="http://www.ciscopress.com/about/legal.asp">Legal Notice</a></li><li><a href="http://www.ciscopress.com/about/privacy.asp">Privacy Policy</a></li><li><a href="http://www.ciscopress.com/about/help.asp">Site Help</a></li><li><a href="http://www.ciscopress.com/site_map/">Site Map</a></li><li><a href="http://www.ciscopress.com/about/write_for_us.asp">Write for Us</a></li></ul><div itemscope="itemscope" itemtype="http://schema.org/Corporation" id="indicia"><p class="copyright">© 2014 Pearson Education, <span itemprop="name">Cisco Press</span>. All rights reserved.
+								</p><div itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress"><p class="address"><span itemprop="streetAddress">800 East 96th Street</span>, <span itemprop="addressLocality">Indianapolis</span>, <span itemprop="addressRegion">Indiana </span><span itemprop="postalCode">46240</span></p></div></div></div></div><!--Google analytics--><script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/ga.js" type="text/javascript"></script><script type="text/javascript">try {var pageTracker = _gat._getTracker("UA-433761-4"); pageTracker._trackPageview();} catch(err) {}</script><script language="JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/micronav.js" type="text/JavaScript"></script><script language="JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/dropdowns.js" type="text/JavaScript"></script><!--Webtrends--><script language="JavaScript" src="RIPv2%20%29%20CCDA%20Self-Study%20%20RIP,%20IGRP,%20and%20EIGRP%20Characteristics%20and%20Design_soubory/webtrends.js" type="text/JavaScript"></script><noscript><img alt="" border="0" name="DCSIMG" width="1" height="1" src="http://statse.webtrendslive.com/dcs5oqloa100000wwytuvzzqx_2n2r/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.0.3" /></noscript></div>
+</body></html>
